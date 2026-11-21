@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Trazo — Hand-drawn crayon stickers for the web</title>
+  <meta name="description" content="An open-source collection of 71 hand-drawn, wax-crayon-style SVG sticker illustrations built for React and the web." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Hidden SVG defs: exact silhouette clip-paths for art/ref*.png and monochrome crayon tint filters -->
+  <svg class="svg-defs" width="0" height="0" aria-hidden="true">
+    <defs>
+      <clipPath id="clip-ref01" clipPathUnits="objectBoundingBox">
+        <path d="M0.295,0.136L0.350,0.155L0.495,0.245L0.550,0.309L0.559,0.373L0.636,0.445L0.686,0.518L0.773,0.505L0.818,0.545L0.805,0.609L0.750,0.664L0.764,0.727L0.714,0.759L0.605,0.745L0.582,0.850L0.532,0.886L0.500,0.886L0.468,0.855L0.400,0.905L0.355,0.909L0.314,0.882L0.309,0.850L0.241,0.845L0.218,0.814L0.223,0.782L0.291,0.727L0.259,0.677L0.236,0.532L0.186,0.473L0.186,0.309L0.232,0.173Z" />
+      </clipPath>
+      <clipPath id="clip-ref04" clipPathUnits="objectBoundingBox">
+        <path d="M0.508,0.113L0.637,0.146L0.708,0.225L0.746,0.329L0.729,0.425L0.683,0.504L0.708,0.613L0.692,0.658L0.654,0.688L0.662,0.746L0.646,0.808L0.592,0.871L0.475,0.892L0.388,0.846L0.354,0.787L0.358,0.742L0.396,0.700L0.433,0.700L0.458,0.721L0.467,0.783L0.492,0.783L0.508,0.758L0.388,0.642L0.371,0.608L0.367,0.537L0.421,0.425L0.338,0.379L0.312,0.354L0.304,0.317L0.321,0.271L0.375,0.263Z" />
+      </clipPath>
+      <clipPath id="clip-ref08" clipPathUnits="objectBoundingBox">
+        <path d="M0.421,0.140L0.548,0.149L0.627,0.175L0.702,0.224L0.750,0.276L0.776,0.329L0.803,0.417L0.803,0.509L0.851,0.531L0.882,0.579L0.877,0.627L0.851,0.667L0.794,0.711L0.728,0.724L0.697,0.785L0.623,0.842L0.535,0.842L0.487,0.807L0.412,0.842L0.368,0.833L0.307,0.798L0.272,0.754L0.167,0.746L0.118,0.702L0.096,0.658L0.092,0.605L0.140,0.553L0.132,0.443L0.149,0.355L0.184,0.281L0.272,0.193L0.329,0.162Z" />
+      </clipPath>
+      <clipPath id="clip-ref12" clipPathUnits="objectBoundingBox">
+        <path d="M0.461,0.103L0.547,0.103L0.685,0.159L0.776,0.254L0.832,0.388L0.806,0.509L0.733,0.569L0.750,0.655L0.741,0.720L0.720,0.763L0.720,0.862L0.698,0.892L0.672,0.901L0.638,0.897L0.603,0.849L0.608,0.767L0.586,0.836L0.569,0.853L0.522,0.858L0.504,0.845L0.470,0.888L0.440,0.892L0.401,0.871L0.388,0.810L0.353,0.832L0.315,0.836L0.284,0.815L0.276,0.780L0.233,0.784L0.194,0.746L0.203,0.698L0.228,0.655L0.220,0.530L0.259,0.453L0.203,0.384L0.198,0.310L0.211,0.276L0.241,0.224L0.328,0.147Z" />
+      </clipPath>
+
+      <!-- Monochrome crayon duotone tint filters for ref*.png -->
+      <filter id="tint-ink" color-interpolation-filters="sRGB">
+        <feColorMatrix type="matrix" values="
+          0.31 0.61 0.12 0 -0.08
+          0.31 0.61 0.12 0 -0.09
+          0.30 0.60 0.12 0 -0.10
+          0    0    0    1  0" />
+      </filter>
+      <filter id="tint-red" color-interpolation-filters="sRGB">
+        <feColorMatrix type="matrix" values="
+          0.26 0.50 0.10 0  0.22
+          0.26 0.51 0.10 0 -0.18
+          0.26 0.51 0.10 0 -0.17
+          0    0    0    1  0" />
+      </filter>
+      <filter id="tint-orange" color-interpolation-filters="sRGB">
+        <feColorMatrix type="matrix" values="
+          0.24 0.48 0.09 0  0.27
+          0.27 0.53 0.10 0 -0.05
+          0.26 0.51 0.10 0 -0.24
+          0    0    0    1  0" />
+      </filter>
+      <filter id="tint-yellow" color-interpolation-filters="sRGB">
+        <feColorMatrix type="matrix" values="
+          0.23 0.45 0.09 0  0.29
+          0.26 0.50 0.10 0  0.14
+          0.24 0.47 0.09 0 -0.24
+          0    0    0    1  0" />
+      </filter>
+      <filter id="tint-green" color-interpolation-filters="sRGB">
+        <feColorMatrix type="matrix" values="
+          0.28 0.55 0.11 0 -0.19
+          0.25 0.49 0.10 0  0.14
+          0.27 0.53 0.10 0 -0.08
+          0    0    0    1  0" />
+      </filter>
+      <filter id="tint-sky" color-interpolation-filters="sRGB">
+        <feColorMatrix type="matrix" values="
+          0.29 0.56 0.11 0 -0.20
+          0.24 0.48 0.09 0  0.14
+          0.21 0.42 0.08 0  0.30
+          0    0    0    1  0" />
+      </filter>
+      <filter id="tint-cobalt" color-interpolation-filters="sRGB">
+        <feColorMatrix type="matrix" values="
+          0.29 0.57 0.11 0 -0.15
+          0.27 0.53 0.10 0 -0.03
+          0.21 0.41 0.08 0  0.31
+          0    0    0    1  0" />
+      </filter>
+      <filter id="tint-pink" color-interpolation-filters="sRGB">
+        <feColorMatrix type="matrix" values="
+          0.24 0.47 0.09 0  0.26
+          0.28 0.55 0.11 0 -0.16
+          0.25 0.49 0.10 0  0.05
+          0    0    0    1  0" />
+      </filter>
+    </defs>
+  </svg>
+
+  <!-- Layer 1: Top Edge Utility Chrome -->
+  <header class="top-chrome" aria-label="Creator and repository links">
+    <a id="credit-pill" class="chrome-pill credit-pill" href="https://akoder.xyz" target="_blank" rel="noopener noreferrer">
+      <span class="credit-prep">by</span>
+      <span class="credit-monogram" aria-hidden="true">A</span>
+      <span class="credit-name">Aditya</span>
+      <span class="pill-tooltip" role="tooltip">Aditya Ojha · akoder.xyz</span>
+    </a>
+
+    <a id="github-pill" class="chrome-pill github-pill" href="https://github.com/AdityaKodez/trazo" target="_blank" rel="noopener noreferrer" aria-label="AdityaKodez/trazo on GitHub, 1,284 stars">
+      <span class="gh-flip-wrap" aria-hidden="true">
+        <span class="gh-flip-inner">
+          <span class="gh-face gh-front">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 1.8a10.2 10.2 0 0 0-3.22 19.88c.51.09.7-.22.7-.49 0-.24-.01-.88-.01-1.73-2.84.62-3.44-1.37-3.44-1.37-.46-1.18-1.14-1.49-1.14-1.49-.93-.64.07-.62.07-.62 1.03.07 1.57 1.06 1.57 1.06.92 1.57 2.4 1.12 2.99.85.09-.66.36-1.12.65-1.37-2.27-.26-4.65-1.13-4.65-5.05 0-1.11.4-2.02 1.05-2.74-.1-.26-.46-1.3.1-2.7 0 0 .86-.28 2.81 1.05a9.77 9.77 0 0 1 5.12 0c1.95-1.33 2.81-1.05 2.81-1.05.56 1.4.2 2.44.1 2.7.65.72 1.05 1.63 1.05 2.74 0 3.93-2.39 4.79-4.66 5.04.37.32.7.94.7 1.89 0 1.37-.01 2.47-.01 2.8 0 .27.18.59.7.49A10.2 10.2 0 0 0 12 1.8Z" />
+            </svg>
+          </span>
+          <span class="gh-face gh-back">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none">
+              <path d="M12 2.8l2.5 5.4 5.9.7-4.4 4 1.2 5.9L12 15.8l-5.2 3 1.2-5.9-4.4-4 5.9-.7L12 2.8Z" fill="#facc15" stroke="#ca8a04" stroke-width="2" stroke-linejoin="round" />
+            </svg>
+          </span>
+        </span>
+      </span>
+      <span class="gh-stars">1,284</span>
+      <span class="pill-tooltip pill-tooltip-right" role="tooltip">AdityaKodez/trazo on GitHub</span>
+    </a>
+  </header>
+
+  <!-- Layer 2: Interactive Full-Viewport Paper Stage -->
+  <main id="canvas-viewport" class="canvas-viewport" aria-label="Interactive sketchbook canvas of 71 hand-drawn crayon stickers">
+    <div id="canvas-world" class="canvas-world" data-palette="original">
+      <!-- Faint neighborhood zone titles -->
+      <div id="zone-labels-layer" class="zone-labels-layer" aria-hidden="true"></div>
+
+      <!-- Desktop whispered margin hints -->
+      <div id="hints-layer" class="hints-layer" aria-hidden="true">
+        <div class="margin-hint hint-click" style="--hx: -448px; --hy: -282px; --hrot: -5deg;">
+          <span>click any sticker to customize</span>
+          <svg class="hint-arrow" width="38" height="24" viewBox="0 0 38 24" fill="none">
+            <path d="M6 3c12 2 20 8 25 17m-7-2 7 2 1-7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+        </div>
+
+        <div class="margin-hint hint-drag" style="--hx: 512px; --hy: -288px; --hrot: 4deg;">
+          <span>drag sheet to explore</span>
+          <svg class="hint-arrow" width="36" height="20" viewBox="0 0 36 20" fill="none">
+            <path d="M3 13c9-7 19-8 29-4m-6-5 6 5-7 3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+        </div>
+
+        <div class="margin-hint hint-recolor" style="--hx: -268px; --hy: 342px; --hrot: 2.5deg;">
+          <span>recolor everything below</span>
+          <svg class="hint-arrow" width="44" height="24" viewBox="0 0 44 24" fill="none">
+            <path d="M8 3c5 11 16 16 30 16m-6-5 6 5-6 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+        </div>
+
+        <div class="margin-hint hint-cats" style="--hx: 505px; --hy: 308px; --hrot: -4deg;">
+          <span>playful cats this way</span>
+          <svg class="hint-arrow" width="34" height="22" viewBox="0 0 34 22" fill="none">
+            <path d="M4 5c10 2 19 6 25 13m-7-1 7 1-1-7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+        </div>
+      </div>
+
+      <!-- Layer 3: Origin Hero Cluster -->
+      <section id="hero-origin" class="hero-origin" aria-label="Trazo introduction and installation">
+        <h1 class="hero-title">Hand-drawn crayon stickers for the web</h1>
+        <p class="hero-summary">
+          71 wax-pastel SVG illustrations—sea creatures, playful cats, arrows, stars, clouds, and editorial marks. Recolor live, copy clean SVG, or drop into React.
+        </p>
+
+        <div class="install-card" role="region" aria-label="Package installation command">
+          <div class="install-tabs-bar">
+            <div class="pm-tabs" role="tablist" aria-label="Package manager">
+              <button type="button" class="pm-tab is-active" role="tab" aria-selected="true" data-pm="npm">
+                <svg width="13" height="13" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                  <rect x="1.5" y="4" width="13" height="8" rx="1.2" stroke="currentColor" stroke-width="1.4" />
+                  <path d="M4.5 11.5V6.5h2v5m2-5h2v3h-1" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+                <span>npm</span>
+              </button>
+              <button type="button" class="pm-tab" role="tab" aria-selected="false" data-pm="pnpm">
+                <svg width="13" height="13" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                  <rect x="2" y="2" width="3.5" height="3.5" rx="0.6" fill="currentColor" />
+                  <rect x="6.25" y="2" width="3.5" height="3.5" rx="0.6" fill="currentColor" />
+                  <rect x="10.5" y="2" width="3.5" height="3.5" rx="0.6" fill="currentColor" />
+                  <rect x="6.25" y="6.25" width="3.5" height="3.5" rx="0.6" fill="currentColor" />
+                  <rect x="10.5" y="6.25" width="3.5" height="3.5" rx="0.6" fill="currentColor" />
+                  <rect x="10.5" y="10.5" width="3.5" height="3.5" rx="0.6" fill="currentColor" />
+                </svg>
+                <span>pnpm</span>
+              </button>
+              <button type="button" class="pm-tab" role="tab" aria-selected="false" data-pm="yarn">
+                <svg width="13" height="13" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                  <circle cx="8" cy="8" r="5.6" stroke="currentColor" stroke-width="1.4" />
+                  <path d="M5.5 11c1-2.5 2.5-4.3 5-5.5M4.5 7c2-.2 4 .5 6.2 2.4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" />
+                </svg>
+                <span>yarn</span>
+              </button>
+              <button type="button" class="pm-tab" role="tab" aria-selected="false" data-pm="bun">
+                <svg width="13" height="13" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                  <path d="M2.5 9.6c0-3 2.4-5.4 5.5-5.4s5.5 2.4 5.5 5.4c0 1.8-2.4 2.9-5.5 2.9s-5.5-1.1-5.5-2.9Z" stroke="currentColor" stroke-width="1.4" />
+                  <circle cx="6.2" cy="8.7" r="0.8" fill="currentColor" />
+                  <circle cx="9.8" cy="8.7" r="0.8" fill="currentColor" />
+                </svg>
+                <span>bun</span>
+              </button>
+            </div>
+            <button type="button" id="copy-cmd-btn" class="copy-cmd-btn" aria-label="Copy install command" title="Copy command">
+              <svg class="icon-copy" width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                <rect x="5.5" y="5.5" width="8" height="8" rx="1.6" stroke="currentColor" stroke-width="1.4" />
+                <path d="M10.5 5.5V3.8A1.3 1.3 0 0 0 9.2 2.5H3.8A1.3 1.3 0 0 0 2.5 3.8v5.4a1.3 1.3 0 0 0 1.3 1.3h1.7" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" />
+              </svg>
+              <svg class="icon-check" width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                <path d="M3.2 8.4 6.5 11.7 12.8 4.8" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </button>
+          </div>
+          <div id="install-cmd-row" class="install-cmd-row" title="Click to copy command">
+            <span class="cmd-prompt" aria-hidden="true">$</span>
+            <code id="install-cmd-text" class="cmd-text">npm install trazo-stickers</code>
+          </div>
+        </div>
+
+        <a class="sponsor-link" href="https://x.com/AdityaKodez" target="_blank" rel="noopener noreferrer">
+          <span>Want to sponsor Trazo? Say hi on X</span>
+          <svg width="12" height="12" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+            <path d="M4.2 9.8 9.8 4.2M5.2 4.2h4.6v4.6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+        </a>
+      </section>
+
+      <!-- Layer 4: All 71 Spatial Specimen Illustrations -->
+      <div id="stickers-layer" class="stickers-layer" aria-label="Sticker specimens"></div>
+    </div>
+  </main>
+
+  <!-- Layer 5: Persistent Bottom Floating Control Dock -->
+  <nav id="bottom-dock" class="bottom-dock" aria-label="Canvas controls">
+    <!-- Left pill: Brand & Recenter -->
+    <button type="button" id="recenter-btn" class="dock-pill brand-pill" title="Recenter canvas (Home)">
+      <span class="trazo-mark" aria-hidden="true">
+        <svg width="22" height="22" viewBox="0 0 28 28" fill="none">
+          <path d="M4.5 20.2c2.4-7.4 6.8-13.2 11.4-12.5 3.3.5 3.5 4.5.4 6.8-3.3 2.5-8.1 1.6-9-1.3-.9-2.8 2.2-6.1 6.3-5.7" stroke="#e5484d" stroke-width="3.6" stroke-linecap="round" />
+          <path d="M10.8 21c3.6 1.7 8.4.4 11.2-3.7 2.4-3.3 1.7-7.4-1.3-8.4" stroke="#0ea5e9" stroke-width="3.6" stroke-linecap="round" />
+          <path d="M16.5 14.5c2.2 2.5 4.5 5.8 6.8 6.9" stroke="#eab308" stroke-width="3.6" stroke-linecap="round" />
+        </svg>
+      </span>
+      <span class="brand-wordmark">trazo</span>
+      <span id="recenter-dot" class="recenter-dot" aria-hidden="true"></span>
+    </button>
+
+    <!-- Center pill: Live Color Swatches (desktop strip + mobile compact trigger) -->
+    <div class="dock-pill palette-pill">
+      <div id="palette-strip" class="palette-strip" role="radiogroup" aria-label="Global sticker color">
+        <button type="button" class="swatch-btn swatch-original is-active" role="radio" aria-checked="true" data-palette="original" data-label="Original" aria-label="Original multicolor">
+          <span class="swatch-tip">Original</span>
+        </button>
+        <button type="button" class="swatch-btn" role="radio" aria-checked="false" data-palette="ink" data-label="Ink" style="--sw: #1c1b19;" aria-label="Ink">
+          <span class="swatch-tip">Ink</span>
+        </button>
+        <button type="button" class="swatch-btn" role="radio" aria-checked="false" data-palette="red" data-label="Red" style="--sw: #e5484d;" aria-label="Red">
+          <span class="swatch-tip">Red</span>
+        </button>
+        <button type="button" class="swatch-btn" role="radio" aria-checked="false" data-palette="orange" data-label="Orange" style="--sw: #f76b15;" aria-label="Orange">
+          <span class="swatch-tip">Orange</span>
+        </button>
+        <button type="button" class="swatch-btn" role="radio" aria-checked="false" data-palette="yellow" data-label="Yellow" style="--sw: #eab308;" aria-label="Yellow">
+          <span class="swatch-tip">Yellow</span>
+        </button>
+        <button type="button" class="swatch-btn" role="radio" aria-checked="false" data-palette="green" data-label="Green" style="--sw: #22a06b;" aria-label="Green">
+          <span class="swatch-tip">Green</span>
+        </button>
+        <button type="button" class="swatch-btn" role="radio" aria-checked="false" data-palette="sky" data-label="Sky" style="--sw: #0ea5e9;" aria-label="Sky">
+          <span class="swatch-tip">Sky</span>
+        </button>
+        <button type="button" class="swatch-btn" role="radio" aria-checked="false" data-palette="cobalt" data-label="Cobalt" style="--sw: #3b5bdb;" aria-label="Cobalt">
+          <span class="swatch-tip">Cobalt</span>
+        </button>
+        <button type="button" class="swatch-btn" role="radio" aria-checked="false" data-palette="pink" data-label="Pink" style="--sw: #ec4899;" aria-label="Pink">
+          <span class="swatch-tip">Pink</span>
+        </button>
+      </div>
+
+      <button type="button" id="palette-mobile-trigger" class="palette-mobile-trigger" aria-expanded="false" aria-controls="palette-popover">
+        <span id="mobile-active-dot" class="mobile-active-dot swatch-original"></span>
+        <span id="mobile-active-label" class="mobile-active-label">Original</span>
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+          <path d="M3 4.5 6 7.5 9 4.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+      </button>
+
+      <!-- Mobile Popover Swatch Tray -->
+      <div id="palette-popover" class="palette-popover" hidden role="radiogroup" aria-label="Choose sticker color"></div>
+    </div>
+
+    <!-- Right pill: Single Inverted Dark Anchor (Catalog Launcher) -->
+    <button type="button" id="catalog-btn" class="dock-pill catalog-pill" aria-haspopup="dialog" aria-controls="catalog-overlay">
+      <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+        <rect x="2" y="2" width="5" height="5" rx="1.2" fill="currentColor" />
+        <rect x="9" y="2" width="5" height="5" rx="1.2" fill="currentColor" />
+        <rect x="2" y="9" width="5" height="5" rx="1.2" fill="currentColor" />
+        <rect x="9" y="9" width="5" height="5" rx="1.2" fill="currentColor" />
+      </svg>
+      <span class="catalog-label-full">All stickers</span>
+      <span class="catalog-label-short">All 71</span>
+      <kbd class="shortcut-chip">K</kbd>
+    </button>
+  </nav>
+
+  <!-- Sticker Inspector & Export Modal -->
+  <div id="inspector-overlay" class="modal-overlay" hidden role="dialog" aria-modal="true" aria-labelledby="inspector-title">
+    <div class="modal-card inspector-card">
+      <div class="modal-header">
+        <div>
+          <h2 id="inspector-title" class="inspector-title">Baby squid</h2>
+          <span id="inspector-category" class="inspector-category">Marine life</span>
+        </div>
+        <button type="button" class="modal-close-btn" data-close-modal="inspector" aria-label="Close inspector">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <path d="M4 4l8 8M12 4l-8 8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" />
+          </svg>
+        </button>
+      </div>
+
+      <div class="inspector-body">
+        <div id="inspector-stage" class="inspector-stage" data-palette="original">
+          <div id="inspector-preview" class="inspector-preview"></div>
+        </div>
+
+        <div class="inspector-controls">
+          <div class="control-group">
+            <span class="control-label">Appearance</span>
+            <div id="inspector-swatches" class="inspector-swatches" role="radiogroup" aria-label="Preview color"></div>
+          </div>
+
+          <div class="control-group">
+            <div class="control-row-between">
+              <label for="inspector-size" class="control-label">Export size</label>
+              <span id="inspector-size-val" class="mono-val">128px</span>
+            </div>
+            <input type="range" id="inspector-size" min="48" max="256" step="8" value="128" />
+          </div>
+
+          <div class="control-group">
+            <span class="control-label">React import</span>
+            <div class="mini-code-row">
+              <code id="inspector-jsx-code">import { BabySquid } from 'trazo-stickers'</code>
+            </div>
+          </div>
+
+          <div class="inspector-actions">
+            <button type="button" id="btn-copy-svg" class="btn-primary-dark">
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                <rect x="5.5" y="5.5" width="8" height="8" rx="1.6" stroke="currentColor" stroke-width="1.5" />
+                <path d="M10.5 5.5V3.8A1.3 1.3 0 0 0 9.2 2.5H3.8A1.3 1.3 0 0 0 2.5 3.8v5.4a1.3 1.3 0 0 0 1.3 1.3h1.7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+              </svg>
+              <span>Copy SVG</span>
+            </button>
+            <button type="button" id="btn-copy-jsx" class="btn-secondary-frosted">Copy JSX</button>
+            <button type="button" id="btn-download-svg" class="btn-secondary-frosted">Download .svg</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Searchable 71-Sticker Catalog Overlay -->
+  <div id="catalog-overlay" class="modal-overlay" hidden role="dialog" aria-modal="true" aria-labelledby="catalog-title">
+    <div class="modal-card catalog-card">
+      <div class="catalog-top">
+        <div class="catalog-title-row">
+          <div class="catalog-heading-group">
+            <h2 id="catalog-title" class="catalog-title">All crayon stickers</h2>
+            <span id="catalog-count" class="catalog-count">71</span>
+          </div>
+          <button type="button" class="modal-close-btn" data-close-modal="catalog" aria-label="Close catalog">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+              <path d="M4 4l8 8M12 4l-8 8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" />
+            </svg>
+          </button>
+        </div>
+
+        <div class="catalog-search-wrap">
+          <svg class="search-icon" width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <circle cx="7.2" cy="7.2" r="4.8" stroke="currentColor" stroke-width="1.5" />
+            <path d="m11 11 2.8 2.8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+          </svg>
+          <input type="search" id="catalog-search" class="catalog-search" placeholder="Search squid, cat, arrow, star, cloud..." autocomplete="off" />
+          <kbd class="search-esc-chip">Esc</kbd>
+        </div>
+
+        <div id="catalog-filters" class="catalog-filters" role="tablist" aria-label="Filter by category"></div>
+      </div>
+
+      <div id="catalog-grid" class="catalog-grid" data-palette="original"></div>
+    </div>
+  </div>
+
+  <!-- Subtle Floating Feedback Toast -->
+  <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+
+  <script src="stickers.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,1697 @@
+/* ==========================================================================
+   handdrawn-map-kit — Tactile Sketchbook Canvas Design Language
+   Paper dot-grid ground · Caveat + DM Sans + Geist Mono · Frosted monochrome chrome
+   ========================================================================== */
+
+:root {
+  /* Paper & dot-grid */
+  --paper: #ffffff;
+  --dot-color: rgba(148, 152, 160, 0.42);
+  --dot-size: 1.25px;
+  --dot-gap: 24px;
+
+  /* Ink hierarchy (warm charcoal to whisper gray) */
+  --ink-strong: #1c1917;
+  --ink-body: #44403c;
+  --ink-muted: #78716c;
+  --ink-faint: #a8a29e;
+
+  /* Frosted monochrome chrome */
+  --glass: rgba(255, 255, 255, 0.84);
+  --glass-strong: rgba(255, 255, 255, 0.94);
+  --bar-tint: rgba(245, 244, 241, 0.88);
+  --border-hair: rgba(28, 25, 23, 0.09);
+  --border-mid: rgba(28, 25, 23, 0.16);
+
+  /* Soft layered ambient shadows */
+  --shadow-pill: 0 2px 10px rgba(28, 25, 23, 0.05), 0 1px 2px rgba(28, 25, 23, 0.04);
+  --shadow-card: 0 10px 30px rgba(28, 25, 23, 0.06), 0 2px 6px rgba(28, 25, 23, 0.04);
+  --shadow-sheet: 0 18px 46px rgba(28, 25, 23, 0.11), 0 4px 12px rgba(28, 25, 23, 0.06);
+  --shadow-sheet-hover: 0 28px 60px rgba(28, 25, 23, 0.16), 0 8px 20px rgba(28, 25, 23, 0.08);
+
+  /* Swatch-driven subtle studio wash (defaults to neutral watercolor) */
+  --blueprint-line: rgba(91, 143, 185, 0.09);
+  --blueprint-bg: rgba(248, 250, 252, 0.72);
+  --note-ink: #8c857e;
+  --accent-wash: rgba(28, 25, 23, 0.06);
+  --status-color: #4d7c59;
+
+  /* Typography */
+  --font-hand: 'Caveat', cursive;
+  --font-sans: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-mono: 'Geist Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  --font-cjk: 'ZCOOL XiaoWei', 'Caveat', serif;
+
+  /* Radii & motion */
+  --radius-pill: 999px;
+  --radius-card: 16px;
+  --ease-spring: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Swatch theme overrides (keeps chrome monochrome, tints subtle paper wash & notes) */
+html[data-ink="vermilion"] {
+  --blueprint-line: rgba(200, 75, 49, 0.10);
+  --blueprint-bg: rgba(254, 246, 244, 0.78);
+  --note-ink: #b04a36;
+  --status-color: #c84b31;
+}
+
+html[data-ink="indigo"] {
+  --blueprint-line: rgba(59, 110, 140, 0.12);
+  --blueprint-bg: rgba(242, 248, 252, 0.80);
+  --note-ink: #3b6e8c;
+  --status-color: #3b6e8c;
+}
+
+html[data-ink="pine"] {
+  --blueprint-line: rgba(77, 124, 89, 0.11);
+  --blueprint-bg: rgba(244, 249, 245, 0.78);
+  --note-ink: #477052;
+  --status-color: #4d7c59;
+}
+
+html[data-ink="ochre"] {
+  --blueprint-line: rgba(183, 121, 31, 0.11);
+  --blueprint-bg: rgba(254, 250, 242, 0.82);
+  --note-ink: #9c6821;
+  --status-color: #b7791f;
+}
+
+/* Base reset */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  background-color: var(--paper);
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+  font-size: 15px;
+  line-height: 1.55;
+  color: var(--ink-body);
+  background-color: var(--paper);
+  background-image: radial-gradient(var(--dot-color) var(--dot-size), transparent var(--dot-size));
+  background-size: var(--dot-gap) var(--dot-gap);
+  background-position: 12px 12px;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+button,
+input {
+  font: inherit;
+  color: inherit;
+}
+
+a {
+  color: inherit;
+}
+
+.mono {
+  font-family: var(--font-mono);
+}
+
+.tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+.cjk-accent {
+  font-family: var(--font-cjk);
+  font-size: 0.84em;
+  letter-spacing: 0.02em;
+}
+
+.cjk-soft {
+  font-family: var(--font-cjk);
+  font-size: 0.86em;
+  font-weight: 400;
+}
+
+.ink-strong {
+  color: var(--ink-strong);
+  font-weight: 600;
+}
+
+/* ==========================================================================
+   Layer 1: Top Edge Utility Corner Pills
+   ========================================================================== */
+.top-utility {
+  position: fixed;
+  top: 16px;
+  left: 18px;
+  right: 18px;
+  z-index: 40;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  pointer-events: none;
+}
+
+.corner-pill {
+  pointer-events: auto;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 36px;
+  padding: 0 13px;
+  border-radius: var(--radius-pill);
+  background: var(--glass);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--border-hair);
+  box-shadow: var(--shadow-pill);
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--ink-strong);
+  cursor: pointer;
+  transition: transform 0.22s var(--ease-spring), border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.corner-pill:hover {
+  transform: translateY(-1px);
+  border-color: var(--border-mid);
+  box-shadow: 0 6px 18px rgba(28, 25, 23, 0.08);
+}
+
+.corner-pill:active {
+  transform: scale(0.97);
+}
+
+.pill-mark {
+  display: inline-flex;
+  color: var(--ink-strong);
+  transition: transform 0.35s var(--ease-spring);
+}
+
+.corner-pill:hover .pill-mark {
+  transform: rotate(-18deg);
+}
+
+.pill-meta {
+  font-size: 11px;
+  color: var(--ink-muted);
+  padding: 1px 6px;
+  border-radius: var(--radius-pill);
+  background: rgba(28, 25, 23, 0.05);
+}
+
+.pill-sep {
+  color: var(--ink-faint);
+}
+
+.status-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--status-color);
+  transition: background-color 0.25s ease;
+}
+
+/* Dark-ink hover tooltip on corner pills */
+.corner-pill::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  top: calc(100% + 8px);
+  white-space: nowrap;
+  padding: 5px 10px;
+  border-radius: 8px;
+  background: var(--ink-strong);
+  color: #fff;
+  font-family: var(--font-sans);
+  font-size: 12px;
+  font-weight: 400;
+  box-shadow: 0 8px 20px rgba(28, 25, 23, 0.18);
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-4px);
+  transition: opacity 0.18s ease, transform 0.18s var(--ease-spring);
+}
+
+.corner-pill--left::after {
+  left: 0;
+}
+
+.corner-pill--right::after {
+  right: 0;
+}
+
+.corner-pill:hover::after,
+.corner-pill:focus-visible::after {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ==========================================================================
+   Paper Stage & Shared Typography
+   ========================================================================== */
+.paper-stage {
+  position: relative;
+  width: 100%;
+  max-width: 1220px;
+  margin: 0 auto;
+  padding: 0 28px;
+}
+
+.paper-section {
+  position: relative;
+  padding: 88px 0 44px;
+}
+
+.section-header {
+  max-width: 660px;
+  margin: 0 auto 48px;
+  text-align: center;
+}
+
+.zone-title {
+  margin: 0 0 10px;
+  font-family: var(--font-hand);
+  font-size: clamp(1.65rem, 2.8vw, 2.2rem);
+  font-weight: 600;
+  line-height: 1.1;
+  color: var(--ink-muted);
+  text-wrap: balance;
+}
+
+.zone-title--left {
+  text-align: left;
+  margin-bottom: 24px;
+}
+
+.section-lead {
+  margin: 0;
+  font-size: 15px;
+  color: var(--ink-muted);
+  text-wrap: balance;
+}
+
+/* Whispered handwritten margin notes (desktop only) */
+.margin-note {
+  font-family: var(--font-hand);
+  font-size: 1.18rem;
+  font-weight: 400;
+  line-height: 1.15;
+  color: var(--note-ink);
+  pointer-events: none;
+  user-select: none;
+  transition: color 0.25s ease;
+}
+
+/* Decorative sketchbook stickers (from site/art/, unboxed on paper) */
+.paper-sticker {
+  position: absolute;
+  margin: 0;
+  z-index: 2;
+  cursor: default;
+  transition: transform 0.3s var(--ease-spring);
+}
+
+.paper-sticker img {
+  mix-blend-mode: multiply;
+  user-select: none;
+  pointer-events: none;
+}
+
+.paper-sticker:hover {
+  transform: translateY(-5px) rotate(0deg) scale(1.06) !important;
+}
+
+.paper-sticker .specimen-caption {
+  bottom: -24px;
+}
+
+.paper-sticker:hover .specimen-caption {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+
+.paper-sticker--hero-left {
+  top: 96px;
+  left: 34px;
+  transform: rotate(-9deg);
+}
+
+.paper-sticker--gallery {
+  top: 44px;
+  right: 12px;
+  transform: rotate(7deg);
+}
+
+.paper-sticker--workflow {
+  top: 52px;
+  left: 18px;
+  transform: rotate(-7deg);
+}
+
+.paper-sticker--features {
+  top: 52px;
+  right: 18px;
+  transform: rotate(8deg);
+}
+
+/* Dark-ink micro-caption pill (revealed on hover of bare spatial specimens) */
+.specimen-caption {
+  position: absolute;
+  left: 50%;
+  bottom: -14px;
+  transform: translate(-50%, 6px);
+  padding: 4px 10px;
+  border-radius: var(--radius-pill);
+  background: var(--ink-strong);
+  color: #fff;
+  font-family: var(--font-sans);
+  font-size: 12px;
+  font-weight: 500;
+  white-space: nowrap;
+  box-shadow: 0 6px 16px rgba(28, 25, 23, 0.2);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease, transform 0.24s var(--ease-spring);
+  z-index: 10;
+}
+
+/* ==========================================================================
+   Section 1: Origin Hero Cluster
+   ========================================================================== */
+.hero-section {
+  position: relative;
+  padding: 68px 0 32px;
+  text-align: center;
+}
+
+.hero-copy {
+  position: relative;
+  z-index: 3;
+  max-width: 680px;
+  margin: 0 auto;
+}
+
+.hero-title {
+  margin: 0;
+  font-family: var(--font-hand);
+  font-size: clamp(3.3rem, 6vw, 4.75rem);
+  font-weight: 700;
+  line-height: 0.94;
+  letter-spacing: -0.015em;
+  color: var(--ink-strong);
+  text-wrap: balance;
+}
+
+.hero-subhead {
+  margin: 11px auto 0;
+  max-width: 560px;
+  font-family: var(--font-hand);
+  font-size: clamp(1.36rem, 2.15vw, 1.68rem);
+  font-weight: 400;
+  line-height: 1.24;
+  color: var(--ink-muted);
+  text-wrap: balance;
+}
+
+.hero-actions {
+  margin-top: 18px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+/* Buttons (Single inverted dark anchor + frosted paper secondary) */
+.btn-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 40px;
+  padding: 0 18px;
+  border-radius: var(--radius-pill);
+  font-size: 14px;
+  font-weight: 500;
+  text-decoration: none;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: transform 0.2s var(--ease-spring), box-shadow 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.btn-pill:active {
+  transform: scale(0.96);
+}
+
+.btn-pill--primary {
+  background: var(--ink-strong);
+  color: #ffffff;
+  box-shadow: 0 6px 18px rgba(28, 25, 23, 0.18), 0 1px 2px rgba(28, 25, 23, 0.12);
+}
+
+.btn-pill--primary:hover {
+  background: #2c2825;
+  transform: translateY(-1.5px);
+  box-shadow: 0 10px 24px rgba(28, 25, 23, 0.24);
+}
+
+.btn-pill--secondary {
+  background: var(--glass-strong);
+  color: var(--ink-strong);
+  border-color: var(--border-mid);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: var(--shadow-pill);
+}
+
+.btn-pill--secondary:hover {
+  background: #ffffff;
+  border-color: rgba(28, 25, 23, 0.28);
+  transform: translateY(-1.5px);
+  box-shadow: 0 8px 20px rgba(28, 25, 23, 0.08);
+}
+
+.keycap {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 20px;
+  height: 20px;
+  padding: 0 5px;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.15);
+  color: rgba(255, 255, 255, 0.9);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  line-height: 1;
+}
+
+.keycap--light {
+  background: rgba(28, 25, 23, 0.07);
+  color: var(--ink-muted);
+}
+
+/* Signature Tabbed Command Card */
+.command-card {
+  border-radius: var(--radius-card);
+  background: var(--glass-strong);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--border-hair);
+  box-shadow: var(--shadow-card);
+  overflow: hidden;
+  text-align: left;
+}
+
+.hero-command {
+  margin: 18px auto 0;
+  max-width: 556px;
+}
+
+.command-card__bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 7px 9px;
+  background: var(--bar-tint);
+  border-bottom: 1px solid var(--border-hair);
+}
+
+.tab-strip {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+}
+
+.tab-chip {
+  display: inline-flex;
+  align-items: center;
+  height: 26px;
+  padding: 0 10px;
+  border: 1px solid transparent;
+  border-radius: 9px;
+  background: transparent;
+  color: var(--ink-muted);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 400;
+  cursor: pointer;
+  transition: background-color 0.18s ease, color 0.18s ease, box-shadow 0.18s ease;
+}
+
+.tab-chip:hover {
+  color: var(--ink-strong);
+}
+
+.tab-chip.is-active {
+  background: #ffffff;
+  color: var(--ink-strong);
+  font-weight: 500;
+  border-color: rgba(28, 25, 23, 0.08);
+  box-shadow: 0 1px 3px rgba(28, 25, 23, 0.07);
+}
+
+.copy-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  height: 26px;
+  padding: 0 9px;
+  border-radius: 8px;
+  border: 1px solid var(--border-hair);
+  background: rgba(255, 255, 255, 0.85);
+  color: var(--ink-body);
+  font-family: var(--font-sans);
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: transform 0.16s var(--ease-spring), background-color 0.18s ease, color 0.18s ease, border-color 0.18s ease;
+}
+
+.copy-btn:hover {
+  background: #ffffff;
+  color: var(--ink-strong);
+  border-color: var(--border-mid);
+}
+
+.copy-btn:active {
+  transform: scale(0.95);
+}
+
+.copy-btn__icon {
+  display: inline-flex;
+  align-items: center;
+}
+
+.copy-btn .icon-check {
+  display: none;
+}
+
+.copy-btn.is-copied {
+  background: var(--ink-strong);
+  color: #ffffff;
+  border-color: var(--ink-strong);
+}
+
+.copy-btn.is-copied .icon-copy {
+  display: none;
+}
+
+.copy-btn.is-copied .icon-check {
+  display: block;
+}
+
+/* Blueprint grid wash behind monospace code */
+.blueprint-wash {
+  background-color: var(--blueprint-bg);
+  background-image:
+    linear-gradient(to right, var(--blueprint-line) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--blueprint-line) 1px, transparent 1px);
+  background-size: 18px 18px;
+  transition: background-color 0.25s ease;
+}
+
+.command-card__body {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 13px 16px;
+  overflow-x: auto;
+}
+
+.prompt-glyph {
+  color: var(--ink-faint);
+  font-size: 13px;
+  user-select: none;
+  flex-shrink: 0;
+}
+
+.command-text {
+  font-size: 12.8px;
+  color: var(--ink-strong);
+  white-space: nowrap;
+}
+
+.casual-link {
+  display: inline-block;
+  margin-top: 13px;
+  font-family: var(--font-hand);
+  font-size: 1.15rem;
+  color: var(--ink-muted);
+  text-decoration: none;
+  transform: rotate(-1.2deg);
+  transition: color 0.2s ease, transform 0.22s var(--ease-spring);
+}
+
+.casual-link:hover {
+  color: var(--ink-strong);
+  transform: rotate(0deg) translateY(-1px);
+}
+
+/* Hero Primary Artwork Spread (Unboxed map sheets on dot-grid paper) */
+.hero-visual {
+  position: relative;
+  margin: 22px auto 0;
+  max-width: 1040px;
+}
+
+.margin-note--left {
+  position: absolute;
+  left: 10px;
+  top: 46px;
+  transform: rotate(-7deg);
+  max-width: 156px;
+  text-align: right;
+  z-index: 4;
+}
+
+.margin-note--right {
+  position: absolute;
+  right: 12px;
+  top: 32px;
+  transform: rotate(6deg);
+  max-width: 156px;
+  text-align: left;
+  z-index: 4;
+}
+
+.hero-desk-spread {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 6px 0 18px;
+}
+
+.map-sheet {
+  position: relative;
+  display: block;
+  padding: 0;
+  border: 1px solid rgba(28, 25, 23, 0.14);
+  border-radius: 6px;
+  background: #fdfbf6;
+  cursor: zoom-in;
+  box-shadow: var(--shadow-sheet);
+  transition: transform 0.34s var(--ease-spring), box-shadow 0.34s var(--ease-spring);
+}
+
+.map-sheet img {
+  border-radius: 5px;
+  width: 100%;
+  display: block;
+}
+
+.map-sheet:hover {
+  box-shadow: var(--shadow-sheet-hover);
+}
+
+.map-sheet:hover .specimen-caption,
+.map-sheet:focus-visible .specimen-caption {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+
+.map-sheet--hero {
+  position: relative;
+  z-index: 3;
+  width: min(100%, 620px);
+  transform: rotate(-0.7deg);
+}
+
+.map-sheet--hero:hover {
+  transform: rotate(0deg) translateY(-6px) scale(1.008);
+}
+
+.map-sheet--peek {
+  position: absolute;
+  right: 76px;
+  bottom: 22px;
+  z-index: 2;
+  width: 280px;
+  transform: rotate(3.2deg);
+  opacity: 0.96;
+}
+
+.map-sheet--peek:hover {
+  z-index: 4;
+  transform: rotate(1.2deg) translateY(-8px) scale(1.03);
+}
+
+/* ==========================================================================
+   Section 2: Atlas Specimens Gallery
+   ========================================================================== */
+.specimen-pair {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 44px;
+  align-items: start;
+}
+
+.map-specimen {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.map-sheet--gallery {
+  width: 100%;
+}
+
+.map-specimen--tilt-l .map-sheet--gallery {
+  transform: rotate(-0.65deg);
+}
+
+.map-specimen--tilt-r .map-sheet--gallery {
+  transform: rotate(0.65deg);
+}
+
+.map-specimen .map-sheet--gallery:hover {
+  transform: rotate(0deg) translateY(-6px) scale(1.01);
+}
+
+.specimen-meta {
+  padding: 0 6px;
+}
+
+.specimen-meta__top {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.specimen-name {
+  margin: 0;
+  font-family: var(--font-hand);
+  font-size: 1.75rem;
+  font-weight: 700;
+  line-height: 1.1;
+  color: var(--ink-strong);
+}
+
+.meta-chip {
+  font-size: 11.5px;
+  color: var(--ink-muted);
+  padding: 2px 8px;
+  border-radius: var(--radius-pill);
+  background: rgba(28, 25, 23, 0.05);
+  border: 1px solid var(--border-hair);
+}
+
+.specimen-desc {
+  margin: 6px 0 0;
+  font-size: 14px;
+  color: var(--ink-muted);
+}
+
+.margin-note--gallery {
+  position: absolute;
+  left: 16px;
+  top: 72px;
+  transform: rotate(-5deg);
+}
+
+/* ==========================================================================
+   Section 3: Three-Step Workflow (YAML → CLI → Map)
+   ========================================================================== */
+.steps-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 1.02fr 0.92fr;
+  gap: 24px;
+  align-items: start;
+}
+
+.step-column {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  min-width: 0;
+}
+
+.step-heading {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 0 2px;
+}
+
+.step-num {
+  font-family: var(--font-hand);
+  font-size: 2.15rem;
+  font-weight: 700;
+  line-height: 0.9;
+  color: var(--note-ink);
+  flex-shrink: 0;
+  transform: rotate(-4deg);
+}
+
+.step-title {
+  margin: 0;
+  font-size: 15.5px;
+  font-weight: 600;
+  color: var(--ink-strong);
+  line-height: 1.25;
+}
+
+.step-sub {
+  margin: 2px 0 0;
+  font-size: 13.5px;
+  color: var(--ink-muted);
+}
+
+.code-card__pre {
+  margin: 0;
+  padding: 15px 16px;
+  overflow-x: auto;
+  font-size: 12px;
+  line-height: 1.62;
+  color: var(--ink-strong);
+}
+
+/* Subtle ink-based YAML syntax highlighting (no loud neon) */
+.tok-key {
+  color: #1c1917;
+  font-weight: 500;
+}
+
+.tok-str {
+  color: #8f3d2e;
+}
+
+.tok-val {
+  color: #365f7a;
+}
+
+.tok-num {
+  color: #476e4e;
+}
+
+.code-card__cli {
+  padding: 15px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.cli-line {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  overflow-x: auto;
+}
+
+.cli-line .command-text {
+  white-space: pre-wrap;
+  word-break: break-word;
+  font-size: 12.2px;
+  line-height: 1.55;
+}
+
+.cli-log {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding-top: 12px;
+  border-top: 1px dashed var(--border-mid);
+  font-size: 11.5px;
+  line-height: 1.45;
+  color: var(--ink-muted);
+}
+
+.log-ok {
+  color: var(--status-color);
+  font-weight: 600;
+}
+
+.log-out {
+  color: var(--ink-strong);
+  font-weight: 500;
+}
+
+.step-output {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.output-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px;
+  border-radius: 12px;
+  background: var(--bar-tint);
+  border: 1px solid var(--border-hair);
+}
+
+.map-sheet--step {
+  width: 100%;
+  transform: rotate(0.9deg);
+}
+
+.map-sheet--step:hover {
+  transform: rotate(0deg) translateY(-5px) scale(1.015);
+}
+
+.margin-note--step {
+  align-self: flex-end;
+  margin-top: 2px;
+  transform: rotate(-2.5deg);
+}
+
+/* ==========================================================================
+   Section 4: Six Core Capabilities (Borderless Spatial Specimens on Paper)
+   ========================================================================== */
+.specimen-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 52px 42px;
+}
+
+.feature-specimen {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  /* Deliberately borderless: resting directly on dot-grid paper */
+  background: transparent;
+  padding: 4px 2px;
+}
+
+.specimen-icon {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 14px;
+  filter: drop-shadow(0 6px 12px rgba(28, 25, 23, 0.08));
+  transition: transform 0.3s var(--ease-spring), filter 0.3s ease;
+  outline: none;
+}
+
+.specimen-icon--tilt-a { transform: rotate(-3.5deg); }
+.specimen-icon--tilt-b { transform: rotate(3deg); }
+.specimen-icon--tilt-c { transform: rotate(-2deg); }
+.specimen-icon--tilt-d { transform: rotate(2.5deg); }
+
+.feature-specimen:hover .specimen-icon,
+.specimen-icon:focus-visible {
+  transform: translateY(-6px) rotate(0deg) scale(1.07);
+  filter: drop-shadow(0 14px 20px rgba(28, 25, 23, 0.14));
+}
+
+.feature-specimen:hover .specimen-icon .specimen-caption,
+.specimen-icon:focus-visible .specimen-caption {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+
+.feature-title {
+  margin: 0 0 6px;
+  font-family: var(--font-hand);
+  font-size: 1.72rem;
+  font-weight: 700;
+  line-height: 1.08;
+  color: var(--ink-strong);
+}
+
+.feature-desc {
+  margin: 0 0 11px;
+  font-size: 14.2px;
+  line-height: 1.56;
+  color: var(--ink-muted);
+}
+
+.feature-tag {
+  display: inline-block;
+  font-size: 11.5px;
+  color: var(--ink-muted);
+  padding: 2px 9px;
+  border-radius: var(--radius-pill);
+  background: var(--glass);
+  border: 1px solid var(--border-hair);
+}
+
+/* ==========================================================================
+   Section 5: Colophon, Credits & Licenses Footer
+   ========================================================================== */
+.colophon-footer {
+  margin-top: 64px;
+  padding: 48px 0 118px;
+  border-top: 1px dashed rgba(28, 25, 23, 0.16);
+}
+
+.colophon-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 32px;
+  margin-bottom: 38px;
+}
+
+.colophon-label {
+  margin: 0 0 6px;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--ink-strong);
+}
+
+.colophon-text {
+  margin: 0;
+  font-size: 13.8px;
+  line-height: 1.6;
+  color: var(--ink-muted);
+}
+
+.license-pill {
+  display: inline-block;
+  font-size: 11.5px;
+  color: var(--ink-strong);
+  padding: 1px 7px;
+  border-radius: var(--radius-pill);
+  background: rgba(28, 25, 23, 0.06);
+  border: 1px solid var(--border-hair);
+}
+
+.footer-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  padding-top: 22px;
+  border-top: 1px solid var(--border-hair);
+}
+
+.footer-brand {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.footer-hand {
+  font-family: var(--font-hand);
+  font-size: 1.55rem;
+  font-weight: 700;
+  color: var(--ink-strong);
+}
+
+.footer-meta {
+  font-size: 13px;
+  color: var(--ink-muted);
+}
+
+.footer-links {
+  display: inline-flex;
+  align-items: center;
+  gap: 18px;
+  flex-wrap: wrap;
+  font-size: 13.5px;
+  color: var(--ink-muted);
+}
+
+.footer-links a {
+  text-decoration: none;
+  transition: color 0.18s ease;
+}
+
+.footer-links a:hover {
+  color: var(--ink-strong);
+}
+
+/* ==========================================================================
+   Layer 5: Segmented Bottom Floating Control Dock
+   ========================================================================== */
+.bottom-dock {
+  position: fixed;
+  left: 50%;
+  bottom: 18px;
+  transform: translateX(-50%);
+  z-index: 45;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.dock-pill {
+  height: 44px;
+  border-radius: var(--radius-pill);
+  background: var(--glass);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid var(--border-hair);
+  box-shadow: 0 8px 28px rgba(28, 25, 23, 0.09), 0 1px 3px rgba(28, 25, 23, 0.05);
+  display: inline-flex;
+  align-items: center;
+  transition: transform 0.2s var(--ease-spring), box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.dock-recenter {
+  gap: 7px;
+  padding: 0 14px;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--ink-strong);
+}
+
+.dock-recenter:hover {
+  transform: translateY(-2px);
+  border-color: var(--border-mid);
+}
+
+.dock-recenter:active {
+  transform: scale(0.96);
+}
+
+.recenter-icon {
+  display: inline-flex;
+  transition: transform 0.35s var(--ease-spring);
+}
+
+.dock-recenter:hover .recenter-icon {
+  transform: rotate(-25deg);
+}
+
+/* Swatch tray */
+.swatch-tray-wrap {
+  position: relative;
+  padding: 0 8px;
+}
+
+.swatch-mobile-trigger {
+  display: none;
+  align-items: center;
+  gap: 6px;
+  border: 0;
+  background: transparent;
+  padding: 0 6px;
+  height: 100%;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--ink-strong);
+}
+
+.swatch-tray {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.swatch-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  background: transparent;
+  cursor: pointer;
+  transition: transform 0.18s var(--ease-spring), border-color 0.18s ease;
+}
+
+.swatch-btn:hover {
+  transform: scale(1.12);
+}
+
+.swatch-btn:active {
+  transform: scale(0.94);
+}
+
+.swatch-btn.is-selected {
+  border-color: var(--ink-strong);
+}
+
+/* Glossy, subtly beveled circular swatches (isolated color joy) */
+.swatch-dot {
+  display: block;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  box-shadow:
+    inset 0 2px 3px rgba(255, 255, 255, 0.55),
+    inset 0 -2px 3px rgba(0, 0, 0, 0.18),
+    0 1px 2px rgba(28, 25, 23, 0.15);
+}
+
+.swatch-dot--multi {
+  background: conic-gradient(from 25deg, #e07a5f, #f2cc8f, #81b29a, #5b8fb9, #b5838d, #e07a5f);
+}
+
+.swatch-dot--vermilion { background: #c84b31; }
+.swatch-dot--indigo { background: #3b6e8c; }
+.swatch-dot--pine { background: #4d7c59; }
+.swatch-dot--ochre { background: #c2852a; }
+
+/* Single inverted dark catalog button */
+.dock-catalog-btn {
+  gap: 8px;
+  padding: 0 15px 0 16px;
+  background: var(--ink-strong);
+  color: #ffffff;
+  border-color: var(--ink-strong);
+  font-size: 13.5px;
+  font-weight: 500;
+  cursor: pointer;
+  box-shadow: 0 10px 26px rgba(28, 25, 23, 0.24), 0 2px 4px rgba(28, 25, 23, 0.14);
+}
+
+.dock-catalog-btn:hover {
+  background: #2c2825;
+  transform: translateY(-2px);
+  box-shadow: 0 14px 32px rgba(28, 25, 23, 0.28);
+}
+
+.dock-catalog-btn:active {
+  transform: scale(0.96);
+}
+
+/* ==========================================================================
+   Modals: Lightbox & Searchable Atlas Catalog
+   ========================================================================== */
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 80;
+  background: rgba(28, 25, 23, 0.46);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  animation: fadeIn 0.2s ease;
+}
+
+.modal-backdrop[hidden] {
+  display: none;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.lightbox-shell {
+  width: min(1160px, 100%);
+  max-height: 92vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--paper);
+  background-image: radial-gradient(var(--dot-color) 1.1px, transparent 1.1px);
+  background-size: 22px 22px;
+  border-radius: 20px;
+  border: 1px solid var(--border-mid);
+  box-shadow: 0 30px 80px rgba(28, 25, 23, 0.34);
+  overflow: hidden;
+}
+
+.lightbox-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  flex-wrap: wrap;
+  padding: 12px 16px;
+  background: var(--glass-strong);
+  border-bottom: 1px solid var(--border-hair);
+}
+
+.lightbox-meta {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.lightbox-title {
+  margin: 0;
+  font-family: var(--font-hand);
+  font-size: 1.65rem;
+  font-weight: 700;
+  color: var(--ink-strong);
+  line-height: 1;
+}
+
+.lightbox-sub {
+  font-size: 12px;
+  color: var(--ink-muted);
+}
+
+.lightbox-controls {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.lightbox-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 32px;
+  padding: 0 12px;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--border-mid);
+  background: #ffffff;
+  color: var(--ink-strong);
+  font-size: 12.5px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: transform 0.16s var(--ease-spring), background-color 0.16s ease;
+}
+
+.lightbox-pill:hover {
+  background: #f5f4f1;
+}
+
+.lightbox-pill:active {
+  transform: scale(0.96);
+}
+
+.lightbox-pill[aria-pressed="true"] {
+  background: var(--ink-strong);
+  color: #fff;
+  border-color: var(--ink-strong);
+}
+
+.lightbox-stage {
+  flex: 1;
+  overflow: auto;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.lightbox-stage img {
+  max-height: calc(92vh - 110px);
+  width: auto;
+  max-width: 100%;
+  border-radius: 6px;
+  border: 1px solid rgba(28, 25, 23, 0.14);
+  box-shadow: var(--shadow-sheet);
+  cursor: zoom-in;
+  transition: width 0.25s var(--ease-spring), max-height 0.25s var(--ease-spring);
+}
+
+.lightbox-stage.is-zoomed {
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+
+.lightbox-stage.is-zoomed img {
+  max-height: none;
+  max-width: none;
+  width: 1500px;
+  cursor: zoom-out;
+}
+
+/* Searchable Atlas Catalog Sheet */
+.catalog-sheet {
+  width: min(680px, 100%);
+  max-height: 84vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--glass-strong);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-radius: 20px;
+  border: 1px solid var(--border-mid);
+  box-shadow: 0 30px 80px rgba(28, 25, 23, 0.28);
+  overflow: hidden;
+}
+
+.catalog-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 18px 20px 12px;
+}
+
+.catalog-title {
+  margin: 0;
+  font-family: var(--font-hand);
+  font-size: 1.85rem;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--ink-strong);
+}
+
+.catalog-sub {
+  margin: 4px 0 0;
+  font-size: 13px;
+  color: var(--ink-muted);
+}
+
+.catalog-search-wrap {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0 20px 14px;
+  padding: 0 13px;
+  height: 40px;
+  border-radius: 12px;
+  background: #ffffff;
+  border: 1px solid var(--border-mid);
+  color: var(--ink-muted);
+}
+
+.catalog-search-wrap:focus-within {
+  border-color: var(--ink-strong);
+  box-shadow: 0 0 0 3px rgba(28, 25, 23, 0.07);
+}
+
+.catalog-input {
+  flex: 1;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  font-size: 14px;
+  color: var(--ink-strong);
+}
+
+.catalog-count {
+  font-size: 11.5px;
+  color: var(--ink-faint);
+}
+
+.catalog-body {
+  overflow-y: auto;
+  padding: 0 20px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.catalog-group-title {
+  margin: 0 0 8px;
+  font-family: var(--font-hand);
+  font-size: 1.25rem;
+  color: var(--ink-muted);
+}
+
+.catalog-items {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.catalog-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 9px 12px;
+  border-radius: 12px;
+  border: 1px solid var(--border-hair);
+  background: rgba(255, 255, 255, 0.85);
+  cursor: pointer;
+  text-align: left;
+  transition: transform 0.16s var(--ease-spring), border-color 0.16s ease, background-color 0.16s ease;
+}
+
+.catalog-item:hover {
+  background: #ffffff;
+  border-color: var(--border-mid);
+  transform: translateY(-1px);
+}
+
+.catalog-item__name {
+  display: block;
+  font-size: 13.5px;
+  font-weight: 500;
+  color: var(--ink-strong);
+}
+
+.catalog-item__id {
+  display: block;
+  font-size: 11.5px;
+  color: var(--ink-muted);
+}
+
+.catalog-item__badge {
+  font-size: 11px;
+  padding: 2px 7px;
+  border-radius: var(--radius-pill);
+  background: rgba(28, 25, 23, 0.06);
+  color: var(--ink-muted);
+  flex-shrink: 0;
+}
+
+.catalog-item.is-copied .catalog-item__badge {
+  background: var(--ink-strong);
+  color: #ffffff;
+}
+
+.catalog-empty {
+  text-align: center;
+  padding: 28px 12px;
+  font-family: var(--font-hand);
+  font-size: 1.4rem;
+  color: var(--ink-muted);
+}
+
+/* ==========================================================================
+   Responsive Shifts (Tablet & Mobile per Recipe)
+   ========================================================================== */
+@media (max-width: 1024px) {
+  .steps-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .step-column:last-child {
+    grid-column: 1 / -1;
+    max-width: 520px;
+  }
+
+  .margin-note--left,
+  .margin-note--right,
+  .margin-note--gallery,
+  .paper-sticker--hero-left {
+    display: none;
+  }
+
+  .map-sheet--peek {
+    width: 220px;
+    right: 6px;
+  }
+}
+
+@media (max-width: 760px) {
+  .paper-stage {
+    padding: 0 18px;
+  }
+
+  .top-utility {
+    top: 12px;
+    left: 12px;
+    right: 12px;
+  }
+
+  .corner-pill {
+    height: 34px;
+    padding: 0 10px;
+    font-size: 12px;
+  }
+
+  .pill-meta,
+  .pill-sep,
+  .corner-pill--right .pill-label {
+    display: none;
+  }
+
+  .hero-section {
+    padding: 72px 0 24px;
+  }
+
+  .hero-desk-spread {
+    padding: 0;
+  }
+
+  .map-sheet--peek {
+    display: none;
+  }
+
+  .map-sheet--hero {
+    transform: rotate(-0.4deg);
+  }
+
+  .paper-section {
+    padding: 60px 0 28px;
+  }
+
+  .specimen-pair,
+  .steps-grid,
+  .specimen-grid,
+  .colophon-grid,
+  .catalog-items {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+
+  .step-column:last-child {
+    grid-column: auto;
+    max-width: none;
+  }
+
+  .paper-sticker,
+  .margin-note,
+  .specimen-caption {
+    display: none;
+  }
+
+  /* Collapse inline swatches into compact color-trigger pill with popover */
+  .dock-recenter__label {
+    display: none;
+  }
+
+  .dock-recenter {
+    padding: 0 12px;
+  }
+
+  .swatch-mobile-trigger {
+    display: inline-flex;
+  }
+
+  .swatch-tray {
+    display: none;
+    position: absolute;
+    bottom: calc(100% + 10px);
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 8px 10px;
+    border-radius: var(--radius-pill);
+    background: var(--glass-strong);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border: 1px solid var(--border-mid);
+    box-shadow: 0 12px 30px rgba(28, 25, 23, 0.16);
+  }
+
+  .swatch-tray.is-open {
+    display: inline-flex;
+  }
+
+  .dock-catalog-btn .keycap,
+  .btn-pill .keycap {
+    display: none;
+  }
+
+  .colophon-footer {
+    padding-bottom: 100px;
+  }
+}

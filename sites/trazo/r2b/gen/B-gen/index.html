@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>handdrawn-map-kit — Declarative hand-drawn cultural map engine</title>
+  <meta name="description" content="AI/Agent-driven Node.js engine for hand-drawn cultural maps. Declare a map in YAML or JSON and render pencil, fineliner, and watercolor cartography." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=Geist+Mono:wght@400;500&family=ZCOOL+XiaoWei&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./style.css" />
+</head>
+<body data-theme="multi">
+  <!-- Top Edge Utility Layer (edge-pinned frosted corner pills) -->
+  <header class="edge-chrome" aria-label="Site utilities">
+    <a href="#top" class="corner-pill corner-pill--left" id="brandCornerPill" aria-label="Back to top">
+      <span class="corner-mark" aria-hidden="true">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <polygon points="12 2 14.8 9.2 22 12 14.8 14.8 12 22 9.2 14.8 2 12 9.2 9.2 12 2" />
+          <circle cx="12" cy="12" r="2.2" />
+        </svg>
+      </span>
+      <span class="corner-label">handdrawn-map-kit</span>
+      <span class="corner-divider" aria-hidden="true">·</span>
+      <span class="corner-muted">statechart-art</span>
+      <span class="pill-tooltip" role="tooltip">Inspired by Mizieliński’s Maps · MIT</span>
+    </a>
+
+    <button type="button" class="corner-pill corner-pill--right" id="counterCornerPill" aria-label="Open 65 glyphs catalog">
+      <span class="corner-mark" aria-hidden="true">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="3" width="7" height="7" rx="1.5" />
+          <rect x="14" y="3" width="7" height="7" rx="1.5" />
+          <rect x="3" y="14" width="7" height="7" rx="1.5" />
+          <rect x="14" y="14" width="7" height="7" rx="1.5" />
+        </svg>
+      </span>
+      <span class="mono-counter">65 glyphs</span>
+      <span class="corner-divider" aria-hidden="true">·</span>
+      <span class="corner-muted">Node.js</span>
+      <span class="pill-tooltip pill-tooltip--right" role="tooltip">Natural Earth + 65 hand-drawn specimens</span>
+    </button>
+  </header>
+
+  <main id="top" class="sketchbook-stage">
+    <!-- ============================================================
+         SECTION 1: ORIGIN HERO CLUSTER (首屏)
+         ============================================================ -->
+    <section class="hero-zone" aria-labelledby="hero-title">
+      <!-- Orbiting Bare Spatial Specimens (draggable, hover-lifting, borderless) -->
+      <div class="specimen-halo" id="specimenHalo" aria-label="Interactive hand-drawn map specimens">
+        <figure class="specimen specimen--1" data-glyph="compass_rose" data-x="0" data-y="0" tabindex="0" role="button" aria-label="Compass rose sticker — click to copy icon id or drag">
+          <img src="./art/s01.png" alt="Hand-drawn compass rose illustration" draggable="false" />
+          <figcaption class="specimen-caption">compass_rose</figcaption>
+        </figure>
+
+        <figure class="specimen specimen--2" data-glyph="giant_panda" data-x="0" data-y="0" tabindex="0" role="button" aria-label="Giant panda sticker — click to copy icon id or drag">
+          <img src="./art/s02.png" alt="Hand-drawn giant panda illustration" draggable="false" />
+          <figcaption class="specimen-caption">giant_panda</figcaption>
+        </figure>
+
+        <figure class="specimen specimen--3" data-glyph="pagoda" data-x="0" data-y="0" tabindex="0" role="button" aria-label="Pagoda sticker — click to copy icon id or drag">
+          <img src="./art/s03.png" alt="Hand-drawn red pagoda illustration" draggable="false" />
+          <figcaption class="specimen-caption">pagoda</figcaption>
+        </figure>
+
+        <figure class="specimen specimen--4" data-glyph="dumplings" data-x="0" data-y="0" tabindex="0" role="button" aria-label="Dumplings sticker — click to copy icon id or drag">
+          <img src="./art/s04.png" alt="Hand-drawn dumplings plate illustration" draggable="false" />
+          <figcaption class="specimen-caption">dumplings</figcaption>
+        </figure>
+
+        <figure class="specimen specimen--5" data-glyph="mt_fuji" data-x="0" data-y="0" tabindex="0" role="button" aria-label="Snowy peak sticker — click to copy icon id or drag">
+          <img src="./art/s05.png" alt="Hand-drawn snowy mountain illustration" draggable="false" />
+          <figcaption class="specimen-caption">mt_fuji</figcaption>
+        </figure>
+
+        <figure class="specimen specimen--6" data-glyph="junk_ship" data-x="0" data-y="0" tabindex="0" role="button" aria-label="Junk ship sticker — click to copy icon id or drag">
+          <img src="./art/s06.png" alt="Hand-drawn red-sail junk ship illustration" draggable="false" />
+          <figcaption class="specimen-caption">junk_ship</figcaption>
+        </figure>
+
+        <figure class="specimen specimen--7" data-glyph="paper_lantern" data-x="0" data-y="0" tabindex="0" role="button" aria-label="Paper lantern sticker — click to copy icon id or drag">
+          <img src="./art/s07.png" alt="Hand-drawn red paper lantern illustration" draggable="false" />
+          <figcaption class="specimen-caption">paper_lantern</figcaption>
+        </figure>
+
+        <figure class="specimen specimen--8" data-glyph="map_scroll" data-x="0" data-y="0" tabindex="0" role="button" aria-label="Map scroll sticker — click to copy icon id or drag">
+          <img src="./art/s08.png" alt="Hand-drawn parchment map scroll illustration" draggable="false" />
+          <figcaption class="specimen-caption">map_scroll</figcaption>
+        </figure>
+
+        <!-- Whispered Margin Hints (desktop only) -->
+        <p class="margin-hint margin-hint--tl" aria-hidden="true">
+          drag stickers on paper
+          <svg class="hint-arrow" width="36" height="24" viewBox="0 0 36 24" fill="none">
+            <path d="M4 4 C14 4, 24 10, 29 20" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" />
+            <path d="M23 19 L29.5 20.5 L31 14" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+        </p>
+
+        <p class="margin-hint margin-hint--tr" aria-hidden="true">
+          click any glyph to copy id
+          <svg class="hint-arrow hint-arrow--flip" width="36" height="24" viewBox="0 0 36 24" fill="none">
+            <path d="M32 4 C22 4, 12 10, 7 20" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" />
+            <path d="M13 19 L6.5 20.5 L5 14" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+        </p>
+      </div>
+
+      <!-- Centered Editorial Hero Core -->
+      <div class="hero-core">
+        <p class="hero-kicker">手绘人文地图引擎 · AI &amp; Agent-ready Node.js cartography</p>
+        <h1 id="hero-title" class="hero-title">handdrawn-map-kit</h1>
+        <p class="hero-subhead">
+          Declare a map in YAML or JSON — render pencil, fineliner &amp; watercolor cultural maps with 65 hand-drawn glyphs and an AI Agent Skill.
+        </p>
+
+        <!-- Primary & Secondary Buttons (brief.md #1) -->
+        <div class="hero-actions">
+          <a href="https://github.com/statechart-art/handdrawn-map-kit" target="_blank" rel="noopener noreferrer" class="btn-primary">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" />
+            </svg>
+            <span>GitHub</span>
+            <span class="btn-chip" aria-hidden="true">↗</span>
+          </a>
+
+          <a href="#quick-start" class="btn-secondary">
+            <span>Quick Start</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <line x1="12" y1="5" x2="12" y2="19" />
+              <polyline points="19 12 12 19 5 12" />
+            </svg>
+          </a>
+        </div>
+
+        <!-- Tabbed Command Card (Signature Recipe Component) -->
+        <div class="command-card" data-command-card>
+          <div class="command-card__bar">
+            <div class="tab-group" role="tablist" aria-label="Install or run method">
+              <button type="button" class="tab-btn is-active" role="tab" aria-selected="true" data-cmd="npx handdrawn-map-kit render japan.yaml -o japan.png">npx</button>
+              <button type="button" class="tab-btn" role="tab" aria-selected="false" data-cmd="npm install -g handdrawn-map-kit">npm</button>
+              <button type="button" class="tab-btn" role="tab" aria-selected="false" data-cmd="npx handdrawn-map-kit init-skill --agent claude">agent skill</button>
+            </div>
+            <button type="button" class="copy-btn" data-copy-from-card aria-label="Copy command">
+              <svg class="icon-copy" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect x="9" y="9" width="13" height="13" rx="2" ry="2" />
+                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
+              </svg>
+              <svg class="icon-check" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <polyline points="20 6 9 17 4 12" />
+              </svg>
+              <span class="copy-label">Copy</span>
+            </button>
+          </div>
+          <div class="command-card__body">
+            <span class="cmd-prompt" aria-hidden="true">$</span>
+            <code class="cmd-text">npx handdrawn-map-kit render japan.yaml -o japan.png</code>
+          </div>
+        </div>
+
+        <!-- Hero Main Visual: Unfolded Map Print on Sketchbook Desk -->
+        <div class="hero-print-wrap">
+          <button
+            type="button"
+            class="map-print map-print--hero"
+            data-lightbox-src="./assets/japan_cultural_map.png"
+            data-lightbox-title="Japan · 日本人文地图"
+            data-lightbox-meta="1500 × 1000 px · Rendered from declarative YAML with Natural Earth coastlines, Shinkansen routes, zebra border &amp; Ryukyu inset"
+            aria-label="Inspect Japan cultural map full resolution"
+          >
+            <img src="./assets/japan_cultural_map.png" alt="Hand-drawn cultural map of Japan generated by handdrawn-map-kit" />
+            <span class="print-zoom-pill">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <circle cx="11" cy="11" r="8" />
+                <line x1="21" y1="21" x2="16.65" y2="16.65" />
+                <line x1="11" y1="8" x2="11" y2="14" />
+                <line x1="8" y1="11" x2="14" y2="11" />
+              </svg>
+              <span>Inspect print</span>
+            </span>
+          </button>
+          <p class="hero-print-note">
+            <span>click print to zoom ·</span>
+            <a href="#showcase" class="tilted-link">see both atlas specimens ↓</a>
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         SECTION 2: MAP SHOWCASE (作品展示 — Japan & Korea)
+         ============================================================ -->
+    <section id="showcase" class="desk-zone showcase-zone" aria-labelledby="showcase-title">
+      <div class="zone-header">
+        <span class="zone-index">01 · Specimen atlas</span>
+        <h2 id="showcase-title" class="zone-title">Fresh off the drafting desk</h2>
+        <p class="zone-desc">
+          Two complete cultural maps rendered via CLI from concise YAML specs—click either print to zoom into the pencil strokes, hand-placed labels, and watercolor sea washes.
+        </p>
+      </div>
+
+      <div class="gallery-spread">
+        <!-- Map 1: Japan -->
+        <article class="atlas-plate atlas-plate--left">
+          <button
+            type="button"
+            class="map-print map-print--gallery"
+            data-lightbox-src="./assets/japan_cultural_map.png"
+            data-lightbox-title="Japan · 日本人文地图"
+            data-lightbox-meta="Natural Earth coastlines · 24 cultural illustrations · Shinkansen dashed rail · zebra cartographic border · Ryukyu / Okinawa inset"
+            aria-label="Enlarge Japan cultural map"
+          >
+            <img src="./assets/japan_cultural_map.png" alt="Hand-drawn cultural map of Japan showing Mt. Fuji, Tokyo, Kyoto, Shinkansen, Hokkaido ramen, and Okinawa inset" loading="lazy" />
+            <span class="print-zoom-pill">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <circle cx="11" cy="11" r="8" />
+                <line x1="21" y1="21" x2="16.65" y2="16.65" />
+                <line x1="11" y1="8" x2="11" y2="14" />
+                <line x1="8" y1="11" x2="14" y2="11" />
+              </svg>
+              <span>Click to enlarge</span>
+            </span>
+          </button>
+          <div class="plate-meta">
+            <div class="plate-meta__top">
+              <h3 class="plate-title">Japan · 日本人文地图</h3>
+              <span class="mono-tag">japan_cultural_map.png</span>
+            </div>
+            <p class="plate-summary">
+              Archipelago cartography with Hokkaido to Okinawa inset, Mt. Fuji, torii gates, Shinkansen routes, sumo ring, and collision-free city lettering.
+            </p>
+            <div class="plate-chips">
+              <span class="tiny-chip">Natural Earth</span>
+              <span class="tiny-chip">Zebra border</span>
+              <span class="tiny-chip">Compass rose</span>
+              <span class="tiny-chip">Inset frame</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Map 2: Korea -->
+        <article class="atlas-plate atlas-plate--right">
+          <button
+            type="button"
+            class="map-print map-print--gallery"
+            data-lightbox-src="./assets/korea_cultural_map.png"
+            data-lightbox-title="Korea · 韩国人文地图"
+            data-lightbox-meta="Natural Earth peninsula &amp; Jeju island · 19 cultural illustrations · KTX railway · Gyeongbokgung Palace, Jeonju Bibimbap &amp; Turtle Ship"
+            aria-label="Enlarge Korea cultural map"
+          >
+            <img src="./assets/korea_cultural_map.png" alt="Hand-drawn cultural map of South Korea showing Seoul, Gyeongbokgung Palace, Jeonju Bibimbap, KTX railway, and Jeju Island" loading="lazy" />
+            <span class="print-zoom-pill">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <circle cx="11" cy="11" r="8" />
+                <line x1="21" y1="21" x2="16.65" y2="16.65" />
+                <line x1="11" y1="8" x2="11" y2="14" />
+                <line x1="8" y1="11" x2="14" y2="11" />
+              </svg>
+              <span>Click to enlarge</span>
+            </span>
+          </button>
+          <div class="plate-meta">
+            <div class="plate-meta__top">
+              <h3 class="plate-title">Korea · 韩国人文地图</h3>
+              <span class="mono-tag">korea_cultural_map.png</span>
+            </div>
+            <p class="plate-summary">
+              Peninsula edition pairing KTX rail curves, leader lines to Gyeongbokgung Palace and Bibimbap, Jeju tangerines, and watercolor coastal shading.
+            </p>
+            <div class="plate-chips">
+              <span class="tiny-chip">Leader lines</span>
+              <span class="tiny-chip">KTX network</span>
+              <span class="tiny-chip">Banner cartouche</span>
+              <span class="tiny-chip">Auto-avoid</span>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         SECTION 3: QUICK START (怎么用 — 3 Steps: YAML → CLI → Output)
+         ============================================================ -->
+    <section id="quick-start" class="desk-zone workflow-zone" aria-labelledby="workflow-title">
+      <div class="zone-header">
+        <span class="zone-index">02 · Quick start</span>
+        <h2 id="workflow-title" class="zone-title">From YAML spec to print in three steps</h2>
+        <p class="zone-desc">
+          Describe the geography and cultural pins once, run one Node.js CLI command, and inspect the rendered map alongside structured layout diagnostics.
+        </p>
+      </div>
+
+      <div class="steps-grid">
+        <!-- Step 1: YAML / JSON Spec -->
+        <div class="step-column">
+          <div class="step-heading">
+            <span class="step-num">01</span>
+            <div>
+              <h3 class="step-title">Write a map spec</h3>
+              <p class="step-sub">Declare region, ornaments, CJK lettering &amp; pins.</p>
+            </div>
+          </div>
+
+          <div class="code-card" data-spec-card>
+            <div class="command-card__bar">
+              <div class="tab-group" role="tablist" aria-label="Specification format">
+                <button type="button" class="tab-btn is-active" role="tab" aria-selected="true" data-spec-tab="yaml">japan.yaml</button>
+                <button type="button" class="tab-btn" role="tab" aria-selected="false" data-spec-tab="json">japan.json</button>
+              </div>
+              <button type="button" class="copy-btn" data-copy-target="specCodeBlock" aria-label="Copy map spec">
+                <svg class="icon-copy" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <rect x="9" y="9" width="13" height="13" rx="2" ry="2" />
+                  <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
+                </svg>
+                <svg class="icon-check" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <polyline points="20 6 9 17 4 12" />
+                </svg>
+                <span class="copy-label">Copy</span>
+              </button>
+            </div>
+            <pre class="code-body"><code id="specCodeBlock">title: "JAPAN"
+subtitle: "Archipelago of East Asia"
+region:
+  country: JPN
+  layers: [coast, rivers, peaks]
+ornaments:
+  border: zebra
+  compass: bottom-right
+typography:
+  font: "ZCOOL XiaoWei"
+  autoAvoid: true
+pins:
+  - icon: mt_fuji
+    at: [138.73, 35.36]
+    label: "Mt. Fuji · 富士山"
+  - icon: pagoda
+    at: [135.76, 35.01]
+    label: "Kyoto"</code></pre>
+          </div>
+        </div>
+
+        <!-- Step 2: Render Command + Diagnostic JSON -->
+        <div class="step-column">
+          <div class="step-heading">
+            <span class="step-num">02</span>
+            <div>
+              <h3 class="step-title">Run the CLI renderer</h3>
+              <p class="step-sub">One command draws pencil ink, washes &amp; emits JSON.</p>
+            </div>
+          </div>
+
+          <div class="code-card">
+            <div class="command-card__bar">
+              <div class="tab-group" role="tablist" aria-label="CLI step">
+                <button type="button" class="tab-btn is-active" role="tab" aria-selected="true" data-cli-tab="render">render</button>
+                <button type="button" class="tab-btn" role="tab" aria-selected="false" data-cli-tab="agent">agent iterate</button>
+              </div>
+              <button type="button" class="copy-btn" data-copy-target="cliCodeBlock" aria-label="Copy render command">
+                <svg class="icon-copy" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <rect x="9" y="9" width="13" height="13" rx="2" ry="2" />
+                  <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
+                </svg>
+                <svg class="icon-check" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <polyline points="20 6 9 17 4 12" />
+                </svg>
+                <span class="copy-label">Copy</span>
+              </button>
+            </div>
+            <pre class="code-body code-body--compact"><code id="cliCodeBlock">npx handdrawn-map-kit render japan.yaml \
+  --out japan_cultural_map.png \
+  --diagnostics report.json</code></pre>
+          </div>
+
+          <!-- Diagnostic JSON readout -->
+          <div class="diagnostic-slip">
+            <div class="diagnostic-slip__head">
+              <span class="mono-tag">report.json</span>
+              <span class="diag-badge">0 overlaps · ready</span>
+            </div>
+            <pre class="diagnostic-slip__code"><code>{
+  "canvas": "1500x1000",
+  "placedPins": 24,
+  "labelCollisions": 0,
+  "nudgedLabels": 5,
+  "densityScore": 0.64,
+  "status": "clean"
+}</code></pre>
+          </div>
+        </div>
+
+        <!-- Step 3: Rendered Output -->
+        <div class="step-column">
+          <div class="step-heading">
+            <span class="step-num">03</span>
+            <div>
+              <h3 class="step-title">Collect your map print</h3>
+              <p class="step-sub">Pencil outlines, watercolor wash &amp; vintage frame.</p>
+            </div>
+          </div>
+
+          <div class="output-preview-wrap">
+            <button
+              type="button"
+              class="map-print map-print--step"
+              data-lightbox-src="./assets/korea_cultural_map.png"
+              data-lightbox-title="Korea · 韩国人文地图"
+              data-lightbox-meta="Example CLI output with zebra border, watercolor ocean wash, compass rose, and collision-free labels"
+              aria-label="Inspect rendered map output"
+            >
+              <img src="./assets/korea_cultural_map.png" alt="Rendered output preview of a hand-drawn cultural map" loading="lazy" />
+              <span class="print-zoom-pill">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <circle cx="11" cy="11" r="8" />
+                  <line x1="21" y1="21" x2="16.65" y2="16.65" />
+                  <line x1="11" y1="8" x2="11" y2="14" />
+                  <line x1="8" y1="11" x2="14" y2="11" />
+                </svg>
+                <span>Zoom output</span>
+              </span>
+            </button>
+            <ul class="output-callouts">
+              <li><span class="callout-dot"></span>Fineliner coastline wobble &amp; sea wash</li>
+              <li><span class="callout-dot"></span>Zebra border, compass &amp; banner cartouche</li>
+              <li><span class="callout-dot"></span>Agent reads <code>report.json</code> to polish density</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         SECTION 4: CAPABILITIES (功能点 — 6 Bare Desk Specimens)
+         ============================================================ -->
+    <section id="features" class="desk-zone features-zone" aria-labelledby="features-title">
+      <div class="zone-header">
+        <span class="zone-index">03 · What’s inside the kit</span>
+        <h2 id="features-title" class="zone-title">Six handmade tools on one paper desk</h2>
+        <p class="zone-desc">
+          Everything an indie builder, educator, or AI agent needs to turn structured geography into a warm storybook atlas.
+        </p>
+      </div>
+
+      <div class="capabilities-desk">
+        <!-- Feature 1 -->
+        <article class="capability-specimen">
+          <div class="capability-art">
+            <img src="./art/s08.png" alt="Map scroll sticker" loading="lazy" />
+          </div>
+          <div class="capability-copy">
+            <span class="mono-tag">yaml / json · node cli</span>
+            <h3 class="capability-title">Declarative spec &amp; CLI</h3>
+            <p class="capability-text">
+              Define regions, rail routes, pins, and watercolor palettes in version-controlled YAML or JSON—render crisp maps in a single Node.js command.
+            </p>
+          </div>
+        </article>
+
+        <!-- Feature 2 -->
+        <article class="capability-specimen">
+          <div class="capability-art">
+            <img src="./art/s05.png" alt="Snowy mountain peak sticker" loading="lazy" />
+          </div>
+          <div class="capability-copy">
+            <span class="mono-tag">natural earth · offline</span>
+            <h3 class="capability-title">Built-in Natural Earth data</h3>
+            <p class="capability-text">
+              Ships with ready-to-project geographic layers—countries, provinces, rivers, lakes, cities, and mountain peaks—no external tile API required.
+            </p>
+          </div>
+        </article>
+
+        <!-- Feature 3 -->
+        <article class="capability-specimen">
+          <div class="capability-art">
+            <img src="./art/s02.png" alt="Giant panda sticker" loading="lazy" />
+          </div>
+          <div class="capability-copy">
+            <span class="mono-tag">65 glyphs · cultural pack</span>
+            <h3 class="capability-title">65 hand-drawn illustrations</h3>
+            <p class="capability-text">
+              Drop in pandas, the Great Wall, dumplings, pagodas, windmills, ships, and regional landmarks drawn with chunky pastel texture and expressive outlines.
+            </p>
+          </div>
+        </article>
+
+        <!-- Feature 4 -->
+        <article class="capability-specimen">
+          <div class="capability-art">
+            <img src="./art/s07.png" alt="Red paper lantern sticker" loading="lazy" />
+          </div>
+          <div class="capability-copy">
+            <span class="mono-tag">cjk · zcool xiaowei</span>
+            <h3 class="capability-title">CJK handwritten typography</h3>
+            <p class="capability-text">
+              First-class Chinese, Japanese, and Korean hand-lettered typesetting (中 / 日 / 韩) paired with curved ocean labels and vintage serif titles.
+            </p>
+          </div>
+        </article>
+
+        <!-- Feature 5 -->
+        <article class="capability-specimen">
+          <div class="capability-art">
+            <img src="./art/s03.png" alt="Pagoda sticker" loading="lazy" />
+          </div>
+          <div class="capability-copy">
+            <span class="mono-tag">auto-avoid · ornaments</span>
+            <h3 class="capability-title">Auto-layout &amp; vintage ornaments</h3>
+            <p class="capability-text">
+              Collision avoidance automatically resolves overlapping pins and leader lines, framed by zebra borders, compass roses, and banner title cartouches.
+            </p>
+          </div>
+        </article>
+
+        <!-- Feature 6 -->
+        <article class="capability-specimen">
+          <div class="capability-art">
+            <img src="./art/s01.png" alt="Compass rose sticker" loading="lazy" />
+          </div>
+          <div class="capability-copy">
+            <span class="mono-tag">agent skill · report.json</span>
+            <h3 class="capability-title">Agent Skill + diagnostic JSON</h3>
+            <p class="capability-text">
+              Includes a ready-to-use Agent Skill so AI agents can draft specs, render maps, inspect structured overlap/density JSON, and self-correct iteratively.
+            </p>
+          </div>
+        </article>
+      </div>
+
+      <!-- Playful bare specimen shelf link into the 65-glyph overlay -->
+      <div class="specimen-shelf-bar">
+        <div class="shelf-mini-icons" aria-hidden="true">
+          <img src="./art/s04.png" alt="" />
+          <img src="./art/s06.png" alt="" />
+        </div>
+        <p class="shelf-note">Want to browse the bundled glyphs &amp; cartographic layers?</p>
+        <button type="button" class="btn-secondary btn-secondary--sm" id="openCatalogInline">
+          <span>Open 65-glyph catalog</span>
+          <span class="keycap-light">K</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         SECTION 5: CREDITS, LICENSE & FOOTER (致谢与许可 + 页脚)
+         ============================================================ -->
+    <footer id="credits" class="desk-zone credits-zone" aria-labelledby="credits-title">
+      <div class="colophon-sheet">
+        <div class="colophon-header">
+          <span class="zone-index">04 · Colophon &amp; credits</span>
+          <h2 id="credits-title" class="colophon-title">Made with admiration for storybook atlases</h2>
+        </div>
+
+        <div class="colophon-grid">
+          <div class="colophon-item">
+            <span class="mono-tag">Engine &amp; license</span>
+            <p>
+              Cartographic rendering engine derived from <strong>statechart-art</strong>, open-sourced under the <strong>MIT License</strong>.
+            </p>
+          </div>
+
+          <div class="colophon-item">
+            <span class="mono-tag">CJK typography</span>
+            <p>
+              Chinese &amp; East Asian handwritten map labels set in <strong>ZCOOL XiaoWei</strong> under the <strong>SIL Open Font License (OFL)</strong>.
+            </p>
+          </div>
+
+          <div class="colophon-item">
+            <span class="mono-tag">Inspiration &amp; data</span>
+            <p>
+              Inspired by Aleksandra &amp; Daniel Mizieliński’s <em>Maps</em> (《地图（人文版）》). Public-domain vector geography by <strong>Natural Earth</strong>.
+            </p>
+          </div>
+        </div>
+
+        <div class="colophon-footer">
+          <div class="colophon-brand">
+            <img src="./art/s04.png" alt="" class="colophon-stamp" aria-hidden="true" />
+            <div>
+              <strong class="colophon-name">handdrawn-map-kit</strong>
+              <span class="colophon-meta">Node.js cultural map engine · MIT &amp; OFL</span>
+            </div>
+          </div>
+
+          <nav class="colophon-links" aria-label="Footer navigation">
+            <a href="#top">Desk top</a>
+            <a href="#showcase">Atlas prints</a>
+            <a href="#quick-start">Quick Start</a>
+            <a href="#features">Capabilities</a>
+            <a href="https://github.com/statechart-art/handdrawn-map-kit" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+          </nav>
+        </div>
+      </div>
+    </footer>
+  </main>
+
+  <!-- ============================================================
+       BOTTOM FLOATING CONTROL DOCK (Signature 3-Pill Trio)
+       ============================================================ -->
+  <nav class="bottom-dock" aria-label="Sketchbook desk controls">
+    <!-- Pill 1: Brand Recenter Pill -->
+    <button type="button" class="dock-pill dock-recenter" id="recenterBtn" title="Scroll to top &amp; tidy dragged stickers (R)">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <circle cx="12" cy="12" r="9" />
+        <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76" />
+      </svg>
+      <span>Recenter</span>
+    </button>
+
+    <!-- Pill 2: Glossy Color Swatch Tray (collapses to popover on mobile) -->
+    <div class="dock-pill dock-swatches-wrap" id="swatchWrap">
+      <button type="button" class="swatch-mobile-trigger" id="swatchMobileTrigger" aria-expanded="false" aria-label="Choose paper wash tint">
+        <span class="swatch-dot swatch-dot--multi" id="mobileSwatchDot"></span>
+        <span class="swatch-mobile-label">Wash</span>
+      </button>
+
+      <div class="swatch-tray" id="swatchTray" role="radiogroup" aria-label="Sketchbook ink &amp; paper wash">
+        <button type="button" class="swatch-btn is-selected" data-theme-choice="multi" role="radio" aria-checked="true" aria-label="Full color studio paper" title="Full color studio paper">
+          <span class="swatch-dot swatch-dot--multi"></span>
+        </button>
+        <button type="button" class="swatch-btn" data-theme-choice="ochre" role="radio" aria-checked="false" aria-label="Warm vellum ochre wash" title="Warm vellum ochre">
+          <span class="swatch-dot swatch-dot--ochre"></span>
+        </button>
+        <button type="button" class="swatch-btn" data-theme-choice="vermilion" role="radio" aria-checked="false" aria-label="Vermilion seal wash" title="Vermilion seal">
+          <span class="swatch-dot swatch-dot--vermilion"></span>
+        </button>
+        <button type="button" class="swatch-btn" data-theme-choice="celadon" role="radio" aria-checked="false" aria-label="Celadon pine wash" title="Celadon pine">
+          <span class="swatch-dot swatch-dot--celadon"></span>
+        </button>
+        <button type="button" class="swatch-btn" data-theme-choice="indigo" role="radio" aria-checked="false" aria-label="Indigo sea wash" title="Indigo sea">
+          <span class="swatch-dot swatch-dot--indigo"></span>
+        </button>
+        <button type="button" class="swatch-btn" data-theme-choice="plum" role="radio" aria-checked="false" aria-label="Wisteria ink wash" title="Wisteria ink">
+          <span class="swatch-dot swatch-dot--plum"></span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Pill 3: Single Solid Inverted Dark Anchor Button -->
+    <button type="button" class="dock-pill dock-primary" id="openCatalogBtn" aria-label="Browse 65 glyphs and kit catalog">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <circle cx="11" cy="11" r="7" />
+        <line x1="21" y1="21" x2="16.65" y2="16.65" />
+      </svg>
+      <span>Browse kit</span>
+      <kbd class="dock-keycap">K</kbd>
+    </button>
+  </nav>
+
+  <!-- ============================================================
+       INTERACTIVE LIGHTBOX MODAL (Map Zoom)
+       ============================================================ -->
+  <div class="overlay" id="lightboxOverlay" hidden aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="lightboxTitle">
+    <div class="overlay-backdrop" data-close-lightbox></div>
+    <div class="lightbox-dialog">
+      <div class="lightbox-bar">
+        <div class="lightbox-info">
+          <h3 id="lightboxTitle" class="lightbox-title">Map preview</h3>
+          <p id="lightboxMeta" class="lightbox-meta"></p>
+        </div>
+        <div class="lightbox-controls">
+          <button type="button" class="lightbox-btn" id="lightboxZoomBtn" aria-label="Toggle zoom">
+            <span>Zoom 1.6×</span>
+          </button>
+          <button type="button" class="lightbox-btn" id="lightboxSwitchBtn" aria-label="Switch map">
+            <span>Switch map</span>
+          </button>
+          <button type="button" class="lightbox-btn lightbox-btn--close" data-close-lightbox aria-label="Close preview">
+            <span>Close</span>
+            <kbd class="keycap-light">Esc</kbd>
+          </button>
+        </div>
+      </div>
+      <div class="lightbox-stage" id="lightboxStage">
+        <img id="lightboxImg" src="" alt="" />
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       SEARCHABLE SPECIMEN & KIT CATALOG OVERLAY (K shortcut)
+       ============================================================ -->
+  <div class="overlay" id="catalogOverlay" hidden aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="catalogTitle">
+    <div class="overlay-backdrop" data-close-catalog></div>
+    <div class="catalog-dialog">
+      <div class="catalog-head">
+        <div>
+          <h3 id="catalogTitle" class="catalog-title">Specimen &amp; kit catalog</h3>
+          <p class="catalog-sub">Click any specimen to copy its YAML pin snippet.</p>
+        </div>
+        <button type="button" class="lightbox-btn lightbox-btn--close" data-close-catalog aria-label="Close catalog">
+          <span>Close</span>
+          <kbd class="keycap-light">Esc</kbd>
+        </button>
+      </div>
+
+      <div class="catalog-search-row">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="11" cy="11" r="8" />
+          <line x1="21" y1="21" x2="16.65" y2="16.65" />
+        </svg>
+        <input type="search" id="catalogSearchInput" placeholder="Filter glyphs, ornaments, or Natural Earth layers…" autocomplete="off" />
+        <span class="mono-tag" id="catalogCountTag">8 illustrated · 65 total</span>
+      </div>
+
+      <div class="catalog-grid" id="catalogGrid"></div>
+    </div>
+  </div>
+
+  <!-- Subtle Floating Toast for Copy / Sticker Actions -->
+  <div class="desk-toast" id="deskToast" role="status" aria-live="polite"></div>
+
+  <script src="./script.js"></script>
+</body>
+</html>

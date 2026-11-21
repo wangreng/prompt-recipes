@@ -1,0 +1,7 @@
+{
+ "score": 95,
+ "sections": 50,
+ "interactions": 29,
+ "quality": 16,
+ "gaps": "Quick Start shows Korea as output of a Japan specification; clipboard fallback reports success even when copying fails; advertised 65-glyph catalog contains only 16 entries; modals lack keyboard focus trapping and restoration."
+}

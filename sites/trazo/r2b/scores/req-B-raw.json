@@ -1,0 +1,7 @@
+{
+ "score": 97,
+ "sections": 50,
+ "interactions": 29,
+ "quality": 18,
+ "gaps": "Copy buttons report success even when copying fails. Map lightbox lacks keyboard focus management and a focus trap."
+}

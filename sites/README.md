@@ -28,3 +28,30 @@ Briefs: `tools/r2/brief-*.md`. Recipes: `sites/<case>/recipe/`. Sites: `sites/<c
 - Harness bug: the asset download in `capture.mjs` silently saved nothing, so no recipe got reference assets. The assets were fetched afterwards for the record, and the downloader is now fixed. The A scores therefore partly reflect missing art.
 - kidpickup's cookie banner is in the original capture. The mobile 390 view was not scored.
 - The transfer assets for handdrawn-map-kit are the two README images, fetched read-only. That repo was not touched.
+
+## Round 2b: trazo + an image step (2026-11-21)
+
+The trazo stickers are inline SVGs, so I rasterised 12 of them from the live page (`tools/r2/refs.mjs`) and used 4 as style references. The generator still never sees the original page. It gets the same recipe, the brief and one of two image sets:
+- **raw:** the 4 original stickers, attached as-is.
+- **gen:** 8 new stickers for the subject, made by Codex image_gen with the 4 refs as style reference (`r2b/img-A` sea set for re-creation, `r2b/img-B` map-kit set: compass, panda, pagoda, dumplings, mountain, junk boat, lantern, scroll). White backgrounds were turned transparent.
+
+| | R2 (recipe only) | 2b raw | 2b gen |
+|---|---|---|---|
+| A 还原 (Codex) | 72 | 78 | 77 |
+| SSIM A | 0.718 | 0.725 | 0.744 |
+| B vs control C (both orders) | 89 / 88 | 88 / 87 | 90 / 88 |
+| B 需求 | 97 | 97 | 95 |
+
+Head-to-head (both orders, winner never flipped):
+- **B-gen vs R2 B:** B-gen wins clearly, 84–73 and 89–78.
+- **B-gen vs B-raw:** B-gen wins clearly, 86–74 and 85–70.
+
+**Findings**
+- **Adding images closes part of the art gap.** Re-creation went from 72 to 77–78. What's left is placement and sticker density.
+- **Generating in-style images beats attaching the original art for transfer.** The raw sea stickers are off-topic, so the generator used them sparingly and the page lost the scattered-sticker feel. In-style stickers for the actual subject let it rebuild that composition.
+- **Absolute "vs control" scores are saturated** (all ~88–90). Only direct pairwise comparisons between candidates separated them. Use pairwise as the main metric.
+- **Small cost on requirements** (95): B-gen put the Korea map as the output of a Japan spec, and its "65 glyphs" catalog shows fewer.
+- **Caveats:** one run each, and Codex is both the image maker and the judge (possible self-preference on the gen set). Recipe unchanged, so the leak check is unchanged (0/0/0).
+
+Grid: `sites/trazo/r2b/grid-2b.png` (Original · R2 B / 2b B-raw · 2b B-gen).
+
