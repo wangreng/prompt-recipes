@@ -10,9 +10,9 @@ Retro Windows-95-style desktop with AI apps.
 
 | Round | Gemini self-score | Codex (GPT) score | Gap | SSIM | Pixel diff | Flag |
 |---|---|---|---|---|---|---|
-| r1 | 68 | pending | – | 0.963 | 2.2% |  |
-| r2 | 75 | pending | – | 0.962 | 2.2% |  |
-| r3 | 86 | pending | – | 0.978 | 1.4% |  |
+| r1 | 68 | 77 | -9 | 0.963 | 2.2% |  |
+| r2 | 75 | 80 | -5 | 0.962 | 2.2% |  |
+| r3 | 86 | 86 | +0 | 0.978 | 1.4% |  |
 
 Final recipe = round 3 (highest Codex score, SSIM as tiebreak; falls back to the last round while Codex scores are pending).
 
@@ -48,7 +48,7 @@ Seven apps (left to right, pixel-art icons; mini-window icons use gray—not blu
 ## Judge notes (final round)
 
 - **Gemini (self):** 1. All 7 desktop icons are redrawn in a chunkier, thicker-outlined pixel-art style, with Gemini Chat, Chrome, and Doom II rendered noticeably larger than in the target. 2. Gemini Chat uses a larger warm cream tile with a stubbier indigo 4-point star instead of a smaller cool bluish-white tile with a slender star. 3. Doom II depicts a larger, darker maroon Cacodemon with stubby horns and a prominent dark mouth rather than the target's smaller bright-red sprite with sharper white horns. 4. My Gemtop is a flatter front-facing monitor instead of an angled 3D CRT with a globe, and GemPaint's paintbrush extends past the bottom-right frame instead of staying contained inside. 5. The bottom-left Gemini Start button uses slightly blockier lettering with the blue sparkle shifted left (over e/m rather than m/i), and GemSweeper's grid digits are chunkier and less crisp.
-- **Codex (GPT):** pending
+- **Codex (GPT):** Icon artwork differs across all seven shortcuts, especially Doom II and GemPaint; regenerated icons are generally larger; shortcut labels sit about 8px lower; shortcut centers drift 3–7px left; Gemini taskbar button is narrower and its logo styling differs.
 
 ## Caveats
 

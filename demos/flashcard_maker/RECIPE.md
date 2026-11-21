@@ -10,9 +10,9 @@ Topic → flashcards generator.
 
 | Round | Gemini self-score | Codex (GPT) score | Gap | SSIM | Pixel diff | Flag |
 |---|---|---|---|---|---|---|
-| r1 | 85 | pending | – | 0.932 | 2.1% |  |
-| r2 | 92 | pending | – | 0.929 | 2.0% | model high / SSIM low |
-| r3 | 95 | pending | – | 0.972 | 1.1% |  |
+| r1 | 85 | 84 | +1 | 0.932 | 2.1% |  |
+| r2 | 92 | 93 | -1 | 0.929 | 2.0% | model high / SSIM low |
+| r3 | 95 | 96 | -1 | 0.972 | 1.1% |  |
 
 Final recipe = round 3 (highest Codex score, SSIM as tiebreak; falls back to the last round while Codex scores are pending).
 
@@ -44,7 +44,7 @@ On click, validate non-empty input; if blank, clear cards and ask for a topic or
 ## Judge notes (final round)
 
 - **Gemini (self):** 1) The Generate Flashcards button has a noticeably darker, deeper drop shadow beneath it in B than the faint shadow in A. 2) The button label in B renders slightly tighter/heavier (narrower text width) inside a 4px narrower button. 3) The white card container has a visibly darker, crisper outer drop shadow along its bottom and side edges in B. 4) The monospace placeholder text inside the textarea sits ~2px lower (slightly more top padding) in B. 5) Minor 1-2px layout shifts: the textarea is 2px wider and 1px lower in B, while the title sits 1px higher and the subtitle 1px lower.
-- **Codex (GPT):** pending
+- **Codex (GPT):** Button text is smaller, heavier, and more tightly spaced; button is about 4px narrower with a stronger shadow; main panel shadow is darker; textarea is about 2px wider and 1px lower; placeholder text sits about 3px lower.
 
 ## Caveats
 

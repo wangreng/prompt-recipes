@@ -1,0 +1,7 @@
+{
+ "score": 88,
+ "layout": 34,
+ "style": 26,
+ "components": 28,
+ "notes": "Content is 48px wider and starts 24px farther left; canvas is 11px lower; heading is 15px lower and slightly larger while attribution text is smaller; prompt bar is 52px tall versus 60px with a smaller send button; toolbar is smaller, lighter gray, and shifted right and down."
+}

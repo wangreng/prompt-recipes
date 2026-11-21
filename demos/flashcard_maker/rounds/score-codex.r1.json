@@ -1,0 +1,7 @@
+{
+ "score": 84,
+ "layout": 33,
+ "style": 23,
+ "components": 28,
+ "notes": "Main card is 60px narrower and 44px shorter; heading and description sit about 20–25px too high; textarea is 48px narrower and 27px taller; placeholder uses proportional sans-serif instead of monospace; button is slightly smaller with smaller, heavier text; page background is darker."
+}

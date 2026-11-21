@@ -10,9 +10,9 @@ Sketch canvas + prompt, Gemini redraws.
 
 | Round | Gemini self-score | Codex (GPT) score | Gap | SSIM | Pixel diff | Flag |
 |---|---|---|---|---|---|---|
-| r1 | 87 | pending | – | 0.909 | 3.2% | model high / SSIM low |
-| r2 | 96 | pending | – | 0.951 | 1.8% |  |
-| r3 | 98 | pending | – | 0.997 | 0.1% |  |
+| r1 | 87 | 88 | -1 | 0.909 | 3.2% | model high / SSIM low |
+| r2 | 96 | 96 | +0 | 0.951 | 1.8% |  |
+| r3 | 98 | 99 | -1 | 0.997 | 0.1% |  |
 
 Final recipe = round 3 (highest Codex score, SSIM as tiebreak; falls back to the last round while Codex scores are pending).
 
@@ -43,7 +43,7 @@ Submitting a required prompt disables the button with a spinning loader, exports
 ## Judge notes (final round)
 
 - **Gemini (self):** 1. Subtitle link underlines ('Gemini 2.0 native image generation', '@trudypainter', '@alexanderchen') sit 1-2px lower below the text baseline in B than in A. 2. The two circular buttons inside the top-right toolbar pill (black color swatch and trash button) are missing the subtle drop shadow visible beneath them in A, and the pill background is marginally lighter. 3. The input placeholder text ('Add your change...') renders in a slightly lighter gray with marginally lower contrast in B than in A. 4. Minor anti-aliasing differences exist around the send button icon and header text edges, while overall layout, canvas borders/dimensions, title typography, and all components match virtually identically.
-- **Codex (GPT):** pending
+- **Codex (GPT):** Author-link underlines sit slightly lower in the regeneration; placeholder text appears marginally lighter; minor text antialiasing differences around the author credits. Canvas, toolbar, input, and send button match in placement and dimensions.
 
 ## Caveats
 
