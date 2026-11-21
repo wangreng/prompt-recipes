@@ -1,0 +1,12 @@
+Build a clean, minimalist single-page Flashcard Generator web app powered by the Gemini API. Users can enter either a topic (like "Ancient Rome") or a list of "Term: Definition" pairs (one per line) and generate interactive study flashcards they can click to flip. Keep the interface focused and uncluttered, with no navbar, sidebar, sample cards, or extra controls.
+
+Use a crisp Google Material-inspired style with Google Sans and Roboto typography and automatic light and dark mode support following the system theme. Place everything inside a centered white card container (medium desktop width, generous padding, rounded corners, subtle drop shadow) near the top of a soft light-gray page. In dark mode, switch to Google dark charcoal surfaces, light gray text, soft sky-blue accents (dark text on primary buttons), and dark gray card and input fills.
+
+Stack these elements in a centered single column with comfortable vertical spacing:
+- A medium-weight "Flashcard Generator" heading in Google Blue.
+- A muted-gray subtitle: "Enter a topic or a list of terms and definitions to generate flashcards using the Gemini API."
+- A wide, vertically resizable multi-line textarea with rounded corners, light-gray fill, thin border, blue focus ring, and placeholder: "Enter topic (e.g., Ancient Rome) or 'Term: Definition' pairs (one per line)".
+- A centered Google Blue "Generate Flashcards" button with white medium-weight text, rounded corners, hover elevation, and a muted disabled state while loading.
+- A Google Red status/error message line below with reserved height so the layout doesn't jump, followed by generous space above a centered wrapping grid of flashcards.
+
+On click, validate that the input isn't empty; if empty, clear existing cards and prompt the user to enter a topic or terms. Otherwise, clear old cards, disable the button, show "Generating flashcards...", and ask Gemini for concise "Term: Definition" pairs (one per line). Render each valid pair as a compact landscape card with a pale ice-blue surface (dark gray in dark mode), thin border, and soft shadow that deepens with a blue border highlight on hover. Show the centered term on the front in larger medium-weight text, and smoothly flip horizontally in 3D on click to reveal the definition on the back in smaller muted text. Display clear messages for empty, malformed, or failed responses, and always re-enable the button afterward.

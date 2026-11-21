@@ -1,0 +1,663 @@
+:root {
+  --win95-teal: #008080;
+  --win95-gray: #c0c0c0;
+  --win95-light: #dfdfdf;
+  --win95-white: #ffffff;
+  --win95-dark: #808080;
+  --win95-black: #000000;
+  --win95-navy: #000080;
+  --win95-navy-light: #1084d0;
+  --win95-yellow: #ffffcc;
+
+  --font-ui: 'Inter', 'MS Sans Serif', 'Segoe UI', Tahoma, sans-serif;
+  --font-mono: 'Courier New', Courier, monospace;
+  --font-browser: 'Times New Roman', Times, Georgia, serif;
+  --font-quip: 'Comic Sans MS', 'Comic Neue', 'Chalkboard SE', cursive, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background-color: var(--win95-teal);
+  font-family: var(--font-ui);
+  font-size: 13px;
+  color: #000000;
+  user-select: none;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ===== Classic Windows 95 3D Bevel Utilities ===== */
+
+.win95-raised {
+  background-color: var(--win95-gray);
+  border-top: 2px solid var(--win95-white);
+  border-left: 2px solid var(--win95-white);
+  border-right: 2px solid var(--win95-black);
+  border-bottom: 2px solid var(--win95-black);
+  box-shadow:
+    inset 1px 1px 0 var(--win95-light),
+    inset -1px -1px 0 var(--win95-dark);
+}
+
+.win95-window-border {
+  background-color: var(--win95-gray);
+  border-top: 2px solid var(--win95-light);
+  border-left: 2px solid var(--win95-light);
+  border-right: 2px solid var(--win95-black);
+  border-bottom: 2px solid var(--win95-black);
+  box-shadow:
+    inset 1px 1px 0 var(--win95-white),
+    inset -1px -1px 0 var(--win95-dark),
+    2px 2px 10px rgba(0, 0, 0, 0.35);
+}
+
+.win95-sunken {
+  background-color: var(--win95-white);
+  border-top: 2px solid var(--win95-dark);
+  border-left: 2px solid var(--win95-dark);
+  border-right: 2px solid var(--win95-white);
+  border-bottom: 2px solid var(--win95-white);
+  box-shadow:
+    inset 1px 1px 0 var(--win95-black),
+    inset -1px -1px 0 var(--win95-light);
+}
+
+.win95-sunken-gray {
+  background-color: var(--win95-gray);
+  border-top: 2px solid var(--win95-dark);
+  border-left: 2px solid var(--win95-dark);
+  border-right: 2px solid var(--win95-white);
+  border-bottom: 2px solid var(--win95-white);
+}
+
+.win95-sunken-thin {
+  border-top: 1px solid var(--win95-dark);
+  border-left: 1px solid var(--win95-dark);
+  border-right: 1px solid var(--win95-white);
+  border-bottom: 1px solid var(--win95-white);
+}
+
+.win95-btn {
+  background-color: var(--win95-gray);
+  color: #000000;
+  font-family: var(--font-ui);
+  font-size: 12px;
+  font-weight: 500;
+  padding: 3px 10px;
+  cursor: pointer;
+  border-top: 2px solid var(--win95-white);
+  border-left: 2px solid var(--win95-white);
+  border-right: 2px solid var(--win95-black);
+  border-bottom: 2px solid var(--win95-black);
+  box-shadow:
+    inset 1px 1px 0 var(--win95-light),
+    inset -1px -1px 0 var(--win95-dark);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  outline: none;
+  white-space: nowrap;
+}
+
+.win95-btn:active:not(:disabled),
+.win95-btn.pressed {
+  border-top: 2px solid var(--win95-black);
+  border-left: 2px solid var(--win95-black);
+  border-right: 2px solid var(--win95-white);
+  border-bottom: 2px solid var(--win95-white);
+  box-shadow:
+    inset 1px 1px 0 var(--win95-dark),
+    inset -1px -1px 0 var(--win95-light);
+  padding-top: 4px;
+  padding-bottom: 2px;
+}
+
+.win95-btn:disabled {
+  color: var(--win95-dark);
+  text-shadow: 1px 1px 0 var(--win95-white);
+  cursor: default;
+}
+
+.win95-btn-active-checkered {
+  background-color: #d6d6d6;
+  background-image:
+    linear-gradient(45deg, #e8e8e8 25%, transparent 25%),
+    linear-gradient(-45deg, #e8e8e8 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, #e8e8e8 75%),
+    linear-gradient(-45deg, transparent 75%, #e8e8e8 75%);
+  background-size: 4px 4px;
+  background-position: 0 0, 0 2px, 2px -2px, -2px 0;
+  border-top: 2px solid var(--win95-black);
+  border-left: 2px solid var(--win95-black);
+  border-right: 2px solid var(--win95-white);
+  border-bottom: 2px solid var(--win95-white);
+  box-shadow: inset 1px 1px 0 var(--win95-dark);
+  font-weight: 700;
+}
+
+/* ===== Desktop & Icons ===== */
+
+.desktop-root {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background-color: var(--win95-teal);
+}
+
+.desktop-icons-row {
+  position: absolute;
+  top: 22px;
+  left: 24px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 24px;
+  z-index: 1;
+  max-width: calc(100vw - 48px);
+}
+
+.desktop-icon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 90px;
+  padding: 6px 6px;
+  cursor: pointer;
+  background: transparent;
+  border: 1px solid transparent;
+  outline: none;
+  text-align: center;
+  gap: 6px;
+}
+
+.desktop-icon:hover .desktop-icon-label {
+  text-decoration: underline;
+}
+
+.desktop-icon.selected {
+  border: 1px dotted rgba(255, 255, 255, 0.75);
+}
+
+.desktop-icon.selected .desktop-icon-label {
+  background-color: var(--win95-navy);
+  text-shadow: none;
+}
+
+.desktop-icon-img {
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  filter: drop-shadow(1px 2px 1px rgba(0, 0, 0, 0.35));
+}
+
+.desktop-icon-label {
+  font-family: var(--font-ui);
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.25;
+  color: #ffffff;
+  text-shadow:
+    1px 1px 2px rgba(0, 0, 0, 0.95),
+    0 1px 1px rgba(0, 0, 0, 0.9);
+  padding: 1px 5px;
+  white-space: nowrap;
+}
+
+/* ===== Windows ===== */
+
+.win95-window {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  padding: 3px;
+  min-width: 240px;
+  min-height: 180px;
+}
+
+.win95-titlebar {
+  height: 26px;
+  padding: 2px 4px 2px 6px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  cursor: default;
+  flex-shrink: 0;
+  margin-bottom: 3px;
+}
+
+.win95-titlebar.active {
+  background: linear-gradient(90deg, #000080 0%, #000080 78%, #1040a0 100%);
+  color: #ffffff;
+}
+
+.win95-titlebar.inactive {
+  background-color: #808080;
+  color: #dfdfdf;
+}
+
+.win95-titlebar-left {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-width: 0;
+  flex: 1;
+}
+
+.win95-titlebar-title {
+  font-family: var(--font-ui);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.1px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.win95-titlebar-controls {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  flex-shrink: 0;
+}
+
+.win95-titlebar-btn {
+  width: 20px;
+  height: 18px;
+  padding: 0;
+  background-color: var(--win95-gray);
+  border-top: 2px solid var(--win95-white);
+  border-left: 2px solid var(--win95-white);
+  border-right: 2px solid var(--win95-black);
+  border-bottom: 2px solid var(--win95-black);
+  box-shadow:
+    inset 1px 1px 0 var(--win95-light),
+    inset -1px -1px 0 var(--win95-dark);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #000000;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.win95-titlebar-btn:active {
+  border-top: 2px solid var(--win95-black);
+  border-left: 2px solid var(--win95-black);
+  border-right: 2px solid var(--win95-white);
+  border-bottom: 2px solid var(--win95-white);
+  box-shadow: inset 1px 1px 0 var(--win95-dark);
+  padding-top: 1px;
+  padding-left: 1px;
+}
+
+.win95-window-body {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  position: relative;
+}
+
+.win95-resize-handle {
+  position: absolute;
+  z-index: 20;
+}
+
+.win95-resize-se {
+  right: 0;
+  bottom: 0;
+  width: 14px;
+  height: 14px;
+  cursor: nwse-resize;
+  background-image:
+    linear-gradient(135deg,
+      transparent 0%, transparent 45%,
+      #808080 45%, #808080 53%,
+      #ffffff 53%, #ffffff 61%,
+      transparent 61%, transparent 72%,
+      #808080 72%, #808080 80%,
+      #ffffff 80%, #ffffff 88%,
+      transparent 88%);
+}
+
+/* ===== Taskbar & Start Menu ===== */
+
+.win95-taskbar {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 38px;
+  background-color: var(--win95-gray);
+  border-top: 2px solid var(--win95-white);
+  box-shadow: inset 0 1px 0 var(--win95-light);
+  display: flex;
+  align-items: center;
+  padding: 3px 4px;
+  gap: 5px;
+  z-index: 9000;
+}
+
+.win95-start-btn {
+  height: 29px;
+  padding: 0 10px 0 7px;
+  font-family: var(--font-ui);
+  font-size: 13px;
+  font-weight: 700;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.win95-start-btn.open {
+  border-top: 2px solid var(--win95-black);
+  border-left: 2px solid var(--win95-black);
+  border-right: 2px solid var(--win95-white);
+  border-bottom: 2px solid var(--win95-white);
+  box-shadow: inset 1px 1px 0 var(--win95-dark);
+  outline: 1px dotted #000000;
+  outline-offset: -5px;
+}
+
+.win95-taskbar-divider {
+  width: 2px;
+  height: 24px;
+  border-left: 1px solid var(--win95-dark);
+  border-right: 1px solid var(--win95-white);
+  flex-shrink: 0;
+  margin: 0 2px;
+}
+
+.win95-taskbar-apps {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  overflow: hidden;
+}
+
+.win95-taskbar-app-btn {
+  height: 29px;
+  min-width: 110px;
+  max-width: 185px;
+  flex: 0 1 165px;
+  padding: 0 8px;
+  justify-content: flex-start;
+  overflow: hidden;
+  font-size: 12px;
+}
+
+.win95-taskbar-app-btn-label {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.win95-tray {
+  height: 28px;
+  padding: 0 10px;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  flex-shrink: 0;
+  font-family: var(--font-ui);
+  font-size: 12px;
+  font-weight: 500;
+  background-color: var(--win95-gray);
+}
+
+.win95-start-menu {
+  position: fixed;
+  left: 3px;
+  bottom: 39px;
+  width: 232px;
+  display: flex;
+  flex-direction: row;
+  padding: 3px;
+  z-index: 9500;
+}
+
+.win95-start-sidebar {
+  width: 28px;
+  background: linear-gradient(180deg, #000080 0%, #1060b8 65%, #000080 100%);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding-bottom: 10px;
+  flex-shrink: 0;
+}
+
+.win95-start-sidebar-text {
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  color: #ffffff;
+  font-family: var(--font-ui);
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.6px;
+}
+
+.win95-start-sidebar-text span {
+  font-weight: 400;
+  color: #c0d8ff;
+}
+
+.win95-start-items {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 2px 0;
+}
+
+.win95-start-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 12px;
+  background: transparent;
+  border: none;
+  width: 100%;
+  text-align: left;
+  font-family: var(--font-ui);
+  font-size: 13px;
+  font-weight: 500;
+  color: #000000;
+  cursor: pointer;
+}
+
+.win95-start-item:hover {
+  background-color: var(--win95-navy);
+  color: #ffffff;
+}
+
+/* ===== App-Specific Styling ===== */
+
+.font-mono-95 {
+  font-family: var(--font-mono);
+}
+
+.font-browser-95 {
+  font-family: var(--font-browser);
+}
+
+.font-quip-95 {
+  font-family: var(--font-quip);
+}
+
+/* Retro scrollbars inside app content areas */
+.win95-scroll {
+  overflow: auto;
+  user-select: text;
+}
+
+.win95-scroll::-webkit-scrollbar {
+  width: 16px;
+  height: 16px;
+}
+
+.win95-scroll::-webkit-scrollbar-track {
+  background-color: #dfdfdf;
+  background-image: radial-gradient(#c0c0c0 1px, transparent 0);
+  background-size: 2px 2px;
+}
+
+.win95-scroll::-webkit-scrollbar-thumb {
+  background-color: var(--win95-gray);
+  border-top: 2px solid var(--win95-white);
+  border-left: 2px solid var(--win95-white);
+  border-right: 2px solid var(--win95-black);
+  border-bottom: 2px solid var(--win95-black);
+}
+
+/* GemSweeper digital counter */
+.minesweeper-led {
+  font-family: var(--font-mono);
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 2px;
+  color: #ff1e1e;
+  background-color: #000000;
+  padding: 4px 6px;
+  min-width: 62px;
+  text-align: right;
+  text-shadow: 0 0 6px rgba(255, 0, 0, 0.55);
+  border-top: 2px solid #808080;
+  border-left: 2px solid #808080;
+  border-right: 2px solid #ffffff;
+  border-bottom: 2px solid #ffffff;
+}
+
+.mine-tile {
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-ui);
+  font-size: 15px;
+  font-weight: 800;
+  cursor: pointer;
+  user-select: none;
+}
+
+.mine-tile-covered {
+  background-color: var(--win95-gray);
+  border-top: 2px solid var(--win95-white);
+  border-left: 2px solid var(--win95-white);
+  border-right: 2px solid var(--win95-dark);
+  border-bottom: 2px solid var(--win95-dark);
+}
+
+.mine-tile-covered:active {
+  border: 1px solid var(--win95-dark);
+}
+
+.mine-tile-revealed {
+  background-color: #c6c6c6;
+  border: 1px solid #8c8c8c;
+  cursor: default;
+}
+
+/* Clippy Critic floating widget */
+.clippy-container {
+  position: fixed;
+  right: 22px;
+  bottom: 50px;
+  z-index: 8800;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  pointer-events: none;
+}
+
+.clippy-bubble {
+  pointer-events: auto;
+  max-width: 270px;
+  background-color: var(--win95-yellow);
+  border: 2px solid #000000;
+  border-radius: 10px;
+  padding: 10px 12px;
+  font-family: var(--font-quip);
+  font-size: 13px;
+  line-height: 1.38;
+  color: #111111;
+  box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.35);
+  position: relative;
+  margin-bottom: 12px;
+}
+
+.clippy-bubble::after {
+  content: '';
+  position: absolute;
+  right: 34px;
+  bottom: -12px;
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 4px solid transparent;
+  border-top: 12px solid #000000;
+}
+
+.clippy-bubble::before {
+  content: '';
+  position: absolute;
+  right: 35px;
+  bottom: -9px;
+  width: 0;
+  height: 0;
+  border-left: 8px solid transparent;
+  border-right: 3px solid transparent;
+  border-top: 10px solid var(--win95-yellow);
+  z-index: 1;
+}
+
+.clippy-robot-btn {
+  pointer-events: auto;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  filter: drop-shadow(2px 3px 2px rgba(0, 0, 0, 0.4));
+  animation: clippy-bob 2.6s ease-in-out infinite;
+}
+
+@keyframes clippy-bob {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+@keyframes blink-fast {
+  0%, 49% {
+    opacity: 1;
+  }
+  50%, 100% {
+    opacity: 0.15;
+  }
+}
+
+.modem-led-blink {
+  animation: blink-fast 0.45s infinite;
+}

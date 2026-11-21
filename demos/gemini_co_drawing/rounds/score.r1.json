@@ -1,0 +1,7 @@
+{
+  "score": 87,
+  "layout": 35,
+  "style": 25,
+  "components": 27,
+  "notes": "1. Title-to-subtitle typography ratio differs: in B, 'Gemini Co-Drawing' is noticeably larger/bolder while the two attribution subtitle lines are smaller and more compact than in A. 2. Main container width is slightly wider in B (narrower side margins), making the canvas slightly larger and shifting the input bar closer to the bottom edge. 3. Top-right toolbar pill in B has a noticeably lighter gray background and is slightly smaller/more compact with a slightly smaller color swatch and trash button than A's darker cool-gray pill. 4. Bottom input bar in B is slightly shorter vertically with a slightly smaller black square send button and tighter vertical gap between the canvas and input box. 5. Top page padding above the header is slightly taller in B, and the toolbar pill sits slightly lower relative to the heading."
+}

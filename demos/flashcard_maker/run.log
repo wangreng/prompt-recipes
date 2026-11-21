@@ -1,0 +1,108 @@
+━━ pr-flashcard ← /home/user/prompt-recipes/demos/flashcard_maker/original
+▶ esbuild index.ts
+▶ serve :8000
+▶ chromium screenshot 1440x900
+  console.error: Failed to load resource: the server responded with a status of 404 (File not found)
+-rw-rw-r-- 1 user user 32183 Nov 21 12:56 /data/home/work/flashcard_maker-original-30809.png
+━━ saved /home/user/prompt-recipes/demos/flashcard_maker/shots/original.png (32183 bytes)
+▶ agy: reverse prompt
+Saved the reverse-engineered natural-language prompt (379 words) to [prompt.r1.md](file:///home/user/prompt-recipes/demos/flashcard_maker/rounds/prompt.r1.md) based on [original.png](file:///home/user/prompt-recipes/demos/flashcard_maker/shots/original.png) and all files in [original](file:///home/user/prompt-recipes/demos/flashcard_maker/original).
+▶ agy: regen r1
+root agent idle; waiting for 1 background task(s) to finish
+Waiting for the headless Chrome verification run to complete.
+Built the Flashcard Generator web app in `/home/user/prompt-recipes/demos/flashcard_maker/rounds/regen-r1` using the Google AI Studio target format (no `package.json` or build config):
+
+### Files Created
+- [index.html](file:///home/user/prompt-recipes/demos/flashcard_maker/rounds/regen-r1/index.html) — Loads `Google Sans` and `Roboto` from Google Fonts, links `index.css`, defines the `esm.sh` importmap (`@google/genai`, `react`, `react-dom`), and loads `index.tsx`.
+- [index.css](file:///home/user/prompt-recipes/demos/flashcard_maker/rounds/regen-r1/index.css) — Google Material-inspired light mode and automatic `prefers-color-scheme: dark` charcoal theme, centered card container near the top of the page, vertically resizable input with blue focus ring, Google Blue primary button with hover elevation and muted disabled state, fixed-height Google Red status/error line, and compact landscape 3D flip flashcards with pale ice-blue (or dark gray) surfaces and blue hover border highlights.
+- [index.tsx](file:///home/user/prompt-recipes/demos/flashcard_maker/rounds/regen-r1/index.tsx) — Minimalist single-page React/TypeScript app that renders immediately with an empty `process.env.API_KEY`, validates non-empty input, clears old cards and disables the button with `"Generating flashcards..."` while querying Gemini (`@google/genai` `gemini-2.5-flash`) for `"Term: Definition"` pairs, parses and renders clickable/keyboard-accessible 3D-flipping flashcards, handles empty/malformed/failed responses clearly, and always re-enables the button afterward.
+
+### Verification
+Verified in headless Chrome (1280×860) with zero console or runtime errors:
+- Initial screen renders cleanly with empty `process.env.API_KEY` in both light and dark modes (visual inspection confirmed typography, spacing, and theme tokens).
+- Empty input validation clears existing cards and displays an error message without shifting layout height (`24px` before and after).
+- Mocked Gemini flows verified disabled loading state (`"Generating flashcards..."`), valid `"Term: Definition"` card rendering, 3D horizontal flip on click, and clear error handling with button re-enabling for empty, malformed, and failed responses.
+━━ pr-flashcard ← /home/user/prompt-recipes/demos/flashcard_maker/rounds/regen-r1
+▶ esbuild index.tsx
+▶ serve :8000
+▶ chromium screenshot 1440x900
+  console.error: Failed to load resource: the server responded with a status of 404 (File not found)
+-rw-rw-r-- 1 user user 30712 Nov 21 13:03 /data/home/work/rounds-regen-r1-20741.png
+━━ saved /home/user/prompt-recipes/demos/flashcard_maker/shots/regen-r1.png (30712 bytes)
+▶ agy: judge r1
+Compared [original.png](file:///home/user/prompt-recipes/demos/flashcard_maker/shots/original.png) and [regen-r1.png](file:///home/user/prompt-recipes/demos/flashcard_maker/shots/regen-r1.png) and wrote the visual similarity score to [score.r1.json](file:///home/user/prompt-recipes/demos/flashcard_maker/rounds/score.r1.json):
+
+- **Score:** 85 / 100 (`layout`: 33/40, `style`: 24/30, `components`: 28/30)
+- **Key differences:** Monospace vs. sans-serif textarea placeholder font, narrower card with less bottom whitespace and heavier shadow/rounding in B, taller textarea in B, slightly darker cool-gray page background in B, bolder/more compact button text in B, and slightly tighter heading/subtitle typography and top card padding.
+{
+  "score": 85,
+  "layout": 33,
+  "style": 24,
+  "components": 28,
+  "notes": "1. Textarea placeholder in A uses a wide monospace font spanning most of the box width, while B uses a compact sans-serif font. 2. B's white card container is slightly narrower, has noticeably less empty whitespace below the button (ending higher up), larger corner radius, and a heavier drop shadow than A. 3. The textarea in B is noticeably taller (~25% more vertical height) than in A. 4. The page background in B is a slightly darker cool gray compared to A's near-white background. 5. The 'Generate Flashcards' button in B has bolder, slightly smaller text and slightly tighter padding than in A. 6. Heading and subtitle typography in B is slightly more condensed with slightly less top padding inside the card."
+}
+
+▶ agy: refine r1
+Saved the revised prompt (421 words) to [prompt.r2.md](file:///home/user/prompt-recipes/demos/flashcard_maker/rounds/prompt.r2.md).
+
+Key updates addressing [score.r1.json](file:///home/user/prompt-recipes/demos/flashcard_maker/rounds/score.r1.json):
+- **Textarea font & height**: Specified 16px monospace text so the placeholder spans most of the box width, and tightened height to a moderate ~120–140px (about 4–5 lines).
+- **Card container proportions & whitespace**: Specified a wider desktop card (~860–880px), subtler ~12px corners, a very light layered shadow, extra top breathing room (~60px above the heading), and ~120px of empty white room below the button by keeping the reserved-height status line and flashcard grid container always in the layout.
+- **Page background**: Lightened from "soft light-gray" to an ultra-light, near-white off-white (`#f8f9fa`).
+- **Button & heading typography**: Specified Google Sans (weights 400 and 500) with natural, uncondensed letter spacing, and gave the primary button generous padding (~14px by 24px) with standard 16px medium-weight (not bold or cramped) white text.
+▶ agy: regen r2
+Built the minimalist Flashcard Generator web app in `/home/user/prompt-recipes/demos/flashcard_maker/rounds/regen-r2` using the Google AI Studio build app format (no build config or `package.json`):
+
+- [index.html](file:///home/user/prompt-recipes/demos/flashcard_maker/rounds/regen-r2/index.html): Loads Google Sans (400, 500) and Roboto (400, 500), configures the `https://esm.sh/@google/genai` importmap, and renders the centered card layout directly so the initial screen paints cleanly without requiring an API key.
+- [index.css](file:///home/user/prompt-recipes/demos/flashcard_maker/rounds/regen-r2/index.css): Implements the Google Material-inspired light mode (`#f8f9fa` page background, `876px` white card with `60px` top / `40px` side-bottom padding, `12px` radius, layered drop shadow, Google Blue `#1a73e8` heading/button, `16px` monospace textarea, reserved-height Google Red status/error line, ~`120px` empty room below the button, and `220x150px` pale ice-blue 3D-flipping flashcards) along with automatic dark mode (`@media (prefers-color-scheme: dark)`) using Google dark charcoal surfaces and sky-blue `#8ab4f8` accents.
+- [index.ts](file:///home/user/prompt-recipes/demos/flashcard_maker/rounds/regen-r2/index.ts): Safely reads `process.env.API_KEY` on demand, validates non-empty input, disables the button and shows `"Generating flashcards..."` during generation, queries Gemini (`gemini-2.5-flash`) for `"Term: Definition"` pairs, parses and renders accessible 3D-flipping cards, reports empty/malformed/failed responses clearly, and always re-enables the button.
+
+Verified both light and dark modes (empty initial state and populated/flipped flashcards) in headless Chrome, and ran unit/flow tests against `index.ts` covering parsing, blank input validation, missing API key handling, card flip toggling, and empty/malformed/error responses.
+━━ pr-flashcard ← /home/user/prompt-recipes/demos/flashcard_maker/rounds/regen-r2
+▶ esbuild index.ts
+▶ serve :8000
+▶ chromium screenshot 1440x900
+  console.error: Failed to load resource: the server responded with a status of 404 (File not found)
+-rw-rw-r-- 1 user user 32168 Nov 21 13:10 /data/home/work/rounds-regen-r2-16105.png
+━━ saved /home/user/prompt-recipes/demos/flashcard_maker/shots/regen-r2.png (32168 bytes)
+▶ agy: judge r2
+Compared [original.png](file:///home/user/prompt-recipes/demos/flashcard_maker/shots/original.png) and [regen-r2.png](file:///home/user/prompt-recipes/demos/flashcard_maker/shots/regen-r2.png) and wrote the similarity score to [score.r2.json](file:///home/user/prompt-recipes/demos/flashcard_maker/rounds/score.r2.json):
+
+- **Score:** `92 / 100` (`layout: 36/40`, `style: 27/30`, `components: 29/30`)
+- **Key differences:** smaller card top margin in B (~28px vs ~40px), taller textarea with smaller/lighter monospace placeholder text, slightly narrower button (~202px vs ~214px), softer top/side card shadow, and slightly tighter vertical spacing and subtitle width.
+{"score": 92, "layout": 36, "style": 27, "components": 29, "notes": "1. Card top margin is smaller in B (~28px vs ~40px in A), shifting the entire card and its contents slightly higher on the page. 2. The textarea in B is noticeably taller than in A, with smaller and slightly lighter gray monospace placeholder text that leaves more trailing horizontal space on the right. 3. The 'Generate Flashcards' button in B is slightly narrower (~202px vs ~214px in A) with tighter horizontal padding around the label. 4. The card's drop shadow/border along the top and side edges is softer and fainter in B compared to the slightly crisper perimeter shadow in A. 5. Vertical spacing between the heading, subtitle, and button is slightly tighter in B, and the subtitle text renders slightly narrower horizontally."}
+
+▶ agy: refine r2
+Saved the updated prompt (427 words) to [prompt.r3.md](file:///home/user/prompt-recipes/demos/flashcard_maker/rounds/prompt.r3.md), addressing all five differences noted in [score.r2.json](file:///home/user/prompt-recipes/demos/flashcard_maker/rounds/score.r2.json) between [original.png](file:///home/user/prompt-recipes/demos/flashcard_maker/shots/original.png) and [regen-r2.png](file:///home/user/prompt-recipes/demos/flashcard_maker/shots/regen-r2.png):
+
+- **Card top offset**: Specified ~40px clearance from the top of the page (matching the 20px body padding + 20px card top margin in [index.css](file:///home/user/prompt-recipes/demos/flashcard_maker/original/index.css)).
+- **Textarea size & placeholder**: Tightened height to ~120px (instead of 120–140px), slightly inset width (~780px), and specified readable medium-gray 16px monospace placeholder text so it nearly spans the box with a small right gap.
+- **Button sizing**: Specified ~210×46px dimensions with ~14px by ~28px padding to match the wider button proportions.
+- **Card drop shadow**: Replaced "very light" with a crisp two-layer Material drop shadow clearly outlining all edges.
+- **Vertical rhythm**: Added explicit spacing between the heading (~18px), subtitle (~25px, 1.6 line height), textarea (~25px), and the ~124px open white space below the button.
+▶ agy: regen r3
+Built the minimalist single-page Flashcard Generator web app in `/home/user/prompt-recipes/demos/flashcard_maker/rounds/regen-r3`:
+
+- [index.html](file:///home/user/prompt-recipes/demos/flashcard_maker/rounds/regen-r3/index.html) — Loads Google Sans (400, 500) and Roboto via Google Fonts, defines the `importmap` pulling `@google/genai` from `https://esm.sh`, and renders the uncluttered centered layout immediately without making any API call on load.
+- [index.css](file:///home/user/prompt-recipes/demos/flashcard_maker/rounds/regen-r3/index.css) — Google Material styling with automatic light/dark mode (`prefers-color-scheme`), exact card dimensions and spacing (`880px` wide card `40px` from top, `60px` top room, `40px` side/bottom padding, `780×120px` vertically resizable monospace textarea, `210×46px` Google Blue button, reserved `24px` Google Red status/error line `20px` below the button, `40px` gap to the wrapping grid for `124px` bottom room when empty), crisp two-layer shadows, and `220×150px` 3D-flipping landscape flashcards (`25px` gap).
+- [index.tsx](file:///home/user/prompt-recipes/demos/flashcard_maker/rounds/regen-r3/index.tsx) — Handles input validation, lazy `process.env.API_KEY` lookup, Gemini (`gemini-2.5-flash`) `"Term: Definition"` generation and parsing, click/keyboard 3D card flipping, clear status/error states (empty input, missing key, empty/malformed/failed responses), and always re-enabling the button in `finally`.
+
+### Verification
+Verified in headless Chrome (`1280×900`, light and dark modes):
+- Confirmed Google Sans 400/500 loaded, zero page errors, exact layout metrics (`cardTop: 40px`, `width: 880px`, `topRoom: 60px`, `h1→sub: 18px`, `sub→input: 25px`, `input→btn: 25px`, `btn→err: 20px`, `err→grid: 40px`, `roomBelowBtn: 124px`), and placeholder width (`722.5px` inside `748px` inner textarea width, leaving a `25.5px` right gap).
+- Confirmed empty validation, missing API key handling, empty/malformed/failed Gemini responses, `220×150px` cards with `25px` gap, 3D click-to-flip behavior, and no layout jump when messages appear.
+━━ pr-flashcard ← /home/user/prompt-recipes/demos/flashcard_maker/rounds/regen-r3
+▶ esbuild index.tsx
+▶ serve :8000
+▶ chromium screenshot 1440x900
+  console.error: Failed to load resource: the server responded with a status of 404 (File not found)
+-rw-rw-r-- 1 user user 33412 Nov 21 13:19 /data/home/work/rounds-regen-r3-11296.png
+━━ saved /home/user/prompt-recipes/demos/flashcard_maker/shots/regen-r3.png (33412 bytes)
+▶ agy: judge r3
+Compared [original.png](file:///home/user/prompt-recipes/demos/flashcard_maker/shots/original.png) and [regen-r3.png](file:///home/user/prompt-recipes/demos/flashcard_maker/shots/regen-r3.png) and wrote the visual similarity score to [score.r3.json](file:///home/user/prompt-recipes/demos/flashcard_maker/rounds/score.r3.json).
+
+- **Score:** `95 / 100` (`layout: 38/40`, `style: 27/30`, `components: 30/30`)
+- **Key differences:** Darker/deeper drop shadow beneath the primary button, slightly tighter/heavier button text in a 4px narrower button, darker outer drop shadow around the white card, slightly lower (~2px) textarea placeholder text, and minor 1–2px alignment shifts on the textarea, title, and subtitle.
+{"score":95,"layout":38,"style":27,"components":30,"notes":"1) The Generate Flashcards button has a noticeably darker, deeper drop shadow beneath it in B than the faint shadow in A. 2) The button label in B renders slightly tighter/heavier (narrower text width) inside a 4px narrower button. 3) The white card container has a visibly darker, crisper outer drop shadow along its bottom and side edges in B. 4) The monospace placeholder text inside the textarea sits ~2px lower (slightly more top padding) in B. 5) Minor 1-2px layout shifts: the textarea is 2px wider and 1px lower in B, while the title sits 1px higher and the subtitle 1px lower."}
+
+━━ flashcard_maker done

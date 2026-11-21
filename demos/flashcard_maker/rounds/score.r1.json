@@ -1,0 +1,7 @@
+{
+  "score": 85,
+  "layout": 33,
+  "style": 24,
+  "components": 28,
+  "notes": "1. Textarea placeholder in A uses a wide monospace font spanning most of the box width, while B uses a compact sans-serif font. 2. B's white card container is slightly narrower, has noticeably less empty whitespace below the button (ending higher up), larger corner radius, and a heavier drop shadow than A. 3. The textarea in B is noticeably taller (~25% more vertical height) than in A. 4. The page background in B is a slightly darker cool gray compared to A's near-white background. 5. The 'Generate Flashcards' button in B has bolder, slightly smaller text and slightly tighter padding than in A. 6. Heading and subtitle typography in B is slightly more condensed with slightly less top padding inside the card."
+}

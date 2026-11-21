@@ -1,0 +1,994 @@
+/* ==========================================================================
+   Gemini 95 — Classic Windows 95 Desktop Simulator Styles
+   ========================================================================== */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background-color: #008080;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  user-select: none;
+}
+
+/* ---------- Classic Win95 3D Bevels ---------- */
+
+.win95-raised {
+  background-color: #c0c0c0;
+  border-top: 2px solid #ffffff;
+  border-left: 2px solid #ffffff;
+  border-right: 2px solid #404040;
+  border-bottom: 2px solid #404040;
+  box-shadow: inset 1px 1px 0 #dfdfdf, inset -1px -1px 0 #808080;
+}
+
+.win95-sunken {
+  border-top: 2px solid #808080;
+  border-left: 2px solid #808080;
+  border-right: 2px solid #ffffff;
+  border-bottom: 2px solid #ffffff;
+  box-shadow: inset 1px 1px 0 #404040, inset -1px -1px 0 #dfdfdf;
+}
+
+.win95-btn {
+  background-color: #c0c0c0;
+  color: #000000;
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  padding: 3px 10px;
+  border-top: 2px solid #ffffff;
+  border-left: 2px solid #ffffff;
+  border-right: 2px solid #404040;
+  border-bottom: 2px solid #404040;
+  box-shadow: inset -1px -1px 0 #808080;
+  cursor: pointer;
+  outline: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  line-height: 1.2;
+}
+
+.win95-btn:active:not(:disabled),
+.win95-btn.pressed {
+  border-top: 2px solid #404040;
+  border-left: 2px solid #404040;
+  border-right: 2px solid #ffffff;
+  border-bottom: 2px solid #ffffff;
+  box-shadow: inset 1px 1px 0 #808080;
+  padding-top: 4px;
+  padding-left: 11px;
+  padding-bottom: 2px;
+  padding-right: 9px;
+}
+
+.win95-btn:disabled {
+  color: #7a7a7a;
+  text-shadow: 1px 1px 0 #ffffff;
+  cursor: default;
+}
+
+.win95-input {
+  background-color: #ffffff;
+  color: #000000;
+  border-top: 2px solid #808080;
+  border-left: 2px solid #808080;
+  border-right: 2px solid #ffffff;
+  border-bottom: 2px solid #ffffff;
+  box-shadow: inset 1px 1px 0 #404040;
+  padding: 3px 6px;
+  outline: none;
+  font-size: 13px;
+}
+
+/* ---------- Desktop ---------- */
+
+.desktop {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  background-color: #008080;
+  overflow: hidden;
+}
+
+/* Single evenly spaced horizontal row spanning roughly left two-thirds (~100px columns) */
+.desktop-icons-row {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 14px;
+  z-index: 1;
+}
+
+.desktop-icon-btn {
+  width: 100px;
+  padding: 6px 4px;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 2px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  cursor: pointer;
+  outline: none;
+  transition: background-color 0.08s ease;
+}
+
+.desktop-icon-btn:hover {
+  background-color: rgba(255, 255, 255, 0.08);
+}
+
+.desktop-icon-btn.selected {
+  background-color: rgba(0, 0, 128, 0.45);
+  border: 1px dotted rgba(255, 255, 255, 0.75);
+}
+
+.desktop-icon-graphic {
+  width: 56px;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.desktop-icon-label {
+  margin-top: 6px;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  color: #ffffff;
+  text-align: center;
+  line-height: 1.25;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.55);
+  white-space: nowrap;
+  letter-spacing: 0.01em;
+}
+
+/* ---------- Windows ---------- */
+
+.win95-window {
+  position: absolute;
+  background-color: #c0c0c0;
+  border-top: 2px solid #ffffff;
+  border-left: 2px solid #ffffff;
+  border-right: 2px solid #000000;
+  border-bottom: 2px solid #000000;
+  box-shadow:
+    inset 1px 1px 0 #dfdfdf,
+    inset -1px -1px 0 #808080,
+    2px 3px 10px rgba(0, 0, 0, 0.35);
+  display: flex;
+  flex-direction: column;
+  padding: 3px;
+  user-select: none;
+}
+
+.win95-titlebar {
+  height: 26px;
+  background-color: #000080;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 2px 4px 2px 6px;
+  cursor: move;
+  flex-shrink: 0;
+  gap: 8px;
+}
+
+.win95-titlebar.inactive {
+  background-color: #7f7f7f;
+  color: #e0e0e0;
+}
+
+.win95-titlebar-left {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-width: 0;
+  overflow: hidden;
+}
+
+.win95-titlebar-icon {
+  width: 16px;
+  height: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.win95-titlebar-text {
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  color: #ffffff;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  letter-spacing: 0.01em;
+}
+
+.win95-titlebar.inactive .win95-titlebar-text {
+  color: #dcdcdc;
+}
+
+.win95-titlebar-controls {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  flex-shrink: 0;
+}
+
+.win95-ctrl-btn {
+  width: 19px;
+  height: 17px;
+  padding: 0;
+  background-color: #c0c0c0;
+  border-top: 2px solid #ffffff;
+  border-left: 2px solid #ffffff;
+  border-right: 2px solid #404040;
+  border-bottom: 2px solid #404040;
+  box-shadow: inset -1px -1px 0 #808080;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  outline: none;
+}
+
+.win95-ctrl-btn:active {
+  border-top: 2px solid #404040;
+  border-left: 2px solid #404040;
+  border-right: 2px solid #ffffff;
+  border-bottom: 2px solid #ffffff;
+  box-shadow: inset 1px 1px 0 #808080;
+}
+
+.win95-window-body {
+  flex: 1;
+  min-height: 0;
+  margin-top: 3px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Resize handles */
+.resize-handle {
+  position: absolute;
+  z-index: 20;
+}
+.resize-n { top: -3px; left: 6px; right: 6px; height: 6px; cursor: ns-resize; }
+.resize-s { bottom: -3px; left: 6px; right: 6px; height: 6px; cursor: ns-resize; }
+.resize-e { top: 6px; bottom: 6px; right: -3px; width: 6px; cursor: ew-resize; }
+.resize-w { top: 6px; bottom: 6px; left: -3px; width: 6px; cursor: ew-resize; }
+.resize-ne { top: -3px; right: -3px; width: 10px; height: 10px; cursor: nesw-resize; }
+.resize-nw { top: -3px; left: -3px; width: 10px; height: 10px; cursor: nwse-resize; }
+.resize-se { bottom: -3px; right: -3px; width: 12px; height: 12px; cursor: nwse-resize; }
+.resize-sw { bottom: -3px; left: -3px; width: 10px; height: 10px; cursor: nesw-resize; }
+
+.drag-iframe-shield {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  cursor: grabbing;
+}
+
+/* ---------- Taskbar & Start Menu ---------- */
+
+.taskbar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 40px;
+  background-color: #c0c0c0;
+  border-top: 2px solid #ffffff;
+  box-shadow: inset 0 1px 0 #dfdfdf;
+  display: flex;
+  align-items: center;
+  padding: 3px 6px;
+  gap: 6px;
+  z-index: 9000;
+}
+
+.start-button {
+  height: 30px;
+  padding: 0 10px;
+  background-color: #c0c0c0;
+  border-top: 2px solid #ffffff;
+  border-left: 2px solid #ffffff;
+  border-right: 2px solid #404040;
+  border-bottom: 2px solid #404040;
+  box-shadow: inset -1px -1px 0 #808080, inset 1px 1px 0 #dfdfdf;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  outline: none;
+  flex-shrink: 0;
+}
+
+.start-button:active,
+.start-button.open {
+  border-top: 2px solid #404040;
+  border-left: 2px solid #404040;
+  border-right: 2px solid #ffffff;
+  border-bottom: 2px solid #ffffff;
+  box-shadow: inset 1px 1px 0 #808080;
+  background-color: #d4d4d4;
+  padding-top: 1px;
+  padding-left: 11px;
+  padding-right: 9px;
+}
+
+.taskbar-windows {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+}
+
+.taskbar-win-btn {
+  height: 28px;
+  min-width: 110px;
+  max-width: 180px;
+  padding: 0 8px;
+  background-color: #c0c0c0;
+  border-top: 2px solid #ffffff;
+  border-left: 2px solid #ffffff;
+  border-right: 2px solid #404040;
+  border-bottom: 2px solid #404040;
+  box-shadow: inset -1px -1px 0 #808080;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  outline: none;
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  color: #000000;
+  text-align: left;
+  overflow: hidden;
+}
+
+.taskbar-win-btn.active {
+  border-top: 2px solid #404040;
+  border-left: 2px solid #404040;
+  border-right: 2px solid #ffffff;
+  border-bottom: 2px solid #ffffff;
+  box-shadow: inset 1px 1px 0 #808080;
+  background-color: #dfdfdf;
+  background-image: repeating-conic-gradient(#d8d8d8 0% 25%, #e6e6e6 0% 50%);
+  background-size: 2px 2px;
+  font-weight: 700;
+  padding-top: 1px;
+  padding-left: 9px;
+}
+
+.taskbar-win-label {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.start-menu {
+  position: fixed;
+  bottom: 40px;
+  left: 4px;
+  width: 230px;
+  background-color: #c0c0c0;
+  border-top: 2px solid #ffffff;
+  border-left: 2px solid #ffffff;
+  border-right: 2px solid #000000;
+  border-bottom: 2px solid #000000;
+  box-shadow:
+    inset 1px 1px 0 #dfdfdf,
+    inset -1px -1px 0 #808080,
+    3px 3px 10px rgba(0, 0, 0, 0.4);
+  display: flex;
+  flex-direction: row;
+  z-index: 9500;
+  padding: 2px;
+}
+
+.start-menu-sidebar {
+  width: 28px;
+  background: linear-gradient(180deg, #000080 0%, #1060b8 65%, #000080 100%);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding-bottom: 10px;
+  flex-shrink: 0;
+}
+
+.start-menu-sidebar-text {
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  color: #ffffff;
+}
+
+.start-menu-sidebar-text span {
+  font-weight: 400;
+  color: #a5d8ff;
+}
+
+.start-menu-items {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 2px 0;
+}
+
+.start-menu-item {
+  width: 100%;
+  background: transparent;
+  border: none;
+  padding: 7px 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  color: #000000;
+  text-align: left;
+}
+
+.start-menu-item:hover {
+  background-color: #000080;
+  color: #ffffff;
+}
+
+/* ---------- Shared App Menu / Status Bars ---------- */
+
+.win95-menubar {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  padding: 2px 4px;
+  background-color: #c0c0c0;
+  border-bottom: 1px solid #808080;
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  flex-shrink: 0;
+}
+
+.win95-menubar-item {
+  padding: 2px 7px;
+  background: transparent;
+  border: none;
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  color: #000000;
+  cursor: pointer;
+}
+
+.win95-menubar-item:hover {
+  background-color: #000080;
+  color: #ffffff;
+}
+
+.win95-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 6px;
+  background-color: #c0c0c0;
+  border-bottom: 1px solid #808080;
+  flex-shrink: 0;
+  flex-wrap: wrap;
+}
+
+.win95-statusbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+  padding: 3px 6px;
+  margin-top: 3px;
+  background-color: #c0c0c0;
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  color: #222222;
+  flex-shrink: 0;
+}
+
+.win95-statusbar-cell {
+  border-top: 1px solid #808080;
+  border-left: 1px solid #808080;
+  border-right: 1px solid #ffffff;
+  border-bottom: 1px solid #ffffff;
+  padding: 2px 6px;
+  flex: 1;
+}
+
+/* ---------- Typography Helpers ---------- */
+
+.font-inter {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.font-courier {
+  font-family: 'Courier New', Courier, monospace;
+}
+
+.font-times {
+  font-family: 'Times New Roman', Times, serif;
+}
+
+.font-comic {
+  font-family: 'Comic Sans MS', 'Comic Sans', 'Comic Neue', cursive;
+}
+
+/* ---------- My Gemtop Explorer ---------- */
+
+.explorer-canvas {
+  flex: 1;
+  background-color: #ffffff;
+  padding: 16px;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  gap: 18px;
+  overflow: auto;
+}
+
+.explorer-item {
+  width: 112px;
+  padding: 8px 6px;
+  background: transparent;
+  border: 1px solid transparent;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  outline: none;
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  color: #000000;
+  text-align: center;
+  word-break: break-word;
+}
+
+.explorer-item:hover {
+  background-color: rgba(0, 0, 128, 0.08);
+  border-color: rgba(0, 0, 128, 0.25);
+}
+
+.explorer-item:focus,
+.explorer-item.selected {
+  background-color: #000080;
+  color: #ffffff;
+}
+
+/* ---------- Chrome Retro Browser ---------- */
+
+.chrome-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 6px;
+  background-color: #c0c0c0;
+  border-bottom: 1px solid #808080;
+  font-family: 'Times New Roman', Times, serif;
+  flex-shrink: 0;
+}
+
+.chrome-toolbar .win95-btn {
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 13px;
+  font-weight: 700;
+  padding: 3px 10px;
+}
+
+.chrome-url-input {
+  flex: 1;
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 14px;
+  height: 26px;
+}
+
+.chrome-viewport {
+  flex: 1;
+  min-height: 0;
+  background-color: #ffffff;
+  position: relative;
+  overflow: auto;
+}
+
+/* Connecting dial-up overlay */
+.dialup-screen {
+  width: 100%;
+  height: 100%;
+  background: #000033;
+  background-image:
+    radial-gradient(circle at 20% 25%, rgba(0, 255, 255, 0.14), transparent 40%),
+    radial-gradient(circle at 80% 70%, rgba(255, 0, 255, 0.14), transparent 45%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  color: #ffffff;
+}
+
+.dialup-box {
+  width: 100%;
+  max-width: 400px;
+  background-color: #c0c0c0;
+  color: #000000;
+  padding: 14px;
+}
+
+.modem-led {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  display: inline-block;
+  border: 1px solid #222;
+}
+
+.modem-led.tx {
+  background: #ff3b30;
+  animation: ledBlink 0.25s infinite alternate;
+}
+
+.modem-led.rx {
+  background: #34c759;
+  animation: ledBlink 0.19s infinite alternate-reverse;
+}
+
+.modem-led.cd {
+  background: #ffcc00;
+  animation: ledBlink 0.55s infinite alternate;
+}
+
+@keyframes ledBlink {
+  0% { opacity: 0.25; box-shadow: none; }
+  100% { opacity: 1; box-shadow: 0 0 6px currentColor; }
+}
+
+.win95-progress-track {
+  height: 18px;
+  background: #ffffff;
+  padding: 2px;
+  overflow: hidden;
+  display: flex;
+  gap: 2px;
+}
+
+.win95-progress-block {
+  width: 12px;
+  height: 100%;
+  background-color: #000080;
+  flex-shrink: 0;
+}
+
+/* ---------- GemNotes ---------- */
+
+.gemnotes-textarea {
+  flex: 1;
+  width: 100%;
+  height: 100%;
+  resize: none;
+  border: none;
+  outline: none;
+  padding: 10px 12px;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 13.5px;
+  line-height: 1.5;
+  color: #111111;
+  background-color: #ffffff;
+  user-select: text;
+}
+
+/* ---------- GemPaint ---------- */
+
+.paint-layout {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  background-color: #c0c0c0;
+  position: relative;
+}
+
+.paint-canvas-wrap {
+  flex: 1;
+  min-height: 0;
+  background-color: #808080;
+  padding: 6px;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+}
+
+.paint-canvas {
+  width: 100%;
+  height: 100%;
+  background-color: #ffffff;
+  cursor: crosshair;
+  display: block;
+}
+
+.paint-swatch {
+  width: 20px;
+  height: 20px;
+  border-top: 2px solid #808080;
+  border-left: 2px solid #808080;
+  border-right: 2px solid #ffffff;
+  border-bottom: 2px solid #ffffff;
+  cursor: pointer;
+  padding: 0;
+}
+
+.paint-swatch.active {
+  outline: 2px solid #000080;
+  outline-offset: 1px;
+  transform: scale(1.08);
+}
+
+.gembot-container {
+  position: absolute;
+  right: 12px;
+  bottom: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  pointer-events: none;
+  z-index: 10;
+  max-width: 240px;
+}
+
+.gembot-bubble {
+  pointer-events: auto;
+  background-color: #ffffcc;
+  color: #1a1a1a;
+  border: 2px solid #222222;
+  border-radius: 10px;
+  padding: 8px 11px;
+  font-family: 'Comic Sans MS', 'Comic Sans', 'Comic Neue', cursive;
+  font-size: 12px;
+  line-height: 1.35;
+  box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.25);
+  position: relative;
+  margin-bottom: 10px;
+}
+
+.gembot-bubble::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  right: 22px;
+  width: 0;
+  height: 0;
+  border-left: 8px solid transparent;
+  border-right: 4px solid transparent;
+  border-top: 10px solid #222222;
+}
+
+.gembot-bubble::before {
+  content: '';
+  position: absolute;
+  bottom: -7px;
+  right: 23px;
+  width: 0;
+  height: 0;
+  border-left: 6px solid transparent;
+  border-right: 3px solid transparent;
+  border-top: 8px solid #ffffcc;
+  z-index: 1;
+}
+
+.gembot-avatar-btn {
+  pointer-events: auto;
+  background: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  animation: gembotFloat 2.8s ease-in-out infinite;
+  filter: drop-shadow(1px 2px 2px rgba(0, 0, 0, 0.3));
+}
+
+@keyframes gembotFloat {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-4px); }
+}
+
+/* ---------- Gemini Chat ---------- */
+
+.chat-log {
+  flex: 1;
+  min-height: 0;
+  background-color: #ffffff;
+  overflow-y: auto;
+  padding: 10px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  user-select: text;
+}
+
+.chat-msg {
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  line-height: 1.45;
+  word-wrap: break-word;
+  white-space: pre-wrap;
+}
+
+.chat-time {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 11px;
+  color: #777777;
+  margin-right: 5px;
+}
+
+.chat-sender-user {
+  font-weight: 700;
+  color: #0033cc;
+}
+
+.chat-text-user {
+  color: #002899;
+}
+
+.chat-sender-ai {
+  font-weight: 700;
+  color: #007a24;
+}
+
+.chat-text-ai {
+  color: #00661e;
+}
+
+/* ---------- GemSweeper ---------- */
+
+.sweeper-wrap {
+  flex: 1;
+  background-color: #c0c0c0;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  overflow: auto;
+}
+
+.sweeper-hud {
+  width: 266px;
+  background-color: #c0c0c0;
+  padding: 6px 8px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.sweeper-lcd {
+  background-color: #000000;
+  color: #ff1e1e;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  padding: 2px 6px;
+  min-width: 58px;
+  text-align: right;
+  line-height: 1.1;
+  border-top: 2px solid #808080;
+  border-left: 2px solid #808080;
+  border-right: 2px solid #ffffff;
+  border-bottom: 2px solid #ffffff;
+  text-shadow: 0 0 6px rgba(255, 0, 0, 0.55);
+}
+
+.sweeper-smiley-btn {
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  background-color: #c0c0c0;
+  border-top: 2px solid #ffffff;
+  border-left: 2px solid #ffffff;
+  border-right: 2px solid #404040;
+  border-bottom: 2px solid #404040;
+  box-shadow: inset -1px -1px 0 #808080;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.sweeper-smiley-btn:active {
+  border-top: 2px solid #404040;
+  border-left: 2px solid #404040;
+  border-right: 2px solid #ffffff;
+  border-bottom: 2px solid #ffffff;
+}
+
+.sweeper-grid {
+  display: grid;
+  grid-template-columns: repeat(9, 28px);
+  grid-template-rows: repeat(9, 28px);
+  background-color: #808080;
+  padding: 2px;
+}
+
+.sweeper-cell {
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 16px;
+  font-weight: 800;
+  cursor: pointer;
+  outline: none;
+}
+
+.sweeper-cell.hidden {
+  background-color: #c0c0c0;
+  border-top: 3px solid #ffffff;
+  border-left: 3px solid #ffffff;
+  border-right: 3px solid #808080;
+  border-bottom: 3px solid #808080;
+}
+
+.sweeper-cell.hidden:active {
+  border: 1px solid #808080;
+}
+
+.sweeper-cell.revealed {
+  background-color: #c8c8c8;
+  border: 1px solid #969696;
+  cursor: default;
+}
+
+.sweeper-cell.exploded {
+  background-color: #ff2222;
+  border: 1px solid #800000;
+}
+
+.sweeper-hint-box {
+  width: 266px;
+  background-color: #ffffcc;
+  border: 2px solid #404040;
+  border-radius: 6px;
+  padding: 7px 10px;
+  font-family: 'Comic Sans MS', 'Comic Sans', 'Comic Neue', cursive;
+  font-size: 12px;
+  line-height: 1.35;
+  color: #1a1a1a;
+  box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.2);
+}
