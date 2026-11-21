@@ -1,0 +1,829 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>工位 — 多 Bot 协作的个人 Agent 工作室</title>
+  <meta name="description" content="雇一组各有分工的 Bot，在一个群里派活。它们自动分工、互相交接、各自汇报，你只看结果和审批关键一步。">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Noto+Sans+SC:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- 顶部导航 -->
+  <header class="site-header" id="top">
+    <div class="container header-inner">
+      <a href="#top" class="brand" aria-label="工位 首页">
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 28 28" width="28" height="28" fill="none">
+            <rect x="2" y="2" width="24" height="24" rx="7" fill="#161614"/>
+            <rect x="6.5" y="6.5" width="6.5" height="6.5" rx="2" fill="#F7F6F2"/>
+            <rect x="15" y="6.5" width="6.5" height="6.5" rx="2" fill="#D94E2A"/>
+            <rect x="6.5" y="15" width="6.5" height="6.5" rx="2" fill="#F7F6F2" fill-opacity="0.45"/>
+            <rect x="15" y="15" width="6.5" height="6.5" rx="2" fill="#F7F6F2"/>
+          </svg>
+        </span>
+        <span class="brand-name">工位</span>
+        <span class="brand-badge">内测中</span>
+      </a>
+
+      <nav class="site-nav" aria-label="主导航">
+        <a href="#roster">Bot 阵容</a>
+        <a href="#workflow">工作方式</a>
+        <a href="#demo">在线演示</a>
+        <a href="#security">安全与控制</a>
+        <a href="#beta">内测说明</a>
+      </nav>
+
+      <div class="header-actions">
+        <a href="#demo" class="btn btn-ghost btn-sm">看演示</a>
+        <a href="#beta" class="btn btn-primary btn-sm">申请内测</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- 1. 首屏 Hero -->
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <div class="eyebrow">
+            <span class="eyebrow-dot" aria-hidden="true"></span>
+            多 Bot 协作的个人 Agent 空间
+          </div>
+          <h1 class="hero-title">
+            在一个群里派活，<br>
+            让专业 <span class="accent-underline">Bot</span> 替你把事跑完
+          </h1>
+          <p class="hero-lead">
+            把调研、写作、排期、改代码、盯盘交给各自坐班的 Bot。它们自动拆解、互相交接并汇报进度，你只需拍板关键一步、直接收结果。
+          </p>
+
+          <div class="hero-cta">
+            <a href="#beta" class="btn btn-primary btn-lg" id="hero-apply-btn">
+              申请内测
+              <svg viewBox="0 0 16 16" width="16" height="16" fill="none" aria-hidden="true">
+                <path d="M3.5 8h9m0 0-3.5-3.5M12.5 8 9 11.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+            <a href="#demo" class="btn btn-secondary btn-lg">
+              <svg viewBox="0 0 16 16" width="15" height="15" fill="none" aria-hidden="true">
+                <path d="M5 3.6 12.2 8 5 12.4V3.6Z" fill="currentColor"/>
+              </svg>
+              看演示
+            </a>
+          </div>
+
+          <div class="hero-meta">
+            <div class="meta-item">
+              <span class="meta-num">5+</span>
+              <span class="meta-label">专职 Bot 并行坐班</span>
+            </div>
+            <span class="meta-divider" aria-hidden="true"></span>
+            <div class="meta-item">
+              <span class="meta-num">1 个群</span>
+              <span class="meta-label">统一派活与交接</span>
+            </div>
+            <span class="meta-divider" aria-hidden="true"></span>
+            <div class="meta-item">
+              <span class="meta-num">关键步审批</span>
+              <span class="meta-label">外发与改动先确认</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 首屏右侧：多 Bot 并行群聊/任务面板示意 -->
+        <div class="hero-stage" aria-label="工位群聊与多 Bot 并行任务面板示意">
+          <div class="workspace-window">
+            <div class="window-topbar">
+              <div class="window-dots" aria-hidden="true">
+                <span></span><span></span><span></span>
+              </div>
+              <div class="window-channel">
+                <span class="channel-hash">#</span>
+                <span class="channel-title">我的工位群</span>
+                <span class="channel-divider">·</span>
+                <span class="channel-sub">5 个 Bot 在线</span>
+              </div>
+              <div class="live-pill">
+                <span class="pulse-dot" aria-hidden="true"></span>
+                3 项并行中
+              </div>
+            </div>
+
+            <div class="window-body">
+              <!-- 左侧在线工位栏 -->
+              <aside class="desk-rail" aria-label="工位状态栏">
+                <div class="rail-heading">今日工位</div>
+                <ul class="rail-list">
+                  <li class="rail-bot is-working">
+                    <span class="mini-avatar av-research" aria-hidden="true">
+                      <svg viewBox="0 0 24 24" width="16" height="16" fill="none"><circle cx="11" cy="11" r="5.5" stroke="currentColor" stroke-width="2"/><path d="m15.5 15.5 4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+                    </span>
+                    <div class="rail-bot-info">
+                      <span class="rail-bot-name">调研 Bot</span>
+                      <span class="rail-bot-task">抓取竞品更新…</span>
+                    </div>
+                    <span class="status-dot working" title="工作中"></span>
+                  </li>
+                  <li class="rail-bot is-approval">
+                    <span class="mini-avatar av-writing" aria-hidden="true">
+                      <svg viewBox="0 0 24 24" width="16" height="16" fill="none"><path d="M5 19h4l9.5-9.5-4-4L5 15v4Z" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"/></svg>
+                    </span>
+                    <div class="rail-bot-info">
+                      <span class="rail-bot-name">写作 Bot</span>
+                      <span class="rail-bot-task">周报待你审批</span>
+                    </div>
+                    <span class="status-dot approval" title="等你审批"></span>
+                  </li>
+                  <li class="rail-bot is-working">
+                    <span class="mini-avatar av-code" aria-hidden="true">
+                      <svg viewBox="0 0 24 24" width="16" height="16" fill="none"><path d="m9 8-4 4 4 4m6-8 4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </span>
+                    <div class="rail-bot-info">
+                      <span class="rail-bot-name">代码 Bot</span>
+                      <span class="rail-bot-task">跑单测 18/18</span>
+                    </div>
+                    <span class="status-dot working" title="工作中"></span>
+                  </li>
+                  <li class="rail-bot is-working">
+                    <span class="mini-avatar av-monitor" aria-hidden="true">
+                      <svg viewBox="0 0 24 24" width="16" height="16" fill="none"><path d="M3 13h4l2.5-6 4 10 2.5-4H21" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </span>
+                    <div class="rail-bot-info">
+                      <span class="rail-bot-name">盯盘 Bot</span>
+                      <span class="rail-bot-task">巡检 API 延迟</span>
+                    </div>
+                    <span class="status-dot working" title="工作中"></span>
+                  </li>
+                  <li class="rail-bot is-idle">
+                    <span class="mini-avatar av-schedule" aria-hidden="true">
+                      <svg viewBox="0 0 24 24" width="16" height="16" fill="none"><rect x="4" y="5" width="16" height="15" rx="3" stroke="currentColor" stroke-width="1.9"/><path d="M8 3v4m8-4v4M4 10h16" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/></svg>
+                    </span>
+                    <div class="rail-bot-info">
+                      <span class="rail-bot-name">日程 Bot</span>
+                      <span class="rail-bot-task">空闲 · 待命中</span>
+                    </div>
+                    <span class="status-dot idle" title="空闲"></span>
+                  </li>
+                </ul>
+              </aside>
+
+              <!-- 右侧群聊实时协作流 -->
+              <div class="chat-feed">
+                <!-- 用户派活 -->
+                <div class="msg-item msg-user">
+                  <div class="msg-meta">
+                    <span class="msg-author">你</span>
+                    <span class="msg-time">10:14</span>
+                  </div>
+                  <div class="msg-bubble user-bubble">
+                    帮我盯下两家竞品的新定价，整理对比发团队周报，顺便修复定价页移动端错位。
+                  </div>
+                </div>
+
+                <!-- 并行任务条 -->
+                <div class="parallel-strip">
+                  <span class="parallel-label">并行认领</span>
+                  <span class="handoff-chip"><i class="dot-green"></i>调研 Bot 采数</span>
+                  <span class="handoff-chip"><i class="dot-green"></i>代码 Bot 修补丁</span>
+                  <span class="handoff-chip"><i class="dot-amber"></i>写作 Bot 接棒</span>
+                </div>
+
+                <!-- 调研 Bot 交接 -->
+                <div class="msg-item">
+                  <span class="mini-avatar av-research" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" width="15" height="15" fill="none"><circle cx="11" cy="11" r="5.5" stroke="currentColor" stroke-width="2"/><path d="m15.5 15.5 4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+                  </span>
+                  <div class="msg-content">
+                    <div class="msg-meta">
+                      <span class="msg-author">调研 Bot</span>
+                      <span class="role-tag">已完成 · 交接给 写作 Bot</span>
+                      <span class="msg-time">10:16</span>
+                    </div>
+                    <div class="msg-bubble">
+                      已核对 2 家竞品新价格与权益表，3 处关键变化已结构化写入素材库。
+                      <span class="mention-pill">@写作 Bot 接棒写周报</span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- 代码 Bot 汇报 -->
+                <div class="msg-item">
+                  <span class="mini-avatar av-code" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" width="15" height="15" fill="none"><path d="m9 8-4 4 4 4m6-8 4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  </span>
+                  <div class="msg-content">
+                    <div class="msg-meta">
+                      <span class="msg-author">代码 Bot</span>
+                      <span class="role-tag working-tag">工作中</span>
+                      <span class="msg-time">10:17</span>
+                    </div>
+                    <div class="msg-bubble">
+                      定位到 390px 断点溢出，已提交补丁 <code>fix/pricing-grid</code>，18 项单测全绿，等待合并许可。
+                    </div>
+                  </div>
+                </div>
+
+                <!-- 写作 Bot 审批卡片 -->
+                <div class="msg-item">
+                  <span class="mini-avatar av-writing" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" width="15" height="15" fill="none"><path d="M5 19h4l9.5-9.5-4-4L5 15v4Z" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"/></svg>
+                  </span>
+                  <div class="msg-content">
+                    <div class="msg-meta">
+                      <span class="msg-author">写作 Bot</span>
+                      <span class="role-tag approval-tag">等你审批</span>
+                      <span class="msg-time">10:18</span>
+                    </div>
+                    <div class="approval-card" id="hero-approval-card">
+                      <div class="approval-head">
+                        <span class="approval-icon" aria-hidden="true">!</span>
+                        <div>
+                          <div class="approval-title">关键操作确认：对外发送团队周报</div>
+                          <div class="approval-desc">《竞品定价异动与应对建议》· 发往产品研发群（12人）</div>
+                        </div>
+                      </div>
+                      <div class="approval-actions">
+                        <button type="button" class="mini-btn mini-btn-ghost" data-hero-action="edit">修改措辞</button>
+                        <button type="button" class="mini-btn mini-btn-approve" data-hero-action="approve">批准发送</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. Bot 阵容 -->
+    <section class="section" id="roster">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-kicker">Bot 阵容</div>
+          <h2 class="section-title">雇一组各有专攻的 Bot，各司其职不串岗</h2>
+          <p class="section-desc">
+            每个 Bot 拥有独立工位、专属工具集与清晰权限边界。你可以随时查看谁在忙、谁空闲、谁在等你拍板。
+          </p>
+        </div>
+
+        <div class="roster-grid">
+          <!-- Bot 1: 调研 Bot -->
+          <article class="bot-card" tabindex="0">
+            <div class="bot-card-top">
+              <div class="bot-avatar av-research" aria-hidden="true">
+                <svg viewBox="0 0 36 36" width="36" height="36" fill="none">
+                  <rect x="4" y="4" width="28" height="28" rx="9" fill="currentColor" fill-opacity="0.12"/>
+                  <circle cx="16.5" cy="16.5" r="6.5" stroke="currentColor" stroke-width="2.2"/>
+                  <path d="m21.5 21.5 5 5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/>
+                  <circle cx="14.5" cy="14.5" r="1.5" fill="currentColor"/>
+                </svg>
+              </div>
+              <span class="status-badge status-working">
+                <span class="badge-dot" aria-hidden="true"></span>工作中
+              </span>
+            </div>
+            <div class="bot-identity">
+              <h3 class="bot-name">调研 Bot</h3>
+              <span class="bot-handle">@research-bot</span>
+            </div>
+            <p class="bot-role">检索公开资料、拆解竞品动态与用户反馈，产出带来源链接的结构化摘要。</p>
+            <div class="bot-footer">
+              <span class="bot-activity">当前：比对 3 家竞品 Q4 价格方案</span>
+              <span class="bot-perm">只读联网</span>
+            </div>
+          </article>
+
+          <!-- Bot 2: 写作 Bot -->
+          <article class="bot-card" tabindex="0">
+            <div class="bot-card-top">
+              <div class="bot-avatar av-writing" aria-hidden="true">
+                <svg viewBox="0 0 36 36" width="36" height="36" fill="none">
+                  <rect x="4" y="4" width="28" height="28" rx="9" fill="currentColor" fill-opacity="0.12"/>
+                  <path d="M10.5 25.5h4.2l11.2-11.2-4.2-4.2-11.2 11.2v4.2Z" stroke="currentColor" stroke-width="2.1" stroke-linejoin="round"/>
+                  <path d="M19.5 12.3 23.7 16.5" stroke="currentColor" stroke-width="2.1"/>
+                </svg>
+              </div>
+              <span class="status-badge status-approval">
+                <span class="badge-dot" aria-hidden="true"></span>等你审批
+              </span>
+            </div>
+            <div class="bot-identity">
+              <h3 class="bot-name">写作 Bot</h3>
+              <span class="bot-handle">@writer-bot</span>
+            </div>
+            <p class="bot-role">把零散素材写成周报、PRD 草案、更新日志或对外邮件，严格沿用你的口吻。</p>
+            <div class="bot-footer">
+              <span class="bot-activity">待审：发送《周报 #42》到产品群</span>
+              <span class="bot-perm">外发需批</span>
+            </div>
+          </article>
+
+          <!-- Bot 3: 日程 Bot -->
+          <article class="bot-card" tabindex="0">
+            <div class="bot-card-top">
+              <div class="bot-avatar av-schedule" aria-hidden="true">
+                <svg viewBox="0 0 36 36" width="36" height="36" fill="none">
+                  <rect x="4" y="4" width="28" height="28" rx="9" fill="currentColor" fill-opacity="0.12"/>
+                  <rect x="9.5" y="11" width="17" height="15" rx="3" stroke="currentColor" stroke-width="2.1"/>
+                  <path d="M13.5 8.5v4m9-4v4M9.5 16h17" stroke="currentColor" stroke-width="2.1" stroke-linecap="round"/>
+                  <circle cx="15" cy="20.5" r="1.4" fill="currentColor"/>
+                  <circle cx="21" cy="20.5" r="1.4" fill="currentColor"/>
+                </svg>
+              </div>
+              <span class="status-badge status-idle">
+                <span class="badge-dot" aria-hidden="true"></span>空闲
+              </span>
+            </div>
+            <div class="bot-identity">
+              <h3 class="bot-name">日程 Bot</h3>
+              <span class="bot-handle">@calendar-bot</span>
+            </div>
+            <p class="bot-role">协调参会人空闲时间、预订会议并自动附带议程材料，提前 15 分钟提醒你。</p>
+            <div class="bot-footer">
+              <span class="bot-activity">下个日程：明日 14:00 版本评审会</span>
+              <span class="bot-perm">邀约需批</span>
+            </div>
+          </article>
+
+          <!-- Bot 4: 代码 Bot -->
+          <article class="bot-card" tabindex="0">
+            <div class="bot-card-top">
+              <div class="bot-avatar av-code" aria-hidden="true">
+                <svg viewBox="0 0 36 36" width="36" height="36" fill="none">
+                  <rect x="4" y="4" width="28" height="28" rx="9" fill="currentColor" fill-opacity="0.12"/>
+                  <path d="m14.5 13-4.5 5 4.5 5m7-10 4.5 5-4.5 5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="m19.5 11.5-3 13" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+              </div>
+              <span class="status-badge status-working">
+                <span class="badge-dot" aria-hidden="true"></span>工作中
+              </span>
+            </div>
+            <div class="bot-identity">
+              <h3 class="bot-name">代码 Bot</h3>
+              <span class="bot-handle">@coder-bot</span>
+            </div>
+            <p class="bot-role">在隔离分支复现 Bug、编写补丁并跑通自动化测试，准备好清晰的变更说明等你合并。</p>
+            <div class="bot-footer">
+              <span class="bot-activity">当前：执行 PR #204 端到端测试</span>
+              <span class="bot-perm">合并需批</span>
+            </div>
+          </article>
+
+          <!-- Bot 5: 盯盘 Bot -->
+          <article class="bot-card" tabindex="0">
+            <div class="bot-card-top">
+              <div class="bot-avatar av-monitor" aria-hidden="true">
+                <svg viewBox="0 0 36 36" width="36" height="36" fill="none">
+                  <rect x="4" y="4" width="28" height="28" rx="9" fill="currentColor" fill-opacity="0.12"/>
+                  <path d="M8.5 19.5h4.2l2.8-7 4.4 11.5 2.8-4.5h4.8" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
+              <span class="status-badge status-working">
+                <span class="badge-dot" aria-hidden="true"></span>工作中
+              </span>
+            </div>
+            <div class="bot-identity">
+              <h3 class="bot-name">盯盘 Bot</h3>
+              <span class="bot-handle">@watcher-bot</span>
+            </div>
+            <p class="bot-role">24 小时盯紧业务指标、接口告警、竞品发版与社媒提及，触发阈值第一时间群内播报。</p>
+            <div class="bot-footer">
+              <span class="bot-activity">当前：监控 6 项核心转化与错误率</span>
+              <span class="bot-perm">只读巡检</span>
+            </div>
+          </article>
+
+          <!-- Bot 6: 复盘 Bot -->
+          <article class="bot-card" tabindex="0">
+            <div class="bot-card-top">
+              <div class="bot-avatar av-ops" aria-hidden="true">
+                <svg viewBox="0 0 36 36" width="36" height="36" fill="none">
+                  <rect x="4" y="4" width="28" height="28" rx="9" fill="currentColor" fill-opacity="0.12"/>
+                  <rect x="10" y="9.5" width="16" height="17" rx="3" stroke="currentColor" stroke-width="2.1"/>
+                  <path d="m14 15.5 1.8 1.8 3.2-3.3M14 21.5h8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
+              <span class="status-badge status-idle">
+                <span class="badge-dot" aria-hidden="true"></span>空闲
+              </span>
+            </div>
+            <div class="bot-identity">
+              <h3 class="bot-name">复盘 Bot</h3>
+              <span class="bot-handle">@digest-bot</span>
+            </div>
+            <p class="bot-role">每天下班前汇总各工位产出、沉淀待办与结论，把零散对话整理成一页可检索的日报。</p>
+            <div class="bot-footer">
+              <span class="bot-activity">定时：每日 18:30 自动生成交付汇总</span>
+              <span class="bot-perm">内部归档</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. 工作方式（4步） -->
+    <section class="section section-tinted" id="workflow">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-kicker">工作方式</div>
+          <h2 class="section-title">四步跑完一件复杂事，你只管开头和拍板</h2>
+          <p class="section-desc">
+            不用反复在不同对话框之间复制粘贴。一次派活，工位群内部自动接力，关键节点主动停下来等你确认。
+          </p>
+        </div>
+
+        <ol class="workflow-steps">
+          <li class="step-card">
+            <div class="step-top">
+              <span class="step-num">01</span>
+              <span class="step-tag">一句话触发</span>
+            </div>
+            <h3 class="step-title">群里派活</h3>
+            <p class="step-desc">像给团队发消息一样说清目标与截止时间，不必先想好要拆成几段 Prompt。</p>
+            <div class="step-sample">“调研竞品新功能，写发布回应并约周五评审。”</div>
+          </li>
+
+          <li class="step-card">
+            <div class="step-top">
+              <span class="step-num">02</span>
+              <span class="step-tag">自动接力</span>
+            </div>
+            <h3 class="step-title">Bot 分工并互相交接</h3>
+            <p class="step-desc">各 Bot 自动认领擅长部分，并行执行，把结构化中间结果直接 <code>@下一棒</code> 接力。</p>
+            <div class="step-sample">调研 Bot → 写作 Bot ＆ 日程 Bot 并行</div>
+          </li>
+
+          <li class="step-card step-card-accent">
+            <div class="step-top">
+              <span class="step-num">03</span>
+              <span class="step-tag">人在回路</span>
+            </div>
+            <h3 class="step-title">你审批关键一步</h3>
+            <p class="step-desc">涉及对外发送、合并代码、发日历邀请等不可逆操作时，流程自动暂停，等你点「通过」。</p>
+            <div class="step-sample">待确认：发邮件给 12 位成员 <span class="nowrap">[通过]</span></div>
+          </li>
+
+          <li class="step-card">
+            <div class="step-top">
+              <span class="step-num">04</span>
+              <span class="step-tag">闭环沉淀</span>
+            </div>
+            <h3 class="step-title">汇总交付</h3>
+            <p class="step-desc">最终文件、链接与所有 Bot 的执行轨迹打包呈现在群内，一眼验收，随时回看。</p>
+            <div class="step-sample">已归档：调研表 + 公告稿 + 会议日程</div>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- 4. 可交互演示 -->
+    <section class="section" id="demo">
+      <div class="container">
+        <div class="section-header demo-header-row">
+          <div>
+            <div class="section-kicker">交互演示</div>
+            <h2 class="section-title">点一下「派一个任务」，看多 Bot 现场接力</h2>
+            <p class="section-desc">
+              选择预设任务，点击按钮即可观看群内 Bot 从认领、交接、触发关键审批到最终汇总的全过程。
+            </p>
+          </div>
+
+          <div class="demo-state-box" aria-live="polite">
+            <span class="demo-state-label">当前演示状态</span>
+            <span class="demo-state-pill state-idle" id="demo-state-pill">
+              <span class="state-dot" aria-hidden="true"></span>
+              <span id="demo-state-text">未开始</span>
+            </span>
+          </div>
+        </div>
+
+        <div class="demo-shell">
+          <!-- 顶部任务栏 -->
+          <div class="demo-toolbar">
+            <div class="scenario-tabs" role="tablist" aria-label="选择演示任务">
+              <button type="button" class="scenario-tab is-active" role="tab" aria-selected="true" data-scenario="launch">
+                任务一：竞品追踪 + 周报 + 排评审会
+              </button>
+              <button type="button" class="scenario-tab" role="tab" aria-selected="false" data-scenario="hotfix">
+                任务二：盯盘告警排查 + 修复补丁 + 公告
+              </button>
+            </div>
+
+            <div class="demo-controls">
+              <button type="button" class="btn btn-primary" id="dispatch-btn">
+                <svg viewBox="0 0 16 16" width="15" height="15" fill="none" aria-hidden="true">
+                  <path d="M2.5 8 13.5 3 10.2 13.5 7.8 9.2 2.5 8Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+                </svg>
+                <span id="dispatch-btn-label">派一个任务</span>
+              </button>
+              <button type="button" class="btn btn-ghost btn-sm" id="reset-demo-btn" disabled>重置</button>
+            </div>
+          </div>
+
+          <!-- 进度条 -->
+          <div class="demo-progress-track" aria-hidden="true">
+            <div class="demo-progress-bar" id="demo-progress-bar"></div>
+          </div>
+
+          <!-- 演示主体 -->
+          <div class="demo-body">
+            <!-- 左侧：参与本任务的 Bot 实时状态面板 -->
+            <aside class="demo-roster" aria-label="演示中 Bot 实时状态">
+              <div class="demo-roster-head">
+                <span>工位实时状态</span>
+                <span class="demo-step-counter" id="demo-step-counter">0 / 6 步</span>
+              </div>
+              <ul class="demo-bot-list" id="demo-bot-list">
+                <li class="demo-bot-item" data-bot="research">
+                  <span class="mini-avatar av-research" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" width="15" height="15" fill="none"><circle cx="11" cy="11" r="5.5" stroke="currentColor" stroke-width="2"/><path d="m15.5 15.5 4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+                  </span>
+                  <div class="demo-bot-meta">
+                    <span class="demo-bot-name">调研 Bot</span>
+                    <span class="demo-bot-note" data-note>等待派活</span>
+                  </div>
+                  <span class="mini-status status-idle" data-status>空闲</span>
+                </li>
+                <li class="demo-bot-item" data-bot="monitor">
+                  <span class="mini-avatar av-monitor" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" width="15" height="15" fill="none"><path d="M3 13h4l2.5-6 4 10 2.5-4H21" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  </span>
+                  <div class="demo-bot-meta">
+                    <span class="demo-bot-name">盯盘 Bot</span>
+                    <span class="demo-bot-note" data-note>等待派活</span>
+                  </div>
+                  <span class="mini-status status-idle" data-status>空闲</span>
+                </li>
+                <li class="demo-bot-item" data-bot="code">
+                  <span class="mini-avatar av-code" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" width="15" height="15" fill="none"><path d="m9 8-4 4 4 4m6-8 4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  </span>
+                  <div class="demo-bot-meta">
+                    <span class="demo-bot-name">代码 Bot</span>
+                    <span class="demo-bot-note" data-note>等待派活</span>
+                  </div>
+                  <span class="mini-status status-idle" data-status>空闲</span>
+                </li>
+                <li class="demo-bot-item" data-bot="writing">
+                  <span class="mini-avatar av-writing" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" width="15" height="15" fill="none"><path d="M5 19h4l9.5-9.5-4-4L5 15v4Z" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"/></svg>
+                  </span>
+                  <div class="demo-bot-meta">
+                    <span class="demo-bot-name">写作 Bot</span>
+                    <span class="demo-bot-note" data-note>等待派活</span>
+                  </div>
+                  <span class="mini-status status-idle" data-status>空闲</span>
+                </li>
+                <li class="demo-bot-item" data-bot="schedule">
+                  <span class="mini-avatar av-schedule" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" width="15" height="15" fill="none"><rect x="4" y="5" width="16" height="15" rx="3" stroke="currentColor" stroke-width="1.9"/><path d="M8 3v4m8-4v4M4 10h16" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/></svg>
+                  </span>
+                  <div class="demo-bot-meta">
+                    <span class="demo-bot-name">日程 Bot</span>
+                    <span class="demo-bot-note" data-note>等待派活</span>
+                  </div>
+                  <span class="mini-status status-idle" data-status>空闲</span>
+                </li>
+                <li class="demo-bot-item" data-bot="ops">
+                  <span class="mini-avatar av-ops" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" width="15" height="15" fill="none"><rect x="5" y="4" width="14" height="16" rx="2.5" stroke="currentColor" stroke-width="1.9"/><path d="m8.5 10.5 1.6 1.6 3-3.1M8.5 15.5h7" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  </span>
+                  <div class="demo-bot-meta">
+                    <span class="demo-bot-name">复盘 Bot</span>
+                    <span class="demo-bot-note" data-note>等待派活</span>
+                  </div>
+                  <span class="mini-status status-idle" data-status>空闲</span>
+                </li>
+              </ul>
+
+              <div class="demo-state-legend">
+                <span class="legend-title">流程状态说明</span>
+                <div class="legend-pills">
+                  <span class="legend-pill" data-legend="idle">未开始</span>
+                  <span class="legend-pill" data-legend="running">进行中</span>
+                  <span class="legend-pill" data-legend="done">完成</span>
+                </div>
+              </div>
+            </aside>
+
+            <!-- 右侧：实时群聊消息区 -->
+            <div class="demo-stream-wrap">
+              <div class="demo-stream" id="demo-stream" aria-live="polite">
+                <div class="demo-empty" id="demo-empty">
+                  <div class="empty-badge">任务待派发</div>
+                  <p class="empty-prompt" id="demo-preview-prompt">
+                    “帮我追踪竞品 A 本周新版本，整理核心差异写成周报草稿，并约产品与研发明天下午开半小时评审会。”
+                  </p>
+                  <p class="empty-hint">点击右上角 <strong>「派一个任务」</strong>，观察多 Bot 自动分工、互相交接并请求你审批关键一步。</p>
+                </div>
+              </div>
+
+              <div class="demo-typing" id="demo-typing" hidden>
+                <span class="typing-dots" aria-hidden="true"><span></span><span></span><span></span></span>
+                <span id="demo-typing-text">Bot 正在处理…</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. 安全与控制 -->
+    <section class="section section-tinted" id="security">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-kicker">安全与控制</div>
+          <h2 class="section-title">放手交给 Bot 干活，但决定权始终在你手里</h2>
+          <p class="section-desc">
+            面向真实工作场景设计的三道护栏：最小权限、关键步人工审批、全程留痕可审计。
+          </p>
+        </div>
+
+        <div class="security-grid">
+          <article class="security-card">
+            <div class="security-icon" aria-hidden="true">
+              <svg viewBox="0 0 28 28" width="24" height="24" fill="none">
+                <path d="M14 3.5 22.5 7v6.3c0 5.3-3.6 9.9-8.5 11.2-4.9-1.3-8.5-5.9-8.5-11.2V7L14 3.5Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                <path d="M10.5 14.2 13 16.7l4.8-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <h3 class="security-title">权限分级，最小授权</h3>
+            <p class="security-desc">
+              将工具能力拆分为「只读查询」「本地草稿」「外部执行」三档。调研 Bot 不能发邮件，代码 Bot 不能直推主干，杜绝越权操作。
+            </p>
+            <div class="security-proof" aria-label="权限分级示例">
+              <div class="proof-row"><span>L1 只读查询</span><span class="proof-tag ok">自动放行</span></div>
+              <div class="proof-row"><span>L2 内部草稿</span><span class="proof-tag ok">自动放行</span></div>
+              <div class="proof-row"><span>L3 外部执行</span><span class="proof-tag warn">必须审批</span></div>
+            </div>
+          </article>
+
+          <article class="security-card">
+            <div class="security-icon" aria-hidden="true">
+              <svg viewBox="0 0 28 28" width="24" height="24" fill="none">
+                <rect x="5" y="12" width="18" height="12" rx="3" stroke="currentColor" stroke-width="2"/>
+                <path d="M9.5 12V9a4.5 4.5 0 0 1 9 0v3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <circle cx="14" cy="18" r="1.6" fill="currentColor"/>
+              </svg>
+            </div>
+            <h3 class="security-title">关键操作需你审批</h3>
+            <p class="security-desc">
+              发送对外消息、发出日历邀请、合并 PR、调用付费或写库接口前，Bot 会自动挂起并贴出影响范围与完整预览，点「通过」才真正执行。
+            </p>
+            <div class="security-proof" aria-label="审批闸口示例">
+              <div class="proof-gate">
+                <span class="gate-badge">已拦截待批</span>
+                <span class="gate-text">发送邮件至 12 人 · 可先改内容或驳回</span>
+              </div>
+              <div class="proof-gate-actions">
+                <span class="gate-chip">驳回</span>
+                <span class="gate-chip gate-chip-primary">批准执行</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="security-card">
+            <div class="security-icon" aria-hidden="true">
+              <svg viewBox="0 0 28 28" width="24" height="24" fill="none">
+                <circle cx="14" cy="14" r="9.5" stroke="currentColor" stroke-width="2"/>
+                <path d="M14 9v5.2l3.4 2.2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <h3 class="security-title">全程留痕，随时可回看</h3>
+            <p class="security-desc">
+              每一次派活、Bot 间交接上下文、工具调用参数与你的审批记录均按时间线留档，出问题一眼定位到具体一步，支持一键回放。
+            </p>
+            <div class="security-proof mono-proof" aria-label="审计日志示例">
+              <div><span class="log-t">10:16:04</span> @research → 输出 3 条信源</div>
+              <div><span class="log-t">10:17:21</span> @writer → 生成草稿 v1.2</div>
+              <div><span class="log-t">10:18:09</span> <span class="log-ok">你 批准发送</span> · #AUD-9412</div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. 价格与内测说明 -->
+    <section class="section" id="beta">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-kicker">内测与方案</div>
+          <h2 class="section-title">首批面向独立开发者、产品经理与小团队开放</h2>
+          <p class="section-desc">
+            「工位」目前处于小规模邀请内测阶段。加入候补名单后，我们会按申请顺序分批发放激活码，内测期个人基础额度免费。
+          </p>
+        </div>
+
+        <div class="pricing-grid">
+          <article class="plan-card">
+            <div class="plan-head">
+              <div>
+                <h3 class="plan-name">个人工位 · 内测版</h3>
+                <p class="plan-sub">适合独立开发者、产品经理的日常单兵作战</p>
+              </div>
+              <span class="plan-badge">内测免费</span>
+            </div>
+            <div class="plan-price">
+              <span class="price-num">¥0</span>
+              <span class="price-unit">/ 月（内测期间）</span>
+            </div>
+            <ul class="plan-list">
+              <li>内置 5 个核心专职 Bot（调研 / 写作 / 日程 / 代码 / 盯盘）</li>
+              <li>1 个个人协作群 + 每日 60 次并行任务派发</li>
+              <li>完整的权限分级、关键步审批与 30 天执行留痕</li>
+              <li>支持自带模型 API Key 或使用平台内测额度</li>
+            </ul>
+            <a href="#waitlist-form" class="btn btn-primary btn-block" id="select-personal-btn">申请个人内测</a>
+          </article>
+
+          <article class="plan-card plan-card-team">
+            <div class="plan-head">
+              <div>
+                <h3 class="plan-name">小团队工位 · 早期共创</h3>
+                <p class="plan-sub">适合 2–10 人初创团队共享 Bot 与知识库</p>
+              </div>
+              <span class="plan-badge badge-dark">限量 50 席</span>
+            </div>
+            <div class="plan-price">
+              <span class="price-num">¥199</span>
+              <span class="price-unit">/ 团队 / 月（正式版预计）</span>
+            </div>
+            <ul class="plan-list">
+              <li>最多 12 个自定义工位 Bot，支持多人同群派活</li>
+              <li>团队级审批流（指定负责人拍板外发与代码合并）</li>
+              <li>接入团队文档、Git 仓库、日历与告警 Webhook</li>
+              <li>180 天完整审计日志与导出，1 对 1 共创配置支持</li>
+            </ul>
+            <a href="#waitlist-form" class="btn btn-secondary btn-block" id="select-team-btn">预约团队共创席位</a>
+          </article>
+        </div>
+
+        <!-- 内测申请表单 -->
+        <div class="waitlist-box" id="waitlist-form">
+          <div class="waitlist-copy">
+            <h3 class="waitlist-title">申请首批内测资格</h3>
+            <p class="waitlist-desc">留下常用邮箱和你的身份，我们将在 48 小时内分批寄送邀请码，绝不发送垃圾邮件。</p>
+          </div>
+          <form class="waitlist-form" id="beta-form" novalidate>
+            <div class="form-row">
+              <label class="sr-only" for="beta-email">工作邮箱</label>
+              <input type="email" id="beta-email" name="email" placeholder="输入你的常用邮箱，例如 you@studio.dev" required>
+
+              <label class="sr-only" for="beta-role">你的角色</label>
+              <select id="beta-role" name="role">
+                <option value="独立开发者">独立开发者</option>
+                <option value="产品经理">产品经理</option>
+                <option value="小团队负责人">小团队负责人</option>
+                <option value="其他">其他角色</option>
+              </select>
+
+              <button type="submit" class="btn btn-primary">申请内测</button>
+            </div>
+            <p class="form-feedback" id="form-feedback" role="status" aria-live="polite"></p>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- 页脚 -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <a href="#top" class="brand">
+          <span class="brand-mark" aria-hidden="true">
+            <svg viewBox="0 0 28 28" width="24" height="24" fill="none">
+              <rect x="2" y="2" width="24" height="24" rx="7" fill="#161614"/>
+              <rect x="6.5" y="6.5" width="6.5" height="6.5" rx="2" fill="#F7F6F2"/>
+              <rect x="15" y="6.5" width="6.5" height="6.5" rx="2" fill="#D94E2A"/>
+              <rect x="6.5" y="15" width="6.5" height="6.5" rx="2" fill="#F7F6F2" fill-opacity="0.45"/>
+              <rect x="15" y="15" width="6.5" height="6.5" rx="2" fill="#F7F6F2"/>
+            </svg>
+          </span>
+          <span class="brand-name">工位</span>
+        </a>
+        <p class="footer-tagline">多 Bot 协作的个人 Agent 工作室 · 暂名内测预览版</p>
+      </div>
+
+      <div class="footer-links">
+        <a href="#roster">Bot 阵容</a>
+        <a href="#workflow">工作方式</a>
+        <a href="#demo">交互演示</a>
+        <a href="#security">安全与控制</a>
+        <a href="#beta">申请内测</a>
+      </div>
+
+      <div class="footer-copy">
+        © 2026 工位工作室 · 专为独立开发者、产品经理与小团队打造
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js" defer></script>
+</body>
+</html>

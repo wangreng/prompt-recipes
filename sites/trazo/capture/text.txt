@@ -1,0 +1,99 @@
+by
+A
+ditya
+37
+Hand-drawn crayon stickers for the web.
+
+Chunky wax-crayon sea creatures, cute cats, arrows, stars, clouds, and emphasis marks. Recolor live, copy clean SVG, or install from npm.
+
+npm
+pnpm
+yarn
+bun
+$npm i trazo-stickers
+Want to sponsor? Contact me on X
+Ocean & sea life
+Arrows & flow
+Nature & weather
+Hearts & sparks
+Symbols & marks
+Cats & kitties
+Characters
+Baby squid
+Click a sticker to customize
+Conch shell
+Flapjack octopus
+Seahorse
+Recolor from the dock below
+Sea turtle
+Shrimp
+Starfish
+Red octopus
+Red crab
+Blue minnow
+Sea bubble
+Pink jellyfish
+Dolphin
+Drag paper to explore
+Pearl clam
+Scallop shell
+Striped fish
+Puffy cloud
+Sun burst
+Daisy flower
+Flower outline
+Ocean waves
+Splash drops
+Triple zigzag
+Scalloped wave
+Spiky grass
+Earth
+Curly arrow
+Spiral
+Swoop arrow
+Loop ribbon
+Square spiral
+Zigzag scribble
+Down arrow
+Vertical zigzag
+Vertical coil
+Tight coil
+Heart burst
+Four-point sparkle
+Double hearts
+Crown rays
+Six star
+Bowtie loop
+Solid star
+Heart chevron
+Sparkle cross
+Triple heart swirl
+Five star
+Crosshair burst
+Lightning bolt
+Asterisk burst
+Diamond
+Question mark
+Exclamation mark
+Emphasis pop
+Circle ring
+Hashtag
+Triangle
+Diagonal hatch
+Heart cat
+Cute hand-drawn cats
+Daisy cat
+Hugging cats
+Flower cat
+Bowtie cat
+Stacked cats
+Cheering cat
+Heart hug
+Spider-Man
+Pink croc
+Stitch
+Little green alien
+Woody
+trazo
+Library
+Ctrl K

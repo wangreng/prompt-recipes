@@ -1,0 +1,845 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>作业到手 — 拍一下变清单，一键番茄钟，小学生放学作业好帮手</title>
+  <meta name="description" content="专为小学 1–6 年级家长与孩子设计的作业清单与专注工具。拍照自动识别作业科目与用时，孩子一键开番茄钟自己完成，家长静默看进度。">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700;900&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <!-- 顶部导航 -->
+  <header class="site-header" id="top">
+    <div class="container header-inner">
+      <a href="#top" class="brand" aria-label="作业到手首页">
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect width="36" height="36" rx="10" fill="#E85D3F"/>
+            <path d="M18 7.5C19.8 7.5 21.5 8.2 22.3 9.4C20.5 9.8 19.2 10.6 18 11.4C16.8 10.6 15.5 9.8 13.7 9.4C14.5 8.2 16.2 7.5 18 7.5Z" fill="#B7E4C7"/>
+            <circle cx="18" cy="20" r="9.5" fill="#FFF9F5"/>
+            <path d="M13.8 20.1L16.7 23L22.5 16.8" stroke="#E85D3F" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </span>
+        <span class="brand-text">
+          <strong>作业到手</strong>
+          <small>小学作业清单 · 番茄专注</small>
+        </span>
+      </a>
+
+      <nav class="main-nav" aria-label="主导航">
+        <a href="#how-it-works">三步上手</a>
+        <a href="#features">核心功能</a>
+        <a href="#pomodoro-demo">番茄钟演示</a>
+        <a href="#faq">家长问答</a>
+      </nav>
+
+      <div class="header-actions">
+        <button type="button" class="btn btn-primary btn-sm" data-open-download>下载 App</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- 1. 首屏 Hero -->
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <div class="eyebrow">
+            <span class="eyebrow-dot" aria-hidden="true"></span>
+            专为小学 1–6 年级家庭打造 · 告别写作业反复催促
+          </div>
+
+          <h1 id="hero-title" class="hero-title">
+            拍一下作业，自动变清单<br>
+            <span class="accent-underline">一键番茄钟</span>，孩子自己写完
+          </h1>
+
+          <p class="hero-lead">
+            放学拍张作业本或班级群截图，「作业到手」自动拆成带科目和预计用时的待办清单。孩子按项开启 25 分钟专注番茄钟、做完打勾，家长在自己手机安静看进度。
+          </p>
+
+          <div class="hero-cta">
+            <button type="button" class="btn btn-primary btn-lg" data-open-download>
+              <svg class="btn-icon" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                <path d="M10 3.5V12.5M10 12.5L6.5 9M10 12.5L13.5 9M4 15.5H16" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              下载 App
+            </button>
+            <a href="#how-it-works" class="btn btn-secondary btn-lg">
+              看看怎么用
+              <svg class="btn-icon" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                <path d="M5 10H15M15 10L10.5 5.5M15 10L10.5 14.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+          </div>
+
+          <ul class="hero-highlights" aria-label="产品亮点">
+            <li>
+              <svg viewBox="0 0 18 18" fill="none" aria-hidden="true"><circle cx="9" cy="9" r="8" fill="#E9F5EE"/><path d="M5.5 9.2L7.8 11.4L12.6 6.6" stroke="#2E7D5B" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              支持作业本拍照与群截图
+            </li>
+            <li>
+              <svg viewBox="0 0 18 18" fill="none" aria-hidden="true"><circle cx="9" cy="9" r="8" fill="#E9F5EE"/><path d="M5.5 9.2L7.8 11.4L12.6 6.6" stroke="#2E7D5B" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              25 分钟专注 + 5 分钟护眼休息
+            </li>
+            <li>
+              <svg viewBox="0 0 18 18" fill="none" aria-hidden="true"><circle cx="9" cy="9" r="8" fill="#E9F5EE"/><path d="M5.5 9.2L7.8 11.4L12.6 6.6" stroke="#2E7D5B" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              基础功能免费 · 无弹窗广告
+            </li>
+          </ul>
+        </div>
+
+        <!-- 首屏产品画面：HTML/CSS/SVG 手绘手机界面 -->
+        <div class="hero-visual">
+          <div class="hero-stage">
+            <!-- 手机主体 -->
+            <div class="phone-frame" aria-label="作业到手 App 手机界面示意">
+              <div class="phone-notch" aria-hidden="true"></div>
+              <div class="phone-screen">
+                <div class="phone-status">
+                  <span class="tabular">16:45</span>
+                  <span class="phone-status-icons" aria-hidden="true">
+                    <svg width="16" height="12" viewBox="0 0 16 12" fill="none"><rect x="1" y="7" width="2.5" height="4" rx="1" fill="#1E2421"/><rect x="5" y="5" width="2.5" height="6" rx="1" fill="#1E2421"/><rect x="9" y="3" width="2.5" height="8" rx="1" fill="#1E2421"/><rect x="13" y="1" width="2.5" height="10" rx="1" fill="#1E2421"/></svg>
+                    <svg width="20" height="12" viewBox="0 0 20 12" fill="none"><rect x="1" y="1.5" width="15" height="9" rx="2.5" stroke="#1E2421" stroke-width="1.3"/><rect x="3" y="3.5" width="9.5" height="5" rx="1" fill="#2E7D5B"/><path d="M17.5 4.5V7.5" stroke="#1E2421" stroke-width="1.5" stroke-linecap="round"/></svg>
+                  </span>
+                </div>
+
+                <!-- 界面切换标签：作业清单 / 番茄钟 -->
+                <div class="mock-topbar">
+                  <div>
+                    <div class="mock-date">周三放学 · 四年级二班</div>
+                    <div class="mock-heading">今天的作业清单</div>
+                  </div>
+                  <div class="mock-mode-switch" role="tablist" aria-label="预览 App 界面">
+                    <button type="button" class="mock-tab is-active" data-mock-tab="list" role="tab" aria-selected="true">清单</button>
+                    <button type="button" class="mock-tab" data-mock-tab="timer" role="tab" aria-selected="false">番茄钟</button>
+                  </div>
+                </div>
+
+                <!-- 视图 A：作业清单 -->
+                <div class="mock-view" id="mock-view-list">
+                  <div class="mock-summary-card">
+                    <div class="mock-summary-row">
+                      <span>已完成 <strong id="hero-done-count" class="tabular">1</strong> / 4 项</span>
+                      <span class="mock-eta">预计还剩 <strong id="hero-remain-min" class="tabular">55</strong> 分钟</span>
+                    </div>
+                    <div class="mock-progress-track">
+                      <div class="mock-progress-fill" id="hero-progress-bar" style="width: 25%;"></div>
+                    </div>
+                  </div>
+
+                  <div class="mock-list" id="hero-task-list">
+                    <div class="mock-task is-done" data-min="15">
+                      <button type="button" class="mock-check" aria-label="标记语文生字词完成状态">
+                        <svg viewBox="0 0 14 14" fill="none"><path d="M3 7.2L5.8 10L11 4.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                      </button>
+                      <div class="mock-task-body">
+                        <div class="mock-task-meta">
+                          <span class="tag tag-cn">语文</span>
+                          <span class="mock-time">15 分钟</span>
+                        </div>
+                        <div class="mock-task-title">抄写第 12 课生字词两遍</div>
+                      </div>
+                      <span class="mock-pill mock-pill-done">已完成</span>
+                    </div>
+
+                    <div class="mock-task is-focus" data-min="20">
+                      <button type="button" class="mock-check" aria-label="标记数学口算完成状态">
+                        <svg viewBox="0 0 14 14" fill="none"><path d="M3 7.2L5.8 10L11 4.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                      </button>
+                      <div class="mock-task-body">
+                        <div class="mock-task-meta">
+                          <span class="tag tag-math">数学</span>
+                          <span class="mock-time">20 分钟</span>
+                        </div>
+                        <div class="mock-task-title">口算题卡第 38–39 页</div>
+                      </div>
+                      <span class="mock-pill mock-pill-live tabular"><span class="live-dot"></span>18:42</span>
+                    </div>
+
+                    <div class="mock-task" data-min="15">
+                      <button type="button" class="mock-check" aria-label="标记英语跟读完成状态">
+                        <svg viewBox="0 0 14 14" fill="none"><path d="M3 7.2L5.8 10L11 4.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                      </button>
+                      <div class="mock-task-body">
+                        <div class="mock-task-meta">
+                          <span class="tag tag-en">英语</span>
+                          <span class="mock-time">15 分钟</span>
+                        </div>
+                        <div class="mock-task-title">跟读 Unit 4 课文 3 遍</div>
+                      </div>
+                      <span class="mock-pill">番茄钟</span>
+                    </div>
+
+                    <div class="mock-task" data-min="20">
+                      <button type="button" class="mock-check" aria-label="标记古诗背诵完成状态">
+                        <svg viewBox="0 0 14 14" fill="none"><path d="M3 7.2L5.8 10L11 4.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                      </button>
+                      <div class="mock-task-body">
+                        <div class="mock-task-meta">
+                          <span class="tag tag-cn">语文</span>
+                          <span class="mock-time">20 分钟</span>
+                        </div>
+                        <div class="mock-task-title">背诵古诗《绝句》并默写</div>
+                      </div>
+                      <span class="mock-pill">番茄钟</span>
+                    </div>
+                  </div>
+
+                  <div class="mock-bottom-bar">
+                    <span class="mock-scan-pill">
+                      <svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                        <path d="M2 5V3.5C2 2.67 2.67 2 3.5 2H5M11 2H12.5C13.33 2 14 2.67 14 3.5V5M14 11V12.5C14 13.33 13.33 14 12.5 14H11M5 14H3.5C2.67 14 2 13.33 2 12.5V11" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+                        <circle cx="8" cy="8" r="2.2" stroke="currentColor" stroke-width="1.6"/>
+                      </svg>
+                      拍一张作业本 / 导入群截图
+                    </span>
+                  </div>
+                </div>
+
+                <!-- 视图 B：手机番茄钟预览 -->
+                <div class="mock-view is-hidden" id="mock-view-timer">
+                  <div class="mock-timer-panel">
+                    <span class="tag tag-math">数学 · 正在专注</span>
+                    <div class="mock-timer-name">口算题卡第 38–39 页</div>
+                    <div class="mock-ring-wrap">
+                      <svg viewBox="0 0 160 160" class="mock-ring-svg" aria-hidden="true">
+                        <circle cx="80" cy="80" r="66" stroke="#F1E7DC" stroke-width="10" fill="none"/>
+                        <circle cx="80" cy="80" r="66" stroke="#E85D3F" stroke-width="10" fill="none" stroke-linecap="round" stroke-dasharray="414.7" stroke-dashoffset="108" transform="rotate(-90 80 80)"/>
+                      </svg>
+                      <div class="mock-ring-center">
+                        <span class="mock-ring-time tabular">18:42</span>
+                        <span class="mock-ring-sub">25 分钟专注中</span>
+                      </div>
+                    </div>
+                    <div class="mock-timer-note">到点提醒休息 5 分钟 · 护眼喝水</div>
+                    <a href="#pomodoro-demo" class="mock-try-link">去下方亲自试用番茄钟 ↓</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 浮卡：家长端同步 -->
+            <div class="float-card float-parent" aria-label="家长端进度同步提示">
+              <div class="float-icon float-icon-green" aria-hidden="true">
+                <svg width="18" height="18" viewBox="0 0 20 20" fill="none">
+                  <path d="M4.5 10.5L8 14L15.5 6.5" stroke="#2E7D5B" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
+              <div class="float-content">
+                <div class="float-title">家长端静默同步</div>
+                <div class="float-desc" id="hero-parent-feed">刚打勾「抄写生字词」· 无需推门催问</div>
+              </div>
+            </div>
+
+            <!-- 浮卡：拍照识别标签 -->
+            <div class="float-card float-ocr" aria-label="拍照自动识别提示">
+              <div class="float-icon float-icon-coral" aria-hidden="true">
+                <svg width="18" height="18" viewBox="0 0 20 20" fill="none">
+                  <rect x="3" y="4" width="14" height="12" rx="2.5" stroke="#E85D3F" stroke-width="1.8"/>
+                  <path d="M6.5 8.5H13.5M6.5 11.5H11" stroke="#E85D3F" stroke-width="1.8" stroke-linecap="round"/>
+                </svg>
+              </div>
+              <div class="float-content">
+                <div class="float-title">3 秒自动拆分 4 项</div>
+                <div class="float-desc">已标出科目与预计用时</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. 三步流程 -->
+    <section class="section section-alt" id="how-it-works" aria-labelledby="steps-title">
+      <div class="container">
+        <div class="section-head">
+          <span class="section-kicker">三步上手</span>
+          <h2 id="steps-title" class="section-title">放学进门 1 分钟，作业安排得明明白白</h2>
+          <p class="section-subtitle">不用手动一条条录入，也不用反复叮嘱先写哪科，孩子照着清单就能自己推进。</p>
+        </div>
+
+        <div class="steps-grid">
+          <!-- Step 1 -->
+          <article class="step-card">
+            <div class="step-illus" aria-hidden="true">
+              <svg viewBox="0 0 260 150" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="34" y="18" width="134" height="114" rx="12" fill="#FFFFFF" stroke="#E4DDD0" stroke-width="1.5"/>
+                <path d="M52 44H146M52 62H132M52 80H142M52 98H116" stroke="#C9C0B1" stroke-width="4" stroke-linecap="round"/>
+                <rect x="52" y="38" width="44" height="12" rx="4" fill="#FDECE8"/>
+                <rect x="52" y="74" width="54" height="12" rx="4" fill="#EAF2FD"/>
+                <!-- 扫描取景框 -->
+                <path d="M24 34V22C24 15.4 29.4 10 36 10H48" stroke="#E85D3F" stroke-width="3" stroke-linecap="round"/>
+                <path d="M178 34V22C178 15.4 172.6 10 166 10H154" stroke="#E85D3F" stroke-width="3" stroke-linecap="round"/>
+                <path d="M24 116V128C24 134.6 29.4 140 36 140H48" stroke="#E85D3F" stroke-width="3" stroke-linecap="round"/>
+                <path d="M178 116V128C178 134.6 172.6 140 166 140H154" stroke="#E85D3F" stroke-width="3" stroke-linecap="round"/>
+                <line x1="26" y1="68" x2="176" y2="68" stroke="#E85D3F" stroke-width="2" stroke-dasharray="5 4"/>
+                <!-- 相机小气泡 -->
+                <rect x="172" y="50" width="66" height="50" rx="14" fill="#E85D3F"/>
+                <rect x="190" y="64" width="30" height="22" rx="5" stroke="#FFFFFF" stroke-width="2.2"/>
+                <circle cx="205" cy="75" r="5" stroke="#FFFFFF" stroke-width="2.2"/>
+                <path d="M198 64L200.5 60.5H209.5L212 64" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div class="step-meta">
+              <span class="step-num tabular">01</span>
+              <h3>拍一下作业本或群截图</h3>
+            </div>
+            <p>对准孩子抄的作业本、黑板照片，或直接选中老师在班级群发的文字截图，一键上传即可识别。</p>
+          </article>
+
+          <!-- Step 2 -->
+          <article class="step-card">
+            <div class="step-illus" aria-hidden="true">
+              <svg viewBox="0 0 260 150" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="26" y="16" width="208" height="34" rx="10" fill="#FFFFFF" stroke="#E4DDD0" stroke-width="1.5"/>
+                <rect x="38" y="25" width="32" height="16" rx="6" fill="#FDF0ED"/>
+                <text x="54" y="36.5" text-anchor="middle" fill="#C94A38" font-size="10" font-weight="700" font-family="Noto Sans SC, sans-serif">语文</text>
+                <rect x="78" y="29" width="84" height="8" rx="4" fill="#3B423D"/>
+                <rect x="182" y="25" width="40" height="16" rx="8" fill="#F5F1EA"/>
+                <text x="202" y="36.5" text-anchor="middle" fill="#6D746E" font-size="9.5" font-weight="600" font-family="Noto Sans SC, sans-serif">15分</text>
+
+                <rect x="26" y="58" width="208" height="34" rx="10" fill="#FFFFFF" stroke="#E4DDD0" stroke-width="1.5"/>
+                <rect x="38" y="67" width="32" height="16" rx="6" fill="#EDF3FC"/>
+                <text x="54" y="78.5" text-anchor="middle" fill="#2D63B8" font-size="10" font-weight="700" font-family="Noto Sans SC, sans-serif">数学</text>
+                <rect x="78" y="71" width="94" height="8" rx="4" fill="#3B423D"/>
+                <rect x="182" y="67" width="40" height="16" rx="8" fill="#F5F1EA"/>
+                <text x="202" y="78.5" text-anchor="middle" fill="#6D746E" font-size="9.5" font-weight="600" font-family="Noto Sans SC, sans-serif">20分</text>
+
+                <rect x="26" y="100" width="208" height="34" rx="10" fill="#FFFFFF" stroke="#E4DDD0" stroke-width="1.5"/>
+                <rect x="38" y="109" width="32" height="16" rx="6" fill="#ECF7F1"/>
+                <text x="54" y="120.5" text-anchor="middle" fill="#2A7B56" font-size="10" font-weight="700" font-family="Noto Sans SC, sans-serif">英语</text>
+                <rect x="78" y="113" width="76" height="8" rx="4" fill="#3B423D"/>
+                <rect x="182" y="109" width="40" height="16" rx="8" fill="#F5F1EA"/>
+                <text x="202" y="120.5" text-anchor="middle" fill="#6D746E" font-size="9.5" font-weight="600" font-family="Noto Sans SC, sans-serif">15分</text>
+              </svg>
+            </div>
+            <div class="step-meta">
+              <span class="step-num tabular">02</span>
+              <h3>自动整理成清晰待办</h3>
+            </div>
+            <p>自动拆分语文、数学、英语等科目，提炼每项任务内容并估算所需时长，今天要写多少一眼看清。</p>
+          </article>
+
+          <!-- Step 3 -->
+          <article class="step-card">
+            <div class="step-illus" aria-hidden="true">
+              <svg viewBox="0 0 260 150" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="114" cy="76" r="50" fill="#FFFFFF" stroke="#F0E4D8" stroke-width="8"/>
+                <circle cx="114" cy="76" r="50" stroke="#E85D3F" stroke-width="8" stroke-linecap="round" stroke-dasharray="314" stroke-dashoffset="78" transform="rotate(-90 114 76)"/>
+                <text x="114" y="74" text-anchor="middle" fill="#1E2421" font-size="22" font-weight="800" font-family="Plus Jakarta Sans, sans-serif">25:00</text>
+                <text x="114" y="92" text-anchor="middle" fill="#767D78" font-size="10.5" font-weight="500" font-family="Noto Sans SC, sans-serif">专注番茄钟</text>
+                <!-- 完成打勾徽章 -->
+                <circle cx="176" cy="54" r="24" fill="#2E7D5B"/>
+                <path d="M166 54.5L173 61.5L187 47.5" stroke="#FFFFFF" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+                <rect x="158" y="92" width="76" height="26" rx="13" fill="#E9F5EE"/>
+                <text x="196" y="108.5" text-anchor="middle" fill="#2E7D5B" font-size="11" font-weight="700" font-family="Noto Sans SC, sans-serif">做完打勾 ✓</text>
+              </svg>
+            </div>
+            <div class="step-meta">
+              <span class="step-num tabular">03</span>
+              <h3>一键开番茄，做完打勾</h3>
+            </div>
+            <p>点一下任务开启 25 分钟专注与 5 分钟休息提醒，完成后轻轻一勾，进度自动同步给家长。</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. 核心功能区（4 个核心功能点） -->
+    <section class="section" id="features" aria-labelledby="features-title">
+      <div class="container">
+        <div class="section-head">
+          <span class="section-kicker">核心功能</span>
+          <h2 id="features-title" class="section-title">围绕小学生放学写作业，每一项都恰到好处</h2>
+          <p class="section-subtitle">没有花哨的游戏化干扰，只保留帮孩子管好作业和专注力的关键能力。</p>
+        </div>
+
+        <div class="features-grid">
+          <!-- 功能 1：智能识别多科目 -->
+          <article class="feature-card">
+            <div class="feature-visual">
+              <div class="mini-ui-subjects">
+                <div class="mini-raw-msg">
+                  <span class="mini-msg-label">群通知原文</span>
+                  <p>“语文：抄写12课生字+背绝句；数学：口算38页；英语：跟读U4三遍。”</p>
+                </div>
+                <div class="mini-arrow-down" aria-hidden="true">↓ 自动归类拆分</div>
+                <div class="mini-chip-row">
+                  <span class="tag tag-cn">语文 · 2 项</span>
+                  <span class="tag tag-math">数学 · 1 项</span>
+                  <span class="tag tag-en">英语 · 1 项</span>
+                  <span class="tag tag-sci">科学 · 自动识别</span>
+                </div>
+              </div>
+            </div>
+            <div class="feature-copy">
+              <h3>多科目智能识别，长通知秒变条理清单</h3>
+              <p>无论老师在群里发了一大段语音转文字，还是孩子写在小本子上的零散记录，都能准确区分语文、数学、英语、科学并逐条列出，不漏项、不混淆。</p>
+            </div>
+          </article>
+
+          <!-- 功能 2：预计用时 -->
+          <article class="feature-card">
+            <div class="feature-visual">
+              <div class="mini-ui-time">
+                <div class="mini-time-head">
+                  <span>今日作业总预计</span>
+                  <strong class="tabular">约 55 分钟</strong>
+                </div>
+                <div class="mini-time-bars">
+                  <div class="mini-time-row">
+                    <span>抄写生字词</span>
+                    <div class="mini-bar-track"><div class="mini-bar-fill fill-cn" style="width: 48%;"></div></div>
+                    <em class="tabular">15 分钟</em>
+                  </div>
+                  <div class="mini-time-row">
+                    <span>口算题卡</span>
+                    <div class="mini-bar-track"><div class="mini-bar-fill fill-math" style="width: 68%;"></div></div>
+                    <em class="tabular">20 分钟</em>
+                  </div>
+                  <div class="mini-time-row">
+                    <span>英语跟读</span>
+                    <div class="mini-bar-track"><div class="mini-bar-fill fill-en" style="width: 52%;"></div></div>
+                    <em class="tabular">15 分钟</em>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="feature-copy">
+              <h3>贴心估算预计用时，建立孩子的时间感</h3>
+              <p>根据小学各年级常见作业量自动给出参考耗时，也支持一键手动调整。孩子知道“写完大概还要多久”，不再面对作业堆产生畏难拖延。</p>
+            </div>
+          </article>
+
+          <!-- 功能 3：番茄钟与休息提醒 -->
+          <article class="feature-card">
+            <div class="feature-visual">
+              <div class="mini-ui-pomo">
+                <div class="pomo-cycle">
+                  <div class="pomo-block pomo-block-focus">
+                    <strong>25 分钟</strong>
+                    <span>沉浸专注写作业</span>
+                  </div>
+                  <div class="pomo-plus" aria-hidden="true">+</div>
+                  <div class="pomo-block pomo-block-break">
+                    <strong>5 分钟</strong>
+                    <span>喝水远眺护眼休息</span>
+                  </div>
+                </div>
+                <div class="pomo-bell-note">
+                  <svg width="16" height="16" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+                    <path d="M9 2.5C6.5 2.5 4.8 4.4 4.8 6.8V10L3.5 12H14.5L13.2 10V6.8C13.2 4.4 11.5 2.5 9 2.5Z" stroke="#E85D3F" stroke-width="1.5" stroke-linejoin="round"/>
+                    <path d="M7.5 14C7.8 14.8 8.3 15.2 9 15.2C9.7 15.2 10.2 14.8 10.5 14" stroke="#E85D3F" stroke-width="1.5" stroke-linecap="round"/>
+                  </svg>
+                  柔和木鱼/风铃提示音，不吓着孩子，按节奏劳逸结合
+                </div>
+              </div>
+            </div>
+            <div class="feature-copy">
+              <h3>科学番茄钟与护眼休息，专注不再走神</h3>
+              <p>每一条作业都能一键开启 25 分钟专注倒计时，用看得见的进度圆环帮孩子稳住注意力；时间一到自动提醒起来喝水远眺 5 分钟，保护视力又保持效率。</p>
+            </div>
+          </article>
+
+          <!-- 功能 4：家长查看进度 / 不打扰孩子 -->
+          <article class="feature-card">
+            <div class="feature-visual">
+              <div class="mini-ui-parent">
+                <div class="parent-feed-item">
+                  <span class="feed-dot feed-dot-done"></span>
+                  <div class="feed-body">
+                    <strong>语文 · 抄写生字词</strong>
+                    <span>17:02 已打勾 · 实际用时 14 分钟</span>
+                  </div>
+                  <span class="feed-badge">已完成</span>
+                </div>
+                <div class="parent-feed-item">
+                  <span class="feed-dot feed-dot-live"></span>
+                  <div class="feed-body">
+                    <strong>数学 · 口算题卡第 38–39 页</strong>
+                    <span>专注进行中 · 第 1 个番茄钟</span>
+                  </div>
+                  <span class="feed-badge feed-badge-live">专注中</span>
+                </div>
+                <div class="parent-quiet-tip">家长端仅静默同步进度，绝不向孩子端弹窗催促</div>
+              </div>
+            </div>
+            <div class="feature-copy">
+              <h3>家长安静看进度，少一次推门就多一份信任</h3>
+              <p>做饭或加班时，打开家长端就能看到孩子已完成几项、当前正在专心写哪一科。不用每隔十分钟喊一句“写到哪了”，把自主权交还给孩子。</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. 番茄钟互动演示 -->
+    <section class="section section-demo" id="pomodoro-demo" aria-labelledby="demo-title">
+      <div class="container">
+        <div class="section-head">
+          <span class="section-kicker">在线互动体验</span>
+          <h2 id="demo-title" class="section-title">点一下「开始」，亲自试试作业番茄钟</h2>
+          <p class="section-subtitle">选一项作业开始倒计时；支持一键开启「60× 加速演示」，快速体验从 25 分钟专注自动切换到 5 分钟休息。</p>
+        </div>
+
+        <div class="demo-card">
+          <!-- 左侧：任务选择 + 速度设置 + 家长端实时预览 -->
+          <div class="demo-sidebar">
+            <div class="demo-panel-label">1. 选择一项待办作业</div>
+            <div class="demo-task-list" role="radiogroup" aria-label="选择演示作业任务">
+              <button type="button" class="demo-task-btn is-selected" data-demo-task="0" aria-pressed="true">
+                <span class="demo-task-check" aria-hidden="true"></span>
+                <span class="demo-task-info">
+                  <span class="demo-task-top">
+                    <span class="tag tag-math">数学</span>
+                    <span class="demo-task-est">25 分钟专注</span>
+                  </span>
+                  <strong>口算题卡第 38–39 页</strong>
+                </span>
+              </button>
+
+              <button type="button" class="demo-task-btn" data-demo-task="1" aria-pressed="false">
+                <span class="demo-task-check" aria-hidden="true"></span>
+                <span class="demo-task-info">
+                  <span class="demo-task-top">
+                    <span class="tag tag-cn">语文</span>
+                    <span class="demo-task-est">25 分钟专注</span>
+                  </span>
+                  <strong>背诵古诗《绝句》并默写</strong>
+                </span>
+              </button>
+
+              <button type="button" class="demo-task-btn" data-demo-task="2" aria-pressed="false">
+                <span class="demo-task-check" aria-hidden="true"></span>
+                <span class="demo-task-info">
+                  <span class="demo-task-top">
+                    <span class="tag tag-en">英语</span>
+                    <span class="demo-task-est">25 分钟专注</span>
+                  </span>
+                  <strong>跟读 Unit 4 课文 3 遍</strong>
+                </span>
+              </button>
+            </div>
+
+            <div class="demo-speed-box">
+              <div class="demo-panel-label">2. 演示倒数速度</div>
+              <div class="speed-toggle" role="group" aria-label="选择计时演示速度">
+                <button type="button" class="speed-btn is-active" data-speed="1">1× 真实倒数</button>
+                <button type="button" class="speed-btn" data-speed="60">60× 加速演示</button>
+              </div>
+              <p class="speed-hint" id="speed-hint">真实 1 秒倒数 1 秒；切到「60× 加速演示」约 25 秒即可看完整轮专注与休息提醒。</p>
+            </div>
+
+            <div class="demo-parent-sync" aria-live="polite">
+              <div class="sync-header">
+                <span class="sync-dot" id="sync-dot"></span>
+                <strong>家长端实时状态</strong>
+              </div>
+              <p id="sync-status-text">等待开始：孩子已选中「数学 · 口算题卡第 38–39 页」，准备好就可以启动番茄钟。</p>
+            </div>
+          </div>
+
+          <!-- 右侧：核心番茄钟表盘 -->
+          <div class="demo-stage" id="pomo-stage" data-phase="focus" data-state="idle">
+            <div class="phase-switcher" role="tablist" aria-label="番茄钟阶段">
+              <button type="button" class="phase-pill is-active" data-phase-btn="focus" role="tab" aria-selected="true">专注时段 · 25 分钟</button>
+              <button type="button" class="phase-pill" data-phase-btn="break" role="tab" aria-selected="false">护眼休息 · 5 分钟</button>
+            </div>
+
+            <div class="demo-active-task" id="demo-active-task">当前任务：数学 · 口算题卡第 38–39 页</div>
+
+            <div class="timer-dial">
+              <svg class="timer-svg" viewBox="0 0 260 260" aria-hidden="true">
+                <circle class="timer-track" cx="130" cy="130" r="110" />
+                <circle class="timer-progress" id="timer-progress-ring" cx="130" cy="130" r="110" />
+              </svg>
+              <div class="timer-readout">
+                <span class="timer-badge" id="timer-badge">准备专注</span>
+                <div class="timer-digits tabular" id="timer-display" aria-live="off">25:00</div>
+                <span class="timer-sub" id="timer-sub">点下方「开始」立即倒数</span>
+              </div>
+            </div>
+
+            <div class="timer-controls">
+              <button type="button" class="btn btn-primary btn-lg timer-main-btn" id="pomo-toggle-btn">
+                <svg class="btn-icon" id="pomo-btn-icon" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                  <path d="M6.5 4.8L15.2 10L6.5 15.2V4.8Z" fill="currentColor"/>
+                </svg>
+                <span id="pomo-btn-label">开始</span>
+              </button>
+              <button type="button" class="btn btn-secondary btn-lg" id="pomo-reset-btn">重置</button>
+            </div>
+
+            <div class="timer-foot-stats">
+              <span>本次已完成番茄：<strong id="pomo-completed-count" class="tabular">0</strong> 个</span>
+              <span class="divider-dot" aria-hidden="true">·</span>
+              <span>点击「开始 / 暂停」随时切换状态</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. 家长关心的问题 FAQ -->
+    <section class="section" id="faq" aria-labelledby="faq-title">
+      <div class="container faq-layout">
+        <div class="faq-intro">
+          <span class="section-kicker">家长关心的问题</span>
+          <h2 id="faq-title" class="section-title">用之前，先把顾虑讲清楚</h2>
+          <p class="section-subtitle">从隐私保护、设备占用到收费标准，我们站在家长角度把每一件小事想在前面。</p>
+          <div class="faq-note-card">
+            <strong>还有其他问题？</strong>
+            <p>欢迎发邮件至 <a href="mailto:hello@zuoyedaoshou.cn">hello@zuoyedaoshou.cn</a>，家长客服团队每天 9:00–21:00 回复。</p>
+          </div>
+        </div>
+
+        <div class="faq-list">
+          <div class="faq-item is-open">
+            <button type="button" class="faq-trigger" aria-expanded="true" aria-controls="faq-panel-1" id="faq-btn-1">
+              <span>拍的作业本照片和班级群截图安全吗？会不会泄露隐私？</span>
+              <span class="faq-chevron" aria-hidden="true">
+                <svg viewBox="0 0 20 20" fill="none"><path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span>
+            </button>
+            <div class="faq-panel" id="faq-panel-1" role="region" aria-labelledby="faq-btn-1">
+              <div class="faq-panel-inner">
+                <p>请放心，隐私保护是「作业到手」的底线。上传的照片和截图<strong>仅用于提取作业文字</strong>，全程加密传输，并在生成待办清单后默认自动销毁原图，不在云端留存班级群聊天记录。App 不强制填写真实姓名、学校或家庭住址，也绝不向第三方共享数据或推送广告。</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button type="button" class="faq-trigger" aria-expanded="false" aria-controls="faq-panel-2" id="faq-btn-2">
+              <span>孩子写作业时，必须一直拿着家长的手机吗？</span>
+              <span class="faq-chevron" aria-hidden="true">
+                <svg viewBox="0 0 20 20" fill="none"><path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span>
+            </button>
+            <div class="faq-panel" id="faq-panel-2" role="region" aria-labelledby="faq-btn-2">
+              <div class="faq-panel-inner">
+                <p>不需要。最推荐的做法是：<strong>家长用自己手机拍作业</strong>，清单会自动同步到家里的平板或闲置旧手机上，孩子只看清单和番茄钟，不耽误家长正常用手机。如果暂时只有一部手机，也可开启「孩子专注全屏模式」，界面极简无跳转，避免孩子分心点开其他应用。</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button type="button" class="faq-trigger" aria-expanded="false" aria-controls="faq-panel-3" id="faq-btn-3">
+              <span>这款 App 怎么收费？基础功能免费吗？</span>
+              <span class="faq-chevron" aria-hidden="true">
+                <svg viewBox="0 0 20 20" fill="none"><path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span>
+            </button>
+            <div class="faq-panel" id="faq-panel-3" role="region" aria-labelledby="faq-btn-3">
+              <div class="faq-panel-inner">
+                <p><strong>核心功能完全免费使用</strong>：每天拍照识别作业、自动生成多科目清单、无限次番茄钟计时以及家长端实时同步进度都不收费，足以满足 1–6 年级日常放学作业管理。仅当需要「双宝多账号管理」或「按学期导出专注报告」时，才可按需开通可选会员，全程无隐藏自动续费、无开屏弹窗广告。</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button type="button" class="faq-trigger" aria-expanded="false" aria-controls="faq-panel-4" id="faq-btn-4">
+              <span>孩子手写作业本字迹比较潦草，能准确识别吗？</span>
+              <span class="faq-chevron" aria-hidden="true">
+                <svg viewBox="0 0 20 20" fill="none"><path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span>
+            </button>
+            <div class="faq-panel" id="faq-panel-4" role="region" aria-labelledby="faq-btn-4">
+              <div class="faq-panel-inner">
+                <p>我们针对小学 1–6 年级常见的手写体、黑板粉笔字以及群聊长消息做了专门识别优化，能自动过滤“各位家长好”“收到请回复”等无关语句。生成清单后也支持一秒轻点修改字词、合并任务或调整预计用时。</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 底部下载号召条 -->
+    <section class="cta-band" id="download" aria-labelledby="cta-title">
+      <div class="container">
+        <div class="cta-card">
+          <div class="cta-copy">
+            <span class="cta-tag">支持 iOS 与 Android · 免费下载体验</span>
+            <h2 id="cta-title">今晚放学，让孩子试试自己搞定作业</h2>
+            <p>拍一张作业开始第一轮 25 分钟番茄钟，少一份催促焦躁，多一份从容陪伴。</p>
+            <div class="cta-buttons">
+              <button type="button" class="btn btn-light btn-lg" data-open-download="ios">
+                <svg class="btn-icon" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                  <rect x="5" y="2.5" width="10" height="15" rx="2.5" stroke="currentColor" stroke-width="1.8"/>
+                  <circle cx="10" cy="14.5" r="0.9" fill="currentColor"/>
+                </svg>
+                iOS 版下载
+              </button>
+              <button type="button" class="btn btn-outline-light btn-lg" data-open-download="android">
+                <svg class="btn-icon" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                  <path d="M10 3.5V12.5M10 12.5L6.5 9M10 12.5L13.5 9M4 15.5H16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                Android 版下载
+              </button>
+            </div>
+          </div>
+
+          <!-- 原创矢量扫码卡片 -->
+          <div class="cta-qr-card" aria-label="手机扫码下载示意图">
+            <div class="qr-box">
+              <svg viewBox="0 0 112 112" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <rect width="112" height="112" rx="10" fill="#FFFFFF"/>
+                <!-- 三个定位角 -->
+                <rect x="10" y="10" width="28" height="28" rx="5" stroke="#1E2421" stroke-width="4"/>
+                <rect x="18" y="18" width="12" height="12" rx="2" fill="#1E2421"/>
+                <rect x="74" y="10" width="28" height="28" rx="5" stroke="#1E2421" stroke-width="4"/>
+                <rect x="82" y="18" width="12" height="12" rx="2" fill="#1E2421"/>
+                <rect x="10" y="74" width="28" height="28" rx="5" stroke="#1E2421" stroke-width="4"/>
+                <rect x="18" y="82" width="12" height="12" rx="2" fill="#1E2421"/>
+                <!-- 编码块 -->
+                <rect x="46" y="12" width="8" height="8" rx="2" fill="#1E2421"/>
+                <rect x="58" y="12" width="8" height="8" rx="2" fill="#1E2421"/>
+                <rect x="46" y="24" width="8" height="8" rx="2" fill="#1E2421"/>
+                <rect x="58" y="30" width="8" height="8" rx="2" fill="#1E2421"/>
+                <rect x="12" y="46" width="8" height="8" rx="2" fill="#1E2421"/>
+                <rect x="24" y="46" width="8" height="8" rx="2" fill="#1E2421"/>
+                <rect x="18" y="58" width="14" height="8" rx="2" fill="#1E2421"/>
+                <rect x="74" y="46" width="12" height="8" rx="2" fill="#1E2421"/>
+                <rect x="92" y="46" width="8" height="14" rx="2" fill="#1E2421"/>
+                <rect x="74" y="60" width="8" height="8" rx="2" fill="#1E2421"/>
+                <rect x="46" y="74" width="8" height="14" rx="2" fill="#1E2421"/>
+                <rect x="58" y="74" width="14" height="8" rx="2" fill="#1E2421"/>
+                <rect x="58" y="88" width="8" height="12" rx="2" fill="#1E2421"/>
+                <rect x="74" y="76" width="10" height="10" rx="2" fill="#1E2421"/>
+                <rect x="88" y="74" width="12" height="8" rx="2" fill="#1E2421"/>
+                <rect x="78" y="92" width="22" height="8" rx="2" fill="#1E2421"/>
+                <!-- 中心原创标志 -->
+                <rect x="44" y="44" width="24" height="24" rx="6" fill="#E85D3F"/>
+                <path d="M51 56.2L54.4 59.5L61.2 52.5" stroke="#FFFFFF" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div class="qr-caption">
+              <strong>手机扫码下载</strong>
+              <span>iOS / Android 通用入口</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- 6. 页脚 -->
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <a href="#top" class="brand">
+          <span class="brand-mark" aria-hidden="true">
+            <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect width="36" height="36" rx="10" fill="#E85D3F"/>
+              <path d="M18 7.5C19.8 7.5 21.5 8.2 22.3 9.4C20.5 9.8 19.2 10.6 18 11.4C16.8 10.6 15.5 9.8 13.7 9.4C14.5 8.2 16.2 7.5 18 7.5Z" fill="#B7E4C7"/>
+              <circle cx="18" cy="20" r="9.5" fill="#FFF9F5"/>
+              <path d="M13.8 20.1L16.7 23L22.5 16.8" stroke="#E85D3F" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+          <span class="brand-text">
+            <strong>作业到手</strong>
+            <small>让小学生自己管好放学作业</small>
+          </span>
+        </a>
+        <p class="footer-desc">
+          专为小学 1–6 年级家庭打造的作业清单与番茄钟 App。拍一下自动整理待办，专注写完安心打勾。
+        </p>
+      </div>
+
+      <div class="footer-col">
+        <h4>下载入口</h4>
+        <ul>
+          <li><button type="button" class="footer-link-btn" data-open-download="ios">iOS 客户端下载（iPhone / iPad）</button></li>
+          <li><button type="button" class="footer-link-btn" data-open-download="android">Android 客户端安装包</button></li>
+          <li><a href="#how-it-works">三步上手指南</a></li>
+          <li><a href="#pomodoro-demo">在线番茄钟体验</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>联系我们</h4>
+        <ul>
+          <li>客服邮箱：<a href="mailto:hello@zuoyedaoshou.cn">hello@zuoyedaoshou.cn</a></li>
+          <li>家长反馈群微信号：zuoyedaoshou_help</li>
+          <li>服务时间：周一至周日 09:00–21:00</li>
+          <li>合作咨询：<a href="mailto:bd@zuoyedaoshou.cn">bd@zuoyedaoshou.cn</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="container footer-bottom">
+      <p>© 2026 作业到手（zuoyedaoshou.cn）保留所有权利</p>
+      <div class="footer-legal">
+        <a href="#faq">隐私保护说明</a>
+        <span aria-hidden="true">·</span>
+        <a href="#faq">常见问题</a>
+        <span aria-hidden="true">·</span>
+        <a href="#top">返回顶部</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- 下载弹窗（纯静态交互，无需外链） -->
+  <div class="modal-backdrop" id="download-modal" hidden>
+    <div class="modal-dialog" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+      <button type="button" class="modal-close" id="modal-close-btn" aria-label="关闭下载窗口">
+        <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M5 5L15 15M15 5L5 15" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      </button>
+      <div class="modal-badge">免费下载 · v1.4 最新版</div>
+      <h3 id="modal-title">获取「作业到手」App</h3>
+      <p class="modal-sub" id="modal-sub">支持家长端与孩子平板/备用机同步，基础功能永久免费。</p>
+
+      <div class="modal-qr-row">
+        <div class="qr-box qr-box-modal">
+          <svg viewBox="0 0 112 112" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <rect width="112" height="112" rx="10" fill="#FFFFFF"/>
+            <rect x="10" y="10" width="28" height="28" rx="5" stroke="#1E2421" stroke-width="4"/>
+            <rect x="18" y="18" width="12" height="12" rx="2" fill="#1E2421"/>
+            <rect x="74" y="10" width="28" height="28" rx="5" stroke="#1E2421" stroke-width="4"/>
+            <rect x="82" y="18" width="12" height="12" rx="2" fill="#1E2421"/>
+            <rect x="10" y="74" width="28" height="28" rx="5" stroke="#1E2421" stroke-width="4"/>
+            <rect x="18" y="82" width="12" height="12" rx="2" fill="#1E2421"/>
+            <rect x="46" y="12" width="8" height="8" rx="2" fill="#1E2421"/>
+            <rect x="58" y="12" width="8" height="8" rx="2" fill="#1E2421"/>
+            <rect x="46" y="24" width="8" height="8" rx="2" fill="#1E2421"/>
+            <rect x="58" y="30" width="8" height="8" rx="2" fill="#1E2421"/>
+            <rect x="12" y="46" width="8" height="8" rx="2" fill="#1E2421"/>
+            <rect x="24" y="46" width="8" height="8" rx="2" fill="#1E2421"/>
+            <rect x="18" y="58" width="14" height="8" rx="2" fill="#1E2421"/>
+            <rect x="74" y="46" width="12" height="8" rx="2" fill="#1E2421"/>
+            <rect x="92" y="46" width="8" height="14" rx="2" fill="#1E2421"/>
+            <rect x="74" y="60" width="8" height="8" rx="2" fill="#1E2421"/>
+            <rect x="46" y="74" width="8" height="14" rx="2" fill="#1E2421"/>
+            <rect x="58" y="74" width="14" height="8" rx="2" fill="#1E2421"/>
+            <rect x="58" y="88" width="8" height="12" rx="2" fill="#1E2421"/>
+            <rect x="74" y="76" width="10" height="10" rx="2" fill="#1E2421"/>
+            <rect x="88" y="74" width="12" height="8" rx="2" fill="#1E2421"/>
+            <rect x="78" y="92" width="22" height="8" rx="2" fill="#1E2421"/>
+            <rect x="44" y="44" width="24" height="24" rx="6" fill="#E85D3F"/>
+            <path d="M51 56.2L54.4 59.5L61.2 52.5" stroke="#FFFFFF" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div class="modal-platforms">
+          <div class="platform-item" id="plat-ios">
+            <strong>iOS 版</strong>
+            <span>系统要求 iOS 15.0 及以上，兼容 iPad 横竖屏</span>
+          </div>
+          <div class="platform-item" id="plat-android">
+            <strong>Android 版</strong>
+            <span>系统要求 Android 10 及以上，安装包仅 28 MB</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-footer-note">
+        当前为产品官网演示页，正式商店上架后将自动跳转对应应用商店。
+      </div>
+    </div>
+  </div>
+
+  <script src="./script.js" defer></script>
+</body>
+</html>

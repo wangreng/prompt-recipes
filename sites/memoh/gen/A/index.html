@@ -1,0 +1,1234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Memoh — Cloud computers for AI agents</title>
+  <meta name="description" content="Memoh hosts multiple AI agents in the cloud, each equipped with its own graphical desktop, persistent filesystem, and always-on networking.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+
+  <!-- Transparent Overlay Navigation -->
+  <header class="site-header" role="banner">
+    <div class="header-inner">
+      <div class="header-left">
+        <a href="#top" class="brand-lockup" aria-label="Memoh home">
+          <svg class="brand-mark" width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M4.5 8.2L7.2 4.5L10.1 7.1C11.3 6.8 12.7 6.8 13.9 7.1L16.8 4.5L19.5 8.2C20.2 9.6 20.5 11.2 20.5 13C20.5 17.2 16.9 19.5 12 19.5C7.1 19.5 3.5 17.2 3.5 13C3.5 11.2 3.8 9.6 4.5 8.2Z" stroke="currentColor" stroke-width="1.65" stroke-linejoin="round"/>
+            <circle cx="9.2" cy="12.8" r="1.15" fill="currentColor"/>
+            <circle cx="14.8" cy="12.8" r="1.15" fill="currentColor"/>
+            <path d="M10.7 15.4C11.4 15.9 12.6 15.9 13.3 15.4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+          </svg>
+          <span class="brand-name">Memoh</span>
+        </a>
+        <nav class="primary-nav" aria-label="Primary">
+          <a href="#capabilities">Docs</a>
+          <a href="#pricing">Pricing</a>
+          <a href="#autonomy">Blog</a>
+          <a href="#channels">Help Center</a>
+        </nav>
+      </div>
+
+      <div class="header-right">
+        <a href="https://github.com/memoh-ai/memoh" class="header-utility github-pill" target="_blank" rel="noreferrer" aria-label="GitHub repository with 4.8k stars">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/>
+          </svg>
+          <span class="tabular">4,812</span>
+        </a>
+
+        <a href="#channels" class="header-icon-btn" aria-label="Telegram community">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M21.2 4.6L2.9 11.7c-.8.3-.8 1.4 0 1.7l4.6 1.6 1.8 5.4c.2.6 1 .7 1.4.2l2.6-2.9 4.7 3.4c.6.4 1.5.1 1.7-.6L22.5 5.8c.2-.9-.6-1.5-1.3-1.2z"/>
+            <path d="M7.5 15L19.5 6.8"/>
+          </svg>
+        </a>
+
+        <div class="locale-picker" data-dropdown>
+          <button type="button" class="header-utility locale-btn" aria-haspopup="listbox" aria-expanded="false" data-dropdown-trigger>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true">
+              <circle cx="12" cy="12" r="9.5"/>
+              <path d="M2.5 12h19M12 2.5a14 14 0 010 19M12 2.5a14 14 0 000 19"/>
+            </svg>
+            <span class="locale-code" data-locale-label>EN</span>
+            <svg class="chevron" width="11" height="11" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+              <path d="M3 4.5L6 7.5L9 4.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+          <div class="dropdown-menu dropdown-menu--right" role="listbox" data-dropdown-menu>
+            <button type="button" class="dropdown-item is-active" data-locale-option="EN" role="option" aria-selected="true">
+              <span>English</span><span class="dropdown-meta">EN</span>
+            </button>
+            <button type="button" class="dropdown-item" data-locale-option="ZH" role="option" aria-selected="false">
+              <span>中文</span><span class="dropdown-meta">ZH</span>
+            </button>
+            <button type="button" class="dropdown-item" data-locale-option="JA" role="option" aria-selected="false">
+              <span>日本語</span><span class="dropdown-meta">JA</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+    <!-- 1. Hero Banner & Overlapping Workspace Preview -->
+    <section class="hero-section">
+      <div class="hero-backdrop" aria-hidden="true">
+        <img src="./assets/hero-dusk.jpg" alt="" class="hero-art">
+        <div class="hero-vignette"></div>
+        <div class="hero-fade"></div>
+      </div>
+
+      <div class="hero-content">
+        <h1 class="hero-headline">Give every AI agent its own cloud computer</h1>
+        <p class="hero-subtitle">
+          Memoh hosts multiple AI agents in the cloud, each with a dedicated desktop environment, persistent file storage, and always-on networking.
+        </p>
+
+        <div class="cta-pair">
+          <a href="#pricing" class="btn-pill btn-pill--primary">
+            <span>Launch web app</span>
+            <svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true">
+              <path d="M3.5 8h9M8.5 4l4 4-4 4" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+
+          <div class="split-pill split-pill--glass" data-dropdown data-os-split="hero">
+            <a href="#cta" class="split-pill__main" data-os-download-link>
+              <svg class="os-icon" width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+                <path d="M8 2.5v7.5M5 7.5L8 10.5l3-3M3 13h10" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              <span data-os-label>Download for Linux</span>
+            </a>
+            <button type="button" class="split-pill__caret" aria-label="Choose desktop platform" aria-expanded="false" data-dropdown-trigger>
+              <svg class="chevron" width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true">
+                <path d="M3 4.5L6 7.5L9 4.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+            <div class="dropdown-menu dropdown-menu--right" data-dropdown-menu>
+              <button type="button" class="dropdown-item" data-os-choice="linux-appimage" data-os-text="Download for Linux" data-os-cta="Download AppImage (Linux)">
+                <span>Linux (AppImage)</span><span class="dropdown-meta">x86_64</span>
+              </button>
+              <button type="button" class="dropdown-item" data-os-choice="linux-deb" data-os-text="Download for Linux (.deb)" data-os-cta="Download .deb (Linux)">
+                <span>Linux (.deb)</span><span class="dropdown-meta">Ubuntu/Debian</span>
+              </button>
+              <button type="button" class="dropdown-item" data-os-choice="macos-arm" data-os-text="Download for macOS" data-os-cta="Download .dmg (Apple Silicon)">
+                <span>macOS (Apple Silicon)</span><span class="dropdown-meta">arm64</span>
+              </button>
+              <button type="button" class="dropdown-item" data-os-choice="macos-intel" data-os-text="Download for macOS" data-os-cta="Download .dmg (Intel)">
+                <span>macOS (Intel)</span><span class="dropdown-meta">x64</span>
+              </button>
+              <button type="button" class="dropdown-item" data-os-choice="windows" data-os-text="Download for Windows" data-os-cta="Download .exe (Windows)">
+                <span>Windows</span><span class="dropdown-meta">x64</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Overlapping Interactive Desktop-Application Showcase -->
+      <div class="container showcase-container">
+        <div class="app-window hero-showcase" role="region" aria-label="Memoh desktop workspace preview">
+          <div class="app-titlebar">
+            <div class="window-dots" aria-hidden="true">
+              <span class="dot dot--red"></span>
+              <span class="dot dot--yellow"></span>
+              <span class="dot dot--green"></span>
+            </div>
+            <div class="window-title">
+              <span class="status-dot status-dot--online"></span>
+              <span>Atlas</span>
+              <span class="title-sep">/</span>
+              <span class="title-muted">cloud-vm-01 · Ubuntu 24.04 · 8 vCPU</span>
+            </div>
+            <div class="window-tabs" role="tablist" aria-label="Workspace view">
+              <button type="button" class="wtab is-active" data-hero-tab="chat" role="tab" aria-selected="true">Chat</button>
+              <button type="button" class="wtab" data-hero-tab="files" role="tab" aria-selected="false">Files</button>
+              <button type="button" class="wtab" data-hero-tab="desktop" role="tab" aria-selected="false">Desktop</button>
+            </div>
+          </div>
+
+          <div class="app-body">
+            <!-- Workspace Sidebar -->
+            <aside class="app-sidebar">
+              <div class="sidebar-agent-picker">
+                <div class="agent-avatar">A</div>
+                <div class="agent-meta">
+                  <div class="agent-name">Atlas</div>
+                  <div class="agent-sub">Online · 14d uptime</div>
+                </div>
+                <svg width="13" height="13" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" class="muted-icon" aria-hidden="true">
+                  <path d="M3 4.5L6 7.5L9 4.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
+
+              <div class="sidebar-search">
+                <svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+                  <circle cx="7.2" cy="7.2" r="4.8"/><path d="M11 11l3 3" stroke-linecap="round"/>
+                </svg>
+                <span>Search</span>
+                <kbd>⌘K</kbd>
+              </div>
+
+              <div class="sidebar-nav">
+                <button type="button" class="snav-item is-active" data-hero-tab="chat">
+                  <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2.5 4.2A1.7 1.7 0 014.2 2.5h7.6a1.7 1.7 0 011.7 1.7v5.6a1.7 1.7 0 01-1.7 1.7H6.2L3 13.8v-2.3h-.5a1.7 1.7 0 010-1.7V4.2z"/></svg>
+                  <span>Chat</span>
+                </button>
+                <button type="button" class="snav-item" data-hero-tab="files">
+                  <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2.5 4.2A1.2 1.2 0 013.7 3h3l1.3 1.5h4.3a1.2 1.2 0 011.2 1.2v6.1a1.2 1.2 0 01-1.2 1.2H3.7a1.2 1.2 0 01-1.2-1.2V4.2z"/></svg>
+                  <span>Files</span>
+                </button>
+                <button type="button" class="snav-item" data-hero-tab="schedule">
+                  <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="8.5" r="5.2"/><path d="M8 5.6v3l2 1.2M6 2h4" stroke-linecap="round"/></svg>
+                  <span>Schedule</span>
+                  <span class="snav-badge tabular">4</span>
+                </button>
+                <button type="button" class="snav-item" data-hero-tab="packages">
+                  <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 2.2l5 2.7v6.2L8 13.8 3 11.1V4.9L8 2.2z"/><path d="M3 4.9l5 2.7 5-2.7M8 7.6v6.2"/></svg>
+                  <span>Packages</span>
+                </button>
+              </div>
+
+              <div class="sidebar-group">
+                <div class="sidebar-group-label">Quick actions</div>
+                <div class="sidebar-item-quiet">
+                  <span class="dot-mini dot-mini--blue"></span>
+                  <span>New coding session</span>
+                </div>
+                <div class="sidebar-item-quiet">
+                  <span class="dot-mini dot-mini--green"></span>
+                  <span>Open live desktop</span>
+                </div>
+              </div>
+
+              <div class="sidebar-group">
+                <div class="sidebar-group-label">Folders</div>
+                <div class="folder-item">
+                  <svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M2.5 4.2A1.2 1.2 0 013.7 3h3l1.3 1.5h4.3a1.2 1.2 0 011.2 1.2v6.1a1.2 1.2 0 01-1.2 1.2H3.7a1.2 1.2 0 01-1.2-1.2V4.2z"/></svg>
+                  <span>~/workspace/sync-engine</span>
+                </div>
+                <div class="folder-item">
+                  <svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M2.5 4.2A1.2 1.2 0 013.7 3h3l1.3 1.5h4.3a1.2 1.2 0 011.2 1.2v6.1a1.2 1.2 0 01-1.2 1.2H3.7a1.2 1.2 0 01-1.2-1.2V4.2z"/></svg>
+                  <span>~/memory</span>
+                </div>
+                <div class="folder-item">
+                  <svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M2.5 4.2A1.2 1.2 0 013.7 3h3l1.3 1.5h4.3a1.2 1.2 0 011.2 1.2v6.1a1.2 1.2 0 01-1.2 1.2H3.7a1.2 1.2 0 01-1.2-1.2V4.2z"/></svg>
+                  <span>~/releases</span>
+                </div>
+              </div>
+            </aside>
+
+            <!-- Main Workspace Pane: Chat (Default) -->
+            <div class="app-main" data-hero-panel="chat">
+              <div class="chat-header">
+                <div class="chat-title">Sync worker retry queue audit</div>
+                <div class="chat-meta tabular">Claude 3.7 Sonnet · 09:41</div>
+              </div>
+
+              <div class="chat-stream">
+                <div class="msg msg--user">
+                  <div class="msg-bubble msg-bubble--user">
+                    Check why the nightly webhook sync retried twice on Tuesday, verify the backoff patch against our test suite, and note the fix in memory.
+                  </div>
+                </div>
+
+                <div class="msg msg--agent">
+                  <div class="tool-card">
+                    <div class="tool-card__head">
+                      <span class="tool-icon tool-icon--memory">
+                        <svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 3.5h10v9H3zM5.5 6.5h5M5.5 9.5h3.5" stroke-linecap="round"/></svg>
+                      </span>
+                      <span class="tool-name">Memory retrieval</span>
+                      <span class="tool-detail">~/memory/incidents.md · 2 relevant excerpts</span>
+                      <span class="tool-status tabular">42ms</span>
+                    </div>
+                    <div class="tool-card__snippet">
+                      <span class="mono-muted"># 2026-11-17:</span> Rate-limit burst from upstream worker occurred at 02:14 UTC; jitter cap was set to 0ms in <code>retry.ts</code>.
+                    </div>
+                  </div>
+
+                  <div class="tool-card">
+                    <div class="tool-card__head">
+                      <span class="tool-icon tool-icon--shell">
+                        <svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3.5 5l3 3-3 3M8 11h4.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                      </span>
+                      <span class="tool-name">Shell</span>
+                      <span class="tool-detail mono">cd ~/workspace/sync-engine && npm test -- retry.spec.ts</span>
+                      <span class="tool-badge tool-badge--ok">exit 0</span>
+                    </div>
+                    <pre class="tool-terminal"><code>PASS  src/queue/retry.spec.ts (0.64s)
+  ✓ applies exponential backoff with decorrelated jitter (14ms)
+  ✓ respects Retry-After header on HTTP 429 (9ms)
+  ✓ caps queue replay burst under 12 req/s (21ms)
+
+Tests: 3 passed, 3 total · Saved summary to ~/memory/incidents.md</code></pre>
+                  </div>
+
+                  <div class="msg-text">
+                    Tuesday's retries came from simultaneous worker wakeups after an upstream 429 burst because decorrelated jitter was disabled. I applied the jitter patch in <code>src/queue/retry.ts</code>, verified all 3 regression tests pass, and appended the root cause to <code>~/memory/incidents.md</code>.
+                  </div>
+                </div>
+              </div>
+
+              <div class="chat-composer">
+                <div class="composer-input">Message Atlas on cloud-vm-01…</div>
+                <div class="composer-actions">
+                  <span class="composer-chip">Claude 3.7 Sonnet</span>
+                  <span class="composer-chip">~/workspace</span>
+                  <span class="composer-send" aria-hidden="true">
+                    <svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M8 12.5V3.5M4.5 7L8 3.5 11.5 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Alternate Panel: Files -->
+            <div class="app-main is-hidden" data-hero-panel="files">
+              <div class="chat-header">
+                <div class="chat-title mono">~/workspace/sync-engine</div>
+                <div class="chat-meta tabular">40 GB volume · 11.4 GB used</div>
+              </div>
+              <div class="panel-table">
+                <div class="panel-row panel-row--head">
+                  <span>Name</span><span>Modified</span><span>Size</span>
+                </div>
+                <div class="panel-row">
+                  <span class="mono">src/queue/retry.ts</span><span class="tabular muted">2m ago</span><span class="tabular muted">3.4 KB</span>
+                </div>
+                <div class="panel-row">
+                  <span class="mono">src/queue/retry.spec.ts</span><span class="tabular muted">2m ago</span><span class="tabular muted">4.8 KB</span>
+                </div>
+                <div class="panel-row">
+                  <span class="mono">~/memory/incidents.md</span><span class="tabular muted">1m ago</span><span class="tabular muted">12.1 KB</span>
+                </div>
+                <div class="panel-row">
+                  <span class="mono">~/memory/architecture.md</span><span class="tabular muted">3d ago</span><span class="tabular muted">28.6 KB</span>
+                </div>
+                <div class="panel-row">
+                  <span class="mono">docker-compose.yml</span><span class="tabular muted">5d ago</span><span class="tabular muted">1.9 KB</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Alternate Panel: Schedule -->
+            <div class="app-main is-hidden" data-hero-panel="schedule">
+              <div class="chat-header">
+                <div class="chat-title">Scheduled routines</div>
+                <div class="chat-meta tabular">4 active jobs · UTC</div>
+              </div>
+              <div class="panel-table">
+                <div class="panel-row">
+                  <span>Morning PR &amp; CI digest</span><span class="tabular muted">Weekdays 08:30</span><span class="tool-badge tool-badge--ok">Active</span>
+                </div>
+                <div class="panel-row">
+                  <span>Upstream release watch</span><span class="tabular muted">Every 2 hours</span><span class="tool-badge tool-badge--ok">Active</span>
+                </div>
+                <div class="panel-row">
+                  <span>Nightly memory compaction</span><span class="tabular muted">Daily 03:00</span><span class="tool-badge tool-badge--ok">Active</span>
+                </div>
+                <div class="panel-row">
+                  <span>Staging latency probe</span><span class="tabular muted">Every 30 min</span><span class="tool-badge tool-badge--ok">Active</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Alternate Panel: Packages -->
+            <div class="app-main is-hidden" data-hero-panel="packages">
+              <div class="chat-header">
+                <div class="chat-title">Installed runtimes &amp; skills</div>
+                <div class="chat-meta tabular">Persisted on volume</div>
+              </div>
+              <div class="panel-table">
+                <div class="panel-row">
+                  <span>Claude Code</span><span class="muted">Coding agent</span><span class="tool-badge tool-badge--ok">Installed</span>
+                </div>
+                <div class="panel-row">
+                  <span>Codex CLI</span><span class="muted">ACP agent</span><span class="tool-badge tool-badge--ok">Installed</span>
+                </div>
+                <div class="panel-row">
+                  <span>Node.js 22 LTS</span><span class="muted">Runtime</span><span class="tool-badge tool-badge--ok">Installed</span>
+                </div>
+                <div class="panel-row">
+                  <span>uv 0.6.4</span><span class="muted">Python package manager</span><span class="tool-badge tool-badge--ok">Installed</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Alternate Panel: Live Desktop -->
+            <div class="app-main is-hidden" data-hero-panel="desktop">
+              <div class="chat-header">
+                <div class="chat-title">Live Linux desktop · 1920×1080</div>
+                <div class="chat-meta">Agent controlling · Click to take over</div>
+              </div>
+              <div class="live-desktop-mock">
+                <div class="linux-topbar">
+                  <span>Applications</span>
+                  <span class="tabular">Sat 15:05</span>
+                  <span>eth0 · 100%</span>
+                </div>
+                <div class="linux-browser">
+                  <div class="browser-bar">
+                    <span class="url-pill mono">https://staging.memoh.internal/dashboard</span>
+                  </div>
+                  <div class="browser-content">
+                    <div class="mini-stat-row">
+                      <div class="mini-stat"><div class="mini-stat-k">Queue depth</div><div class="mini-stat-v tabular">0</div></div>
+                      <div class="mini-stat"><div class="mini-stat-k">P95 latency</div><div class="mini-stat-v tabular">48ms</div></div>
+                      <div class="mini-stat"><div class="mini-stat-k">Workers</div><div class="mini-stat-v tabular">12 / 12</div></div>
+                    </div>
+                    <div class="mini-log mono">✓ OAuth session verified · HTTP 200 OK</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. Core Capability Showcase (Dedicated Virtual Computer) -->
+    <section id="capabilities" class="section">
+      <div class="container">
+        <div class="section-intro">
+          <h2 class="section-heading">A dedicated virtual computer for every agent</h2>
+          <p class="section-subtitle">
+            Not a stateless chat sandbox. Every Memoh assistant operates continuously on its own Linux desktop with persistent storage, real browsers, and full network access.
+          </p>
+        </div>
+
+        <div class="vignette-stack">
+          <!-- Vignette 1: Third-Party Agent & Model Compatibility -->
+          <article class="vignette-card" data-vignette="models">
+            <div class="vignette-copy">
+              <h3 class="vignette-title">Run external coding agents and any model</h3>
+              <p class="vignette-desc">
+                Deploy Codex, Claude Code, or any ACP-compatible agent straight onto a Memoh cloud computer. Bring your own subscriptions or switch instantly to platform-supplied models whenever a workflow calls for it.
+              </p>
+            </div>
+            <div class="vignette-stage">
+              <div class="mini-window">
+                <div class="mini-titlebar">
+                  <div class="window-dots">
+                    <span class="dot dot--red"></span><span class="dot dot--yellow"></span><span class="dot dot--green"></span>
+                  </div>
+                  <span class="mini-title">New session · Atlas</span>
+                  <div class="vignette-controls">
+                    <button type="button" class="vctrl-btn" data-v-toggle aria-label="Pause animation" title="Pause / Play">
+                      <svg class="icon-pause" width="11" height="11" viewBox="0 0 12 12" fill="currentColor"><rect x="2.2" y="2" width="2.6" height="8" rx="0.6"/><rect x="7.2" y="2" width="2.6" height="8" rx="0.6"/></svg>
+                      <svg class="icon-play is-hidden" width="11" height="11" viewBox="0 0 12 12" fill="currentColor"><path d="M3 2.2L10 6 3 9.8V2.2z"/></svg>
+                    </button>
+                    <button type="button" class="vctrl-btn" data-v-replay aria-label="Replay animation" title="Replay">
+                      <svg width="11" height="11" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2.5 7a4.5 4.5 0 101.2-3.1L2.5 5M2.5 2.4V5h2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </button>
+                  </div>
+                </div>
+
+                <div class="mini-canvas demo-models">
+                  <div class="demo-session-head">
+                    <span class="demo-session-title">Start a new session</span>
+                    <span class="demo-session-path mono">~/workspace/sync-engine</span>
+                  </div>
+                  <div class="demo-composer-box">
+                    <div class="demo-prompt-line" data-m-prompt>Refactor webhook retries to use exponential backoff with tests</div>
+                    <div class="demo-selector-row">
+                      <div class="demo-select-wrap">
+                        <div class="demo-pill" data-m-agent-btn>
+                          <span class="demo-pill-dot demo-pill-dot--white"></span>
+                          <span data-m-agent-label>Memoh Native</span>
+                          <svg width="10" height="10" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 4.5L6 7.5L9 4.5" stroke-linecap="round"/></svg>
+                        </div>
+                        <div class="demo-popover" data-m-agent-menu>
+                          <div class="demo-pop-item" data-m-opt="native">Memoh Native <span class="muted">Default</span></div>
+                          <div class="demo-pop-item" data-m-opt="claude-code">Claude Code <span class="muted">ACP</span></div>
+                          <div class="demo-pop-item" data-m-opt="codex">Codex CLI <span class="muted">ACP</span></div>
+                        </div>
+                      </div>
+
+                      <div class="demo-select-wrap">
+                        <div class="demo-pill" data-m-model-btn>
+                          <span data-m-model-label>DeepSeek R1</span>
+                          <svg width="10" height="10" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 4.5L6 7.5L9 4.5" stroke-linecap="round"/></svg>
+                        </div>
+                        <div class="demo-popover" data-m-model-menu>
+                          <div class="demo-pop-item" data-m-mopt="deepseek">DeepSeek R1 <span class="muted">Platform</span></div>
+                          <div class="demo-pop-item" data-m-mopt="claude">Claude 3.7 Sonnet <span class="muted">BYO key</span></div>
+                          <div class="demo-pop-item" data-m-mopt="gpt">GPT-4.1 <span class="muted">Platform</span></div>
+                        </div>
+                      </div>
+
+                      <div class="demo-run-btn" data-m-run>Start</div>
+                    </div>
+                  </div>
+                  <div class="demo-session-toast" data-m-toast>
+                    <span class="status-dot status-dot--online"></span>
+                    <span>Session started with <strong>Claude Code</strong> on <strong>Claude 3.7 Sonnet</strong></span>
+                  </div>
+                  <div class="sim-cursor" data-cursor aria-hidden="true"></div>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Vignette 2: Autonomous Desktop Operation with Human Handover -->
+          <article class="vignette-card" data-vignette="handover">
+            <div class="vignette-copy">
+              <h3 class="vignette-title">Autonomous desktop control with instant handover</h3>
+              <p class="vignette-desc">
+                Let an agent operate real Linux desktop software and browse websites on its virtual screen while you watch live. Take manual control at any second for sensitive sign-ins or edge cases, then hand it straight back.
+              </p>
+            </div>
+            <div class="vignette-stage">
+              <div class="mini-window">
+                <div class="mini-titlebar">
+                  <div class="window-dots">
+                    <span class="dot dot--red"></span><span class="dot dot--yellow"></span><span class="dot dot--green"></span>
+                  </div>
+                  <span class="mini-title">Split workspace · Desktop live</span>
+                  <div class="vignette-controls">
+                    <button type="button" class="vctrl-btn" data-v-toggle aria-label="Pause animation" title="Pause / Play">
+                      <svg class="icon-pause" width="11" height="11" viewBox="0 0 12 12" fill="currentColor"><rect x="2.2" y="2" width="2.6" height="8" rx="0.6"/><rect x="7.2" y="2" width="2.6" height="8" rx="0.6"/></svg>
+                      <svg class="icon-play is-hidden" width="11" height="11" viewBox="0 0 12 12" fill="currentColor"><path d="M3 2.2L10 6 3 9.8V2.2z"/></svg>
+                    </button>
+                    <button type="button" class="vctrl-btn" data-v-replay aria-label="Replay animation" title="Replay">
+                      <svg width="11" height="11" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2.5 7a4.5 4.5 0 101.2-3.1L2.5 5M2.5 2.4V5h2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </button>
+                  </div>
+                </div>
+
+                <div class="mini-canvas demo-handover">
+                  <div class="ho-split">
+                    <div class="ho-chat">
+                      <div class="ho-msg ho-msg--u">Sign in to staging and export the billing CSV.</div>
+                      <div class="ho-msg ho-msg--a" data-h-status-msg>Opened Chromium on staging. Waiting on SSO passkey — click Take control to approve.</div>
+                      <div class="ho-msg ho-msg--a is-hidden" data-h-done-msg>SSO approved. Resuming export of <code>billing-nov.csv</code>.</div>
+                    </div>
+                    <div class="ho-desktop" data-h-desktop>
+                      <div class="ho-bar">
+                        <span class="ho-badge" data-h-badge>Agent active</span>
+                        <span class="ho-control-btn" data-h-take-btn>Take control</span>
+                      </div>
+                      <div class="ho-chromium">
+                        <div class="ho-url mono">staging.acme.dev/sso</div>
+                        <div class="ho-page">
+                          <div class="ho-page-title">Confirm workspace sign-in</div>
+                          <div class="ho-sso-btn" data-h-sso-btn>Approve SSO session</div>
+                          <div class="ho-approved is-hidden" data-h-approved>✓ Session verified · Downloading CSV…</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="sim-cursor" data-cursor aria-hidden="true"></div>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Vignette 3: Centralized Package, Connector & Skill Hub -->
+          <article class="vignette-card" data-vignette="packages">
+            <div class="vignette-copy">
+              <h3 class="vignette-title">Centralized package, connector, and skill hub</h3>
+              <p class="vignette-desc">
+                Manage runtime dependencies, third-party app connectors, and reusable agent skills right from the workspace sidebar. One click installs tools directly onto the persistent cloud computer.
+              </p>
+            </div>
+            <div class="vignette-stage">
+              <div class="mini-window">
+                <div class="mini-titlebar">
+                  <div class="window-dots">
+                    <span class="dot dot--red"></span><span class="dot dot--yellow"></span><span class="dot dot--green"></span>
+                  </div>
+                  <span class="mini-title">Packages &amp; skills · cloud-vm-01</span>
+                  <div class="vignette-controls">
+                    <button type="button" class="vctrl-btn" data-v-toggle aria-label="Pause animation" title="Pause / Play">
+                      <svg class="icon-pause" width="11" height="11" viewBox="0 0 12 12" fill="currentColor"><rect x="2.2" y="2" width="2.6" height="8" rx="0.6"/><rect x="7.2" y="2" width="2.6" height="8" rx="0.6"/></svg>
+                      <svg class="icon-play is-hidden" width="11" height="11" viewBox="0 0 12 12" fill="currentColor"><path d="M3 2.2L10 6 3 9.8V2.2z"/></svg>
+                    </button>
+                    <button type="button" class="vctrl-btn" data-v-replay aria-label="Replay animation" title="Replay">
+                      <svg width="11" height="11" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2.5 7a4.5 4.5 0 101.2-3.1L2.5 5M2.5 2.4V5h2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </button>
+                  </div>
+                </div>
+
+                <div class="mini-canvas demo-packages">
+                  <div class="pkg-layout">
+                    <div class="pkg-nav">
+                      <div class="pkg-nav-item is-active">Packages</div>
+                      <div class="pkg-nav-item">Connectors</div>
+                      <div class="pkg-nav-item">Skills</div>
+                    </div>
+                    <div class="pkg-list">
+                      <div class="pkg-row">
+                        <div>
+                          <div class="pkg-name">Claude Code</div>
+                          <div class="pkg-sub">Anthropic coding agent · v1.0.24</div>
+                        </div>
+                        <span class="pkg-state pkg-state--installed">Installed</span>
+                      </div>
+                      <div class="pkg-row">
+                        <div>
+                          <div class="pkg-name">Codex</div>
+                          <div class="pkg-sub">OpenAI ACP runtime · v0.4.1</div>
+                        </div>
+                        <span class="pkg-state pkg-state--installed">Installed</span>
+                      </div>
+                      <div class="pkg-row">
+                        <div>
+                          <div class="pkg-name">Node.js</div>
+                          <div class="pkg-sub">JavaScript runtime · v22.14 LTS</div>
+                        </div>
+                        <span class="pkg-state pkg-state--installed">Installed</span>
+                      </div>
+                      <div class="pkg-row pkg-row--highlight" data-p-uv-row>
+                        <div>
+                          <div class="pkg-name mono">uv</div>
+                          <div class="pkg-sub">Fast Python package &amp; project manager</div>
+                          <div class="pkg-progress" data-p-bar><div class="pkg-progress-fill" data-p-fill></div></div>
+                        </div>
+                        <span class="pkg-action" data-p-uv-btn>Install</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="sim-cursor" data-cursor aria-hidden="true"></div>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Vignette 4: In-Cloud Development & Live App Preview -->
+          <article class="vignette-card" data-vignette="preview">
+            <div class="vignette-copy">
+              <h3 class="vignette-title">In-cloud development and live app preview</h3>
+              <p class="vignette-desc">
+                Write code and run local development servers entirely inside the agent's cloud machine. Inspect the live application side by side in an adjacent workspace tab without configuring tunnels or local ports.
+              </p>
+            </div>
+            <div class="vignette-stage">
+              <div class="mini-window">
+                <div class="mini-titlebar">
+                  <div class="window-dots">
+                    <span class="dot dot--red"></span><span class="dot dot--yellow"></span><span class="dot dot--green"></span>
+                  </div>
+                  <div class="pv-tabs">
+                    <span class="pv-tab is-active" data-pv-tab-code>Agent</span>
+                    <span class="pv-tab" data-pv-tab-app>
+                      <span class="status-dot status-dot--online"></span>
+                      Preview :5173
+                    </span>
+                  </div>
+                  <div class="vignette-controls">
+                    <button type="button" class="vctrl-btn" data-v-toggle aria-label="Pause animation" title="Pause / Play">
+                      <svg class="icon-pause" width="11" height="11" viewBox="0 0 12 12" fill="currentColor"><rect x="2.2" y="2" width="2.6" height="8" rx="0.6"/><rect x="7.2" y="2" width="2.6" height="8" rx="0.6"/></svg>
+                      <svg class="icon-play is-hidden" width="11" height="11" viewBox="0 0 12 12" fill="currentColor"><path d="M3 2.2L10 6 3 9.8V2.2z"/></svg>
+                    </button>
+                    <button type="button" class="vctrl-btn" data-v-replay aria-label="Replay animation" title="Replay">
+                      <svg width="11" height="11" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2.5 7a4.5 4.5 0 101.2-3.1L2.5 5M2.5 2.4V5h2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </button>
+                  </div>
+                </div>
+
+                <div class="mini-canvas demo-preview">
+                  <div class="pv-panel" data-pv-code-pane>
+                    <div class="pv-chat-line">Built the release tracker and started the dev server on port 5173:</div>
+                    <pre class="pv-term mono"><code>$ npm run dev -- --port 5173
+  VITE v6.3.0  ready in 148 ms
+  ➜  Local:   http://localhost:5173/
+  ➜  Preview: Ready in adjacent tab</code></pre>
+                    <div class="pv-open-chip" data-pv-open-chip>Open live preview :5173 →</div>
+                  </div>
+
+                  <div class="pv-panel pv-app is-hidden" data-pv-app-pane>
+                    <div class="pv-app-head">
+                      <span class="pv-app-name">Release Tracker</span>
+                      <span class="pv-app-pill tabular">v2.4 · 3 / 4 done</span>
+                    </div>
+                    <div class="pv-tracker-list">
+                      <div class="pv-task is-done"><span class="pv-check">✓</span><span>Verify retry jitter tests</span><span class="tabular muted">09:12</span></div>
+                      <div class="pv-task is-done"><span class="pv-check">✓</span><span>Update cloud volume snapshots</span><span class="tabular muted">10:04</span></div>
+                      <div class="pv-task is-done"><span class="pv-check">✓</span><span>Run Linux AppImage build</span><span class="tabular muted">11:28</span></div>
+                      <div class="pv-task" data-pv-task-toggle><span class="pv-check" data-pv-task-box></span><span>Publish changelog notes</span><span class="tabular muted">Next</span></div>
+                    </div>
+                  </div>
+                  <div class="sim-cursor" data-cursor aria-hidden="true"></div>
+                </div>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. Always-On Autonomy Strip (Three Proof Cards) -->
+    <section id="autonomy" class="section">
+      <div class="container">
+        <div class="section-intro">
+          <h2 class="section-heading">Your laptop sleeps. Your agents stay on.</h2>
+          <p class="section-subtitle">
+            Because every assistant runs on a persistent cloud machine, recurring work finishes overnight and alerts reach you the moment something matters.
+          </p>
+        </div>
+
+        <div class="bento-three">
+          <!-- Pillar 1: Scheduled Background Execution -->
+          <article class="bento-card">
+            <div class="bento-card__head">
+              <h3 class="bento-title">Scheduled background execution</h3>
+              <p class="bento-desc">Automated recurring tasks and periodic check-ins run reliably around the clock.</p>
+            </div>
+            <div class="proof-frame proof-schedule">
+              <div class="proof-topbar">
+                <span>Schedule</span>
+                <span class="muted tabular">UTC+0</span>
+              </div>
+              <div class="sched-group">
+                <div class="sched-day">Today</div>
+                <div class="sched-item">
+                  <div class="sched-info">
+                    <div class="sched-name">Inbox triage &amp; summary</div>
+                    <div class="sched-meta tabular">08:00 · Daily</div>
+                  </div>
+                  <button type="button" class="toggle-switch is-on" aria-pressed="true" aria-label="Toggle Inbox triage"></button>
+                </div>
+                <div class="sched-item">
+                  <div class="sched-info">
+                    <div class="sched-name">Morning PR &amp; CI digest</div>
+                    <div class="sched-meta tabular">09:15 · Weekdays</div>
+                  </div>
+                  <button type="button" class="toggle-switch is-on" aria-pressed="true" aria-label="Toggle Morning PR digest"></button>
+                </div>
+              </div>
+
+              <div class="sched-group">
+                <div class="sched-day">Recurring</div>
+                <div class="sched-item">
+                  <div class="sched-info">
+                    <div class="sched-name">Release monitor: vitejs/vite</div>
+                    <div class="sched-meta tabular">Every 2h · Active</div>
+                  </div>
+                  <button type="button" class="toggle-switch is-on" aria-pressed="true" aria-label="Toggle Release monitor"></button>
+                </div>
+                <div class="sched-item">
+                  <div class="sched-info">
+                    <div class="sched-name">Archive merged branches</div>
+                    <div class="sched-meta tabular">Sun 23:00 · Weekly</div>
+                  </div>
+                  <button type="button" class="toggle-switch" aria-pressed="false" aria-label="Toggle Archive merged branches"></button>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Pillar 2: Proactive Outbound Notifications -->
+          <article class="bento-card">
+            <div class="bento-card__head">
+              <h3 class="bento-title">Proactive outbound notifications</h3>
+              <p class="bento-desc">Agents message you first whenever a tracked release ships or a deadline approaches.</p>
+            </div>
+            <div class="proof-frame proof-thread">
+              <div class="proof-topbar">
+                <span>Atlas</span>
+                <span class="status-pill-inline"><span class="status-dot status-dot--online"></span>Watching</span>
+              </div>
+              <div class="thread-body">
+                <div class="tbubble tbubble--user">
+                  Watch Vite 6.3 and ping me ahead of tomorrow's architecture review.
+                  <span class="tbubble-time tabular">18:10</span>
+                </div>
+                <div class="tbubble tbubble--agent">
+                  Tracking <code>vitejs/vite</code> tags and your 10:00 review.
+                  <span class="tbubble-time tabular">18:10</span>
+                </div>
+                <div class="thread-divider"><span>Today</span></div>
+                <div class="tbubble tbubble--agent tbubble--alert">
+                  <div class="tbubble-tag">Release detected</div>
+                  Vite <strong>v6.3.0</strong> just published. SSR resolver defaults changed — impact notes saved to <code>~/notes/vite-63.md</code>.
+                  <span class="tbubble-time tabular">07:42</span>
+                </div>
+                <div class="tbubble tbubble--agent">
+                  Architecture review starts in 15 min. Ready to post the migration diff in <code>#eng</code>.
+                  <span class="tbubble-time tabular">09:45</span>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Pillar 3: Persistent Cross-Session Memory -->
+          <article class="bento-card">
+            <div class="bento-card__head">
+              <h3 class="bento-title">Persistent cross-session memory</h3>
+              <p class="bento-desc">Conversations keep long-term continuity across weeks instead of resetting each session.</p>
+            </div>
+            <div class="proof-frame proof-memory">
+              <div class="proof-topbar">
+                <span>Session · #418 follow-up</span>
+                <span class="muted">~/memory</span>
+              </div>
+              <div class="thread-body">
+                <div class="tbubble tbubble--user">
+                  Why did we revert the pooler change from PR #418 last month?
+                </div>
+                <div class="mem-step">
+                  <span class="mem-step-dot"></span>
+                  <span>Searched <code>~/memory/decisions.md</code> · 1 match</span>
+                </div>
+                <div class="tbubble tbubble--agent">
+                  PR #418 triggered prepared-statement collisions under PgBouncer transaction mode. We deferred it until per-tenant statement caching is disabled.
+                </div>
+                <div class="tbubble tbubble--user">
+                  Record that constraint in our persistent memory before the Q3 upgrade.
+                </div>
+                <div class="mem-step mem-step--saved">
+                  <span class="mem-step-dot mem-step-dot--green"></span>
+                  <span>Appended to <code>~/memory/db-notes.md</code> (+4 lines)</span>
+                </div>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. Omnichannel Access Strip -->
+    <section id="channels" class="section">
+      <div class="container">
+        <div class="section-intro">
+          <h2 class="section-heading">One agent, reachable from any app</h2>
+          <p class="section-subtitle">
+            Continue the exact same conversation from the native desktop client or whichever messaging platform you already keep open.
+          </p>
+        </div>
+
+        <div class="channels-grid">
+          <!-- Channel 1: Native desktop client -->
+          <figure class="channel-item">
+            <div class="channel-card">
+              <div class="ch-frame ch-desktop">
+                <div class="ch-desk-bar">
+                  <div class="window-dots window-dots--sm">
+                    <span class="dot dot--red"></span><span class="dot dot--yellow"></span><span class="dot dot--green"></span>
+                  </div>
+                  <span>Memoh</span>
+                </div>
+                <div class="ch-desk-body">
+                  <div class="ch-desk-rail">
+                    <span class="rail-dot is-active"></span>
+                    <span class="rail-dot"></span>
+                    <span class="rail-dot"></span>
+                  </div>
+                  <div class="ch-desk-chat">
+                    <div class="ch-line ch-line--dim">~/workspace/api</div>
+                    <div class="ch-msg ch-msg--u">Run integration tests on staging</div>
+                    <div class="ch-msg ch-msg--a">All 42 suites passed in 18.4s. Build artifact is ready.</div>
+                    <div class="ch-input-bar">Reply to Atlas…</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <figcaption class="channel-caption">Native desktop client</figcaption>
+          </figure>
+
+          <!-- Channel 2: Telegram -->
+          <figure class="channel-item">
+            <div class="channel-card">
+              <div class="ch-frame ch-telegram">
+                <div class="ch-tg-head">
+                  <span class="ch-back">‹</span>
+                  <span class="ch-avatar ch-avatar--tg">A</span>
+                  <div>
+                    <div class="ch-name">Atlas Bot</div>
+                    <div class="ch-status ch-status--blue">online</div>
+                  </div>
+                </div>
+                <div class="ch-tg-body">
+                  <div class="tg-msg tg-msg--out">Status on tonight's deploy?<span class="tg-meta tabular">21:14 ✓✓</span></div>
+                  <div class="tg-msg tg-msg--in">Canary healthy at 0.02% error rate. Promoting to 100% now.<span class="tg-meta tabular">21:14</span></div>
+                  <div class="tg-msg tg-msg--in">Production rollout complete.<span class="tg-meta tabular">21:17</span></div>
+                  <div class="tg-bar">Message</div>
+                </div>
+              </div>
+            </div>
+            <figcaption class="channel-caption">Telegram</figcaption>
+          </figure>
+
+          <!-- Channel 3: WeChat -->
+          <figure class="channel-item">
+            <div class="channel-card">
+              <div class="ch-frame ch-wechat">
+                <div class="ch-wc-head">
+                  <span class="ch-back">‹</span>
+                  <span class="ch-name">Memoh Atlas</span>
+                  <span class="ch-dots">···</span>
+                </div>
+                <div class="ch-wc-body">
+                  <div class="wc-row wc-row--out">
+                    <div class="wc-bubble wc-bubble--out">Summarize today's customer tickets</div>
+                  </div>
+                  <div class="wc-row wc-row--in">
+                    <span class="ch-avatar ch-avatar--wc">M</span>
+                    <div class="wc-bubble wc-bubble--in">14 tickets resolved. 2 billing questions flagged for morning review.</div>
+                  </div>
+                  <div class="wc-bar">Hold to talk</div>
+                </div>
+              </div>
+            </div>
+            <figcaption class="channel-caption">WeChat</figcaption>
+          </figure>
+
+          <!-- Channel 4: Discord -->
+          <figure class="channel-item">
+            <div class="channel-card">
+              <div class="ch-frame ch-discord">
+                <div class="ch-dc-head">
+                  <span class="dc-hash">#</span>
+                  <span class="ch-name">ops-agent</span>
+                </div>
+                <div class="ch-dc-body">
+                  <div class="dc-msg">
+                    <span class="ch-avatar ch-avatar--dc">A</span>
+                    <div class="dc-content">
+                      <div class="dc-author">Atlas <span class="dc-tag">APP</span> <span class="dc-time tabular">14:22</span></div>
+                      <div class="dc-embed">
+                        <div class="dc-embed-title">Nightly benchmark complete</div>
+                        <div class="dc-embed-text">P99 dropped 19ms after index rebuild on replica-02.</div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="dc-msg">
+                    <span class="ch-avatar ch-avatar--dc-user">K</span>
+                    <div class="dc-content">
+                      <div class="dc-author">kai <span class="dc-time tabular">14:23</span></div>
+                      <div class="dc-plain">Ship the same migration to replica-03 tonight.</div>
+                    </div>
+                  </div>
+                  <div class="dc-bar">Message #ops-agent</div>
+                </div>
+              </div>
+            </div>
+            <figcaption class="channel-caption">Discord</figcaption>
+          </figure>
+        </div>
+
+        <!-- Additional Integrations Row -->
+        <div class="integrations-wrap">
+          <p class="integrations-label">Also available on the messaging tools your team uses every day</p>
+          <div class="integrations-row" aria-label="Supported messaging platforms">
+            <!-- Telegram -->
+            <div class="int-tile" title="Telegram" aria-label="Telegram">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <circle cx="12" cy="12" r="10" fill="#26A5E4"/>
+                <path d="M16.9 7.8l-1.8 8.6c-.1.6-.5.7-1 .4l-2.7-2-1.3 1.3c-.1.1-.3.3-.6.3l.2-2.8 5-4.5c.2-.2 0-.3-.3-.1l-6.2 3.9-2.7-.8c-.6-.2-.6-.6.1-.9l10.5-4.1c.5-.2.9.1.8.7z" fill="#fff"/>
+              </svg>
+            </div>
+            <!-- Discord -->
+            <div class="int-tile" title="Discord" aria-label="Discord">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <path d="M19.27 5.33A16.8 16.8 0 0015.1 4c-.18.32-.39.76-.53 1.1a15.5 15.5 0 00-5.14 0C9.29 4.76 9.08 4.32 8.9 4a16.8 16.8 0 00-4.17 1.33C2.1 9.28 1.38 13.13 1.74 16.92a17 17 0 005.12 2.6c.41-.57.78-1.18 1.1-1.82-.6-.23-1.18-.52-1.72-.85.14-.11.29-.22.42-.34 3.32 1.54 6.92 1.54 10.2 0 .14.12.28.23.42.34-.54.33-1.12.62-1.72.85.32.64.69 1.25 1.1 1.82a16.9 16.9 0 005.12-2.6c.43-4.4-.72-8.21-2.51-11.59zM8.68 14.6c-.98 0-1.79-.91-1.79-2.02 0-1.11.79-2.02 1.79-2.02s1.81.91 1.79 2.02c0 1.11-.79 2.02-1.79 2.02zm6.64 0c-.98 0-1.79-.91-1.79-2.02 0-1.11.79-2.02 1.79-2.02s1.81.91 1.79 2.02c0 1.11-.79 2.02-1.79 2.02z" fill="#5865F2"/>
+              </svg>
+            </div>
+            <!-- Slack -->
+            <div class="int-tile" title="Slack" aria-label="Slack">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <path d="M6.2 14.5a1.8 1.8 0 11-1.8-1.8h1.8v1.8zm.9 0a1.8 1.8 0 113.6 0v4.5a1.8 1.8 0 11-3.6 0v-4.5z" fill="#E01E5A"/>
+                <path d="M9.5 6.2a1.8 1.8 0 111.8-1.8v1.8H9.5zm0 .9a1.8 1.8 0 110 3.6H5a1.8 1.8 0 110-3.6h4.5z" fill="#36C5F0"/>
+                <path d="M17.8 9.5a1.8 1.8 0 111.8 1.8h-1.8V9.5zm-.9 0a1.8 1.8 0 11-3.6 0V5a1.8 1.8 0 113.6 0v4.5z" fill="#2EB67D"/>
+                <path d="M14.5 17.8a1.8 1.8 0 11-1.8 1.8v-1.8h1.8zm0-.9a1.8 1.8 0 110-3.6H19a1.8 1.8 0 110 3.6h-4.5z" fill="#ECB22E"/>
+              </svg>
+            </div>
+            <!-- WeChat -->
+            <div class="int-tile" title="WeChat" aria-label="WeChat">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <path d="M9.5 4.5C5.9 4.5 3 6.9 3 9.9c0 1.7.9 3.2 2.4 4.2l-.6 1.9 2.2-1.1c.8.2 1.6.4 2.5.4.3 0 .5 0 .8-.1-.2-.5-.3-1.1-.3-1.7 0-2.7 2.5-4.9 5.7-4.9h.4C15.5 6.2 12.8 4.5 9.5 4.5z" fill="#07C160"/>
+                <path d="M15.8 9.6c-2.8 0-5.1 1.9-5.1 4.2s2.3 4.2 5.1 4.2c.7 0 1.4-.1 2-.3l1.7.9-.5-1.5c1.2-.8 1.9-2 1.9-3.3 0-2.3-2.3-4.2-5.1-4.2z" fill="#07C160"/>
+                <circle cx="7.4" cy="8.8" r="0.8" fill="#121215"/><circle cx="11.4" cy="8.8" r="0.8" fill="#121215"/>
+                <circle cx="14.2" cy="13.2" r="0.7" fill="#121215"/><circle cx="17.4" cy="13.2" r="0.7" fill="#121215"/>
+              </svg>
+            </div>
+            <!-- Lark -->
+            <div class="int-tile" title="Lark" aria-label="Lark">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <path d="M4.5 7.2L15.8 4l-3.6 7.4L4.5 7.2z" fill="#00D6B9"/>
+                <path d="M4.5 7.2l7.7 4.2-1.6 8.2-6.1-5.7V7.2z" fill="#3370FF"/>
+                <path d="M12.2 11.4L19.5 14l-8.9 5.6 1.6-8.2z" fill="#1456F0"/>
+              </svg>
+            </div>
+            <!-- QQ -->
+            <div class="int-tile" title="QQ" aria-label="QQ">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <path d="M12 3.5c-3.1 0-4.9 2.3-4.9 5.5 0 .4 0 .8.1 1.2-1.1 1.1-1.9 2.7-1.9 4.1 0 .9.5 1.3 1.1.8.4-.3.8-.9 1.1-1.4.4 1.2 1.1 2.2 2 2.8-.8.3-1.4.8-1.4 1.3 0 .6.9 1.1 2.2 1.1.9 0 1.4-.2 1.7-.5.3.3.8.5 1.7.5 1.3 0 2.2-.5 2.2-1.1 0-.5-.6-1-1.4-1.3.9-.6 1.6-1.6 2-2.8.3.5.7 1.1 1.1 1.4.6.5 1.1.1 1.1-.8 0-1.4-.8-3-1.9-4.1.1-.4.1-.8.1-1.2 0-3.2-1.8-5.5-4.9-5.5z" fill="#12B7F5"/>
+                <ellipse cx="12" cy="10.2" rx="2.8" ry="1.1" fill="#FDB927"/>
+              </svg>
+            </div>
+            <!-- LINE -->
+            <div class="int-tile" title="LINE" aria-label="LINE">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <path d="M19.8 10.7c0-3.7-3.5-6.7-7.8-6.7S4.2 7 4.2 10.7c0 3.3 2.8 6.1 6.7 6.6.3.1.6.2.7.5.1.2.1.6 0 .8l-.2.9c-.1.3-.3 1.1 1 .6 1.2-.5 6.5-3.8 7.4-6.6.4-.9.6-1.8.6-2.8z" fill="#06C755"/>
+                <path d="M8.5 9.2v3h1.6M11.1 9.2v3M12.5 12.2v-3l2 3v-3M16.9 9.2h-1.4v3h1.4M15.5 10.7h1.2" stroke="#fff" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. Pricing Tiers -->
+    <section id="pricing" class="section">
+      <div class="container">
+        <div class="section-intro section-intro--compact">
+          <h2 class="section-heading">Simple, transparent pricing</h2>
+        </div>
+
+        <div class="pricing-grid">
+          <!-- Tier 1: Go (Highlighted) -->
+          <article class="pricing-card pricing-card--featured">
+            <div class="pricing-head">
+              <div class="pricing-title-row">
+                <h3 class="pricing-name">Go</h3>
+                <span class="tier-badge">Recommended</span>
+              </div>
+              <p class="pricing-summary">For everyday conversations and light autonomous tasks.</p>
+            </div>
+            <div class="pricing-price">
+              <span class="price-figure tabular">$5</span>
+              <span class="price-period">/ month</span>
+            </div>
+            <ul class="pricing-list">
+              <li class="is-key"><span class="chk" aria-hidden="true">✓</span><span><strong class="tabular">8</strong> total CPU cores</span></li>
+              <li class="is-key"><span class="chk" aria-hidden="true">✓</span><span><strong class="tabular">16 GB</strong> total RAM</span></li>
+              <li class="is-key"><span class="chk" aria-hidden="true">✓</span><span><strong class="tabular">2,500</strong> monthly token credits</span></li>
+              <li class="is-key"><span class="chk" aria-hidden="true">✓</span><span><strong class="tabular">40 GB</strong> persistent volume storage <span class="muted-paren">(excl. root filesystem)</span></span></li>
+              <li class="is-sub"><span class="chk" aria-hidden="true">✓</span><span>Up to 1 member</span></li>
+              <li class="is-sub"><span class="chk" aria-hidden="true">✓</span><span>Unlimited bots</span></li>
+              <li class="is-sub"><span class="chk" aria-hidden="true">✓</span><span>Multi-model access (DeepSeek, Kimi, GPT, Claude &amp; more)</span></li>
+            </ul>
+            <a href="#cta" class="card-btn card-btn--primary">Get started with Go</a>
+          </article>
+
+          <!-- Tier 2: Pro -->
+          <article class="pricing-card">
+            <div class="pricing-head">
+              <div class="pricing-title-row">
+                <h3 class="pricing-name">Pro</h3>
+              </div>
+              <p class="pricing-summary">For daily productivity and always-ready cloud workflows.</p>
+            </div>
+            <div class="pricing-price">
+              <span class="price-figure tabular">$60</span>
+              <span class="price-period">/ month</span>
+            </div>
+            <ul class="pricing-list">
+              <li class="is-key"><span class="chk" aria-hidden="true">✓</span><span><strong class="tabular">16</strong> total CPU cores</span></li>
+              <li class="is-key"><span class="chk" aria-hidden="true">✓</span><span><strong class="tabular">32 GB</strong> total RAM</span></li>
+              <li class="is-key"><span class="chk" aria-hidden="true">✓</span><span><strong class="tabular">30,000</strong> monthly token credits</span></li>
+              <li class="is-key"><span class="chk" aria-hidden="true">✓</span><span><strong class="tabular">120 GB</strong> persistent volume storage</span></li>
+              <li class="is-sub"><span class="chk" aria-hidden="true">✓</span><span>Up to 3 members</span></li>
+              <li class="is-sub"><span class="chk" aria-hidden="true">✓</span><span>Everything included in Go</span></li>
+            </ul>
+            <a href="#cta" class="card-btn">Get started with Pro</a>
+          </article>
+
+          <!-- Tier 3: Premium -->
+          <article class="pricing-card">
+            <div class="pricing-head">
+              <div class="pricing-title-row">
+                <h3 class="pricing-name">Premium</h3>
+              </div>
+              <p class="pricing-summary">For demanding compute workloads and larger groups.</p>
+            </div>
+            <div class="pricing-price">
+              <span class="price-figure tabular">$150</span>
+              <span class="price-period">/ month</span>
+            </div>
+            <ul class="pricing-list">
+              <li class="is-key"><span class="chk" aria-hidden="true">✓</span><span><strong class="tabular">32</strong> total CPU cores</span></li>
+              <li class="is-key"><span class="chk" aria-hidden="true">✓</span><span><strong class="tabular">64 GB</strong> total RAM</span></li>
+              <li class="is-key"><span class="chk" aria-hidden="true">✓</span><span><strong class="tabular">75,000</strong> monthly token credits</span></li>
+              <li class="is-key"><span class="chk" aria-hidden="true">✓</span><span><strong class="tabular">300 GB</strong> persistent volume storage</span></li>
+              <li class="is-sub"><span class="chk" aria-hidden="true">✓</span><span>Up to 8 members</span></li>
+              <li class="is-sub"><span class="chk" aria-hidden="true">✓</span><span>Everything included in Pro</span></li>
+            </ul>
+            <a href="#cta" class="card-btn">Get started with Premium</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. Closing Conversion Band -->
+    <section id="cta" class="closing-section">
+      <div class="container closing-inner">
+        <h2 class="section-heading">Start running agents in the cloud</h2>
+        <p class="section-subtitle">
+          Launch Memoh directly in your browser or install the native desktop app for your system.
+        </p>
+
+        <div class="cta-pair">
+          <a href="#top" class="btn-pill btn-pill--primary">
+            <span>Launch web app</span>
+            <svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true">
+              <path d="M3.5 8h9M8.5 4l4 4-4 4" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+
+          <div class="split-pill split-pill--dark" data-dropdown data-os-split="closing">
+            <a href="#cta" class="split-pill__main" data-os-download-link>
+              <svg class="os-icon" width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+                <path d="M8 2.5v7.5M5 7.5L8 10.5l3-3M3 13h10" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              <span data-os-cta-label>Download AppImage (Linux)</span>
+            </a>
+            <button type="button" class="split-pill__caret" aria-label="Choose installer format" aria-expanded="false" data-dropdown-trigger>
+              <svg class="chevron" width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true">
+                <path d="M3 4.5L6 7.5L9 4.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+            <div class="dropdown-menu dropdown-menu--right dropdown-menu--up" data-dropdown-menu>
+              <button type="button" class="dropdown-item" data-os-choice="linux-appimage" data-os-text="Download for Linux" data-os-cta="Download AppImage (Linux)">
+                <span>Linux (AppImage)</span><span class="dropdown-meta">v0.9.4</span>
+              </button>
+              <button type="button" class="dropdown-item" data-os-choice="linux-deb" data-os-text="Download for Linux (.deb)" data-os-cta="Download .deb (Linux)">
+                <span>Linux (.deb)</span><span class="dropdown-meta">v0.9.4</span>
+              </button>
+              <button type="button" class="dropdown-item" data-os-choice="macos-arm" data-os-text="Download for macOS" data-os-cta="Download .dmg (Apple Silicon)">
+                <span>macOS (Apple Silicon)</span><span class="dropdown-meta">v0.9.4</span>
+              </button>
+              <button type="button" class="dropdown-item" data-os-choice="macos-intel" data-os-text="Download for macOS" data-os-cta="Download .dmg (Intel)">
+                <span>macOS (Intel)</span><span class="dropdown-meta">v0.9.4</span>
+              </button>
+              <button type="button" class="dropdown-item" data-os-choice="windows" data-os-text="Download for Windows" data-os-cta="Download .exe (Windows)">
+                <span>Windows (x64)</span><span class="dropdown-meta">v0.9.4</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- 7. Multi-Column Footer -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a href="#top" class="brand-lockup" aria-label="Memoh home">
+            <svg class="brand-mark" width="21" height="21" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M4.5 8.2L7.2 4.5L10.1 7.1C11.3 6.8 12.7 6.8 13.9 7.1L16.8 4.5L19.5 8.2C20.2 9.6 20.5 11.2 20.5 13C20.5 17.2 16.9 19.5 12 19.5C7.1 19.5 3.5 17.2 3.5 13C3.5 11.2 3.8 9.6 4.5 8.2Z" stroke="currentColor" stroke-width="1.65" stroke-linejoin="round"/>
+              <circle cx="9.2" cy="12.8" r="1.15" fill="currentColor"/>
+              <circle cx="14.8" cy="12.8" r="1.15" fill="currentColor"/>
+              <path d="M10.7 15.4C11.4 15.9 12.6 15.9 13.3 15.4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+            </svg>
+            <span class="brand-name">Memoh</span>
+          </a>
+          <p class="footer-tagline">
+            Cloud-first multi-agent computers with dedicated desktops, persistent filesystems, and always-on autonomy.
+          </p>
+        </div>
+
+        <div class="footer-directory">
+          <div class="footer-col">
+            <h3 class="footer-col-title">Product</h3>
+            <ul>
+              <li><a href="#cta">Download</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-col">
+            <h3 class="footer-col-title">Resources</h3>
+            <ul>
+              <li><a href="#capabilities">Docs</a></li>
+              <li><a href="#autonomy">Blog</a></li>
+              <li><a href="#capabilities">Releases</a></li>
+              <li><a href="#capabilities">Contributing</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-col">
+            <h3 class="footer-col-title">Support</h3>
+            <ul>
+              <li><a href="#channels">Help Center</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-col">
+            <h3 class="footer-col-title">Community</h3>
+            <ul>
+              <li><a href="https://github.com/memoh-ai/memoh" target="_blank" rel="noreferrer">GitHub</a></li>
+              <li><a href="https://github.com/memoh-ai/memoh/discussions" target="_blank" rel="noreferrer">Discussions</a></li>
+              <li><a href="https://github.com/memoh-ai/memoh/issues" target="_blank" rel="noreferrer">Issue tracker</a></li>
+              <li><a href="mailto:hello@memoh.ai">hello@memoh.ai</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-col">
+            <h3 class="footer-col-title">Social</h3>
+            <ul>
+              <li><a href="https://x.com" target="_blank" rel="noreferrer">X</a></li>
+              <li><a href="https://t.me" target="_blank" rel="noreferrer">Telegram</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-col">
+            <h3 class="footer-col-title">Ecosystem</h3>
+            <ul>
+              <li><a href="#top">Twilight AI</a></li>
+              <li><a href="#top">Connect It</a></li>
+              <li><a href="#top">Felinic UI</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-col">
+            <h3 class="footer-col-title">Legal</h3>
+            <ul>
+              <li><a href="#top">Service Agreement</a></li>
+              <li><a href="#top">Privacy Policy</a></li>
+              <li><a href="#top">Cross-Border Data Transfer Terms</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p class="copyright">© 2026 Memoh AI. All rights reserved.</p>
+        <div class="footer-socials">
+          <a href="https://github.com/memoh-ai/memoh" target="_blank" rel="noreferrer" aria-label="GitHub">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+          </a>
+          <a href="https://t.me" target="_blank" rel="noreferrer" aria-label="Telegram">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M21.2 4.6L2.9 11.7c-.8.3-.8 1.4 0 1.7l4.6 1.6 1.8 5.4c.2.6 1 .7 1.4.2l2.6-2.9 4.7 3.4c.6.4 1.5.1 1.7-.6L22.5 5.8c.2-.9-.6-1.5-1.3-1.2z"/><path d="M7.5 15L19.5 6.8"/></svg>
+          </a>
+          <a href="https://x.com" target="_blank" rel="noreferrer" aria-label="X">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Interactive Ambient Epilogue -->
+  <section class="epilogue" aria-label="Nocturnal ambient epilogue">
+    <div class="epilogue-stage">
+      <img src="./assets/epilogue-night.jpg" alt="Quiet riverside night overlook with a silhouetted cat watching distant city lights" class="epilogue-art">
+      <div class="epilogue-fade-top" aria-hidden="true"></div>
+      <canvas class="epilogue-fireflies" id="epilogueCanvas" aria-hidden="true"></canvas>
+
+      <!-- Hidden Clickable Hotspots -->
+      <button type="button" class="hotspot hotspot--cat" data-hotspot="cat" aria-label="Inspect hillside cat">
+        <span class="hotspot-ring"></span>
+      </button>
+      <button type="button" class="hotspot hotspot--train" data-hotspot="train" aria-label="Inspect night train">
+        <span class="hotspot-ring"></span>
+      </button>
+      <button type="button" class="hotspot hotspot--city" data-hotspot="city" aria-label="Inspect distant city">
+        <span class="hotspot-ring"></span>
+      </button>
+
+      <div class="epilogue-whisper" id="epilogueWhisper" role="status" aria-live="polite"></div>
+    </div>
+  </section>
+
+  <script src="./script.js" defer></script>
+</body>
+</html>

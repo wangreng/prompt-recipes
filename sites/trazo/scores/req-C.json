@@ -1,0 +1,7 @@
+{
+ "score": 97,
+ "sections": 50,
+ "interactions": 29,
+ "quality": 18,
+ "gaps": "Copy buttons report Copied even when clipboard copying fails. Map lightbox does not trap keyboard focus, allowing navigation to hidden background controls."
+}

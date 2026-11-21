@@ -1,0 +1,7 @@
+{
+ "score": 98,
+ "sections": 50,
+ "interactions": 30,
+ "quality": 18,
+ "gaps": "Demo automatically approves critical actions after two seconds, contradicting the stated requirement for user approval. Beta signup reports success without saving or submitting the application."
+}

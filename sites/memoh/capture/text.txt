@@ -1,0 +1,255 @@
+Memoh
+Docs
+Pricing
+Blog
+Help
+2.8K
+EN
+Give your agent a cloud computer
+
+Memoh is a cloud-first multi-agent platform.
+Every agent has its own desktop, files, and network, running 24/7.
+
+Get Started
+Download for Linux
+A computer of its own
+
+Every agent gets its own desktop, files, and network on a real computer that runs 24/7.
+
+Bring your own agent
+
+Deploy your Codex, Claude Code, or other ACP-compatible agents to a Memoh cloud computer. Use your own subscription or models provided by Memoh.
+
+New Session
+Where should we begin?
+What would you like to do?
+DeepSeek V4.1 Flash
+Cloud Computer
+Daily Planner
+Memoh
+Let it work. Take over anytime.
+
+Let it use its desktop to browse websites, search for videos, and operate apps. Follow along anytime, or take over the desktop and continue yourself.
+
+New Session
+Desktop
+What would you like to do?
+Default
+Alex's Mac Mini
+Research Notes
+Memoh
+Applications
+Chromium
+12:30
+Google - Chromium
+− □ ×
+Google
+google.com
+Google
+Every tool, hosted in one place
+
+Manage dependency packages, app connectors, and agent skills with one click. Everything is hosted on the cloud computer, ready for your agent to use.
+
+Supermarket
+Search Packages…
+Installed
+Claude Code
+Memoh
+Codex
+Memoh
+Node.js
+Memoh
+Supermarket
+uv
+Python package and project manager.
+Memoh
+A
+Alex Chen
+Where should we begin?
+What would you like to do?
+DeepSeek V4.1 Flash
+Alex's Mac Mini
+Design Studio
+Memoh
+Build in the cloud. Preview anytime.
+
+Write code and run your development environment entirely on the cloud computer. Open a preview anytime to explore and try out the app as it takes shape.
+
+Reading list
+What would you like to do?
+Default
+Cloud Computer
+Reading Tracker
+Memoh
+Always on, even when you're not
+
+It runs in the cloud. Your laptop sleeps — it doesn't. When something needs your attention, it finds you.
+
+Runs on its own
+
+Scheduled tasks and check-ins, no human trigger needed.
+
+Today
+
+Tidy inbox
+
+21:00
+
+Every day
+
+Tomorrow
+
+Morning digest
+
+09:00
+
+Every day
+
+Watch releases
+
+18:00
+
+Weekdays
+
+Reaches out first
+
+When something matters, it messages you first.
+
+Felinic
+
+online
+
+Ping me when that release ships
+
+Yesterday 23:14
+
+Sure — watching it now.
+
+Yesterday 23:14
+
+The release you were watching just shipped — I've filed the changes in your workspace.
+
+09:02
+
+Heads-up: design review at 3 — I've pulled up your notes from last time.
+
+14:20
+
+Picks up where it left off
+
+Sessions don't reset. It continues from last time.
+
+Whatever happened with that PR?
+
+Search memory
+last week · that PR
+
+Found it — merged this morning, third pass on the same one.
+
+Jot down the key points so we can pick up later
+
+Write
+MEMORY.md
+
+Saved. Next time I'll start right where we left off.
+
+Talk to it from anywhere
+
+One agent, every channel.
+
+Felinic
+Desktop
+
+Felinic
+
+online
+
+Telegram
+
+Felinic
+
+WeChat
+# general
+Discord
+
+And more
+
+Pricing
+Go
+Recommended
+
+For everyday conversations and lighter tasks.
+
+$5
+/mo
+
+8 CPU cores total
+16 GB RAM total
+2500 credits for tokens / month
+40 GB persistent volume storage total (excluding rootfs)
+Up to 1 member
+Create unlimited Bots
+Use DeepSeek, Kimi, GPT, Claude, and more
+Get Started
+Pro
+
+For daily work and always-ready agents.
+
+$60
+/mo
+
+16 CPU cores total
+32 GB RAM total
+30000 credits for tokens / month
+120 GB persistent volume storage total (excluding rootfs)
+Up to 3 members
+Everything in Go
+Get Started
+Premium
+
+More compute and room for demanding work.
+
+$150
+/mo
+
+32 CPU cores total
+64 GB RAM total
+75000 credits for tokens / month
+300 GB persistent volume storage total (excluding rootfs)
+Up to 8 members
+Everything in Pro
+Get Started
+Try Memoh
+Get Started
+Linux AppImage (x86_64)
+Memoh
+
+The multi-agent platform
+where every agent has its own computer, always on
+
+Product
+Download
+Resources
+Docs
+Blog
+Releases
+Contributing
+Support
+Help Center
+Community
+GitHub
+Discussions
+Report an issue
+Business contact
+Social
+X
+Telegram
+Ecosystem
+Twilight AI
+Connect It
+Felinic UI
+Legal
+Service Agreement
+Privacy Policy
+Cross-Border Data Transfer Terms
+© 2026 MEMOH AI PTE. LTD. All rights reserved.

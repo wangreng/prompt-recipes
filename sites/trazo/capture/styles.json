@@ -1,0 +1,195 @@
+{
+ "styles": {
+  "h1": {
+   "font": "Caveat, \"Caveat Fallback\"",
+   "size": "56px",
+   "weight": "700",
+   "lh": "57.68px",
+   "ls": "normal",
+   "color": "rgb(24, 23, 21)",
+   "bg": "rgba(0, 0, 0, 0)",
+   "radius": "0px",
+   "border": "0px solid rgb(228, 228, 231)",
+   "shadow": "none",
+   "transform": "none"
+  },
+  "p": {
+   "font": "Caveat, \"Caveat Fallback\"",
+   "size": "24px",
+   "weight": "400",
+   "lh": "30px",
+   "ls": "normal",
+   "color": "rgb(104, 102, 98)",
+   "bg": "rgba(0, 0, 0, 0)",
+   "radius": "0px",
+   "border": "0px solid rgb(228, 228, 231)",
+   "shadow": "none",
+   "transform": "none"
+  },
+  "a": {
+   "font": "\"DM Sans\", \"DM Sans Fallback\"",
+   "size": "12px",
+   "weight": "400",
+   "lh": "16px",
+   "ls": "normal",
+   "color": "rgb(104, 102, 98)",
+   "bg": "rgba(0, 0, 0, 0)",
+   "radius": "14px",
+   "border": "0px solid rgb(228, 228, 231)",
+   "shadow": "none",
+   "transform": "none"
+  },
+  "button": {
+   "font": "\"Geist Mono\", \"Geist Mono Fallback\"",
+   "size": "11px",
+   "weight": "400",
+   "lh": "16.5px",
+   "ls": "normal",
+   "color": "rgb(24, 23, 21)",
+   "bg": "rgba(0, 0, 0, 0)",
+   "radius": "8px",
+   "border": "0px solid rgb(228, 228, 231)",
+   "shadow": "none",
+   "transform": "none"
+  },
+  "nav": {
+   "font": "\"DM Sans\", \"DM Sans Fallback\"",
+   "size": "16px",
+   "weight": "400",
+   "lh": "24px",
+   "ls": "normal",
+   "color": "rgb(24, 23, 21)",
+   "bg": "rgba(0, 0, 0, 0)",
+   "radius": "0px",
+   "border": "0px solid rgb(228, 228, 231)",
+   "shadow": "none",
+   "transform": "none"
+  },
+  "header": {
+   "font": "\"DM Sans\", \"DM Sans Fallback\"",
+   "size": "16px",
+   "weight": "400",
+   "lh": "24px",
+   "ls": "normal",
+   "color": "rgb(24, 23, 21)",
+   "bg": "rgba(0, 0, 0, 0)",
+   "radius": "0px",
+   "border": "0px solid rgb(228, 228, 231)",
+   "shadow": "none",
+   "transform": "none"
+  },
+  "section": {
+   "font": "\"DM Sans\", \"DM Sans Fallback\"",
+   "size": "16px",
+   "weight": "400",
+   "lh": "24px",
+   "ls": "normal",
+   "color": "rgb(24, 23, 21)",
+   "bg": "rgba(0, 0, 0, 0)",
+   "radius": "0px",
+   "border": "0px solid rgb(228, 228, 231)",
+   "shadow": "none",
+   "transform": "none"
+  }
+ },
+ "colors": [
+  [
+   "rgb(228, 228, 231)",
+   1353
+  ],
+  [
+   "rgb(24, 23, 21)",
+   1315
+  ],
+  [
+   "rgb(255, 255, 255)",
+   77
+  ],
+  [
+   "rgb(104, 102, 98)",
+   23
+  ],
+  [
+   "oklab(0.510803 0.000656828 0.00668791 / 0.65)",
+   7
+  ],
+  [
+   "oklab(0.999994 0.0000455678 0.0000200868 / 0.92)",
+   4
+  ],
+  [
+   "oklab(0.510803 0.000656828 0.00668791 / 0.8)",
+   4
+  ],
+  [
+   "oklab(0.510803 0.000656828 0.00668791 / 0.85)",
+   1
+  ],
+  [
+   "oklab(0.999994 0.0000455678 0.0000200868 / 0.95)",
+   1
+  ],
+  [
+   "oklab(0.967428 0.000417888 -0.00125271 / 0.45)",
+   1
+  ],
+  [
+   "rgb(239, 68, 68)",
+   1
+  ],
+  [
+   "rgb(249, 115, 22)",
+   1
+  ],
+  [
+   "rgb(234, 179, 8)",
+   1
+  ],
+  [
+   "rgb(22, 163, 74)",
+   1
+  ],
+  [
+   "rgb(56, 189, 248)",
+   1
+  ],
+  [
+   "rgb(37, 99, 235)",
+   1
+  ],
+  [
+   "rgb(236, 72, 153)",
+   1
+  ],
+  [
+   "oklab(0.999994 0.0000455677 0.0000200868 / 0.8)",
+   1
+  ],
+  [
+   "oklab(0.999994 0.0000455678 0.0000200868 / 0.15)",
+   1
+  ]
+ ],
+ "fonts": [
+  [
+   "\"DM Sans\", \"DM Sans Fallback\"",
+   1314
+  ],
+  [
+   "\"Geist Mono\", \"Geist Mono Fallback\"",
+   21
+  ],
+  [
+   "Caveat, \"Caveat Fallback\"",
+   18
+  ]
+ ],
+ "images": [],
+ "bgImages": [],
+ "svgCount": 82,
+ "canvas": 0,
+ "video": 0,
+ "animatedEls": 170,
+ "height": 900,
+ "title": "Trazo · Hand-drawn crayon sticker SVGs for React and web"
+}

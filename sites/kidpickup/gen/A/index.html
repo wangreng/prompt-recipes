@@ -1,0 +1,2279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kid Pickup — Calm, shared child-pickup scheduling for your whole circle</title>
+  <meta name="description" content="Replace scattered family group chats with one calm shared calendar where every pickup has one person's name on it — and automatic reminders fire if a ride goes unclaimed.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Reusable Rounded Plum Line Icon Sprite -->
+  <svg aria-hidden="true" style="position:absolute;width:0;height:0;overflow:hidden;">
+    <defs>
+      <symbol id="ico-play" viewBox="0 0 24 24"><polygon points="7 5 19 12 7 19 7 5" fill="currentColor" stroke="currentColor" stroke-linejoin="round"/></symbol>
+      <symbol id="ico-arrow" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></symbol>
+      <symbol id="ico-check" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></symbol>
+      <symbol id="ico-x" viewBox="0 0 24 24"><path d="M18 6L6 18"/><path d="M6 6l12 12"/></symbol>
+      <symbol id="ico-cal" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M16 3v4M8 3v4M3 10h18"/></symbol>
+      <symbol id="ico-bell" viewBox="0 0 24 24"><path d="M18 8a6 6 0 10-12 0c0 7-3 8-3 8h18s-3-1-3-8"/><path d="M13.73 21a2 2 0 01-3.46 0"/></symbol>
+      <symbol id="ico-chat" viewBox="0 0 24 24"><path d="M21 11.5a8.5 8.5 0 01-12.5 7.5L3 20l1.3-4.6A8.5 8.5 0 1121 11.5z"/></symbol>
+      <symbol id="ico-users" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 00-4-4H6a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></symbol>
+      <symbol id="ico-shield" viewBox="0 0 24 24"><path d="M12 3l7 3v6c0 5-3.5 8-7 9-3.5-1-7-4-7-9V6l7-3z"/><path d="M9 12l2 2 4-4"/></symbol>
+      <symbol id="ico-pin-off" viewBox="0 0 24 24"><path d="M12 21s-6-5.4-6-10a6 6 0 0110.2-4.2"/><path d="M18 11c0 1.4-.5 2.8-1.2 4"/><path d="M3 3l18 18"/></symbol>
+      <symbol id="ico-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+      <symbol id="ico-phone" viewBox="0 0 24 24"><rect x="6" y="2.5" width="12" height="19" rx="3"/><path d="M11 18h2"/></symbol>
+      <symbol id="ico-laptop" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="11" rx="2"/><path d="M2 19h20"/></symbol>
+      <symbol id="ico-home" viewBox="0 0 24 24"><path d="M3 10.5L12 3l9 7.5"/><path d="M5 9.5V20h14V9.5"/></symbol>
+      <symbol id="ico-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></symbol>
+      <symbol id="ico-undo" viewBox="0 0 24 24"><path d="M9 14L4 9l5-5"/><path d="M4 9h10.5a5.5 5.5 0 010 11H11"/></symbol>
+      <symbol id="ico-file" viewBox="0 0 24 24"><path d="M14 3H7a2 2 0 00-2 2v14a2 2 0 002 2h10a2 2 0 002-2V8l-5-5z"/><path d="M14 3v5h5"/></symbol>
+      <symbol id="ico-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></symbol>
+      <symbol id="ico-lock" viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="10" rx="2.5"/><path d="M8 11V7a4 4 0 018 0v4"/></symbol>
+      <symbol id="ico-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="M4 7l8 6 8-6"/></symbol>
+      <symbol id="ico-mic" viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0014 0M12 18v3M9 21h6"/></symbol>
+      <symbol id="ico-hand" viewBox="0 0 24 24"><path d="M18 11V6a1.5 1.5 0 00-3 0v4M15 10V4.5a1.5 1.5 0 00-3 0V10M12 10V5.5a1.5 1.5 0 00-3 0V12l-1.8-1.6a1.5 1.5 0 00-2.2 2l3.8 5.2A5 5 0 0012.8 20H14a5 5 0 005-5v-4a1.5 1.5 0 00-1-1.4"/></symbol>
+      <symbol id="ico-split" viewBox="0 0 24 24"><path d="M16 3h5v5M8 3H3v5M12 22v-8.5l8-8M12 13.5L4 5.5"/></symbol>
+      <symbol id="ico-list" viewBox="0 0 24 24"><path d="M9 6h11M9 12h11M9 18h11"/><circle cx="4.5" cy="6" r="1"/><circle cx="4.5" cy="12" r="1"/><circle cx="4.5" cy="18" r="1"/></symbol>
+      <symbol id="ico-sync" viewBox="0 0 24 24"><path d="M21 12a9 9 0 00-15.5-6.3L3 8"/><path d="M3 3v5h5"/><path d="M3 12a9 9 0 0015.5 6.3L21 16"/><path d="M16 16h5v5"/></symbol>
+      <symbol id="ico-spark" viewBox="0 0 24 24"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8L12 3z"/><path d="M19 16l.8 2.2L22 19l-2.2.8L19 22l-.8-2.2L16 19l2.2-.8L19 16z"/></symbol>
+      <symbol id="ico-pin" viewBox="0 0 24 24"><path d="M12 21s-6-5.2-6-10a6 6 0 1112 0c0 4.8-6 10-6 10z"/><circle cx="12" cy="11" r="2.2"/></symbol>
+      <symbol id="ico-heart" viewBox="0 0 24 24"><path d="M12 20.5s-7.5-4.8-9.2-9.2A5.2 5.2 0 0112 6.5a5.2 5.2 0 019.2 4.8c-1.7 4.4-9.2 9.2-9.2 9.2z"/></symbol>
+      <symbol id="ico-alert" viewBox="0 0 24 24"><path d="M12 3L2.8 19a1.2 1.2 0 001 1.8h16.4a1.2 1.2 0 001-1.8L12 3z"/><path d="M12 9v4M12 16.5h.01"/></symbol>
+      <symbol id="ico-trash" viewBox="0 0 24 24"><path d="M4 7h16M9 7V4h6v3M6 7l1 13a2 2 0 002 2h6a2 2 0 002-2l1-13"/></symbol>
+      <symbol id="ico-eye" viewBox="0 0 24 24"><path d="M2 12s3.8-6.5 10-6.5S22 12 22 12s-3.8 6.5-10 6.5S2 12 2 12z"/><circle cx="12" cy="12" r="2.8"/></symbol>
+      <symbol id="ico-star" viewBox="0 0 24 24"><polygon points="12 2.5 15 8.6 21.7 9.6 16.8 14.3 18 21 12 17.8 6 21 7.2 14.3 2.3 9.6 9 8.6 12 2.5" fill="currentColor" stroke="currentColor" stroke-linejoin="round"/></symbol>
+      <symbol id="ico-apple" viewBox="0 0 24 24"><path fill="currentColor" stroke="none" d="M16.6 12.7c0-2.1 1.7-3.1 1.8-3.2-1-1.4-2.5-1.6-3-1.7-1.3-.1-2.5.8-3.1.8-.6 0-1.6-.8-2.7-.7-1.4 0-2.7.8-3.4 2.1-1.5 2.5-.4 6.2 1 8.2.7 1 1.5 2.1 2.6 2 1-.1 1.4-.7 2.7-.7 1.2 0 1.6.7 2.7.6 1.1 0 1.8-1 2.5-2 .8-1.1 1.1-2.2 1.1-2.3 0-.1-2.2-.8-2.2-3.1zM14.5 6.3c.6-.7 1-1.7.9-2.7-.8 0-1.9.6-2.5 1.3-.5.6-1 1.6-.9 2.6.9.1 1.9-.5 2.5-1.2z"/></symbol>
+      <symbol id="ico-playstore" viewBox="0 0 24 24"><path d="M5 4l13 8-13 8V4z"/><path d="M5 4l9.5 8L5 20"/></symbol>
+      <symbol id="ico-fb" viewBox="0 0 24 24"><path d="M14 9h3V5h-3a4 4 0 00-4 4v3H7v4h3v5h4v-5h3l1-4h-4V9a1 1 0 011-1z"/></symbol>
+      <symbol id="ico-ig" viewBox="0 0 24 24"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="3.8"/><circle cx="17.2" cy="6.8" r="0.8" fill="currentColor"/></symbol>
+      <symbol id="ico-threads" viewBox="0 0 24 24"><path d="M16.5 11.8c-.2-2.6-1.9-4.1-4.5-4.1-2.3 0-4 1.3-4.3 3.2"/><path d="M15.8 11.5c1.8.8 2.8 2.1 2.6 3.9-.3 2.5-2.6 4.1-5.8 4.1-4.2 0-7.1-3-7.1-7.5S8.4 4.5 12.6 4.5c3.5 0 6 1.8 6.8 4.6"/><path d="M15.6 12.4c-1.1-.4-2.5-.5-3.8-.1-1.5.5-2.2 1.6-2 2.7.2 1.2 1.3 1.9 2.7 1.8 1.9-.1 3-1.4 3.1-4.4z"/></symbol>
+      <symbol id="ico-yt" viewBox="0 0 24 24"><rect x="2.5" y="5.5" width="19" height="13" rx="4"/><polygon points="10 9.5 15.5 12 10 14.5 10 9.5" fill="currentColor" stroke="none"/></symbol>
+      <symbol id="ico-tiktok" viewBox="0 0 24 24"><path d="M14.5 4v10.5a3.5 3.5 0 11-2.8-3.4"/><path d="M14.5 6.5c1.1 1.6 2.6 2.5 4.5 2.7"/></symbol>
+      <symbol id="ico-pin-social" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M10.5 19l1.3-5.2"/><path d="M9.6 13.8c-.8-.6-1.1-1.6-1.1-2.6 0-2.1 1.6-3.7 3.9-3.7 2.1 0 3.5 1.4 3.5 3.3 0 2.2-1.2 3.8-2.8 3.8-.9 0-1.5-.5-1.5-1.3"/></symbol>
+    </defs>
+  </svg>
+
+  <!-- ======================================================================
+       1. Centered Minimalist Nav + Corner Consent Notice
+       ====================================================================== -->
+  <header class="site-nav" id="site-nav">
+    <div class="container site-nav__inner">
+      <a href="#hero" class="site-nav__brand" aria-label="Kid Pickup home">
+        <span class="site-nav__dot" aria-hidden="true"></span>
+        <span>Kid Pickup</span>
+      </a>
+
+      <nav aria-label="Primary navigation">
+        <ul class="site-nav__links">
+          <li><a href="#how-it-works">How it works</a></li>
+          <li><a href="#who-its-for">Who it’s for</a></li>
+          <li><a href="#features">Features</a></li>
+          <li><a href="#pricing">Pricing</a></li>
+          <li><a href="#blog">Free tools</a></li>
+          <li><a href="#faq">Help</a></li>
+          <li><a href="#blog">Blog</a></li>
+          <li><a href="https://app.kidpickup.com" target="_blank" rel="noopener">Sign in</a></li>
+        </ul>
+      </nav>
+
+      <button class="site-nav__toggle" id="nav-toggle" type="button" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="mobile-drawer">
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+
+    <div class="mobile-drawer" id="mobile-drawer">
+      <ul>
+        <li><a href="#how-it-works">How it works</a></li>
+        <li><a href="#who-its-for">Who it’s for</a></li>
+        <li><a href="#features">Features</a></li>
+        <li><a href="#pricing">Pricing</a></li>
+        <li><a href="#blog">Free tools</a></li>
+        <li><a href="#faq">Help</a></li>
+        <li><a href="#blog">Blog</a></li>
+        <li><a href="https://app.kidpickup.com" target="_blank" rel="noopener">Sign in</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <!-- Compact Bottom-Left Consent Notice -->
+  <aside class="consent-card" id="consent-card" role="dialog" aria-label="Cookie preferences">
+    <p class="consent-card__title">A quick note on cookies</p>
+    <p class="consent-card__text">
+      We use optional Google Analytics cookies to understand which pages help parents most. Never ads, never sold. Read our <a href="#footer-legal">cookie policy</a>.
+    </p>
+    <div class="consent-card__actions">
+      <button type="button" class="btn btn--secondary btn--sm" id="consent-decline">Decline</button>
+      <button type="button" class="btn btn--secondary btn--sm" id="consent-accept">Accept</button>
+    </div>
+  </aside>
+
+  <main>
+
+    <!-- ====================================================================
+         2. Opening Hero (Illustrated Wordmark)
+         ==================================================================== -->
+    <section class="hero" id="hero">
+      <div class="container hero__inner">
+
+        <div class="hero__stage">
+          <!-- Caregiver leaning beside left side of wordmark -->
+          <svg class="hero-fig hero-fig--caregiver" viewBox="0 0 150 185" aria-hidden="true">
+            <ellipse cx="78" cy="122" rx="46" ry="52" fill="#D9F2E4" opacity="0.72"/>
+            <path d="M22 48 Q40 24 66 36" fill="none" stroke="#2B1F36" stroke-width="1.8" stroke-dasharray="4 6" stroke-linecap="round"/>
+            <!-- Legs -->
+            <path d="M62 142 L58 175 M86 142 L94 175" stroke="#2B1F36" stroke-width="2.4" stroke-linecap="round"/>
+            <path d="M50 175 h14 M88 175 h14" stroke="#2B1F36" stroke-width="2.4" stroke-linecap="round"/>
+            <!-- Cozy sweater body -->
+            <path d="M52 84 C46 112 48 136 56 144 L96 144 C102 132 104 108 98 84 Z" fill="#FDE2CC" stroke="#2B1F36" stroke-width="2.2" stroke-linejoin="round"/>
+            <!-- Tote bag -->
+            <rect x="26" y="108" width="28" height="32" rx="6" fill="#FCE588" stroke="#2B1F36" stroke-width="2"/>
+            <path d="M33 108 C33 96 47 96 47 108" fill="none" stroke="#2B1F36" stroke-width="2"/>
+            <!-- Arms -->
+            <path d="M54 92 C40 100 38 112 42 118" fill="none" stroke="#2B1F36" stroke-width="2.2" stroke-linecap="round"/>
+            <path d="M96 92 C112 96 122 106 126 112" fill="none" stroke="#2B1F36" stroke-width="2.2" stroke-linecap="round"/>
+            <!-- Head & hair -->
+            <circle cx="75" cy="58" r="22" fill="#FFF7EE" stroke="#2B1F36" stroke-width="2.2"/>
+            <path d="M53 56 C52 34 86 28 97 48 C90 42 66 42 53 56 Z" fill="#2B1F36"/>
+            <circle cx="52" cy="46" r="8" fill="#2B1F36"/>
+            <!-- Rosy cheeks & smile -->
+            <circle cx="66" cy="63" r="3.8" fill="#FCE1E5"/>
+            <circle cx="85" cy="63" r="3.8" fill="#FCE1E5"/>
+            <circle cx="69" cy="57" r="1.8" fill="#2B1F36"/>
+            <circle cx="82" cy="57" r="1.8" fill="#2B1F36"/>
+            <path d="M71 65 Q76 70 81 65" fill="none" stroke="#2B1F36" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+
+          <!-- Joyful Child perched on top of the wordmark -->
+          <svg class="hero-fig hero-fig--child-top" viewBox="0 0 140 125" aria-hidden="true">
+            <ellipse cx="70" cy="66" rx="44" ry="38" fill="#FCE588" opacity="0.65"/>
+            <path d="M18 30 Q30 16 44 24" fill="none" stroke="#2B1F36" stroke-width="1.6" stroke-dasharray="3 5" stroke-linecap="round"/>
+            <!-- Swinging legs -->
+            <path d="M58 92 C52 106 46 112 40 116" fill="none" stroke="#2B1F36" stroke-width="2.3" stroke-linecap="round"/>
+            <path d="M80 92 C86 106 94 112 100 114" fill="none" stroke="#2B1F36" stroke-width="2.3" stroke-linecap="round"/>
+            <!-- Striped shirt -->
+            <path d="M52 56 L88 56 L92 92 L48 92 Z" rx="10" fill="#D9EDFC" stroke="#2B1F36" stroke-width="2.2" stroke-linejoin="round"/>
+            <path d="M51 68 H89 M50 79 H90" stroke="#2B1F36" stroke-width="1.4" opacity="0.45"/>
+            <!-- Raised cheerful arms -->
+            <path d="M52 62 C38 56 32 46 30 38" fill="none" stroke="#2B1F36" stroke-width="2.2" stroke-linecap="round"/>
+            <path d="M88 62 C104 54 110 44 114 36" fill="none" stroke="#2B1F36" stroke-width="2.2" stroke-linecap="round"/>
+            <!-- Head & cap -->
+            <circle cx="70" cy="37" r="18" fill="#FFF7EE" stroke="#2B1F36" stroke-width="2.2"/>
+            <path d="M53 33 C55 18 85 18 87 33 Z" fill="#FF7F66" stroke="#2B1F36" stroke-width="2"/>
+            <path d="M83 31 L97 29" stroke="#2B1F36" stroke-width="2.2" stroke-linecap="round"/>
+            <circle cx="62" cy="41" r="3" fill="#FCE1E5"/>
+            <circle cx="78" cy="41" r="3" fill="#FCE1E5"/>
+            <circle cx="65" cy="36" r="1.7" fill="#2B1F36"/>
+            <circle cx="75" cy="36" r="1.7" fill="#2B1F36"/>
+            <path d="M65 44 Q70 49 75 44" fill="none" stroke="#2B1F36" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+
+          <!-- Waving Grandparent on right side of wordmark -->
+          <svg class="hero-fig hero-fig--grandparent" viewBox="0 0 160 190" aria-hidden="true">
+            <ellipse cx="82" cy="118" rx="48" ry="54" fill="#EAE1FA" opacity="0.7"/>
+            <path d="M116 32 Q132 18 144 34" fill="none" stroke="#2B1F36" stroke-width="1.7" stroke-dasharray="4 5" stroke-linecap="round"/>
+            <!-- Legs -->
+            <path d="M68 148 L64 180 M92 148 L96 180" stroke="#2B1F36" stroke-width="2.4" stroke-linecap="round"/>
+            <path d="M56 180 h14 M90 180 h14" stroke="#2B1F36" stroke-width="2.4" stroke-linecap="round"/>
+            <!-- Cardigan -->
+            <path d="M54 88 C48 118 52 142 58 150 L102 150 C108 140 110 116 104 88 Z" fill="#FCE1E5" stroke="#2B1F36" stroke-width="2.2" stroke-linejoin="round"/>
+            <path d="M79 88 V150" stroke="#2B1F36" stroke-width="1.6" stroke-dasharray="3 4"/>
+            <!-- Waving hand & resting arm -->
+            <path d="M54 96 C40 104 32 114 28 122" fill="none" stroke="#2B1F36" stroke-width="2.2" stroke-linecap="round"/>
+            <path d="M104 94 C122 86 132 70 134 54" fill="none" stroke="#2B1F36" stroke-width="2.2" stroke-linecap="round"/>
+            <circle cx="134" cy="50" r="6" fill="#FFF7EE" stroke="#2B1F36" stroke-width="2"/>
+            <!-- Head, silver bun & glasses -->
+            <circle cx="80" cy="60" r="22" fill="#FFF7EE" stroke="#2B1F36" stroke-width="2.2"/>
+            <circle cx="80" cy="34" r="10" fill="#E8E4EC" stroke="#2B1F36" stroke-width="2"/>
+            <path d="M58 56 C60 37 100 37 102 56 C94 48 66 48 58 56 Z" fill="#E8E4EC" stroke="#2B1F36" stroke-width="2"/>
+            <circle cx="72" cy="61" r="5" fill="none" stroke="#2B1F36" stroke-width="1.8"/>
+            <circle cx="88" cy="61" r="5" fill="none" stroke="#2B1F36" stroke-width="1.8"/>
+            <path d="M77 61 h6" stroke="#2B1F36" stroke-width="1.6"/>
+            <circle cx="72" cy="61" r="1.4" fill="#2B1F36"/>
+            <circle cx="88" cy="61" r="1.4" fill="#2B1F36"/>
+            <path d="M75 71 Q80 75 85 71" fill="none" stroke="#2B1F36" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+
+          <h1 class="hero__wordmark">Kid Pickup</h1>
+        </div>
+
+        <p class="hero__tagline">
+          It takes a village to get everyone home on time — give yours one calm board where every ride has a name.
+        </p>
+
+        <div class="hero__actions">
+          <a href="#walkthrough" class="btn btn--secondary">
+            <svg class="ico ico--sm" aria-hidden="true"><use href="#ico-play"/></svg>
+            Watch 2-min walkthrough
+          </a>
+
+          <div class="store-group">
+            <a href="#pricing" class="store-badge" aria-label="Download Kid Pickup on the Apple App Store">
+              <svg class="ico ico--lg" aria-hidden="true"><use href="#ico-apple"/></svg>
+              <span class="store-badge__text">
+                <span class="store-badge__kicker">Download on the</span>
+                <span class="store-badge__name">App Store</span>
+              </span>
+            </a>
+
+            <div class="store-badge-wrap">
+              <a href="#faq-android" class="store-badge store-badge--upcoming" aria-label="Google Play version upcoming">
+                <svg class="ico" aria-hidden="true"><use href="#ico-playstore"/></svg>
+                <span class="store-badge__text">
+                  <span class="store-badge__kicker">Coming to</span>
+                  <span class="store-badge__name">Google Play</span>
+                </span>
+              </a>
+              <span class="upcoming-tag">Upcoming</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Second child peeking from the lower-left edge -->
+      <svg class="hero-fig--peek" viewBox="0 0 150 110" aria-hidden="true">
+        <ellipse cx="64" cy="84" rx="54" ry="34" fill="#D9EDFC" opacity="0.7"/>
+        <!-- Peeking hands -->
+        <circle cx="34" cy="94" r="9" fill="#FFF7EE" stroke="#2B1F36" stroke-width="2.2"/>
+        <circle cx="102" cy="94" r="9" fill="#FFF7EE" stroke="#2B1F36" stroke-width="2.2"/>
+        <!-- Peeking head -->
+        <circle cx="68" cy="68" r="28" fill="#FFF7EE" stroke="#2B1F36" stroke-width="2.2"/>
+        <!-- Curly puffs -->
+        <circle cx="48" cy="46" r="10" fill="#2B1F36"/>
+        <circle cx="66" cy="39" r="11" fill="#2B1F36"/>
+        <circle cx="85" cy="44" r="10" fill="#2B1F36"/>
+        <!-- Eyes & big grin -->
+        <circle cx="58" cy="68" r="2.2" fill="#2B1F36"/>
+        <circle cx="78" cy="68" r="2.2" fill="#2B1F36"/>
+        <circle cx="51" cy="75" r="4" fill="#FCE1E5"/>
+        <circle cx="85" cy="75" r="4" fill="#FCE1E5"/>
+        <path d="M61 78 Q68 85 75 78" fill="none" stroke="#2B1F36" stroke-width="2.1" stroke-linecap="round"/>
+      </svg>
+    </section>
+
+    <!-- ====================================================================
+         3. Problem-and-Solution Introduction
+         ==================================================================== -->
+    <section class="band band--cream band--tight-top">
+      <div class="container">
+        <div class="intro-spread">
+          <div>
+            <h2 class="intro-col__title">
+              <span class="hl hl--blush">Pickup plans shouldn’t hide</span> twenty messages up in a family chat.
+            </h2>
+            <p class="intro-col__body">
+              Between school emails, soccer chats, texts with Grandma, and a half-remembered “👍” from Tuesday morning, it is far too easy to reach 2:45 p.m. and realize both parents thought the other one was driving.
+            </p>
+          </div>
+          <div>
+            <h2 class="intro-col__title">
+              <span class="hl">One calm iPhone family calendar</span> where every ride belongs to one named adult.
+            </h2>
+            <p class="intro-col__body">
+              Post a pickup once. A parent, co-parent, grandparent, or sitter claims it with one tap so their name sits right on the schedule. If nobody claims it, Kid Pickup quietly warns parents hours before the bell rings.
+            </p>
+          </div>
+        </div>
+
+        <div class="cta-row">
+          <a href="#pricing" class="btn btn--primary">
+            Start 14-day free trial
+            <svg class="ico ico--sm" aria-hidden="true"><use href="#ico-arrow"/></svg>
+          </a>
+          <div class="store-group">
+            <a href="#pricing" class="store-badge">
+              <svg class="ico ico--lg" aria-hidden="true"><use href="#ico-apple"/></svg>
+              <span class="store-badge__text">
+                <span class="store-badge__kicker">Download on the</span>
+                <span class="store-badge__name">App Store</span>
+              </span>
+            </a>
+            <div class="store-badge-wrap">
+              <a href="#faq-android" class="store-badge store-badge--upcoming">
+                <svg class="ico" aria-hidden="true"><use href="#ico-playstore"/></svg>
+                <span class="store-badge__text">
+                  <span class="store-badge__kicker">Coming to</span>
+                  <span class="store-badge__name">Google Play</span>
+                </span>
+              </a>
+              <span class="upcoming-tag">Upcoming</span>
+            </div>
+          </div>
+        </div>
+        <p class="trial-terms">
+          Two-week free trial for new subscribers via Apple’s App Store. Payment method required; auto-renews unless cancelled at least 24 hours before the trial ends. Invited helpers never pay.
+        </p>
+
+        <div class="intro-showcase">
+          <!-- Group Illustration of Extended Family & Helpers -->
+          <div class="intro-scene">
+            <svg viewBox="0 0 540 340" role="img" aria-label="Hand-drawn illustration of parents, a grandparent, a sitter, and two children walking home together">
+              <!-- Soft watercolor washes -->
+              <ellipse cx="145" cy="188" rx="115" ry="96" fill="#FCE588" opacity="0.45"/>
+              <ellipse cx="320" cy="178" rx="130" ry="102" fill="#D9F2E4" opacity="0.52"/>
+              <ellipse cx="430" cy="215" rx="95" ry="74" fill="#D9EDFC" opacity="0.5"/>
+              <!-- Dotted storybook path -->
+              <path d="M24 296 Q150 264 275 288 T514 274" fill="none" stroke="#2B1F36" stroke-width="2" stroke-dasharray="5 8" stroke-linecap="round" opacity="0.5"/>
+              <!-- Paper airplane & stars -->
+              <path d="M88 64 Q158 26 238 56" fill="none" stroke="#2B1F36" stroke-width="1.6" stroke-dasharray="4 6" opacity="0.5"/>
+              <polygon points="244 56 226 49 231 63" fill="#FFFFFF" stroke="#2B1F36" stroke-width="1.8" stroke-linejoin="round"/>
+
+              <!-- Person 1: Dad with backpack -->
+              <g transform="translate(60, 86)">
+                <path d="M36 144 L32 192 M62 144 L66 192" stroke="#2B1F36" stroke-width="2.5" stroke-linecap="round"/>
+                <path d="M24 72 C20 112 24 140 32 146 L68 146 C76 138 78 110 74 72 Z" fill="#D9EDFC" stroke="#2B1F36" stroke-width="2.2"/>
+                <circle cx="49" cy="44" r="22" fill="#FFF7EE" stroke="#2B1F36" stroke-width="2.2"/>
+                <path d="M28 40 C30 18 68 18 70 40 C60 32 38 32 28 40 Z" fill="#2B1F36"/>
+                <circle cx="42" cy="44" r="1.8" fill="#2B1F36"/><circle cx="56" cy="44" r="1.8" fill="#2B1F36"/>
+                <path d="M44 53 Q49 57 54 53" fill="none" stroke="#2B1F36" stroke-width="2" stroke-linecap="round"/>
+              </g>
+
+              <!-- Person 2: Kid 1 holding soccer ball -->
+              <g transform="translate(154, 152)">
+                <path d="M30 96 L28 128 M50 96 L54 128" stroke="#2B1F36" stroke-width="2.4" stroke-linecap="round"/>
+                <path d="M22 52 L58 52 L60 96 L20 96 Z" fill="#FCE588" stroke="#2B1F36" stroke-width="2.2" stroke-linejoin="round"/>
+                <circle cx="40" cy="30" r="18" fill="#FFF7EE" stroke="#2B1F36" stroke-width="2.2"/>
+                <path d="M23 26 C26 10 54 10 57 26 Z" fill="#2B1F36"/>
+                <circle cx="34" cy="31" r="1.6" fill="#2B1F36"/><circle cx="46" cy="31" r="1.6" fill="#2B1F36"/>
+                <path d="M35 38 Q40 43 45 38" fill="none" stroke="#2B1F36" stroke-width="1.9" stroke-linecap="round"/>
+                <!-- Soccer ball -->
+                <circle cx="67" cy="84" r="13" fill="#FFFFFF" stroke="#2B1F36" stroke-width="2"/>
+                <polygon points="67 78 72 82 70 88 64 88 62 82" fill="#2B1F36"/>
+              </g>
+
+              <!-- Person 3: Grandma Mae -->
+              <g transform="translate(232, 92)">
+                <path d="M36 140 L34 186 M60 140 L64 186" stroke="#2B1F36" stroke-width="2.4" stroke-linecap="round"/>
+                <path d="M24 72 C18 112 22 138 30 142 L68 142 C74 134 78 108 72 72 Z" fill="#EAE1FA" stroke="#2B1F36" stroke-width="2.2"/>
+                <circle cx="48" cy="44" r="21" fill="#FFF7EE" stroke="#2B1F36" stroke-width="2.2"/>
+                <circle cx="48" cy="19" r="9" fill="#E8E4EC" stroke="#2B1F36" stroke-width="2"/>
+                <path d="M27 40 C30 22 66 22 69 40 C60 34 36 34 27 40 Z" fill="#E8E4EC" stroke="#2B1F36" stroke-width="2"/>
+                <circle cx="41" cy="44" r="4.8" fill="none" stroke="#2B1F36" stroke-width="1.7"/>
+                <circle cx="55" cy="44" r="4.8" fill="none" stroke="#2B1F36" stroke-width="1.7"/>
+                <path d="M46 44 h4" stroke="#2B1F36" stroke-width="1.5"/>
+                <path d="M43 54 Q48 58 53 54" fill="none" stroke="#2B1F36" stroke-width="2" stroke-linecap="round"/>
+              </g>
+
+              <!-- Person 4: Kid 2 with backpack -->
+              <g transform="translate(322, 162)">
+                <path d="M28 88 L26 118 M46 88 L50 118" stroke="#2B1F36" stroke-width="2.3" stroke-linecap="round"/>
+                <path d="M20 48 L54 48 L58 88 L16 88 Z" fill="#FCE1E5" stroke="#2B1F36" stroke-width="2.2" stroke-linejoin="round"/>
+                <circle cx="37" cy="27" r="16" fill="#FFF7EE" stroke="#2B1F36" stroke-width="2.2"/>
+                <circle cx="22" cy="22" r="7" fill="#2B1F36"/><circle cx="52" cy="22" r="7" fill="#2B1F36"/>
+                <path d="M22 24 C25 11 49 11 52 24 Z" fill="#2B1F36"/>
+                <circle cx="32" cy="28" r="1.5" fill="#2B1F36"/><circle cx="42" cy="28" r="1.5" fill="#2B1F36"/>
+                <path d="M33 34 Q37 38 41 34" fill="none" stroke="#2B1F36" stroke-width="1.8" stroke-linecap="round"/>
+              </g>
+
+              <!-- Person 5: Sitter / Caregiver waving -->
+              <g transform="translate(396, 98)">
+                <path d="M34 134 L30 180 M58 134 L64 180" stroke="#2B1F36" stroke-width="2.4" stroke-linecap="round"/>
+                <path d="M22 70 C18 106 20 130 28 136 L66 136 C72 128 74 104 68 70 Z" fill="#FDE2CC" stroke="#2B1F36" stroke-width="2.2"/>
+                <path d="M68 76 C84 68 92 54 95 42" fill="none" stroke="#2B1F36" stroke-width="2.2" stroke-linecap="round"/>
+                <circle cx="45" cy="43" r="20" fill="#FFF7EE" stroke="#2B1F36" stroke-width="2.2"/>
+                <path d="M25 42 C24 18 66 16 66 44 C56 34 34 34 25 42 Z" fill="#2B1F36"/>
+                <circle cx="39" cy="44" r="1.7" fill="#2B1F36"/><circle cx="52" cy="44" r="1.7" fill="#2B1F36"/>
+                <path d="M40 52 Q45 56 50 52" fill="none" stroke="#2B1F36" stroke-width="2" stroke-linecap="round"/>
+              </g>
+            </svg>
+          </div>
+
+          <!-- Tilted Smartphone Calendar Preview + Two Callout Stickers -->
+          <div class="phone-stage">
+            <div class="sticker sticker--mint sticker--top-left">
+              <svg class="ico ico--sm" aria-hidden="true"><use href="#ico-check"/></svg>
+              <span>Grandma Mae took Thursday’s 3:15 pm pickup</span>
+            </div>
+
+            <div class="phone phone--tilt-right" aria-label="Kid Pickup smartphone calendar preview">
+              <div class="phone__screen">
+                <div class="phone__island" aria-hidden="true"></div>
+                <div class="phone__bar">
+                  <span>Thu, Oct 15</span>
+                  <span class="phone__pill bg-mint">All covered</span>
+                </div>
+
+                <div class="phone__card phone__card--sky">
+                  <div class="phone__card-top">
+                    <span class="phone__card-title">8:20 am · Cedar Elementary</span>
+                    <span class="phone__pill bg-white">Drop-off</span>
+                  </div>
+                  <div class="phone__card-meta">Maya &amp; Leo · North Gate</div>
+                  <span class="phone__assignee">✓ Dad (Joel)</span>
+                </div>
+
+                <div class="phone__card phone__card--mint">
+                  <div class="phone__card-top">
+                    <span class="phone__card-title">3:15 pm · School Pickup</span>
+                    <span class="phone__pill bg-white">Claimed</span>
+                  </div>
+                  <div class="phone__card-meta">Maya &amp; Leo · Car line B</div>
+                  <span class="phone__assignee">✓ Grandma Mae</span>
+                </div>
+
+                <div class="phone__card phone__card--peach">
+                  <div class="phone__card-top">
+                    <span class="phone__card-title">5:00 pm · U10 Soccer</span>
+                    <span class="phone__pill bg-yellow">Open</span>
+                  </div>
+                  <div class="phone__card-meta">Leo · Field 3 · Needs driver</div>
+                  <div class="phone__btn-row">
+                    <span class="phone__btn phone__btn--coral">Claim ride</span>
+                    <span class="phone__btn phone__btn--white">Decline</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="sticker sticker--yellow sticker--bottom-right">
+              <svg class="ico ico--sm" aria-hidden="true"><use href="#ico-pin-off"/></svg>
+              <span>Zero GPS or location tracking — ever</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         4. Product Walkthrough Video (Sunshine Yellow Band)
+         ==================================================================== -->
+    <section class="band band--yellow" id="walkthrough">
+      <div class="container">
+        <div class="section-head section-head--center">
+          <span class="eyebrow eyebrow--white">2-Minute Walkthrough</span>
+          <h2 class="h2">See Kid Pickup in under two minutes.</h2>
+          <p class="lead">
+            A calm tour of the family feed, one-tap pickup claiming, automatic reminders, and check-ins — with English captions built right in.
+          </p>
+        </div>
+
+        <div class="video-frame">
+          <div class="video-screen" role="region" aria-label="Kid Pickup walkthrough video player">
+            <div class="video-poster">
+              <div class="video-poster__copy">
+                <span class="video-poster__kicker" id="video-scene-kicker">0:00 · The Morning Feed</span>
+                <h3 class="video-poster__title" id="video-scene-title">Today’s pickups, right at the top.</h3>
+                <p class="video-poster__sub" id="video-scene-sub">
+                  Open Kid Pickup to see who has morning drop-off, afternoon soccer, and piano — without scrolling past forty texts.
+                </p>
+              </div>
+              <div class="video-poster__visual">
+                <div class="phone phone--compact phone--tilt-left" style="margin:0 auto;">
+                  <div class="phone__screen">
+                    <div class="phone__island"></div>
+                    <div class="phone__bar">
+                      <span>Family Feed</span>
+                      <span class="phone__pill bg-yellow">Today</span>
+                    </div>
+                    <div class="phone__card phone__card--mint">
+                      <div class="phone__card-title">3:15 pm · School Pickup</div>
+                      <div class="phone__card-meta">Claimed by Grandma Mae</div>
+                    </div>
+                    <div class="phone__card phone__card--lilac">
+                      <div class="phone__card-title">Grandpa posted a photo</div>
+                      <div class="phone__card-meta">“Leo’s cleats are by the mudroom door!”</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="video-captions is-hidden" id="video-captions" aria-live="polite">
+              “Good morning! Every pickup for today sits calmly at the top of your private family feed.”
+            </div>
+
+            <button type="button" class="video-play-overlay" id="video-play-overlay" aria-label="Play walkthrough video">
+              <span class="video-play-btn">
+                <svg class="ico" aria-hidden="true"><use href="#ico-play"/></svg>
+                Play walkthrough (1:48)
+              </span>
+            </button>
+          </div>
+
+          <div class="video-controls">
+            <button type="button" class="video-ctrl-btn" id="video-ctrl-play">Play</button>
+            <div class="video-progress" id="video-progress" role="slider" aria-label="Video playback progress" aria-valuemin="0" aria-valuemax="108" aria-valuenow="0">
+              <div class="video-progress__fill" id="video-progress-fill"></div>
+            </div>
+            <span class="video-time" id="video-time">0:00 / 1:48</span>
+            <button type="button" class="video-ctrl-btn is-active" id="video-ctrl-cc" aria-pressed="true">CC · EN</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         5. Private Family Feed Spotlight (Lilac Band)
+         ==================================================================== -->
+    <section class="band band--lilac" id="family-feed">
+      <div class="container">
+        <div class="split">
+          <div>
+            <span class="eyebrow">Private Family Feed</span>
+            <h2 class="h2">A quiet home screen made only for your family.</h2>
+            <p class="lead">
+              Kid Pickup opens to a closed, chronological family feed — putting today’s pickups right at the top above family notes and photos. No noisy social network tricks.
+            </p>
+
+            <div class="exclusion-pills" aria-label="What is never in the family feed">
+              <span class="excl-pill"><span class="excl-pill__x" aria-hidden="true">✕</span> No ads</span>
+              <span class="excl-pill"><span class="excl-pill__x" aria-hidden="true">✕</span> No spam</span>
+              <span class="excl-pill"><span class="excl-pill__x" aria-hidden="true">✕</span> No stranger recommendations</span>
+              <span class="excl-pill"><span class="excl-pill__x" aria-hidden="true">✕</span> No algorithmic feeds</span>
+              <span class="excl-pill"><span class="excl-pill__x" aria-hidden="true">✕</span> No public channels or videos</span>
+            </div>
+
+            <div class="subpoints-grid">
+              <div class="subpoint">
+                <h3>Invite-only circle</h3>
+                <p>Only the parents, grandparents, and sitters you personally invite can see your feed — and you can remove anyone in one tap.</p>
+              </div>
+              <div class="subpoint">
+                <h3>Made for grandparents &amp; sitters</h3>
+                <p>Helpers can share a quick after-school photo or react with a heart without fighting cluttered group chats.</p>
+              </div>
+              <div class="subpoint">
+                <h3>Posts for kids, no kid accounts</h3>
+                <p>Parents can post milestones attributed to a child’s profile without ever giving young kids a login or screen account.</p>
+              </div>
+              <div class="subpoint">
+                <h3>Turn posts into pickups</h3>
+                <p>Spot a recital flyer or rainy-day practice note? Spin a calendar pickup straight from any feed post in seconds.</p>
+              </div>
+            </div>
+
+            <a href="#features" class="text-link">
+              See how the private family feed works
+              <svg class="ico ico--sm" aria-hidden="true"><use href="#ico-arrow"/></svg>
+            </a>
+          </div>
+
+          <div class="phone-stage">
+            <div class="phone phone--tilt-left" aria-label="Kid Pickup Private Family Feed mockup">
+              <div class="phone__screen">
+                <div class="phone__island" aria-hidden="true"></div>
+                <div class="phone__bar">
+                  <span>Our Family Feed</span>
+                  <span class="phone__pill bg-mint">Private</span>
+                </div>
+
+                <div class="phone__card phone__card--yellow">
+                  <div class="phone__card-top">
+                    <span class="phone__card-title">Today’s Pickups (2 of 2 covered)</span>
+                  </div>
+                  <div class="phone__card-meta">3:15 pm School → <strong>Grandma Mae</strong></div>
+                  <div class="phone__card-meta">5:30 pm Piano → <strong>Mom (Sarah)</strong></div>
+                </div>
+
+                <div class="phone__card">
+                  <div class="phone__card-top">
+                    <span class="phone__card-title">Grandma Mae</span>
+                    <span class="phone__card-meta">14m ago</span>
+                  </div>
+                  <div class="phone__card-meta" style="margin-bottom:8px;">
+                    Made it to the library early — Maya picked out three dinosaur books!
+                  </div>
+                  <div style="background:#D9EDFC;border-radius:10px;padding:10px;text-align:center;border:1px solid rgba(43,31,54,0.1);font-size:0.7rem;font-weight:700;">
+                    📚 Snapshot · Cedar Public Library
+                  </div>
+                  <div style="display:flex;gap:6px;margin-top:8px;font-size:0.68rem;font-weight:700;">
+                    <span class="phone__pill bg-blush">♥ 3</span>
+                    <span class="phone__pill bg-cream">💬 2 replies</span>
+                  </div>
+                </div>
+
+                <div class="phone__card phone__card--sky">
+                  <div class="phone__card-top">
+                    <span class="phone__card-title">Leo (posted by Dad)</span>
+                    <span class="phone__card-meta">Yesterday</span>
+                  </div>
+                  <div class="phone__card-meta">Saturday tournament moved to 9:30 am at Oak Park.</div>
+                  <div class="phone__btn-row">
+                    <span class="phone__btn phone__btn--white">+ Add to calendar</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         6. Six Real-World Friction vs. Resolution Scenarios (White Band)
+         ==================================================================== -->
+    <section class="band band--white">
+      <div class="container">
+        <div class="section-head section-head--center">
+          <span class="eyebrow">Before &amp; After</span>
+          <h2 class="h2">Goodbye, group-chat guesswork.</h2>
+          <p class="lead">
+            Every afternoon scramble starts with a tiny misunderstanding. Here is how six everyday friction points turn calm.
+          </p>
+        </div>
+
+        <div class="ba-grid">
+          <article class="ba-card">
+            <div class="ba-half ba-half--before">
+              <span class="ba-tag ba-tag--before">Before</span>
+              <h3>Vague thumbs-up or “maybe” replies</h3>
+              <p>Someone taps 👍 on a thread with three questions in it, leaving everyone unsure what they actually agreed to.</p>
+            </div>
+            <div class="ba-half ba-half--after">
+              <span class="ba-tag ba-tag--after">After</span>
+              <h3>Explicit accept or decline buttons</h3>
+              <p>One tap attaches a real person’s name to the pickup — or politely declines so parents immediately know it’s still open.</p>
+            </div>
+          </article>
+
+          <article class="ba-card">
+            <div class="ba-half ba-half--before">
+              <span class="ba-tag ba-tag--before">Before</span>
+              <h3>“Wait — I thought you were driving!”</h3>
+              <p>Both parents assume the other has Thursday soccer covered until the coach sends a text from the parking lot.</p>
+            </div>
+            <div class="ba-half ba-half--after">
+              <span class="ba-tag ba-tag--after">After</span>
+              <h3>One visible assignee &amp; instant alerts</h3>
+              <p>Every pickup shows exactly one named driver, and the whole parent team receives a notification the moment it’s claimed.</p>
+            </div>
+          </article>
+
+          <article class="ba-card">
+            <div class="ba-half ba-half--before">
+              <span class="ba-tag ba-tag--before">Before</span>
+              <h3>Discovering a gap at 2:50 p.m.</h3>
+              <p>Nobody noticed Friday’s early dismissal wasn’t covered until fifteen minutes before the school bell.</p>
+            </div>
+            <div class="ba-half ba-half--after">
+              <span class="ba-tag ba-tag--after">After</span>
+              <h3>Automatic 24h, 3h, and 2h nudges</h3>
+              <p>Unclaimed pickups automatically alert parents at 24 hours, 3 hours, and 2 hours ahead so there is always time to arrange help.</p>
+            </div>
+          </article>
+
+          <article class="ba-card">
+            <div class="ba-half ba-half--before">
+              <span class="ba-tag ba-tag--before">Before</span>
+              <h3>Time changes buried in chat</h3>
+              <p>Practice moved 30 minutes earlier, but Grandpa didn’t see the message between dinner photos and links.</p>
+            </div>
+            <div class="ba-half ba-half--after">
+              <span class="ba-tag ba-tag--after">After</span>
+              <h3>Automatic driver reconfirmation</h3>
+              <p>Edit a pickup’s time or location and Kid Pickup automatically pings the assigned driver to reconfirm they can still make it.</p>
+            </div>
+          </article>
+
+          <article class="ba-card">
+            <div class="ba-half ba-half--before">
+              <span class="ba-tag ba-tag--before">Before</span>
+              <h3>Mid-meeting pickup anxiety</h3>
+              <p>You’re stuck on a client call wondering if the sitter arrived on time, texting “Got them??” under the table.</p>
+            </div>
+            <div class="ba-half ba-half--after">
+              <span class="ba-tag ba-tag--after">After</span>
+              <h3>One-tap arrival &amp; pickup check-ins</h3>
+              <p>The driver taps “Arrived” or “Picked up” and parents get a calm confirmation banner — with zero GPS surveillance.</p>
+            </div>
+          </article>
+
+          <article class="ba-card">
+            <div class="ba-half ba-half--before">
+              <span class="ba-tag ba-tag--before">Before</span>
+              <h3>Relatives who won’t install another app</h3>
+              <p>Your uncle is happy to drive once a month, but refuses to create yet another password and download an app.</p>
+            </div>
+            <div class="ba-half ba-half--after">
+              <span class="ba-tag ba-tag--after">After</span>
+              <h3>Texted one-tap web claim link</h3>
+              <p>Send any helper a private text link — they tap once in their browser to claim the ride with no app or account needed.</p>
+            </div>
+          </article>
+        </div>
+
+        <div class="cta-row">
+          <a href="#pricing" class="btn btn--primary">
+            Start 14-day free trial
+            <svg class="ico ico--sm" aria-hidden="true"><use href="#ico-arrow"/></svg>
+          </a>
+          <div class="store-group">
+            <a href="#pricing" class="store-badge">
+              <svg class="ico ico--lg" aria-hidden="true"><use href="#ico-apple"/></svg>
+              <span class="store-badge__text">
+                <span class="store-badge__kicker">Download on the</span>
+                <span class="store-badge__name">App Store</span>
+              </span>
+            </a>
+            <div class="store-badge-wrap">
+              <a href="#faq-android" class="store-badge store-badge--upcoming">
+                <svg class="ico" aria-hidden="true"><use href="#ico-playstore"/></svg>
+                <span class="store-badge__text">
+                  <span class="store-badge__kicker">Coming to</span>
+                  <span class="store-badge__name">Google Play</span>
+                </span>
+              </a>
+              <span class="upcoming-tag">Upcoming</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         7. Three-Step Workflow Overview (Butter-Cream Band)
+         ==================================================================== -->
+    <section class="band band--cream" id="how-it-works">
+      <div class="container">
+        <div class="section-head section-head--center">
+          <span class="eyebrow">How It Works</span>
+          <h2 class="h2">Three calm steps from posted to home safe.</h2>
+          <p class="lead">
+            Simple enough for a grandparent to use on day one, structured enough to catch every gap before it happens.
+          </p>
+        </div>
+
+        <div class="steps-grid">
+          <!-- Step 1 -->
+          <article class="step-col bg-sky">
+            <span class="step-badge">Step 01</span>
+            <div class="step-vignette" aria-hidden="true">
+              <svg width="110" height="88" viewBox="0 0 110 88">
+                <ellipse cx="55" cy="50" rx="40" ry="28" fill="#FFFFFF" opacity="0.65"/>
+                <circle cx="48" cy="30" r="14" fill="#FFF7EE" stroke="#2B1F36" stroke-width="2"/>
+                <path d="M35 27 C37 15 59 15 61 27 Z" fill="#2B1F36"/>
+                <path d="M34 45 C32 62 34 74 40 78 L58 78 C64 72 64 60 62 45 Z" fill="#FCE588" stroke="#2B1F36" stroke-width="2"/>
+                <rect x="66" y="34" width="24" height="32" rx="6" fill="#FFFFFF" stroke="#2B1F36" stroke-width="2"/>
+                <path d="M72 44 h12 M72 51 h8" stroke="#2B1F36" stroke-width="1.8" stroke-linecap="round"/>
+                <circle cx="88" cy="34" r="7" fill="#FF7F66" stroke="#2B1F36" stroke-width="1.8"/>
+                <path d="M88 31 v6 M85 34 h6" stroke="#2B1F36" stroke-width="1.6" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <h3 class="step-col__title">Post.</h3>
+            <p class="step-col__copy">
+              Add a pickup, drop-off, practice, or dentist appointment by typing or speaking naturally. Anything needing transport appears as open.
+            </p>
+            <div class="phone phone--compact">
+              <div class="phone__screen">
+                <div class="phone__island"></div>
+                <div class="phone__bar">
+                  <span>New Pickup</span>
+                  <span class="phone__pill bg-yellow">Open</span>
+                </div>
+                <div class="phone__card">
+                  <div class="phone__card-title">“Maya piano Thu 4:15 pm”</div>
+                  <div class="phone__card-meta">Auto-filled: Thu · 4:15 pm · Music Studio</div>
+                </div>
+                <div class="phone__btn-row">
+                  <span class="phone__btn phone__btn--coral">Post to circle</span>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Step 2 -->
+          <article class="step-col bg-peach">
+            <span class="step-badge">Step 02</span>
+            <div class="step-vignette" aria-hidden="true">
+              <svg width="110" height="88" viewBox="0 0 110 88">
+                <ellipse cx="55" cy="50" rx="40" ry="28" fill="#FFFFFF" opacity="0.65"/>
+                <circle cx="52" cy="30" r="14" fill="#FFF7EE" stroke="#2B1F36" stroke-width="2"/>
+                <circle cx="52" cy="14" r="6" fill="#E8E4EC" stroke="#2B1F36" stroke-width="1.8"/>
+                <path d="M38 45 C35 64 38 74 43 78 L62 78 C67 74 68 62 65 45 Z" fill="#EAE1FA" stroke="#2B1F36" stroke-width="2"/>
+                <path d="M65 50 C76 46 82 38 86 30" fill="none" stroke="#2B1F36" stroke-width="2.1" stroke-linecap="round"/>
+                <circle cx="88" cy="28" r="9" fill="#D9F2E4" stroke="#2B1F36" stroke-width="1.9"/>
+                <path d="M84 28 l3 3 5-6" fill="none" stroke="#2B1F36" stroke-width="1.9" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <h3 class="step-col__title">Claim.</h3>
+            <p class="step-col__copy">
+              A parent, co-parent, grandparent, or sitter claims the ride in one tap — locking their name onto the slot and notifying parents right away.
+            </p>
+            <div class="phone phone--compact">
+              <div class="phone__screen">
+                <div class="phone__island"></div>
+                <div class="phone__bar">
+                  <span>Thu · 4:15 pm</span>
+                  <span class="phone__pill bg-mint">Claimed</span>
+                </div>
+                <div class="phone__card phone__card--mint">
+                  <div class="phone__card-title">Maya · Piano Pickup</div>
+                  <div class="phone__card-meta">Music Studio on Oak St.</div>
+                  <span class="phone__assignee">✓ Claimed by Aunt Priya</span>
+                </div>
+                <div class="phone__card">
+                  <div class="phone__card-meta"><strong>Notified:</strong> Mom &amp; Dad confirmed</div>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Step 3 -->
+          <article class="step-col bg-mint">
+            <span class="step-badge">Step 03</span>
+            <div class="step-vignette" aria-hidden="true">
+              <svg width="110" height="88" viewBox="0 0 110 88">
+                <ellipse cx="55" cy="50" rx="40" ry="28" fill="#FFFFFF" opacity="0.65"/>
+                <path d="M22 64 Q54 44 88 64" fill="none" stroke="#2B1F36" stroke-width="1.8" stroke-dasharray="4 5"/>
+                <rect x="26" y="42" width="46" height="24" rx="10" fill="#FCE588" stroke="#2B1F36" stroke-width="2"/>
+                <path d="M35 42 L41 30 H60 L66 42" fill="#D9EDFC" stroke="#2B1F36" stroke-width="2" stroke-linejoin="round"/>
+                <circle cx="37" cy="66" r="6" fill="#2B1F36"/>
+                <circle cx="62" cy="66" r="6" fill="#2B1F36"/>
+                <circle cx="84" cy="28" r="10" fill="#FFFFFF" stroke="#2B1F36" stroke-width="2"/>
+                <path d="M84 23 v5 l3 2" fill="none" stroke="#2B1F36" stroke-width="1.8" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <h3 class="step-col__title">Remind &amp; complete.</h3>
+            <p class="step-col__copy">
+              The assigned driver gets a gentle departure nudge and taps “Picked up” on arrival. Any unclaimed slot escalates to parents automatically.
+            </p>
+            <div class="phone phone--compact">
+              <div class="phone__screen">
+                <div class="phone__island"></div>
+                <div class="phone__bar">
+                  <span>Live Update</span>
+                  <span class="phone__pill bg-mint">Home safe</span>
+                </div>
+                <div class="phone__card phone__card--mint">
+                  <div class="phone__card-title">Aunt Priya picked up Maya</div>
+                  <div class="phone__card-meta">4:17 pm · Checked in from studio</div>
+                </div>
+                <div class="phone__card">
+                  <div class="phone__card-meta"><strong>Status:</strong> Zero GPS · Safe &amp; calm</div>
+                </div>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <div style="text-align:center;">
+          <a href="#features" class="btn btn--secondary">
+            Read the full step-by-step guide
+            <svg class="ico ico--sm" aria-hidden="true"><use href="#ico-arrow"/></svg>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         8. Category Differentiation (Butter-Cream Band)
+         ==================================================================== -->
+    <section class="band band--cream band--divider">
+      <div class="container">
+        <div class="cat-illustration">
+          <!-- Two parents missing each other on their phones -->
+          <svg viewBox="0 0 440 165" role="img" aria-label="Editorial illustration of two parents glancing at their phones and missing each other">
+            <ellipse cx="122" cy="96" rx="82" ry="52" fill="#FCE1E5" opacity="0.6"/>
+            <ellipse cx="318" cy="96" rx="82" ry="52" fill="#D9EDFC" opacity="0.6"/>
+            <!-- Crossed dotted signal lines -->
+            <path d="M168 58 Q220 26 272 58" fill="none" stroke="#2B1F36" stroke-width="1.8" stroke-dasharray="4 6"/>
+            <circle cx="220" cy="40" r="14" fill="#FCE588" stroke="#2B1F36" stroke-width="2"/>
+            <text x="220" y="46" text-anchor="middle" font-size="16" font-weight="800" fill="#2B1F36">?</text>
+
+            <!-- Parent Left facing left -->
+            <g transform="translate(70, 34)">
+              <circle cx="44" cy="30" r="18" fill="#FFF7EE" stroke="#2B1F36" stroke-width="2.1"/>
+              <path d="M27 26 C29 12 59 12 61 26 Z" fill="#2B1F36"/>
+              <path d="M28 50 C24 78 26 102 32 112 L58 112 C64 102 64 78 60 50 Z" fill="#FDE2CC" stroke="#2B1F36" stroke-width="2.1"/>
+              <rect x="64" y="54" width="14" height="24" rx="3.5" fill="#2B1F36"/>
+              <path d="M58 64 L66 68" stroke="#2B1F36" stroke-width="2.2" stroke-linecap="round"/>
+              <circle cx="38" cy="31" r="1.6" fill="#2B1F36"/><circle cx="49" cy="31" r="1.6" fill="#2B1F36"/>
+              <path d="M40 39 Q44 37 48 39" fill="none" stroke="#2B1F36" stroke-width="1.8" stroke-linecap="round"/>
+            </g>
+
+            <!-- Parent Right facing right -->
+            <g transform="translate(274, 34)">
+              <circle cx="44" cy="30" r="18" fill="#FFF7EE" stroke="#2B1F36" stroke-width="2.1"/>
+              <path d="M27 28 C28 11 60 11 61 28 C52 22 36 22 27 28 Z" fill="#2B1F36"/>
+              <path d="M28 50 C24 78 26 102 32 112 L58 112 C64 102 64 78 60 50 Z" fill="#D9F2E4" stroke="#2B1F36" stroke-width="2.1"/>
+              <rect x="10" y="54" width="14" height="24" rx="3.5" fill="#2B1F36"/>
+              <path d="M30 64 L22 68" stroke="#2B1F36" stroke-width="2.2" stroke-linecap="round"/>
+              <circle cx="38" cy="31" r="1.6" fill="#2B1F36"/><circle cx="49" cy="31" r="1.6" fill="#2B1F36"/>
+              <path d="M40 39 Q44 37 48 39" fill="none" stroke="#2B1F36" stroke-width="1.8" stroke-linecap="round"/>
+            </g>
+          </svg>
+        </div>
+
+        <div class="section-head section-head--center">
+          <span class="eyebrow">Why Something Dedicated</span>
+          <h2 class="h2">Not just a calendar. Not a school gate app.</h2>
+          <p class="lead">
+            Shared calendars show an event exists. School dismissal apps verify who is allowed at the curb. Kid Pickup solves the part in between: making sure a real human actually committed to the drive.
+          </p>
+        </div>
+
+        <div class="compare-grid">
+          <article class="compare-card bg-blush">
+            <span class="compare-card__kicker">Passive Calendars</span>
+            <h3>Standard shared calendar</h3>
+            <p>Great for listing “Soccer 5:00 pm,” but completely silent about who is actually getting in the car — or when nobody is.</p>
+            <ul class="compare-list">
+              <li><svg class="ico ico--sm" aria-hidden="true"><use href="#ico-check"/></svg> Displays time and address</li>
+              <li><svg class="ico ico--sm" aria-hidden="true"><use href="#ico-x"/></svg> No explicit driver ownership</li>
+              <li><svg class="ico ico--sm" aria-hidden="true"><use href="#ico-x"/></svg> No unclaimed escalation alerts</li>
+            </ul>
+          </article>
+
+          <article class="compare-card bg-lilac">
+            <span class="compare-card__kicker">School Administration</span>
+            <h3>School dismissal app</h3>
+            <p>Built for school staff to verify gate authorization and car-line tags — not for coordinating your family’s afternoon.</p>
+            <ul class="compare-list">
+              <li><svg class="ico ico--sm" aria-hidden="true"><use href="#ico-check"/></svg> Verifies gate pickup authorization</li>
+              <li><svg class="ico ico--sm" aria-hidden="true"><use href="#ico-x"/></svg> Only covers school dismissal</li>
+              <li><svg class="ico ico--sm" aria-hidden="true"><use href="#ico-x"/></svg> No sports, daycare, or helper coordination</li>
+            </ul>
+          </article>
+
+          <article class="compare-card compare-card--featured">
+            <span class="compare-card__kicker">Family Logistics</span>
+            <h3>Kid Pickup</h3>
+            <p>Secures an explicit yes from one named adult for every pickup and drop-off — and warns parents early when a slot is still open.</p>
+            <ul class="compare-list">
+              <li><svg class="ico ico--sm" aria-hidden="true"><use href="#ico-check"/></svg> Explicit one-tap driver commitment</li>
+              <li><svg class="ico ico--sm" aria-hidden="true"><use href="#ico-check"/></svg> Automatic 24h / 3h / 2h gap alerts</li>
+              <li><svg class="ico ico--sm" aria-hidden="true"><use href="#ico-check"/></svg> School, daycare, sports &amp; whole circle</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         9. Four Core Home-Base Pillars (White Band)
+         ==================================================================== -->
+    <section class="band band--white">
+      <div class="container">
+        <div class="section-head section-head--center">
+          <span class="eyebrow">Your Family Home Base</span>
+          <h2 class="h2">Four calm pillars that keep every week steady.</h2>
+        </div>
+
+        <div class="pillars-grid">
+          <article class="pillar-tile bg-yellow">
+            <span class="icon-badge bg-white"><svg class="ico" aria-hidden="true"><use href="#ico-cal"/></svg></span>
+            <h3 class="h3">Unified activity calendar</h3>
+            <p>
+              More than 100 activity types from swim lessons to orthodontist visits, clear day, week, and month views, plus a live external calendar subscription feed for your existing calendar app.
+            </p>
+            <div class="pillar-tile__foot">
+              <a href="#features" class="text-link">Explore calendar tools <svg class="ico ico--sm" aria-hidden="true"><use href="#ico-arrow"/></svg></a>
+            </div>
+          </article>
+
+          <article class="pillar-tile bg-sky">
+            <span class="icon-badge bg-white"><svg class="ico" aria-hidden="true"><use href="#ico-chat"/></svg></span>
+            <h3 class="h3">Whole-circle &amp; private messaging</h3>
+            <p>
+              Message the entire caregiving circle together or start a quiet parent-only thread with photos and delivery receipts — keeping logistics right beside the schedule.
+            </p>
+            <div class="pillar-tile__foot">
+              <a href="#features" class="text-link">See family messaging <svg class="ico ico--sm" aria-hidden="true"><use href="#ico-arrow"/></svg></a>
+            </div>
+          </article>
+
+          <article class="pillar-tile bg-mint">
+            <span class="icon-badge bg-white"><svg class="ico" aria-hidden="true"><use href="#ico-users"/></svg></span>
+            <h3 class="h3">Role-based visibility &amp; playful avatars</h3>
+            <p>
+              Parents see the whole picture while sitters and occasional helpers see only the kids and days they need — with friendly custom avatars so everyone is recognizable at a glance.
+            </p>
+            <div class="pillar-tile__foot">
+              <a href="#privacy" class="text-link">Review role controls <svg class="ico ico--sm" aria-hidden="true"><use href="#ico-arrow"/></svg></a>
+            </div>
+          </article>
+
+          <article class="pillar-tile bg-peach">
+            <span class="icon-badge bg-white"><svg class="ico" aria-hidden="true"><use href="#ico-pin"/></svg></span>
+            <h3 class="h3">Practical reference info in reach</h3>
+            <p>
+              Emergency contacts, saved school and rink addresses with gate notes, and private parent work-shift conflict flags live in one dependable spot whenever a helper needs them.
+            </p>
+            <div class="pillar-tile__foot">
+              <a href="#work-conflicts" class="text-link">See conflict checks <svg class="ico ico--sm" aria-hidden="true"><use href="#ico-arrow"/></svg></a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         10A. Foldable Device Compatibility — iPhone Duo (Sky Blue Band)
+         ==================================================================== -->
+    <section class="band band--sky">
+      <div class="container">
+        <div class="split">
+          <div>
+            <span class="eyebrow">Built for What’s Next</span>
+            <h2 class="h2">Ready for Apple’s foldable iPhone Duo.</h2>
+            <p class="lead">
+              Whether you check today’s pickups one-handed in the car line or unfold a bigger screen at the kitchen counter, Kid Pickup adapts smoothly.
+            </p>
+
+            <div class="stack-points">
+              <div class="stack-point">
+                <span class="icon-badge icon-badge--sm bg-yellow"><svg class="ico ico--sm" aria-hidden="true"><use href="#ico-phone"/></svg></span>
+                <div>
+                  <h3>Standard phone flow when closed</h3>
+                  <p>Fast one-handed claiming, quick check-ins, and morning feed glances on the outer cover display.</p>
+                </div>
+              </div>
+              <div class="stack-point">
+                <span class="icon-badge icon-badge--sm bg-mint"><svg class="ico ico--sm" aria-hidden="true"><use href="#ico-cal"/></svg></span>
+                <div>
+                  <h3>Functional compatibility window when opened</h3>
+                  <p>Unfold mid-week without losing your place — full calendar and messaging work reliably right away.</p>
+                </div>
+              </div>
+              <div class="stack-point">
+                <span class="icon-badge icon-badge--sm bg-lilac"><svg class="ico ico--sm" aria-hidden="true"><use href="#ico-spark"/></svg></span>
+                <div>
+                  <h3>Upcoming native full-screen tablet-style layout</h3>
+                  <p>A dedicated unfolded layout with side-by-side week view and pickup details is on the way.</p>
+                </div>
+              </div>
+            </div>
+
+            <p class="trademark-note">
+              Apple, iPhone, iPhone Duo, and App Store are trademarks of Apple Inc., registered in the U.S. and other countries.
+            </p>
+          </div>
+
+          <div>
+            <div class="wireframe-duo" aria-label="Schematic closed and open iPhone Duo layout diagram">
+              <div class="wf-device wf-device--closed">
+                <div class="wf-bar" style="width:55%;"></div>
+                <div class="wf-block bg-mint">3:15 pm · Mae ✓</div>
+                <div class="wf-block bg-yellow">5:00 pm · Open</div>
+                <div class="wf-block bg-peach">6:30 pm · Dad ✓</div>
+              </div>
+
+              <div class="wf-device wf-device--open">
+                <span class="wf-crease" aria-hidden="true"></span>
+                <div>
+                  <div class="wf-bar" style="width:70%;"></div>
+                  <div class="wf-block bg-sky">Mon · 2 covered</div>
+                  <div class="wf-block bg-mint">Tue · 3 covered</div>
+                  <div class="wf-block bg-yellow">Wed · 1 open</div>
+                  <div class="wf-block bg-lilac">Thu · 2 covered</div>
+                </div>
+                <div>
+                  <div class="wf-bar" style="width:60%;"></div>
+                  <div class="wf-block bg-cream">
+                    Wed 3:15 pm<br>
+                    Cedar School<br>
+                    <strong>Needs driver</strong>
+                  </div>
+                  <div class="wf-block bg-peach" style="text-align:center;">Claim ride</div>
+                </div>
+              </div>
+            </div>
+            <p class="wf-caption">Closed cover display (left) · Unfolded wide workspace (right)</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         10B. Desktop Browser Companion (Soft Mint Band)
+         ==================================================================== -->
+    <section class="band band--mint">
+      <div class="container">
+        <div class="split">
+          <div>
+            <span class="eyebrow">Companion Web App</span>
+            <h2 class="h2">Plan the week from your desk.</h2>
+            <p class="lead">
+              Sunday-night scheduling is easier with a keyboard and a wide screen. Open <strong>app.kidpickup.com</strong> in any desktop browser using the exact same family account.
+            </p>
+
+            <div class="subpoints-grid">
+              <div class="subpoint">
+                <h3>Shared account &amp; subscription</h3>
+                <p>Included with your iPhone subscription at no extra cost — every change syncs instantly.</p>
+              </div>
+              <div class="subpoint">
+                <h3>Drag-and-drop rescheduling</h3>
+                <p>Move practices or appointments across day, week, and month views with a quick mouse drag.</p>
+              </div>
+              <div class="subpoint">
+                <h3>Wide-screen sidebar navigation</h3>
+                <p>Jump between children, helpers, saved addresses, and the family feed without tapping through menus.</p>
+              </div>
+              <div class="subpoint">
+                <h3>Zero installation needed</h3>
+                <p>Works right in Safari, Chrome, or Edge at work or home; push reminders stay calmly on your iPhone.</p>
+              </div>
+            </div>
+
+            <div class="cta-row cta-row--left" style="align-items:center;">
+              <a href="https://app.kidpickup.com" target="_blank" rel="noopener" class="btn btn--primary">
+                Open web app
+                <svg class="ico ico--sm" aria-hidden="true"><use href="#ico-arrow"/></svg>
+              </a>
+              <a href="#features" class="text-link">See browser details</a>
+            </div>
+          </div>
+
+          <div>
+            <div class="wf-browser" aria-label="Simplified Kid Pickup desktop browser calendar wireframe">
+              <div class="wf-browser__top">
+                <span class="wf-dot bg-blush"></span>
+                <span class="wf-dot bg-yellow"></span>
+                <span class="wf-dot bg-mint"></span>
+                <span class="wf-url">app.kidpickup.com</span>
+              </div>
+              <div class="wf-browser__body">
+                <div class="wf-sidebar">
+                  <div class="wf-nav-item wf-nav-item--active">Week View</div>
+                  <div class="wf-nav-item">Family Feed</div>
+                  <div class="wf-nav-item">Messages</div>
+                  <div class="wf-nav-item">Saved Places</div>
+                  <div class="wf-nav-item">Helpers (4)</div>
+                </div>
+                <div class="wf-cal">
+                  <div class="wf-cal__head">
+                    <span>October · Week 42</span>
+                    <span class="phone__pill bg-mint">Synced</span>
+                  </div>
+                  <div class="wf-cal__grid">
+                    <div class="wf-day">
+                      <div class="wf-day__label">Wed 14</div>
+                      <div class="wf-event bg-sky">8:20 am Drop-off · Mom</div>
+                      <div class="wf-event bg-mint">3:15 pm School · Mae</div>
+                    </div>
+                    <div class="wf-day">
+                      <div class="wf-day__label">Thu 15</div>
+                      <div class="wf-event bg-yellow wf-event--drag">4:15 pm Piano ⇄ drag</div>
+                      <div class="wf-event bg-peach">5:30 pm Soccer · Dad</div>
+                    </div>
+                    <div class="wf-day">
+                      <div class="wf-day__label">Fri 16</div>
+                      <div class="wf-event bg-mint">3:15 pm School · Dad</div>
+                      <div class="wf-event bg-lilac">6:00 pm Pizza night</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         10C. Work-Shift Conflict Detection (Warm Peach Band)
+         ==================================================================== -->
+    <section class="band band--peach" id="work-conflicts">
+      <div class="container">
+        <div class="split">
+          <div>
+            <span class="eyebrow">Work-Shift Conflict Detection</span>
+            <h2 class="h2">Catch shift overlaps before they happen.</h2>
+            <p class="lead">
+              Enter your work schedule once and Kid Pickup watches the clock in the background — flagging any pickup that collides with your shift or commute.
+            </p>
+
+            <div class="subpoints-grid">
+              <div class="subpoint">
+                <h3>Private to parents &amp; guardians</h3>
+                <p>Enter recurring or rotating work hours once; your shifts stay invisible to sitters and extended helpers.</p>
+              </div>
+              <div class="subpoint">
+                <h3>Automatic 30-minute travel buffer</h3>
+                <p>Builds a 30-minute cushion before and after every shift so back-to-back handoffs never cut it too close.</p>
+              </div>
+              <div class="subpoint">
+                <h3>One-tap circle broadcast</h3>
+                <p>Spot a clash? Tap once to ask your caregiving circle who can step in for that specific pickup.</p>
+              </div>
+              <div class="subpoint">
+                <h3>Clears automatically once claimed</h3>
+                <p>The moment a co-parent, grandparent, or sitter claims the ride, the conflict flag clears itself.</p>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <div class="alert-card" role="region" aria-label="Sample work-shift conflict alert">
+              <div class="alert-card__top">
+                <span class="alert-tag">
+                  <svg class="ico ico--sm" aria-hidden="true"><use href="#ico-alert"/></svg>
+                  Work-shift conflict
+                </span>
+                <span style="font-size:0.78rem;font-weight:700;color:var(--ink-muted);">Thu, Oct 15</span>
+              </div>
+              <h3 class="alert-card__title">Clinic shift overlaps Leo’s soccer pickup.</h3>
+              <p style="margin:0;font-size:0.86rem;color:var(--ink-soft);">
+                Only parents can see your work hours. Want to ask your circle to cover this ride?
+              </p>
+
+              <div class="alert-card__timeline">
+                <div class="alert-row">
+                  <span>🏥 Sarah’s Clinic Shift</span>
+                  <strong>8:00 am – 3:30 pm</strong>
+                </div>
+                <div class="alert-row">
+                  <span>⚽ Leo · Soccer Pickup</span>
+                  <strong>3:45 pm · Field 3</strong>
+                </div>
+                <div class="alert-row alert-row--buffer">
+                  <span>30-min travel buffer overlaps by 15 min</span>
+                </div>
+              </div>
+
+              <div class="alert-card__actions">
+                <a href="#pricing" class="btn btn--primary">Ask circle for help</a>
+                <a href="#work-conflicts" class="btn btn--secondary">Keep anyway</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         11. Audience Showcase — Nine Family & Caregiving Use Cases (White Band)
+         ==================================================================== -->
+    <section class="band band--white" id="who-its-for">
+      <div class="container">
+        <div class="section-head section-head--center">
+          <span class="eyebrow">Who It’s For</span>
+          <h2 class="h2">Built for real families in every shape.</h2>
+          <p class="lead">
+            Whether your pickup circle is two parents down the hall or six relatives across town, Kid Pickup fits the way you already care for your kids.
+          </p>
+        </div>
+
+        <div class="audience-grid">
+          <!-- 1. Two-parent -->
+          <article class="persona-card bg-yellow">
+            <div class="persona-card__art" aria-hidden="true">
+              <svg width="118" height="92" viewBox="0 0 118 92">
+                <ellipse cx="58" cy="52" rx="46" ry="30" fill="#FFFFFF" opacity="0.65"/>
+                <circle cx="38" cy="30" r="13" fill="#FFF7EE" stroke="#2B1F36" stroke-width="2"/>
+                <path d="M26 28 C28 16 48 16 50 28 Z" fill="#2B1F36"/>
+                <path d="M24 46 L52 46 L54 78 L22 78 Z" fill="#D9EDFC" stroke="#2B1F36" stroke-width="2" stroke-linejoin="round"/>
+                <circle cx="78" cy="32" r="13" fill="#FFF7EE" stroke="#2B1F36" stroke-width="2"/>
+                <path d="M66 29 C68 17 88 17 90 29 Z" fill="#2B1F36"/>
+                <path d="M64 48 L92 48 L94 78 L62 78 Z" fill="#FCE1E5" stroke="#2B1F36" stroke-width="2" stroke-linejoin="round"/>
+                <path d="M52 58 H64" stroke="#2B1F36" stroke-width="2" stroke-dasharray="3 3"/>
+              </svg>
+            </div>
+            <h3>Two-parent households</h3>
+            <p>End the daily “who’s grabbing who?” check-ins between meetings and split drop-off and pick-up cleanly.</p>
+            <a href="#pricing" class="text-link">See how it helps <svg class="ico ico--sm" aria-hidden="true"><use href="#ico-arrow"/></svg></a>
+          </article>
+
+          <!-- 2. Single parents -->
+          <article class="persona-card bg-sky">
+            <div class="persona-card__art" aria-hidden="true">
+              <svg width="118" height="92" viewBox="0 0 118 92">
+                <ellipse cx="58" cy="52" rx="46" ry="30" fill="#FFFFFF" opacity="0.65"/>
+                <circle cx="58" cy="30" r="14" fill="#FFF7EE" stroke="#2B1F36" stroke-width="2"/>
+                <path d="M44 28 C46 14 70 14 72 28 Z" fill="#2B1F36"/>
+                <path d="M42 47 L74 47 L76 78 L40 78 Z" fill="#FDE2CC" stroke="#2B1F36" stroke-width="2" stroke-linejoin="round"/>
+                <circle cx="24" cy="48" r="9" fill="#D9F2E4" stroke="#2B1F36" stroke-width="1.8"/>
+                <circle cx="94" cy="48" r="9" fill="#EAE1FA" stroke="#2B1F36" stroke-width="1.8"/>
+                <path d="M33 48 H42 M74 48 H85" stroke="#2B1F36" stroke-width="1.7" stroke-dasharray="3 3"/>
+              </svg>
+            </div>
+            <h3>Single parents with support networks</h3>
+            <p>Coordinate friends, neighbors, and family helpers without juggling five separate text chains — and helpers never pay.</p>
+            <a href="#pricing" class="text-link">See how it helps <svg class="ico ico--sm" aria-hidden="true"><use href="#ico-arrow"/></svg></a>
+          </article>
+
+          <!-- 3. Sitters or nannies -->
+          <article class="persona-card bg-mint">
+            <div class="persona-card__art" aria-hidden="true">
+              <svg width="118" height="92" viewBox="0 0 118 92">
+                <ellipse cx="58" cy="52" rx="46" ry="30" fill="#FFFFFF" opacity="0.65"/>
+                <circle cx="46" cy="30" r="13" fill="#FFF7EE" stroke="#2B1F36" stroke-width="2"/>
+                <path d="M33 30 C35 16 57 16 59 30 Z" fill="#2B1F36"/>
+                <path d="M32 46 L60 46 L62 78 L30 78 Z" fill="#FCE588" stroke="#2B1F36" stroke-width="2" stroke-linejoin="round"/>
+                <rect x="68" y="34" width="28" height="36" rx="6" fill="#FFFFFF" stroke="#2B1F36" stroke-width="2"/>
+                <path d="M74 45 h16 M74 52 h12 M74 59 h14" stroke="#2B1F36" stroke-width="1.8" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <h3>Families with sitters or nannies</h3>
+            <p>Give sitters clear pickup times, gate addresses, and emergency numbers — with quieter alerts and scoped visibility.</p>
+            <a href="#pricing" class="text-link">See how it helps <svg class="ico ico--sm" aria-hidden="true"><use href="#ico-arrow"/></svg></a>
+          </article>
+
+          <!-- 4. Sports & activities -->
+          <article class="persona-card bg-peach">
+            <div class="persona-card__art" aria-hidden="true">
+              <svg width="118" height="92" viewBox="0 0 118 92">
+                <ellipse cx="58" cy="52" rx="46" ry="30" fill="#FFFFFF" opacity="0.65"/>
+                <circle cx="42" cy="52" r="20" fill="#FFFFFF" stroke="#2B1F36" stroke-width="2.1"/>
+                <polygon points="42 42 50 48 47 58 37 58 34 48" fill="#2B1F36"/>
+                <rect x="68" y="30" width="28" height="40" rx="6" fill="#D9EDFC" stroke="#2B1F36" stroke-width="2"/>
+                <path d="M74 42 h16 M74 50 h10" stroke="#2B1F36" stroke-width="1.8" stroke-linecap="round"/>
+                <circle cx="94" cy="30" r="8" fill="#FCE588" stroke="#2B1F36" stroke-width="1.8"/>
+              </svg>
+            </div>
+            <h3>Busy sports &amp; activity families</h3>
+            <p>Sync TeamSnap and GameChanger calendars directly, split drop-off and pickup drivers, and catch one-hour double bookings.</p>
+            <a href="#pricing" class="text-link">See how it helps <svg class="ico ico--sm" aria-hidden="true"><use href="#ico-arrow"/></svg></a>
+          </article>
+
+          <!-- 5. Separated & blended -->
+          <article class="persona-card bg-lilac">
+            <div class="persona-card__art" aria-hidden="true">
+              <svg width="118" height="92" viewBox="0 0 118 92">
+                <ellipse cx="58" cy="52" rx="46" ry="30" fill="#FFFFFF" opacity="0.65"/>
+                <path d="M20 46 L36 32 L52 46 V74 H20 Z" fill="#FCE588" stroke="#2B1F36" stroke-width="2" stroke-linejoin="round"/>
+                <path d="M66 46 L82 32 L98 46 V74 H66 Z" fill="#D9F2E4" stroke="#2B1F36" stroke-width="2" stroke-linejoin="round"/>
+                <path d="M46 28 Q59 14 72 28" fill="none" stroke="#2B1F36" stroke-width="2" stroke-dasharray="4 4"/>
+              </svg>
+            </div>
+            <h3>Separated &amp; blended co-parenting</h3>
+            <p>Keep handoffs clear, neutral, and documented across two households with granular edit permissions and a chronological log.</p>
+            <a href="#pricing" class="text-link">See how it helps <svg class="ico ico--sm" aria-hidden="true"><use href="#ico-arrow"/></svg></a>
+          </article>
+
+          <!-- 6. Grandparents -->
+          <article class="persona-card bg-blush">
+            <div class="persona-card__art" aria-hidden="true">
+              <svg width="118" height="92" viewBox="0 0 118 92">
+                <ellipse cx="58" cy="52" rx="46" ry="30" fill="#FFFFFF" opacity="0.65"/>
+                <circle cx="56" cy="34" r="16" fill="#FFF7EE" stroke="#2B1F36" stroke-width="2"/>
+                <circle cx="56" cy="14" r="7" fill="#E8E4EC" stroke="#2B1F36" stroke-width="1.8"/>
+                <circle cx="50" cy="35" r="4" fill="none" stroke="#2B1F36" stroke-width="1.6"/>
+                <circle cx="62" cy="35" r="4" fill="none" stroke="#2B1F36" stroke-width="1.6"/>
+                <path d="M40 52 L72 52 L75 78 L37 78 Z" fill="#EAE1FA" stroke="#2B1F36" stroke-width="2" stroke-linejoin="round"/>
+                <path d="M84 36 C88 28 98 32 92 42 L84 48 L76 42 C70 32 80 28 84 36 Z" fill="#FF7F66" stroke="#2B1F36" stroke-width="1.6"/>
+              </svg>
+            </div>
+            <h3>Families relying on grandparents</h3>
+            <p>Large clear buttons, zero jargon, optional email alerts, and one-tap web links for relatives who prefer not to download apps.</p>
+            <a href="#pricing" class="text-link">See how it helps <svg class="ico ico--sm" aria-hidden="true"><use href="#ico-arrow"/></svg></a>
+          </article>
+
+          <!-- 7. Daycare -->
+          <article class="persona-card bg-mint">
+            <div class="persona-card__art" aria-hidden="true">
+              <svg width="118" height="92" viewBox="0 0 118 92">
+                <ellipse cx="58" cy="52" rx="46" ry="30" fill="#FFFFFF" opacity="0.65"/>
+                <rect x="26" y="48" width="26" height="26" rx="5" fill="#FCE588" stroke="#2B1F36" stroke-width="2"/>
+                <rect x="56" y="48" width="26" height="26" rx="5" fill="#D9EDFC" stroke="#2B1F36" stroke-width="2"/>
+                <rect x="41" y="22" width="26" height="26" rx="5" fill="#FCE1E5" stroke="#2B1F36" stroke-width="2"/>
+                <text x="54" y="40" text-anchor="middle" font-size="13" font-weight="800" fill="#2B1F36">A</text>
+              </svg>
+            </div>
+            <h3>Daycare families</h3>
+            <p>Beat the 5:30 p.m. late-pickup fee with early escalation reminders and instant “picked up” confirmations while you’re commuting.</p>
+            <a href="#pricing" class="text-link">See how it helps <svg class="ico ico--sm" aria-hidden="true"><use href="#ico-arrow"/></svg></a>
+          </article>
+
+          <!-- 8. Schools with dismissal apps -->
+          <article class="persona-card bg-yellow">
+            <div class="persona-card__art" aria-hidden="true">
+              <svg width="118" height="92" viewBox="0 0 118 92">
+                <ellipse cx="58" cy="52" rx="46" ry="30" fill="#FFFFFF" opacity="0.65"/>
+                <path d="M26 42 L58 22 L90 42 V76 H26 Z" fill="#FFFFFF" stroke="#2B1F36" stroke-width="2" stroke-linejoin="round"/>
+                <rect x="48" y="54" width="20" height="22" rx="3" fill="#FDE2CC" stroke="#2B1F36" stroke-width="1.9"/>
+                <circle cx="58" cy="38" r="5" fill="#FCE588" stroke="#2B1F36" stroke-width="1.8"/>
+              </svg>
+            </div>
+            <h3>Schools running dismissal apps</h3>
+            <p>Pairs seamlessly alongside Pikmykid or School Dismissal Manager: decide who is driving at home, then let the school verify at the gate.</p>
+            <a href="#pricing" class="text-link">See how it helps <svg class="ico ico--sm" aria-hidden="true"><use href="#ico-arrow"/></svg></a>
+          </article>
+
+          <!-- 9. Carpooling -->
+          <article class="persona-card bg-sky">
+            <div class="persona-card__art" aria-hidden="true">
+              <svg width="118" height="92" viewBox="0 0 118 92">
+                <ellipse cx="58" cy="52" rx="46" ry="30" fill="#FFFFFF" opacity="0.65"/>
+                <rect x="22" y="44" width="74" height="26" rx="10" fill="#FDE2CC" stroke="#2B1F36" stroke-width="2"/>
+                <path d="M36 44 L44 28 H74 L82 44" fill="#FFFFFF" stroke="#2B1F36" stroke-width="2" stroke-linejoin="round"/>
+                <circle cx="38" cy="70" r="7" fill="#2B1F36"/>
+                <circle cx="80" cy="70" r="7" fill="#2B1F36"/>
+              </svg>
+            </div>
+            <h3>Carpooling families</h3>
+            <p>Rotate neighborhood drivers without confusion — one tap claims Tuesday’s carpool and shares gate details automatically.</p>
+            <a href="#pricing" class="text-link">See how it helps <svg class="ico ico--sm" aria-hidden="true"><use href="#ico-arrow"/></svg></a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         12. Comprehensive 40-Feature Directory (Butter-Cream Band)
+         ==================================================================== -->
+    <section class="band band--cream" id="features">
+      <div class="container">
+        <div class="section-head section-head--center">
+          <span class="eyebrow">Every Capability</span>
+          <h2 class="h2">Forty thoughtful details, zero clutter.</h2>
+          <p class="lead">
+            Built from real school-week logistics — every small edge case handled quietly so your family doesn’t have to patch five apps together.
+          </p>
+        </div>
+
+        <div class="directory-grid">
+          <!-- 1-10 -->
+          <div class="micro-card"><span class="icon-badge icon-badge--sm bg-lilac"><svg class="ico ico--sm"><use href="#ico-home"/></svg></span><div><h3>Private family feed</h3><p>Chronological home tab pinning today’s pickups above family updates and photos.</p></div></div>
+          <div class="micro-card"><span class="icon-badge icon-badge--sm bg-yellow"><svg class="ico ico--sm"><use href="#ico-phone"/></svg></span><div><h3>iOS home screen widgets</h3><p>Glance at today’s drivers and open pickups right on your iPhone home screen.</p></div></div>
+          <div class="micro-card"><span class="icon-badge icon-badge--sm bg-sky"><svg class="ico ico--sm"><use href="#ico-sync"/></svg></span><div><h3>Google Calendar &amp; Tasks import</h3><p>Read-only overlay of your Google Calendar and Tasks so nothing clashes.</p></div></div>
+          <div class="micro-card"><span class="icon-badge icon-badge--sm bg-mint"><svg class="ico ico--sm"><use href="#ico-eye"/></svg></span><div><h3>Availability checker</h3><p>Spot who in your circle is free before asking for afternoon backup.</p></div></div>
+          <div class="micro-card"><span class="icon-badge icon-badge--sm bg-peach"><svg class="ico ico--sm"><use href="#ico-laptop"/></svg></span><div><h3>Desktop browser access</h3><p>Full planning workspace at app.kidpickup.com included with your plan.</p></div></div>
+          <div class="micro-card"><span class="icon-badge icon-badge--sm bg-blush"><svg class="ico ico--sm"><use href="#ico-search"/></svg></span><div><h3>Search &amp; child filters</h3><p>Filter the week by child, activity, or helper in a single tap.</p></div></div>
+          <div class="micro-card"><span class="icon-badge icon-badge--sm bg-yellow"><svg class="ico ico--sm"><use href="#ico-undo"/></svg></span><div><h3>30-day undo &amp; recently deleted</h3><p>Accidentally cleared an event? Restore anything deleted within 30 days.</p></div></div>
+          <div class="micro-card"><span class="icon-badge icon-badge--sm bg-sky"><svg class="ico ico--sm"><use href="#ico-file"/></svg></span><div><h3>Event file &amp; PDF attachments</h3><p>Attach up to five permission slips, maps, or flyers right to an event.</p></div></div>
+          <div class="micro-card"><span class="icon-badge icon-badge--sm bg-mint"><svg class="ico ico--sm"><use href="#ico-sun"/></svg></span><div><h3>Regional holidays &amp; school breaks</h3><p>Built-in Canadian and U.S. public holidays and school-break awareness.</p></div></div>
+          <div class="micro-card"><span class="icon-badge icon-badge--sm bg-lilac"><svg class="ico ico--sm"><use href="#ico-clock"/></svg></span><div><h3>7 p.m. next-day digest</h3><p>One calm evening summary showing tomorrow’s drivers and any open slots.</p></div></div>
+
+          <!-- 11-20 -->
+          <div class="micro-card"><span class="icon-badge icon-badge--sm bg-peach"><svg class="ico ico--sm"><use href="#ico-lock"/></svg></span><div><h3>Granular parent edit permissions</h3><p>Choose who can add, edit, or delete schedule items across households.</p></div></div>
+          <div class="micro-card"><span class="icon-badge icon-badge--sm bg-blush"><svg class="ico ico--sm"><use href="#ico-mail"/></svg></span><div><h3>Optional email alerts</h3><p>Ideal for relatives or desk workers who prefer email reminders over push.</p></div></div>
+          <div class="micro-card"><span class="icon-badge icon-badge--sm bg-yellow"><svg class="ico ico--sm"><use href="#ico-mic"/></svg></span><div><h3>Natural-language text &amp; voice</h3><p>Type or speak “Maya soccer Thu 5 pm” and watch fields fill automatically.</p></div></div>
+          <div class="micro-card"><span class="icon-badge icon-badge--sm bg-mint"><svg class="ico ico--sm"><use href="#ico-hand"/></svg></span><div><h3>One-tap notification claiming</h3><p>Claim an open pickup straight from your iPhone notification banner.</p></div></div>
+          <div class="micro-card"><span class="icon-badge icon-badge--sm bg-sky"><svg class="ico ico--sm"><use href="#ico-x"/></svg></span><div><h3>One-tap polite decline</h3><p>Let parents know you can’t make a slot immediately so they can plan ahead.</p></div></div>
+          <div class="micro-card"><span class="icon-badge icon-badge--sm bg-lilac"><svg class="ico ico--sm"><use href="#ico-split"/></svg></span><div><h3>Split drop-off &amp; pick-up assignees</h3><p>Assign one adult for drop-off and a different adult for pickup on the same event.</p></div></div>
+          <div class="micro-card"><span class="icon-badge icon-badge--sm bg-peach"><svg class="ico ico--sm"><use href="#ico-cal"/></svg></span><div><h3>Non-pickup general events</h3><p>Track spirit days, birthdays, and library-book days right alongside rides.</p></div></div>
+          <div class="micro-card"><span class="icon-badge icon-badge--sm bg-mint"><svg class="ico ico--sm"><use href="#ico-check"/></svg></span><div><h3>Arrival &amp; collected status taps</h3><p>One-tap “Arrived” and “Picked up” updates calm mid-meeting nerves.</p></div></div>
+          <div class="micro-card"><span class="icon-badge icon-badge--sm bg-yellow"><svg class="ico ico--sm"><use href="#ico-list"/></svg></span><div><h3>Family to-do list &amp; evening nudges</h3><p>Track cleats, snacks, and forms with gentle evening reminders.</p></div></div>
+          <div class="micro-card"><span class="icon-badge icon-badge--sm bg-sky"><svg class="ico ico--sm"><use href="#ico-sync"/></svg></span><div><h3>Live ICS team-calendar sync</h3><p>Pull schedules from TeamSnap, GameChanger, schools, and Google automatically.</p></div></div>
+
+          <!-- 21-30 -->
+          <div class="micro-card"><span class="icon-badge icon-badge--sm bg-blush"><svg class="ico ico--sm"><use href="#ico-bell"/></svg></span><div><h3>Schedule-change reconfirmation</h3><p>Time or field changed? The assigned driver gets prompted to reconfirm.</p></div></div>
+          <div class="micro-card"><span class="icon-badge icon-badge--sm bg-peach"><svg class="ico ico--sm"><use href="#ico-star"/></svg></span><div><h3>100+ activity icons</h3><p>Instant visual scanning for soccer, dance, piano, dentist, swim, and more.</p></div></div>
+          <div class="micro-card"><span class="icon-badge icon-badge--sm bg-lilac"><svg class="ico ico--sm"><use href="#ico-chat"/></svg></span><div><h3>Family &amp; private chat with photos</h3><p>Keep circle chat and parent-only conversations organized with photo sharing.</p></div></div>
+          <div class="micro-card"><span class="icon-badge icon-badge--sm bg-yellow"><svg class="ico ico--sm"><use href="#ico-spark"/></svg></span><div><h3>Reusable quick events</h3><p>Save frequent pickups as one-tap templates so routine weeks take seconds.</p></div></div>
+          <div class="micro-card"><span class="icon-badge icon-badge--sm bg-mint"><svg class="ico ico--sm"><use href="#ico-bell"/></svg></span><div><h3>Quieter helper notification defaults</h3><p>Grandparents and sitters get only the alerts relevant to their claimed days.</p></div></div>
+          <div class="micro-card"><span class="icon-badge icon-badge--sm bg-blush"><svg class="ico ico--sm"><use href="#ico-alert"/></svg></span><div><h3>Work-shift conflict detection</h3><p>Private shift hours + 30-min travel buffer warn before overlaps sneak up.</p></div></div>
+          <div class="micro-card"><span class="icon-badge icon-badge--sm bg-sky"><svg class="ico ico--sm"><use href="#ico-check"/></svg></span><div><h3>Read &amp; delivery receipts</h3><p>Know your message actually landed before leaving the office.</p></div></div>
+          <div class="micro-card"><span class="icon-badge icon-badge--sm bg-peach"><svg class="ico ico--sm"><use href="#ico-cal"/></svg></span><div><h3>External calendar subscription feeds</h3><p>Subscribe to your Kid Pickup schedule from Apple, Google, or Outlook Calendar.</p></div></div>
+          <div class="micro-card"><span class="icon-badge icon-badge--sm bg-yellow"><svg class="ico ico--sm"><use href="#ico-bell"/></svg></span><div><h3>Escalating unclaimed nudges</h3><p>Automatic parent reminders at 24 hours, 3 hours, and 2 hours when open.</p></div></div>
+          <div class="micro-card"><span class="icon-badge icon-badge--sm bg-lilac"><svg class="ico ico--sm"><use href="#ico-clock"/></svg></span><div><h3>Customizable departure reminders</h3><p>Set how many minutes ahead your driver nudge fires before leaving.</p></div></div>
+
+          <!-- 31-40 -->
+          <div class="micro-card"><span class="icon-badge icon-badge--sm bg-blush"><svg class="ico ico--sm"><use href="#ico-alert"/></svg></span><div><h3>Urgent help requests</h3><p>Stuck in traffic? Broadcast an urgent coverage call to your circle in one tap.</p></div></div>
+          <div class="micro-card"><span class="icon-badge icon-badge--sm bg-mint"><svg class="ico ico--sm"><use href="#ico-sync"/></svg></span><div><h3>Recurring schedules</h3><p>Set weekly school runs or bi-weekly rotations once and adjust exceptions easily.</p></div></div>
+          <div class="micro-card"><span class="icon-badge icon-badge--sm bg-peach"><svg class="ico ico--sm"><use href="#ico-alert"/></svg></span><div><h3>One-hour double-booking alerts</h3><p>Flags when one driver is accidentally assigned two pickups within an hour.</p></div></div>
+          <div class="micro-card"><span class="icon-badge icon-badge--sm bg-yellow"><svg class="ico ico--sm"><use href="#ico-heart"/></svg></span><div><h3>Playful custom avatars</h3><p>Friendly storybook avatars make kids and helpers easy to spot at a glance.</p></div></div>
+          <div class="micro-card"><span class="icon-badge icon-badge--sm bg-sky"><svg class="ico ico--sm"><use href="#ico-shield"/></svg></span><div><h3>Role-based visibility</h3><p>Control exactly which kids and schedule details each helper role can view.</p></div></div>
+          <div class="micro-card"><span class="icon-badge icon-badge--sm bg-mint"><svg class="ico ico--sm"><use href="#ico-pin"/></svg></span><div><h3>Saved places &amp; gate notes</h3><p>Store school doors, field numbers, and parking notes once for every helper.</p></div></div>
+          <div class="micro-card"><span class="icon-badge icon-badge--sm bg-blush"><svg class="ico ico--sm"><use href="#ico-phone"/></svg></span><div><h3>Emergency contacts</h3><p>Pediatrician, school office, and neighbor contacts ready in one tap.</p></div></div>
+          <div class="micro-card"><span class="icon-badge icon-badge--sm bg-lilac"><svg class="ico ico--sm"><use href="#ico-list"/></svg></span><div><h3>Chronological events log</h3><p>A clear timeline of claims, changes, and check-ins whenever you need to verify.</p></div></div>
+          <div class="micro-card"><span class="icon-badge icon-badge--sm bg-peach"><svg class="ico ico--sm"><use href="#ico-sun"/></svg></span><div><h3>Light, dark &amp; system themes</h3><p>Comfortable reading in bright school parking lots or late-night planning.</p></div></div>
+          <div class="micro-card micro-card--wide">
+            <div class="micro-card--wide__left">
+              <span class="icon-badge icon-badge--sm bg-yellow"><svg class="ico ico--sm"><use href="#ico-spark"/></svg></span>
+              <div>
+                <h3>Premium AI Q&amp;A assistant</h3>
+                <p>Ask plain questions like “Who has Leo on Thursday?” or “Which pickups are still open next week?” — included on the Premium plan.</p>
+              </div>
+            </div>
+            <span class="upcoming-tag">Premium Plan</span>
+          </div>
+        </div>
+
+        <div style="text-align:center;">
+          <a href="#pricing" class="btn btn--secondary">
+            View full features breakdown
+            <svg class="ico ico--sm" aria-hidden="true"><use href="#ico-arrow"/></svg>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         13. Privacy Commitments Split (Butter-Cream Band)
+         ==================================================================== -->
+    <section class="band band--cream band--divider" id="privacy">
+      <div class="container">
+        <div class="trust-split">
+          <div>
+            <span class="eyebrow">Plain-English Privacy</span>
+            <h2 class="h2">Your family’s schedule stays strictly yours.</h2>
+            <p class="lead" style="margin-bottom:18px;">
+              A children’s pickup schedule is some of the most sensitive information a family has. Kid Pickup is funded directly by modest family subscriptions — never by tracking, ads, or selling data.
+            </p>
+            <p style="font-size:0.92rem;color:var(--ink-soft);margin:0 0 22px;">
+              <strong>Transparent hosting:</strong> Your family data is encrypted in transit and at rest on reputable, audited North American cloud infrastructure, used solely to run your calendar and notifications.
+            </p>
+            <a href="#footer-legal" class="text-link">
+              Read the full privacy policy
+              <svg class="ico ico--sm" aria-hidden="true"><use href="#ico-arrow"/></svg>
+            </a>
+          </div>
+
+          <div class="trust-stack">
+            <article class="trust-card">
+              <span class="icon-badge bg-mint"><svg class="ico" aria-hidden="true"><use href="#ico-pin-off"/></svg></span>
+              <div>
+                <h3>Zero GPS or location tracking — ever</h3>
+                <p>Kid Pickup never requests background GPS, never maps where your kids or relatives are driving, and relies on respectful one-tap check-ins instead.</p>
+              </div>
+            </article>
+
+            <article class="trust-card">
+              <span class="icon-badge bg-sky"><svg class="ico" aria-hidden="true"><use href="#ico-shield"/></svg></span>
+              <div>
+                <h3>Strict invite-only visibility &amp; instant removal</h3>
+                <p>Your family circle is invisible to the outside world. Scope what sitters or occasional drivers can see, and revoke access immediately anytime.</p>
+              </div>
+            </article>
+
+            <article class="trust-card">
+              <span class="icon-badge bg-peach"><svg class="ico" aria-hidden="true"><use href="#ico-trash"/></svg></span>
+              <div>
+                <h3>Self-serve in-app account deletion</h3>
+                <p>Leaving should be just as simple as joining. Delete your entire account and family data directly inside the app with zero hoops or emails required.</p>
+              </div>
+            </article>
+
+            <article class="trust-card">
+              <span class="icon-badge bg-yellow"><svg class="ico" aria-hidden="true"><use href="#ico-lock"/></svg></span>
+              <div>
+                <h3>Zero advertising or data brokering</h3>
+                <p>No third-party ad SDKs, no profiling your kids, and no selling family information — now or ever.</p>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         14. Pricing Breakdown (White Band)
+         ==================================================================== -->
+    <section class="band band--white" id="pricing">
+      <div class="container">
+        <div class="section-head section-head--center">
+          <span class="eyebrow">Simple Pricing</span>
+          <h2 class="h2">Honest pricing for the whole circle.</h2>
+          <p class="lead">
+            One subscription covers your iPhone app and desktop web access — and every invited co-parent, grandparent, or sitter joins free.
+          </p>
+        </div>
+
+        <div style="text-align:center;">
+          <div class="billing-switch" role="group" aria-label="Billing frequency toggle">
+            <button type="button" class="is-active" data-billing="annual" aria-pressed="true">Annual billing (Save up to 24%)</button>
+            <button type="button" data-billing="monthly" aria-pressed="false">Monthly billing</button>
+          </div>
+        </div>
+
+        <div class="pricing-grid">
+          <!-- Family Tier (Featured) -->
+          <article class="plan-card plan-card--featured">
+            <div class="plan-card__head">
+              <h3 class="plan-card__name">Family</h3>
+              <span class="plan-pill">Most Common</span>
+            </div>
+            <div class="plan-price">
+              <span class="plan-price__amount" id="price-family">$59.99</span>
+              <span class="plan-price__unit" id="unit-family">/ year USD</span>
+            </div>
+            <p class="plan-price__alt" id="alt-family">Save 17% annually · or $5.99 / month</p>
+            <ul class="plan-list">
+              <li><svg class="ico ico--sm" aria-hidden="true"><use href="#ico-check"/></svg> <span>Up to <strong>2 children</strong></span></li>
+              <li><svg class="ico ico--sm" aria-hidden="true"><use href="#ico-check"/></svg> <span>Up to <strong>2 parents or guardians</strong></span></li>
+              <li><svg class="ico ico--sm" aria-hidden="true"><use href="#ico-check"/></svg> <span>Up to <strong>3 helpers</strong> (grandparents, sitters, carpool)</span></li>
+              <li><svg class="ico ico--sm" aria-hidden="true"><use href="#ico-check"/></svg> <span>Full iPhone app + desktop browser companion</span></li>
+              <li><svg class="ico ico--sm" aria-hidden="true"><use href="#ico-x"/></svg> <span>Excludes the AI scheduling query assistant</span></li>
+            </ul>
+          </article>
+
+          <!-- Premium Tier -->
+          <article class="plan-card plan-card--premium">
+            <div class="plan-card__head">
+              <h3 class="plan-card__name">Premium</h3>
+              <span class="plan-pill">Larger Circles</span>
+            </div>
+            <div class="plan-price">
+              <span class="plan-price__amount" id="price-premium">$109.99</span>
+              <span class="plan-price__unit" id="unit-premium">/ year USD</span>
+            </div>
+            <p class="plan-price__alt" id="alt-premium">Save 24% annually · or $11.99 / month</p>
+            <ul class="plan-list">
+              <li><svg class="ico ico--sm" aria-hidden="true"><use href="#ico-check"/></svg> <span><strong>Unlimited children</strong></span></li>
+              <li><svg class="ico ico--sm" aria-hidden="true"><use href="#ico-check"/></svg> <span>Up to <strong>8 combined parents, guardians &amp; helpers</strong></span></li>
+              <li><svg class="ico ico--sm" aria-hidden="true"><use href="#ico-check"/></svg> <span><strong>Includes AI scheduling query assistant</strong></span></li>
+              <li><svg class="ico ico--sm" aria-hidden="true"><use href="#ico-check"/></svg> <span>Full iPhone app + desktop browser companion</span></li>
+              <li><svg class="ico ico--sm" aria-hidden="true"><use href="#ico-check"/></svg> <span>Priority support directly from the founder</span></li>
+            </ul>
+          </article>
+        </div>
+
+        <!-- 12 Shared Capabilities Box -->
+        <div class="shared-box">
+          <h3 class="shared-box__title">Included on both Family and Premium plans:</h3>
+          <ul class="shared-grid">
+            <li><svg class="ico ico--sm" aria-hidden="true"><use href="#ico-check"/></svg> Private family feed</li>
+            <li><svg class="ico ico--sm" aria-hidden="true"><use href="#ico-check"/></svg> One-tap pickup claiming</li>
+            <li><svg class="ico ico--sm" aria-hidden="true"><use href="#ico-check"/></svg> 24h / 3h / 2h escalation alerts</li>
+            <li><svg class="ico ico--sm" aria-hidden="true"><use href="#ico-check"/></svg> Arrival &amp; pickup check-ins</li>
+            <li><svg class="ico ico--sm" aria-hidden="true"><use href="#ico-check"/></svg> Work-shift conflict checks</li>
+            <li><svg class="ico ico--sm" aria-hidden="true"><use href="#ico-check"/></svg> Texted no-app web claim links</li>
+            <li><svg class="ico ico--sm" aria-hidden="true"><use href="#ico-check"/></svg> Live ICS &amp; Google import</li>
+            <li><svg class="ico ico--sm" aria-hidden="true"><use href="#ico-check"/></svg> Whole-circle &amp; parent chat</li>
+            <li><svg class="ico ico--sm" aria-hidden="true"><use href="#ico-check"/></svg> Split drop-off / pick-up drivers</li>
+            <li><svg class="ico ico--sm" aria-hidden="true"><use href="#ico-check"/></svg> iOS home screen widgets</li>
+            <li><svg class="ico ico--sm" aria-hidden="true"><use href="#ico-check"/></svg> Saved places &amp; emergency info</li>
+            <li><svg class="ico ico--sm" aria-hidden="true"><use href="#ico-check"/></svg> Zero GPS tracking or ads</li>
+          </ul>
+        </div>
+
+        <!-- Two Transparent Billing & Cancellation Pledges -->
+        <div class="pledges-grid">
+          <div class="pledge-card">
+            <span class="icon-badge icon-badge--sm bg-mint"><svg class="ico ico--sm"><use href="#ico-bell"/></svg></span>
+            <div>
+              <h3>30–60 days advance notice</h3>
+              <p>If prices or plan structures ever change, you will receive clear email and in-app notice 30 to 60 days ahead — never a surprise renewal.</p>
+            </div>
+          </div>
+          <div class="pledge-card">
+            <span class="icon-badge icon-badge--sm bg-sky"><svg class="ico ico--sm"><use href="#ico-shield"/></svg></span>
+            <div>
+              <h3>Self-serve cancellation, zero friction</h3>
+              <p>Cancel anytime directly in your iPhone App Store subscription settings. No phone calls, no “are you sure?” obstacle courses.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="cta-row">
+          <a href="https://app.kidpickup.com" target="_blank" rel="noopener" class="btn btn--primary">
+            Start 14-day free trial
+            <svg class="ico ico--sm" aria-hidden="true"><use href="#ico-arrow"/></svg>
+          </a>
+          <div class="store-group">
+            <a href="#pricing" class="store-badge">
+              <svg class="ico ico--lg" aria-hidden="true"><use href="#ico-apple"/></svg>
+              <span class="store-badge__text">
+                <span class="store-badge__kicker">Download on the</span>
+                <span class="store-badge__name">App Store</span>
+              </span>
+            </a>
+            <div class="store-badge-wrap">
+              <a href="#faq-android" class="store-badge store-badge--upcoming">
+                <svg class="ico" aria-hidden="true"><use href="#ico-playstore"/></svg>
+                <span class="store-badge__text">
+                  <span class="store-badge__kicker">Coming to</span>
+                  <span class="store-badge__name">Google Play</span>
+                </span>
+              </a>
+              <span class="upcoming-tag">Upcoming</span>
+            </div>
+          </div>
+        </div>
+
+        <p class="trial-terms">
+          Two-week free trial for new subscribers via Apple’s App Store (requires a payment method; auto-renews unless cancelled at least 24 hours before trial ends).
+        </p>
+        <p class="currency-note">
+          Prices shown in USD; Apple displays local CAD pricing automatically for Canadian families in the App Store. <a href="#pricing" onclick="window.print();return false;">View printable plan-details page</a>.
+        </p>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         15. Frequently Asked Questions — 21 Items (Butter-Cream Band)
+         ==================================================================== -->
+    <section class="band band--cream" id="faq">
+      <div class="container container--narrow">
+        <div class="section-head section-head--center">
+          <span class="eyebrow">Frequently Asked Questions</span>
+          <h2 class="h2">Plain answers to practical questions.</h2>
+        </div>
+
+        <div class="faq-list">
+          <!-- 1 (Open by default) -->
+          <details class="faq-item" open>
+            <summary>When do unclaimed pickup escalation alerts go out? <span class="faq-plus" aria-hidden="true">+</span></summary>
+            <div class="faq-body"><p>Whenever a pickup or drop-off still has no assigned driver, Kid Pickup automatically alerts parents at 24 hours, 3 hours, and 2 hours before the scheduled time so there is always plenty of breathing room to arrange coverage.</p></div>
+          </details>
+
+          <!-- 2 -->
+          <details class="faq-item">
+            <summary>How do work-hour and Google Calendar conflict checks work? <span class="faq-plus" aria-hidden="true">+</span></summary>
+            <div class="faq-body"><p>You enter your work hours once (visible only to parents/guardians) and optionally connect a read-only Google Calendar overlay. Kid Pickup automatically adds a 30-minute travel buffer around work shifts and flags any pickup that overlaps so you can ask your circle for help in one tap.</p></div>
+          </details>
+
+          <!-- 3 -->
+          <details class="faq-item">
+            <summary>Will Kid Pickup warn me if one person is double-booked? <span class="faq-plus" aria-hidden="true">+</span></summary>
+            <div class="faq-body"><p>Yes. If the same adult is assigned to two pickups within one hour of each other, Kid Pickup highlights a double-booking clash warning right away so nobody is expected at two fields at once.</p></div>
+          </details>
+
+          <!-- 4 -->
+          <details class="faq-item">
+            <summary>How does natural-language text or voice event entry work? <span class="faq-plus" aria-hidden="true">+</span></summary>
+            <div class="faq-body"><p>Just type or dictate something like “Leo soccer pickup Thursday at 5:15 pm at Oak Park” and Kid Pickup fills in the child, date, time, activity icon, and saved place automatically.</p></div>
+          </details>
+
+          <!-- 5 -->
+          <details class="faq-item">
+            <summary>What happens if a grandparent or helper declines a pickup request? <span class="faq-plus" aria-hidden="true">+</span></summary>
+            <div class="faq-body"><p>Declining is one polite tap. Parents are notified immediately, the pickup stays visibly marked as open, and escalation reminders remain active until someone else claims it.</p></div>
+          </details>
+
+          <!-- 6 -->
+          <details class="faq-item">
+            <summary>Does Kid Pickup include in-app family chat? <span class="faq-plus" aria-hidden="true">+</span></summary>
+            <div class="faq-body"><p>Yes. You get both whole-circle chat and private parent-only threads with photo sharing and read/delivery receipts, keeping practical pickup talk right beside the calendar.</p></div>
+          </details>
+
+          <!-- 7 -->
+          <details class="faq-item">
+            <summary>How does billing work for solo parents or separated co-parents? <span class="faq-plus" aria-hidden="true">+</span></summary>
+            <div class="faq-body"><p>One single subscription covers the whole family circle. Solo parents can invite grandparents, neighbors, and sitters for free, and separated co-parents share one subscription without paying twice.</p></div>
+          </details>
+
+          <!-- 8 -->
+          <details class="faq-item">
+            <summary>What can sitters and occasional helpers see? <span class="faq-plus" aria-hidden="true">+</span></summary>
+            <div class="faq-body"><p>Helpers only see the children and schedule details you choose to share with their role. Private parent work hours, parent-only chat threads, and billing stay completely hidden, and you can remove a helper anytime.</p></div>
+          </details>
+
+          <!-- 9 -->
+          <details class="faq-item">
+            <summary>How is Kid Pickup different from Cozi? <span class="faq-plus" aria-hidden="true">+</span></summary>
+            <div class="faq-body"><p>Cozi is a general household organizer with ads on its free tier and no pickup-claiming workflow. Kid Pickup is completely ad-free and purpose-built for transportation ownership: explicit accept/decline buttons, 24h/3h/2h gap escalations, driver reconfirmation on time changes, and arrival check-ins.</p></div>
+          </details>
+
+          <!-- 10 -->
+          <details class="faq-item">
+            <summary>Does it work with Google Calendar? <span class="faq-plus" aria-hidden="true">+</span></summary>
+            <div class="faq-body"><p>Yes — in both directions. You can display a read-only import of your Google Calendar and Tasks inside Kid Pickup to spot conflicts, and subscribe to your Kid Pickup schedule from Google Calendar, Apple Calendar, or Outlook.</p></div>
+          </details>
+
+          <!-- 11 -->
+          <details class="faq-item">
+            <summary>Can I use Kid Pickup on my computer? <span class="faq-plus" aria-hidden="true">+</span></summary>
+            <div class="faq-body"><p>Yes. Sign in at app.kidpickup.com from any desktop browser using your existing account for drag-and-drop week planning and sidebar navigation. Push notifications stay on your iPhone.</p></div>
+          </details>
+
+          <!-- 12 -->
+          <details class="faq-item">
+            <summary>Does Kid Pickup support Canadian families and holidays? <span class="faq-plus" aria-hidden="true">+</span></summary>
+            <div class="faq-body"><p>Absolutely — Kid Pickup is made on Vancouver Island, British Columbia! Both Canadian and U.S. regional public holidays, school breaks, and local App Store CAD/USD billing are supported natively.</p></div>
+          </details>
+
+          <!-- 13 -->
+          <details class="faq-item">
+            <summary>Does Kid Pickup track my child’s or driver’s GPS location? <span class="faq-plus" aria-hidden="true">+</span></summary>
+            <div class="faq-body"><p>Never. Kid Pickup does not collect GPS coordinates or track live maps. Instead, drivers tap simple “Arrived” and “Picked up” buttons that send calm confirmation updates to parents.</p></div>
+          </details>
+
+          <!-- 14 -->
+          <details class="faq-item">
+            <summary>How is this different from my school’s dismissal app? <span class="faq-plus" aria-hidden="true">+</span></summary>
+            <div class="faq-body"><p>School dismissal apps manage curb authorization for school staff at 3:00 p.m. Kid Pickup coordinates your family beforehand — deciding which parent, grandparent, or sitter is actually driving to school, daycare, soccer, and piano.</p></div>
+          </details>
+
+          <!-- 15 -->
+          <details class="faq-item">
+            <summary>How do role-based visibility rules work? <span class="faq-plus" aria-hidden="true">+</span></summary>
+            <div class="faq-body"><p>Parents and guardians have full visibility and configurable edit permissions. Helpers have scoped access tailored to the kids they help with and receive quieter default notifications so their phones aren’t buzzed unnecessarily.</p></div>
+          </details>
+
+          <!-- 16 -->
+          <details class="faq-item">
+            <summary>What happens when my 14-day free trial ends? <span class="faq-plus" aria-hidden="true">+</span></summary>
+            <div class="faq-body"><p>Your two-week free trial is managed through Apple’s App Store and requires a payment method up front. Unless you cancel at least 24 hours before the trial finishes, it automatically renews into the plan you selected.</p></div>
+          </details>
+
+          <!-- 17 -->
+          <details class="faq-item" id="faq-android">
+            <summary>When is the Android app coming out? <span class="faq-plus" aria-hidden="true">+</span></summary>
+            <div class="faq-body"><p>An Android app is actively planned and listed as upcoming. In the meantime, relatives or co-parents on Android can already use app.kidpickup.com in their mobile browser or claim rides with one tap via texted web claim links — no app required.</p></div>
+          </details>
+
+          <!-- 18 -->
+          <details class="faq-item">
+            <summary>What does the Premium AI assistant actually do? <span class="faq-plus" aria-hidden="true">+</span></summary>
+            <div class="faq-body"><p>Available on the Premium plan, the scheduling query assistant lets you ask plain questions about your own family schedule — like “Which afternoons are still uncovered next week?” — without digging through multiple days. Your family data is never used to train external AI models.</p></div>
+          </details>
+
+          <!-- 19 -->
+          <details class="faq-item">
+            <summary>Can helpers claim a pickup without downloading an app? <span class="faq-plus" aria-hidden="true">+</span></summary>
+            <div class="faq-body"><p>Yes. You can text a secure one-tap web claim link to any grandparent, friend, or occasional carpool driver. They open the link, tap Accept, and their name immediately locks onto your family calendar.</p></div>
+          </details>
+
+          <!-- 20 -->
+          <details class="faq-item">
+            <summary>Can I try Kid Pickup with our sports team calendars too? <span class="faq-plus" aria-hidden="true">+</span></summary>
+            <div class="faq-body"><p>Yes. Paste your live ICS calendar link from TeamSnap, GameChanger, your school district, or Google Calendar and practices and games stay synced automatically.</p></div>
+          </details>
+
+          <!-- 21 -->
+          <details class="faq-item">
+            <summary>How do I cancel my subscription if it isn’t right for us? <span class="faq-plus" aria-hidden="true">+</span></summary>
+            <div class="faq-body"><p>Open Settings on your iPhone, tap your Apple Account name, choose Subscriptions, and tap Cancel Subscription on Kid Pickup. It takes ten seconds with zero retention screens or hoops.</p></div>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         16. Founder's Note (Wide Peach Card)
+         ==================================================================== -->
+    <section class="band band--cream band--tight-top">
+      <div class="container">
+        <article class="maker-card">
+          <div>
+            <!-- Hand-drawn illustration of Joel & family on Vancouver Island -->
+            <svg viewBox="0 0 360 310" role="img" aria-label="Editorial illustration of Joel Wood and his three children with a soccer ball among Vancouver Island pines">
+              <ellipse cx="180" cy="175" rx="148" ry="112" fill="#FDF8EC" opacity="0.72"/>
+              <!-- Coastal pines & sun -->
+              <circle cx="294" cy="56" r="24" fill="#FCE588" stroke="#2B1F36" stroke-width="2"/>
+              <path d="M56 170 L78 104 L100 170 Z" fill="#D9F2E4" stroke="#2B1F36" stroke-width="2" stroke-linejoin="round"/>
+              <path d="M78 170 V192" stroke="#2B1F36" stroke-width="2.4" stroke-linecap="round"/>
+              <path d="M266 174 L286 116 L306 174 Z" fill="#D9F2E4" stroke="#2B1F36" stroke-width="2" stroke-linejoin="round"/>
+              <path d="M286 174 V196" stroke="#2B1F36" stroke-width="2.4" stroke-linecap="round"/>
+              <!-- Dotted trail -->
+              <path d="M40 264 Q180 242 324 264" fill="none" stroke="#2B1F36" stroke-width="2" stroke-dasharray="5 7" opacity="0.5"/>
+
+              <!-- Dad (Joel) -->
+              <g transform="translate(116, 78)">
+                <path d="M36 126 L32 172 M62 126 L66 172" stroke="#2B1F36" stroke-width="2.5" stroke-linecap="round"/>
+                <path d="M22 64 C18 98 22 122 30 128 L68 128 C76 120 78 96 74 64 Z" fill="#D9EDFC" stroke="#2B1F36" stroke-width="2.2"/>
+                <circle cx="48" cy="36" r="21" fill="#FFF7EE" stroke="#2B1F36" stroke-width="2.2"/>
+                <path d="M28 33 C30 14 66 14 68 33 C58 26 38 26 28 33 Z" fill="#2B1F36"/>
+                <circle cx="41" cy="37" r="1.8" fill="#2B1F36"/><circle cx="55" cy="37" r="1.8" fill="#2B1F36"/>
+                <path d="M42 46 Q48 51 54 46" fill="none" stroke="#2B1F36" stroke-width="2" stroke-linecap="round"/>
+              </g>
+
+              <!-- Three kids -->
+              <g transform="translate(66, 152)">
+                <circle cx="26" cy="24" r="14" fill="#FFF7EE" stroke="#2B1F36" stroke-width="2"/>
+                <path d="M13 22 C15 10 37 10 39 22 Z" fill="#2B1F36"/>
+                <path d="M14 40 L38 40 L40 74 L12 74 Z" fill="#FCE588" stroke="#2B1F36" stroke-width="2" stroke-linejoin="round"/>
+                <path d="M20 74 V96 M32 74 V96" stroke="#2B1F36" stroke-width="2.2" stroke-linecap="round"/>
+              </g>
+              <g transform="translate(198, 148)">
+                <circle cx="28" cy="24" r="15" fill="#FFF7EE" stroke="#2B1F36" stroke-width="2"/>
+                <path d="M14 23 C16 10 40 10 42 23 Z" fill="#2B1F36"/>
+                <path d="M15 41 L41 41 L44 76 L12 76 Z" fill="#FCE1E5" stroke="#2B1F36" stroke-width="2" stroke-linejoin="round"/>
+                <path d="M22 76 V100 M34 76 V100" stroke="#2B1F36" stroke-width="2.2" stroke-linecap="round"/>
+              </g>
+              <g transform="translate(248, 174)">
+                <circle cx="22" cy="20" r="12" fill="#FFF7EE" stroke="#2B1F36" stroke-width="2"/>
+                <path d="M11 19 C13 9 31 9 33 19 Z" fill="#2B1F36"/>
+                <path d="M12 34 L32 34 L34 62 L10 62 Z" fill="#EAE1FA" stroke="#2B1F36" stroke-width="2" stroke-linejoin="round"/>
+                <path d="M17 62 V78 M27 62 V78" stroke="#2B1F36" stroke-width="2.1" stroke-linecap="round"/>
+              </g>
+
+              <!-- Soccer ball at feet -->
+              <circle cx="176" cy="244" r="14" fill="#FFFFFF" stroke="#2B1F36" stroke-width="2"/>
+              <polygon points="176 237 182 241 180 248 172 248 170 241" fill="#2B1F36"/>
+            </svg>
+          </div>
+
+          <div class="maker-letter">
+            <span class="eyebrow eyebrow--white">A Note From The Maker</span>
+            <h2 class="h2">Built by a dad who got tired of 2:55 p.m. panic texts.</h2>
+            <p>
+              Hi — I’m Joel Wood. I live on Vancouver Island with my wife and our three kids, and most weeks I’m either writing software or coaching youth soccer in the drizzle.
+            </p>
+            <p>
+              Like a lot of families, we tried running school runs, practices, and grandparent help out of group texts and shared calendars. Every few weeks something still slipped through the cracks — not because anyone didn’t care, but because chat threads aren’t built to confirm who actually owns a pickup.
+            </p>
+            <p>
+              I built Kid Pickup to be the focused, respectful tool I wished existed: no ads, no creepy location tracking, no corporate fluff. When you write in with a question or an idea, it lands straight in my inbox and I read every message myself.
+            </p>
+
+            <div class="maker-sig">
+              <div>
+                <span class="maker-sig__name">Joel Wood</span>
+                <span class="maker-sig__role">Founder, Kid Pickup · Vancouver Island, BC</span>
+              </div>
+              <a href="mailto:hello@kidpickup.com" class="btn btn--secondary btn--sm">
+                Say hello to Joel
+                <svg class="ico ico--sm" aria-hidden="true"><use href="#ico-arrow"/></svg>
+              </a>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         17. Social Proof — App Store Reviews & Story Submission (Mint Band)
+         ==================================================================== -->
+    <section class="band band--mint">
+      <div class="container">
+        <div class="reviews-layout">
+          <div>
+            <div class="rating-summary">
+              <span class="stars" aria-label="5 out of 5 stars">
+                <svg class="ico ico--sm"><use href="#ico-star"/></svg>
+                <svg class="ico ico--sm"><use href="#ico-star"/></svg>
+                <svg class="ico ico--sm"><use href="#ico-star"/></svg>
+                <svg class="ico ico--sm"><use href="#ico-star"/></svg>
+                <svg class="ico ico--sm"><use href="#ico-star"/></svg>
+              </span>
+              <span class="rating-summary__text">5.0 / 5 · Canadian App Store · 5 ratings</span>
+            </div>
+
+            <h2 class="h2">Relief you can feel by Tuesday afternoon.</h2>
+
+            <div class="review-stack">
+              <article class="review-card">
+                <span class="stars" aria-hidden="true">
+                  <svg class="ico ico--sm"><use href="#ico-star"/></svg><svg class="ico ico--sm"><use href="#ico-star"/></svg><svg class="ico ico--sm"><use href="#ico-star"/></svg><svg class="ico ico--sm"><use href="#ico-star"/></svg><svg class="ico ico--sm"><use href="#ico-star"/></svg>
+                </span>
+                <p class="review-card__quote">
+                  “Our family group chat used to be a wall of ‘I thought you had swim!’ texts every week. Having one clear name on each pickup — and getting a reminder if Friday is still open — took a huge weight off my shoulders.”
+                </p>
+                <div class="review-card__author">Hannah R. · Parent of two · Verified App Store review</div>
+              </article>
+
+              <article class="review-card">
+                <span class="stars" aria-hidden="true">
+                  <svg class="ico ico--sm"><use href="#ico-star"/></svg><svg class="ico ico--sm"><use href="#ico-star"/></svg><svg class="ico ico--sm"><use href="#ico-star"/></svg><svg class="ico ico--sm"><use href="#ico-star"/></svg><svg class="ico ico--sm"><use href="#ico-star"/></svg>
+                </span>
+                <p class="review-card__quote">
+                  “I help with my grandkids twice a week and usually dread new apps. This one is crystal clear — I tap one button to claim Thursday, see the school gate address, and tap ‘Picked up’ when we’re in the car.”
+                </p>
+                <div class="review-card__author">Margaret T. · Grandmother · Verified App Store review</div>
+              </article>
+
+              <article class="review-card">
+                <span class="stars" aria-hidden="true">
+                  <svg class="ico ico--sm"><use href="#ico-star"/></svg><svg class="ico ico--sm"><use href="#ico-star"/></svg><svg class="ico ico--sm"><use href="#ico-star"/></svg><svg class="ico ico--sm"><use href="#ico-star"/></svg><svg class="ico ico--sm"><use href="#ico-star"/></svg>
+                </span>
+                <p class="review-card__quote">
+                  “Love that there’s zero GPS tracking and no ads. Just an honest, calm calendar that both parents, our babysitter, and my in-laws actually enjoy using.”
+                </p>
+                <div class="review-card__author">David K. · Father of three · Verified App Store review</div>
+              </article>
+            </div>
+          </div>
+
+          <aside class="story-invite">
+            <div class="story-invite__art" aria-hidden="true">
+              <svg width="160" height="104" viewBox="0 0 160 104">
+                <ellipse cx="80" cy="58" rx="68" ry="38" fill="#FCE588" opacity="0.55"/>
+                <!-- Envelope & teacup -->
+                <rect x="26" y="34" width="66" height="44" rx="8" fill="#FFFFFF" stroke="#2B1F36" stroke-width="2"/>
+                <path d="M28 38 L59 58 L90 38" fill="none" stroke="#2B1F36" stroke-width="2" stroke-linejoin="round"/>
+                <circle cx="118" cy="60" r="18" fill="#FCE1E5" stroke="#2B1F36" stroke-width="2"/>
+                <path d="M136 56 C144 56 144 66 136 66" fill="none" stroke="#2B1F36" stroke-width="2"/>
+                <path d="M112 36 Q115 28 112 22 M122 36 Q125 28 122 22" fill="none" stroke="#2B1F36" stroke-width="1.7" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <span class="eyebrow">Share Your Story</span>
+            <h3 class="h3">How does your caregiving circle use Kid Pickup?</h3>
+            <p>
+              Real stories from parents, grandparents, and sitters help other families picture a calmer school week. If Kid Pickup saved your afternoon, Joel would love to hear about it.
+            </p>
+            <p class="story-invite__pledge">
+              Consent guarantee: we never publish your name, quote, or details without your explicit written permission first.
+            </p>
+            <a href="mailto:hello@kidpickup.com?subject=Our%20Kid%20Pickup%20story" class="btn btn--secondary">
+              Send us a quick note
+              <svg class="ico ico--sm" aria-hidden="true"><use href="#ico-arrow"/></svg>
+            </a>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         18. Editorial Blog Preview (White Band — Lead-Weighted 5-Card Grid)
+         ==================================================================== -->
+    <section class="band band--white" id="blog">
+      <div class="container">
+        <div class="section-head section-head--center">
+          <span class="eyebrow">Journal &amp; Free Tools</span>
+          <h2 class="h2">Practical guides for calmer family logistics.</h2>
+          <p class="lead">
+            Plainspoken research, checklists, and school-year calendars written for busy parents across Canada and the United States.
+          </p>
+        </div>
+
+        <div class="articles-grid">
+          <!-- Article 1 (Lead Card — spans 2 cols) -->
+          <article class="article-card article-card--lead">
+            <div class="article-card__head bg-sky" aria-hidden="true">
+              <svg width="260" height="128" viewBox="0 0 260 128">
+                <ellipse cx="130" cy="70" rx="108" ry="48" fill="#FFFFFF" opacity="0.65"/>
+                <rect x="44" y="24" width="84" height="78" rx="12" fill="#FFFFFF" stroke="#2B1F36" stroke-width="2.1"/>
+                <path d="M44 46 H128" stroke="#2B1F36" stroke-width="2"/>
+                <rect x="56" y="56" width="16" height="14" rx="3" fill="#FCE588"/>
+                <rect x="78" y="56" width="16" height="14" rx="3" fill="#D9F2E4"/>
+                <rect x="100" y="56" width="16" height="14" rx="3" fill="#FCE1E5"/>
+                <rect x="56" y="76" width="60" height="12" rx="4" fill="#D9EDFC"/>
+                <!-- Snowflake & pine -->
+                <path d="M168 96 L188 40 L208 96 Z" fill="#D9F2E4" stroke="#2B1F36" stroke-width="2" stroke-linejoin="round"/>
+                <circle cx="218" cy="36" r="10" fill="#FCE588" stroke="#2B1F36" stroke-width="1.8"/>
+                <path d="M148 36 h12 M154 30 v12" stroke="#2B1F36" stroke-width="1.8" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <div class="article-card__body">
+              <div class="article-meta">
+                <span class="article-tag">School Calendars</span>
+                <span class="article-time">12 min read</span>
+              </div>
+              <h3>2026–27 US &amp; Canadian school district winter break dates</h3>
+              <p>
+                A district-by-district lookup of start dates, return-to-class mornings, and half-day dismissals across major U.S. and Canadian boards so you can book holiday childcare early.
+              </p>
+              <a href="#blog" class="text-link">Read guide <svg class="ico ico--sm" aria-hidden="true"><use href="#ico-arrow"/></svg></a>
+            </div>
+          </article>
+
+          <!-- Article 2 -->
+          <article class="article-card">
+            <div class="article-card__head bg-yellow" aria-hidden="true">
+              <svg width="160" height="114" viewBox="0 0 160 114">
+                <ellipse cx="80" cy="62" rx="64" ry="38" fill="#FFFFFF" opacity="0.65"/>
+                <rect x="34" y="28" width="92" height="58" rx="10" fill="#FFFFFF" stroke="#2B1F36" stroke-width="2"/>
+                <circle cx="80" cy="24" r="6" fill="#FDE2CC" stroke="#2B1F36" stroke-width="2"/>
+                <text x="80" y="65" text-anchor="middle" font-size="22" font-weight="800" fill="#2B1F36">#214</text>
+              </svg>
+            </div>
+            <div class="article-card__body">
+              <div class="article-meta">
+                <span class="article-tag">Car Line Rules</span>
+                <span class="article-time">10 min read</span>
+              </div>
+              <h3>School car-rider tag regulations across 13 states</h3>
+              <p>
+                What to know about dashboard placards, mirror hang-tag visibility laws, and authorizing grandparents for pickup lines.
+              </p>
+              <a href="#blog" class="text-link">Read guide <svg class="ico ico--sm" aria-hidden="true"><use href="#ico-arrow"/></svg></a>
+            </div>
+          </article>
+
+          <!-- Article 3 -->
+          <article class="article-card">
+            <div class="article-card__head bg-peach" aria-hidden="true">
+              <svg width="160" height="114" viewBox="0 0 160 114">
+                <ellipse cx="80" cy="62" rx="64" ry="38" fill="#FFFFFF" opacity="0.65"/>
+                <path d="M44 54 L80 24 L116 54 V92 H44 Z" fill="#FFFFFF" stroke="#2B1F36" stroke-width="2" stroke-linejoin="round"/>
+                <rect x="68" y="64" width="24" height="28" rx="4" fill="#D9F2E4" stroke="#2B1F36" stroke-width="2"/>
+                <circle cx="86" cy="78" r="2.2" fill="#2B1F36"/>
+              </svg>
+            </div>
+            <div class="article-card__body">
+              <div class="article-meta">
+                <span class="article-tag">Home Readiness</span>
+                <span class="article-time">8 min read</span>
+              </div>
+              <h3>Eight household rules for children staying home alone</h3>
+              <p>
+                A warm, practical checklist covering check-in calls, door safety, snacks, and emergency contacts for newly independent kids.
+              </p>
+              <a href="#blog" class="text-link">Read guide <svg class="ico ico--sm" aria-hidden="true"><use href="#ico-arrow"/></svg></a>
+            </div>
+          </article>
+
+          <!-- Article 4 -->
+          <article class="article-card">
+            <div class="article-card__head bg-lilac" aria-hidden="true">
+              <svg width="160" height="114" viewBox="0 0 160 114">
+                <ellipse cx="80" cy="62" rx="64" ry="38" fill="#FFFFFF" opacity="0.65"/>
+                <rect x="26" y="34" width="46" height="46" rx="10" fill="#FCE588" stroke="#2B1F36" stroke-width="2"/>
+                <rect x="88" y="34" width="46" height="46" rx="10" fill="#D9EDFC" stroke="#2B1F36" stroke-width="2"/>
+                <text x="49" y="63" text-anchor="middle" font-size="16" font-weight="800" fill="#2B1F36">2-2</text>
+                <text x="111" y="63" text-anchor="middle" font-size="16" font-weight="800" fill="#2B1F36">5-5</text>
+              </svg>
+            </div>
+            <div class="article-card__body">
+              <div class="article-meta">
+                <span class="article-tag">Co-Parenting</span>
+                <span class="article-time">14 min read</span>
+              </div>
+              <h3>Comparing 50/50 custody schedule patterns on school weeks</h3>
+              <p>
+                Week-on/week-off vs. 2-2-3 vs. 2-2-5-5 — how each pattern affects backpacks, school-gate transitions, and mid-week pickups.
+              </p>
+              <a href="#blog" class="text-link">Read guide <svg class="ico ico--sm" aria-hidden="true"><use href="#ico-arrow"/></svg></a>
+            </div>
+          </article>
+
+          <!-- Article 5 -->
+          <article class="article-card">
+            <div class="article-card__head bg-mint" aria-hidden="true">
+              <svg width="160" height="114" viewBox="0 0 160 114">
+                <ellipse cx="80" cy="62" rx="64" ry="38" fill="#FFFFFF" opacity="0.65"/>
+                <circle cx="52" cy="56" r="18" fill="#FFFFFF" stroke="#2B1F36" stroke-width="2"/>
+                <polygon points="52 48 58 53 56 61 48 61 46 53" fill="#2B1F36"/>
+                <rect x="82" y="34" width="46" height="48" rx="8" fill="#FCE1E5" stroke="#2B1F36" stroke-width="2"/>
+                <path d="M92 48 h26 M92 58 h18 M92 68 h22" stroke="#2B1F36" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <div class="article-card__body">
+              <div class="article-meta">
+                <span class="article-tag">Activity Logistics</span>
+                <span class="article-time">9 min read</span>
+              </div>
+              <h3>Managing multi-child activity schedules without burning out</h3>
+              <p>
+                Simple rules for staggering practices, sharing carpool loops, and catching overlapping drop-offs before registration night.
+              </p>
+              <a href="#blog" class="text-link">Read guide <svg class="ico ico--sm" aria-hidden="true"><use href="#ico-arrow"/></svg></a>
+            </div>
+          </article>
+        </div>
+
+        <div style="text-align:center;">
+          <a href="#blog" class="btn btn--secondary">
+            Read all posts &amp; free tools
+            <svg class="ico ico--sm" aria-hidden="true"><use href="#ico-arrow"/></svg>
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ======================================================================
+       19. Closing CTA Card & Four-Column Footer
+       ====================================================================== -->
+  <footer class="site-footer" id="footer-legal">
+    <div class="container">
+      <!-- Top Sunshine-Yellow CTA Card -->
+      <div class="closing-cta">
+        <span class="eyebrow eyebrow--white">Calm Afternoons Start Today</span>
+        <h2 class="h2">Know who’s picking up before the bell rings.</h2>
+        <p class="lead">
+          Set up your family circle in three minutes and see tomorrow’s rides clearly — free for 14 days.
+        </p>
+        <div class="cta-row">
+          <a href="https://app.kidpickup.com" target="_blank" rel="noopener" class="btn btn--primary">
+            Start 14-day free trial
+            <svg class="ico ico--sm" aria-hidden="true"><use href="#ico-arrow"/></svg>
+          </a>
+          <div class="store-group">
+            <a href="#pricing" class="store-badge">
+              <svg class="ico ico--lg" aria-hidden="true"><use href="#ico-apple"/></svg>
+              <span class="store-badge__text">
+                <span class="store-badge__kicker">Download on the</span>
+                <span class="store-badge__name">App Store</span>
+              </span>
+            </a>
+            <div class="store-badge-wrap">
+              <a href="#faq-android" class="store-badge store-badge--upcoming">
+                <svg class="ico" aria-hidden="true"><use href="#ico-playstore"/></svg>
+                <span class="store-badge__text">
+                  <span class="store-badge__kicker">Coming to</span>
+                  <span class="store-badge__name">Google Play</span>
+                </span>
+              </a>
+              <span class="upcoming-tag">Upcoming</span>
+            </div>
+          </div>
+        </div>
+        <p class="trial-terms" style="color:var(--ink-soft);">
+          Two-week free trial via Apple’s App Store. Auto-renews unless cancelled 24 hours prior. Cancel anytime in App Store settings.
+        </p>
+      </div>
+
+      <!-- Four-Column Sitemap -->
+      <div class="footer-grid">
+        <div class="footer-col">
+          <h3>Product &amp; Support</h3>
+          <ul class="footer-links">
+            <li><a href="#how-it-works">How it works</a></li>
+            <li><a href="#family-feed">Private family feed</a></li>
+            <li><a href="#features">All 40 features</a></li>
+            <li><a href="#pricing">Pricing &amp; plans</a></li>
+            <li><a href="https://app.kidpickup.com" target="_blank" rel="noopener">Web app sign in</a></li>
+            <li><a href="#blog">Free tools &amp; blog</a></li>
+            <li><a href="#faq">Help &amp; FAQ</a></li>
+            <li><a href="mailto:hello@kidpickup.com">Contact Joel</a></li>
+            <li><a href="#faq">Parent &amp; crisis support resources</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h3>Who It’s For</h3>
+          <ul class="footer-links">
+            <li><a href="#who-its-for">Two-parent households</a></li>
+            <li><a href="#who-its-for">Single parents</a></li>
+            <li><a href="#who-its-for">Sitters &amp; nannies</a></li>
+            <li><a href="#who-its-for">Sports &amp; activity families</a></li>
+            <li><a href="#who-its-for">Separated &amp; blended families</a></li>
+            <li><a href="#who-its-for">Grandparents</a></li>
+            <li><a href="#who-its-for">Daycare families</a></li>
+            <li><a href="#who-its-for">School dismissal app families</a></li>
+            <li><a href="#who-its-for">Carpooling families</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h3>Comparisons</h3>
+          <ul class="footer-links footer-links--two-col">
+            <li><a href="#faq">vs. Cozi</a></li>
+            <li><a href="#faq">vs. Google Calendar</a></li>
+            <li><a href="#faq">vs. Apple Calendar</a></li>
+            <li><a href="#faq">vs. FamilyWall</a></li>
+            <li><a href="#faq">vs. OurFamilyWizard</a></li>
+            <li><a href="#faq">vs. TalkingParents</a></li>
+            <li><a href="#faq">vs. AppClose</a></li>
+            <li><a href="#faq">vs. TimeTree</a></li>
+            <li><a href="#faq">vs. TeamSnap</a></li>
+            <li><a href="#faq">vs. Pikmykid</a></li>
+            <li><a href="#faq">vs. School Dismissal Mgr</a></li>
+            <li><a href="#faq">vs. Group Texts</a></li>
+            <li><a href="#faq">vs. WhatsApp</a></li>
+            <li><a href="#faq">vs. Paper Wall Calendars</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h3>Legal &amp; Privacy</h3>
+          <ul class="footer-links">
+            <li><a href="#privacy">Privacy policy</a></li>
+            <li><a href="#privacy">Terms of service</a></li>
+            <li><a href="#privacy">Cookie policy</a></li>
+            <li><a href="#privacy">In-app account deletion</a></li>
+            <li><a href="#privacy">Hosting &amp; security</a></li>
+            <li><button type="button" id="cookie-prefs-trigger">Cookie preferences</button></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Attribution, Language Switcher, Socials, Credit -->
+      <div class="footer-bottom">
+        <div class="footer-meta-row">
+          <p class="footer-attribution">
+            <strong>Kid Pickup</strong> is created and operated by Joel Wood (Think X Design Media), Vancouver Island, British Columbia, Canada — serving families across Canada and the United States.
+          </p>
+
+          <div class="lang-switcher" role="group" aria-label="Language switcher">
+            <button type="button" class="lang-btn is-active" aria-pressed="true">English</button>
+            <button type="button" class="lang-btn" aria-pressed="false">Français</button>
+            <button type="button" class="lang-btn" aria-pressed="false">繁體中文</button>
+            <button type="button" class="lang-btn" aria-pressed="false">简体中文</button>
+            <button type="button" class="lang-btn" aria-pressed="false">Bahasa Melayu</button>
+          </div>
+        </div>
+
+        <div class="footer-legal">
+          <span>© 2026 Think X Design Media. All rights reserved.</span>
+
+          <div class="footer-socials" aria-label="Social media">
+            <a href="#footer-legal" class="social-link" aria-label="Facebook"><svg class="ico ico--sm"><use href="#ico-fb"/></svg></a>
+            <a href="#footer-legal" class="social-link" aria-label="Instagram"><svg class="ico ico--sm"><use href="#ico-ig"/></svg></a>
+            <a href="#footer-legal" class="social-link" aria-label="Threads"><svg class="ico ico--sm"><use href="#ico-threads"/></svg></a>
+            <a href="#footer-legal" class="social-link" aria-label="YouTube"><svg class="ico ico--sm"><use href="#ico-yt"/></svg></a>
+            <a href="#footer-legal" class="social-link" aria-label="TikTok"><svg class="ico ico--sm"><use href="#ico-tiktok"/></svg></a>
+            <a href="#footer-legal" class="social-link" aria-label="Pinterest"><svg class="ico ico--sm"><use href="#ico-pin-social"/></svg></a>
+          </div>
+
+          <span>Designed &amp; built by Think X Design Media</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

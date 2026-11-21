@@ -1,0 +1,1316 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>工位 — 多 Bot 协作的个人 Agent 工作台</title>
+  <meta name="description" content="在一个群里给一组各有分工的 Bot 派活，它们互相交接、各自汇报，你只审批关键一步，直接看结果。">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Noto+Sans+SC:wght@400;500;600&family=Noto+Serif+SC:wght@500;600&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <!-- Transparent Overlay Header (No primary CTA in navbar) -->
+  <header class="site-header" id="top">
+    <div class="header-inner">
+      <div class="header-left">
+        <a href="#top" class="brand-lockup" aria-label="工位首页">
+          <svg class="brand-mark" width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <rect x="2.5" y="2.5" width="8" height="8" rx="2.2" fill="currentColor"/>
+            <rect x="13.5" y="2.5" width="8" height="8" rx="2.2" fill="currentColor" fill-opacity="0.45"/>
+            <rect x="2.5" y="13.5" width="8" height="8" rx="2.2" fill="currentColor" fill-opacity="0.45"/>
+            <rect x="13.5" y="13.5" width="8" height="8" rx="2.2" stroke="currentColor" stroke-width="1.8"/>
+          </svg>
+          <span class="brand-name">工位</span>
+        </a>
+        <nav class="header-nav" aria-label="主导航">
+          <a href="#workflow">工作方式</a>
+          <a href="#demo">实操演示</a>
+          <a href="#roster">Bot 阵容</a>
+          <a href="#security">安全与控制</a>
+          <a href="#pricing">内测方案</a>
+        </nav>
+      </div>
+      <div class="header-right">
+        <a href="#pricing" class="header-stat" title="当前内测排号人数">
+          <svg width="13" height="13" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <circle cx="8" cy="5.5" r="2.75" stroke="currentColor" stroke-width="1.35"/>
+            <path d="M3.25 13.25C3.9 10.95 5.75 9.75 8 9.75C10.25 9.75 12.1 10.95 12.75 13.25" stroke="currentColor" stroke-width="1.35" stroke-linecap="round"/>
+          </svg>
+          <span class="tabular" id="headerQueueCount">1,428</span>
+        </a>
+        <a href="#security" class="header-icon-link" aria-label="安全架构说明" title="安全架构说明">
+          <svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <path d="M8 2L13 4.1V7.7C13 10.95 10.9 13.4 8 14.3C5.1 13.4 3 10.95 3 7.7V4.1L8 2Z" stroke="currentColor" stroke-width="1.35" stroke-linejoin="round"/>
+          </svg>
+        </a>
+        <span class="locale-tag" aria-label="当前语言：中文">ZH</span>
+        <button class="mobile-menu-btn" id="mobileMenuBtn" type="button" aria-label="展开导航菜单" aria-expanded="false">
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+            <path d="M2.5 5.25H15.5M2.5 9H15.5M2.5 12.75H15.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+    <nav class="mobile-nav" id="mobileNav" aria-label="移动端导航" hidden>
+      <a href="#workflow">工作方式</a>
+      <a href="#demo">实操演示</a>
+      <a href="#roster">Bot 阵容</a>
+      <a href="#security">安全与控制</a>
+      <a href="#pricing">内测方案</a>
+    </nav>
+  </header>
+
+  <main>
+    <!-- 1. Illustrated Dusk Hero + Overlapping Live Workspace Showcase -->
+    <section class="hero-section">
+      <!-- Painterly Dusk Landscape (100% inline SVG + CSS atmosphere, zero external images) -->
+      <div class="hero-sky" aria-hidden="true">
+        <svg class="dusk-art" viewBox="0 0 1440 860" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="skyBase" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#0c182f"/>
+              <stop offset="20%" stop-color="#192b4e"/>
+              <stop offset="42%" stop-color="#473c64"/>
+              <stop offset="60%" stop-color="#a25c70"/>
+              <stop offset="75%" stop-color="#e58c68"/>
+              <stop offset="88%" stop-color="#f7c08e"/>
+              <stop offset="100%" stop-color="#1b1621"/>
+            </linearGradient>
+            <radialGradient id="sunGlow" cx="50%" cy="76%" r="50%" fx="50%" fy="76%">
+              <stop offset="0%" stop-color="#ffe7c2" stop-opacity="0.82"/>
+              <stop offset="28%" stop-color="#f6ac7d" stop-opacity="0.52"/>
+              <stop offset="58%" stop-color="#be6974" stop-opacity="0.22"/>
+              <stop offset="100%" stop-color="#1a2a4a" stop-opacity="0"/>
+            </radialGradient>
+            <radialGradient id="leftMist" cx="18%" cy="68%" r="38%">
+              <stop offset="0%" stop-color="#c97478" stop-opacity="0.34"/>
+              <stop offset="100%" stop-color="#2c2d4a" stop-opacity="0"/>
+            </radialGradient>
+            <radialGradient id="rightMist" cx="82%" cy="66%" r="36%">
+              <stop offset="0%" stop-color="#d8826f" stop-opacity="0.32"/>
+              <stop offset="100%" stop-color="#252845" stop-opacity="0"/>
+            </radialGradient>
+            <linearGradient id="cloudWarm" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#5d466c" stop-opacity="0.52"/>
+              <stop offset="65%" stop-color="#b46771" stop-opacity="0.42"/>
+              <stop offset="100%" stop-color="#f5ba8c" stop-opacity="0.58"/>
+            </linearGradient>
+            <linearGradient id="cloudSoft" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#2a3254" stop-opacity="0.55"/>
+              <stop offset="100%" stop-color="#8b556e" stop-opacity="0.28"/>
+            </linearGradient>
+            <linearGradient id="ridgeFar" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#352a3f" stop-opacity="0.82"/>
+              <stop offset="100%" stop-color="#15131c" stop-opacity="0.96"/>
+            </linearGradient>
+            <linearGradient id="ridgeNear" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#18151f" stop-opacity="0.94"/>
+              <stop offset="100%" stop-color="#09090b" stop-opacity="1"/>
+            </linearGradient>
+            <filter id="blurSoft" x="-20%" y="-20%" width="140%" height="140%">
+              <feGaussianBlur stdDeviation="18"/>
+            </filter>
+            <filter id="blurWide" x="-25%" y="-25%" width="150%" height="150%">
+              <feGaussianBlur stdDeviation="34"/>
+            </filter>
+            <filter id="blurLight" x="-10%" y="-10%" width="120%" height="120%">
+              <feGaussianBlur stdDeviation="8"/>
+            </filter>
+          </defs>
+
+          <!-- Base twilight gradient -->
+          <rect width="1440" height="860" fill="url(#skyBase)"/>
+          <rect width="1440" height="860" fill="url(#sunGlow)"/>
+          <rect width="1440" height="860" fill="url(#leftMist)"/>
+          <rect width="1440" height="860" fill="url(#rightMist)"/>
+
+          <!-- Faint high-zenith evening stars -->
+          <g fill="#f6f7fb">
+            <circle cx="196" cy="92" r="1" opacity="0.38"/>
+            <circle cx="348" cy="64" r="0.8" opacity="0.28"/>
+            <circle cx="512" cy="118" r="0.9" opacity="0.22"/>
+            <circle cx="884" cy="76" r="1" opacity="0.32"/>
+            <circle cx="1090" cy="108" r="0.85" opacity="0.3"/>
+            <circle cx="1272" cy="82" r="1.1" opacity="0.4"/>
+            <circle cx="1340" cy="158" r="0.75" opacity="0.2"/>
+            <circle cx="118" cy="176" r="0.8" opacity="0.22"/>
+          </g>
+
+          <!-- Painterly upper cloud streaks -->
+          <g filter="url(#blurWide)" opacity="0.85">
+            <path d="M-80 310 C120 265, 310 285, 510 315 C690 342, 870 295, 1090 278 C1260 264, 1380 292, 1520 310 L1520 385 C1320 370, 1110 355, 890 375 C620 400, 320 365, -80 390 Z" fill="url(#cloudSoft)"/>
+          </g>
+
+          <!-- Mid-horizon warm underlit cloud bank -->
+          <g filter="url(#blurSoft)">
+            <path d="M-60 470 C90 422, 240 436, 405 462 C525 480, 625 450, 745 458 C880 468, 1020 420, 1210 435 C1325 445, 1410 462, 1500 475 L1500 548 C1340 538, 1175 524, 995 544 C825 562, 650 532, 470 546 C280 560, 110 536, -60 552 Z" fill="url(#cloudWarm)"/>
+            <ellipse cx="720" cy="610" rx="460" ry="72" fill="#f7c89b" opacity="0.36"/>
+            <ellipse cx="320" cy="575" rx="280" ry="44" fill="#e69274" opacity="0.32"/>
+            <ellipse cx="1140" cy="582" rx="310" ry="46" fill="#e49477" opacity="0.30"/>
+          </g>
+
+          <!-- Fine sunlit horizon ribbons -->
+          <g filter="url(#blurLight)" opacity="0.65">
+            <path d="M180 612 Q490 594 740 608 T1280 604" stroke="#ffd8b0" stroke-width="6" fill="none"/>
+            <path d="M40 552 Q360 534 650 552 T1390 542" stroke="#f1a680" stroke-width="5" fill="none" opacity="0.55"/>
+          </g>
+
+          <!-- Distant calm twilight ridges -->
+          <path d="M0 688 C155 662, 295 654, 460 676 C620 698, 765 696, 930 672 C1095 648, 1275 652, 1440 682 L1440 860 L0 860 Z" fill="url(#ridgeFar)"/>
+          <!-- Water-like quiet horizon shimmer band -->
+          <rect x="0" y="710" width="1440" height="32" fill="#d9896c" opacity="0.11" filter="url(#blurLight)"/>
+          <!-- Near dark foreground contour -->
+          <path d="M0 732 C210 718, 420 742, 680 736 C950 730, 1190 714, 1440 738 L1440 860 L0 860 Z" fill="url(#ridgeNear)"/>
+        </svg>
+        <div class="hero-sky-fade"></div>
+      </div>
+
+      <!-- Hero Copy & Paired Pill CTAs -->
+      <div class="hero-content container">
+        <h1 class="hero-title">给你的个人工作台<br class="br-desktop">配齐一整组会协作的 Bot</h1>
+        <p class="hero-subtitle">
+          在一个群里派活。调研、写作、代码、日程与盯盘 Bot 自动分工交接，你只审批关键一步，直接验收结果。
+        </p>
+        <div class="hero-actions">
+          <button type="button" class="btn-pill btn-pill-primary" data-open-waitlist>
+            <span>申请内测</span>
+            <svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+              <path d="M3.5 8H12.5M12.5 8L8.75 4.25M12.5 8L8.75 11.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+
+          <div class="split-pill split-pill-glass" data-split-menu>
+            <button type="button" class="split-pill-main" data-jump-demo="release">
+              <span>看演示</span>
+            </button>
+            <button type="button" class="split-pill-toggle" aria-label="选择演示场景" aria-expanded="false">
+              <svg class="chevron-icon" width="13" height="13" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                <path d="M4.5 6.25L8 9.75L11.5 6.25" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+            <div class="split-dropdown" role="menu" hidden>
+              <button type="button" role="menuitem" data-jump-demo="release">
+                <span class="dropdown-title">版本发布协同</span>
+                <span class="dropdown-sub">调研 → 代码 → 写作 → 审批</span>
+              </button>
+              <button type="button" role="menuitem" data-jump-demo="incident">
+                <span class="dropdown-title">异常告警处置</span>
+                <span class="dropdown-sub">盯盘 → 代码 → 日程 → 审批</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Overlapping Product Showcase Window: 3-second proof of multiple Bots working in parallel -->
+      <div class="hero-showcase container">
+        <div class="window-shell">
+          <div class="window-chrome">
+            <div class="window-dots" aria-hidden="true">
+              <span class="dot-close"></span>
+              <span class="dot-min"></span>
+              <span class="dot-max"></span>
+            </div>
+            <div class="window-title">
+              <span class="channel-hash">#</span>
+              <span>产品周迭代群</span>
+              <span class="window-sep">·</span>
+              <span class="window-meta tabular">5 个 Bot 在岗</span>
+            </div>
+            <div class="window-right-badge tabular">
+              <span class="status-dot dot-working"></span>
+              <span>3 个工作中</span>
+              <span class="badge-divider">/</span>
+              <span class="status-dot dot-approval"></span>
+              <span>1 个等你审批</span>
+            </div>
+          </div>
+
+          <div class="workspace-grid">
+            <!-- Left Pane: Active Bot Roster -->
+            <aside class="ws-sidebar" aria-label="在岗 Bot 列表">
+              <div class="ws-pane-label">群内工位 <span class="tabular">5</span></div>
+              <ul class="ws-bot-list">
+                <li class="ws-bot-item is-active">
+                  <span class="bot-avatar av-research" aria-hidden="true">
+                    <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><circle cx="7.2" cy="7.2" r="4.2" stroke="currentColor" stroke-width="1.4"/><path d="M10.5 10.5L13.5 13.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+                  </span>
+                  <div class="ws-bot-info">
+                    <div class="ws-bot-name">调研 Bot</div>
+                    <div class="ws-bot-task">已交接竞品摘要</div>
+                  </div>
+                  <span class="status-dot dot-working" title="工作中"></span>
+                </li>
+                <li class="ws-bot-item">
+                  <span class="bot-avatar av-code" aria-hidden="true">
+                    <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M5.5 4.5L2.5 8L5.5 11.5M10.5 4.5L13.5 8L10.5 11.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  </span>
+                  <div class="ws-bot-info">
+                    <div class="ws-bot-name">代码 Bot</div>
+                    <div class="ws-bot-task">回归测试 46/48</div>
+                  </div>
+                  <span class="status-dot dot-working" title="工作中"></span>
+                </li>
+                <li class="ws-bot-item is-attention">
+                  <span class="bot-avatar av-writer" aria-hidden="true">
+                    <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3.5 12.5L6.2 11.9L12.3 5.8C12.7 5.4 12.7 4.7 12.3 4.3L11.7 3.7C11.3 3.3 10.6 3.3 10.2 3.7L4.1 9.8L3.5 12.5Z" stroke="currentColor" stroke-width="1.35" stroke-linejoin="round"/></svg>
+                  </span>
+                  <div class="ws-bot-info">
+                    <div class="ws-bot-name">写作 Bot</div>
+                    <div class="ws-bot-task">发布公告待审批</div>
+                  </div>
+                  <span class="status-dot dot-approval" title="等你审批"></span>
+                </li>
+                <li class="ws-bot-item">
+                  <span class="bot-avatar av-monitor" aria-hidden="true">
+                    <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M2.2 8.5H4.8L6.6 4.2L9.2 11.8L11.1 7.2H13.8" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  </span>
+                  <div class="ws-bot-info">
+                    <div class="ws-bot-name">盯盘 Bot</div>
+                    <div class="ws-bot-task">预发接口 P95 84ms</div>
+                  </div>
+                  <span class="status-dot dot-working" title="工作中"></span>
+                </li>
+                <li class="ws-bot-item">
+                  <span class="bot-avatar av-schedule" aria-hidden="true">
+                    <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><rect x="2.5" y="3.5" width="11" height="10" rx="2" stroke="currentColor" stroke-width="1.35"/><path d="M2.5 6.8H13.5M5.5 2V4.2M10.5 2V4.2" stroke="currentColor" stroke-width="1.35" stroke-linecap="round"/></svg>
+                  </span>
+                  <div class="ws-bot-info">
+                    <div class="ws-bot-name">日程 Bot</div>
+                    <div class="ws-bot-task">16:00 评审已留位</div>
+                  </div>
+                  <span class="status-dot dot-idle" title="空闲"></span>
+                </li>
+              </ul>
+            </aside>
+
+            <!-- Center Pane: Multi-Bot Group Chat Thread -->
+            <div class="ws-thread">
+              <div class="ws-msg ws-msg-user">
+                <div class="ws-msg-head">
+                  <span class="ws-author">你</span>
+                  <span class="ws-time tabular">14:02</span>
+                </div>
+                <p class="ws-msg-body">
+                  <span class="mention">@全员</span> 把 v2.4 上线前竞品对比、回归验证和更新公告一起推完。公告外发前停一下，给我确认。
+                </p>
+              </div>
+
+              <div class="ws-msg">
+                <div class="ws-msg-head">
+                  <span class="bot-avatar-xs av-research" aria-hidden="true">研</span>
+                  <span class="ws-author">调研 Bot</span>
+                  <span class="ws-chip">已交接给 写作 Bot</span>
+                  <span class="ws-time tabular">14:03</span>
+                </div>
+                <p class="ws-msg-body">
+                  已比对 6 份竞品本月更新，整理出 3 个我们领先的差异点与 1 处定价变化。摘要已附在 <code>v2.4-diff.md</code> 并转交 <span class="mention">@写作 Bot</span>。
+                </p>
+              </div>
+
+              <div class="ws-msg">
+                <div class="ws-msg-head">
+                  <span class="bot-avatar-xs av-code" aria-hidden="true">码</span>
+                  <span class="ws-author">代码 Bot</span>
+                  <span class="ws-chip chip-working">工作中</span>
+                  <span class="ws-time tabular">14:04</span>
+                </div>
+                <p class="ws-msg-body">
+                  正在跑 <code>release/2.4</code> 集成回归（46/48 通过），无破坏性接口变更。完成后同步把变更条目喂给 <span class="mention">@写作 Bot</span>。
+                </p>
+                <div class="mini-progress" aria-label="回归进度 96%">
+                  <div class="mini-progress-bar" style="width: 94%"></div>
+                </div>
+              </div>
+
+              <div class="ws-msg ws-msg-gate">
+                <div class="ws-msg-head">
+                  <span class="bot-avatar-xs av-writer" aria-hidden="true">写</span>
+                  <span class="ws-author">写作 Bot</span>
+                  <span class="ws-chip chip-approval">等你审批</span>
+                  <span class="ws-time tabular">14:05</span>
+                </div>
+                <p class="ws-msg-body">
+                  已合并调研要点与代码变更，起草 v2.4 发布公告（410 字）。外发至订阅邮件与变更日志前等待你确认：
+                </p>
+                <div class="inline-approval-bar">
+                  <span class="approval-target">动作：推送至 328 位订阅者 · 风险等级：外部发布</span>
+                  <div class="approval-mini-btns">
+                    <span class="mini-btn-ghost">查看草稿</span>
+                    <span class="mini-btn-solid">审批通过</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Right Pane: Parallel Task & Handoff Telemetry -->
+            <aside class="ws-telemetry" aria-label="并行进度与交接链">
+              <div class="ws-pane-label">并行任务流</div>
+              <div class="telemetry-card">
+                <div class="telemetry-row">
+                  <span>竞品差异梳理</span>
+                  <span class="t-done tabular">完成</span>
+                </div>
+                <div class="telemetry-row">
+                  <span>release/2.4 回归</span>
+                  <span class="t-live tabular">94%</span>
+                </div>
+                <div class="telemetry-row">
+                  <span>预发错误率盯盘</span>
+                  <span class="t-live tabular">0.00%</span>
+                </div>
+                <div class="telemetry-row">
+                  <span>发布公告外发</span>
+                  <span class="t-wait">待审批</span>
+                </div>
+              </div>
+
+              <div class="ws-pane-label" style="margin-top: 14px;">自动交接链</div>
+              <div class="handoff-chain">
+                <div class="handoff-node">
+                  <span class="status-dot dot-working"></span>
+                  <span>调研 Bot</span>
+                  <span class="handoff-arrow">→</span>
+                  <span>写作 Bot</span>
+                </div>
+                <div class="handoff-node">
+                  <span class="status-dot dot-working"></span>
+                  <span>代码 Bot</span>
+                  <span class="handoff-arrow">→</span>
+                  <span>写作 Bot</span>
+                </div>
+                <div class="handoff-node is-wait">
+                  <span class="status-dot dot-approval"></span>
+                  <span>写作 Bot</span>
+                  <span class="handoff-arrow">→</span>
+                  <span>你审批</span>
+                </div>
+              </div>
+            </aside>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. Workflow: 4-Step Collaboration Deep-Dive (Copy + UI Vignette Pairs) -->
+    <section class="section" id="workflow">
+      <div class="container">
+        <div class="section-head">
+          <h2 class="section-title">四步跑完一件复杂事，<br class="br-desktop">你只出现在关键节点</h2>
+          <p class="section-subtitle">
+            不用画繁琐的流程图，也不用逐个切换窗口。像带一支默契小队一样，在群里直接交代目标。
+          </p>
+        </div>
+
+        <div class="workflow-list">
+          <!-- Step 1 -->
+          <article class="workflow-pair">
+            <div class="workflow-copy">
+              <div class="step-index tabular">01</div>
+              <h3>一句话派活</h3>
+              <p>
+                在群里直接说出你想要的结果和边界条件。工位自动识别任务涉及的岗位，把调研、编码、撰稿与排期分配给最合适的 Bot。
+              </p>
+              <ul class="quiet-list">
+                <li>支持直接 @ 指定 Bot，或 @全员 由系统自动路由</li>
+                <li>同一条指令可同时附加截止时间与审批约束</li>
+              </ul>
+            </div>
+            <div class="vignette-card">
+              <div class="vignette-frame">
+                <div class="v-header">
+                  <span>群聊派活指令</span>
+                  <span class="tabular v-muted">自动路由 · 3 个岗位</span>
+                </div>
+                <div class="v-composer">
+                  <div class="v-input-text">
+                    把本周用户访谈整理成 3 个需求结论，核对排期冲突，周报草稿写好发群里等我审。
+                  </div>
+                  <div class="v-route-tags">
+                    <span class="route-tag"><i class="status-dot dot-working"></i>调研 Bot · 提炼结论</span>
+                    <span class="route-tag"><i class="status-dot dot-idle"></i>日程 Bot · 核对排期</span>
+                    <span class="route-tag"><i class="status-dot dot-approval"></i>写作 Bot · 起草周报</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Step 2 -->
+          <article class="workflow-pair is-reversed">
+            <div class="workflow-copy">
+              <div class="step-index tabular">02</div>
+              <h3>Bot 分工并互相交接</h3>
+              <p>
+                各 Bot 在独立工位并行推进。上游一旦完成产出，结构化产物和上下文会自动递交给下游 Bot，不需要你当「人肉复制粘贴器」。
+              </p>
+              <ul class="quiet-list">
+                <li>并行处理互不阻塞，耗时压缩至单个任务的水平</li>
+                <li>每次交接附带原始来源与结构化摘要，随时可查</li>
+              </ul>
+            </div>
+            <div class="vignette-card">
+              <div class="vignette-frame">
+                <div class="v-header">
+                  <span>跨 Bot 自动交接</span>
+                  <span class="tabular v-muted">14:03:18</span>
+                </div>
+                <div class="v-handoff-box">
+                  <div class="v-handoff-top">
+                    <span class="v-pill-bot">调研 Bot</span>
+                    <span class="v-flow-line">── 交接产物 ──▶</span>
+                    <span class="v-pill-bot">写作 Bot</span>
+                  </div>
+                  <div class="v-artifact">
+                    <div class="v-artifact-name">interview-synthesis-w46.md</div>
+                    <div class="v-artifact-meta tabular">3 条结论 · 12 处原话引用 · 2.4 KB</div>
+                  </div>
+                  <div class="v-handoff-foot">写作 Bot 已自动接单并开始合并上周进度…</div>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Step 3 -->
+          <article class="workflow-pair">
+            <div class="workflow-copy">
+              <div class="step-index tabular">03</div>
+              <h3>你审批关键一步</h3>
+              <p>
+                凡是涉及对外发送、代码合并、修改日程或写入核心数据的操作，Bot 会自动暂停并递上清晰预览。点一下批准才执行，批注两句即刻返工。
+              </p>
+              <ul class="quiet-list">
+                <li>变更内容、影响范围与目标对象一屏看清</li>
+                <li>未获授权的操作默认挂起，零静默越权风险</li>
+              </ul>
+            </div>
+            <div class="vignette-card">
+              <div class="vignette-frame">
+                <div class="v-header">
+                  <span>审批拦截点</span>
+                  <span class="ws-chip chip-approval">等你审批</span>
+                </div>
+                <div class="v-gate-box">
+                  <div class="v-gate-row">
+                    <span class="v-muted">发起岗位</span>
+                    <span>写作 Bot</span>
+                  </div>
+                  <div class="v-gate-row">
+                    <span class="v-muted">待执行动作</span>
+                    <span>发布至团队文档库并抄送 6 人</span>
+                  </div>
+                  <div class="v-gate-diff">
+                    + 新增：v2.4 延迟下降 31% 实测数据<br>
+                    + 附带：下周 3 项高优修复排期表
+                  </div>
+                  <div class="v-gate-actions">
+                    <span class="mini-btn-ghost">批注退回</span>
+                    <span class="mini-btn-solid">批准执行</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Step 4 -->
+          <article class="workflow-pair is-reversed">
+            <div class="workflow-copy">
+              <div class="step-index tabular">04</div>
+              <h3>汇总交付，直接验收</h3>
+              <p>
+                所有分支收口后，群里生成一份干净的交付汇总卡：最终成品、关键数据与遗留项一目了然，你不用在几十条对话里翻找结果。
+              </p>
+              <ul class="quiet-list">
+                <li>所有产物自动归档，按项目与日期索引</li>
+                <li>附带完整耗时与审批编号，复盘有据可依</li>
+              </ul>
+            </div>
+            <div class="vignette-card">
+              <div class="vignette-frame">
+                <div class="v-header">
+                  <span>任务交付汇总</span>
+                  <span class="tabular v-done-text">总耗时 03m 42s</span>
+                </div>
+                <div class="v-delivery-list">
+                  <div class="v-delivery-item">
+                    <span class="v-check">✓</span>
+                    <div>
+                      <div class="v-del-title">产品周报 v46（已发布）</div>
+                      <div class="v-del-sub">写作 Bot · 审批 #AP-409 已通过</div>
+                    </div>
+                  </div>
+                  <div class="v-delivery-item">
+                    <span class="v-check">✓</span>
+                    <div>
+                      <div class="v-del-title">竞品与访谈原始摘录</div>
+                      <div class="v-del-sub">调研 Bot · 12 条带来源链接</div>
+                    </div>
+                  </div>
+                  <div class="v-delivery-item">
+                    <span class="v-check">✓</span>
+                    <div>
+                      <div class="v-del-title">下周一 10:30 评审会日程</div>
+                      <div class="v-del-sub">日程 Bot · 无冲突，已同步 4 人</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. Interactive Demo Section (Real Step-by-Step Scripted Multi-Bot Simulation) -->
+    <section class="section" id="demo">
+      <div class="container">
+        <div class="section-head">
+          <h2 class="section-title">亲手派一个任务，看它们一步步配合</h2>
+          <p class="section-subtitle">
+            点击「派一个任务」，观察群里的多个 Bot 如何接单、并行干活、互相交接，并在关键一步停下来等你审批。
+          </p>
+        </div>
+
+        <div class="demo-shell">
+          <!-- Demo Control Toolbar -->
+          <div class="demo-toolbar">
+            <div class="demo-toolbar-left">
+              <div class="demo-scenarios" role="tablist" aria-label="选择演示任务">
+                <button type="button" class="scenario-tab is-active" role="tab" aria-selected="true" data-scenario="release">
+                  场景一：版本发布准备
+                </button>
+                <button type="button" class="scenario-tab" role="tab" aria-selected="false" data-scenario="incident">
+                  场景二：晚间接口告警处置
+                </button>
+              </div>
+            </div>
+
+            <div class="demo-toolbar-right">
+              <div class="demo-state-badge" id="demoStateBadge" data-state="idle" aria-live="polite">
+                <span class="state-dot"></span>
+                <span id="demoStateText">未开始</span>
+              </div>
+
+              <button type="button" class="demo-ctrl-ghost" id="demoPauseBtn" hidden>暂停</button>
+              <button type="button" class="demo-ctrl-ghost" id="demoResetBtn" hidden>重置</button>
+              <button type="button" class="btn-pill btn-pill-primary btn-pill-sm" id="dispatchTaskBtn">
+                <span id="dispatchBtnLabel">派一个任务</span>
+                <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                  <path d="M3.5 8H12.5M12.5 8L8.75 4.25M12.5 8L8.75 11.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          <!-- 4-Step Progress Bar -->
+          <div class="demo-stepper" aria-label="任务进度阶段">
+            <div class="stepper-item" data-step="1">
+              <span class="stepper-num tabular">1</span>
+              <span>派活</span>
+            </div>
+            <div class="stepper-line"></div>
+            <div class="stepper-item" data-step="2">
+              <span class="stepper-num tabular">2</span>
+              <span>分工与交接</span>
+            </div>
+            <div class="stepper-line"></div>
+            <div class="stepper-item" data-step="3">
+              <span class="stepper-num tabular">3</span>
+              <span>关键一步审批</span>
+            </div>
+            <div class="stepper-line"></div>
+            <div class="stepper-item" data-step="4">
+              <span class="stepper-num tabular">4</span>
+              <span>汇总交付</span>
+            </div>
+          </div>
+
+          <!-- Demo Interactive Workspace Body -->
+          <div class="demo-body">
+            <!-- Left: Live Bot Status Board -->
+            <aside class="demo-roster" aria-label="演示中 Bot 状态">
+              <div class="demo-pane-title">
+                <span>工位实时状态</span>
+                <span class="tabular demo-clock" id="demoElapsed">00:00</span>
+              </div>
+              <ul class="demo-bot-list" id="demoBotList">
+                <li class="demo-bot-row" data-bot="research">
+                  <span class="bot-avatar av-research">研</span>
+                  <div class="demo-bot-meta">
+                    <div class="demo-bot-name">调研 Bot</div>
+                    <div class="demo-bot-note">待命中</div>
+                  </div>
+                  <span class="status-pill st-idle">空闲</span>
+                </li>
+                <li class="demo-bot-row" data-bot="code">
+                  <span class="bot-avatar av-code">码</span>
+                  <div class="demo-bot-meta">
+                    <div class="demo-bot-name">代码 Bot</div>
+                    <div class="demo-bot-note">待命中</div>
+                  </div>
+                  <span class="status-pill st-idle">空闲</span>
+                </li>
+                <li class="demo-bot-row" data-bot="monitor">
+                  <span class="bot-avatar av-monitor">盯</span>
+                  <div class="demo-bot-meta">
+                    <div class="demo-bot-name">盯盘 Bot</div>
+                    <div class="demo-bot-note">待命中</div>
+                  </div>
+                  <span class="status-pill st-idle">空闲</span>
+                </li>
+                <li class="demo-bot-row" data-bot="writer">
+                  <span class="bot-avatar av-writer">写</span>
+                  <div class="demo-bot-meta">
+                    <div class="demo-bot-name">写作 Bot</div>
+                    <div class="demo-bot-note">待命中</div>
+                  </div>
+                  <span class="status-pill st-idle">空闲</span>
+                </li>
+                <li class="demo-bot-row" data-bot="schedule">
+                  <span class="bot-avatar av-schedule">程</span>
+                  <div class="demo-bot-meta">
+                    <div class="demo-bot-name">日程 Bot</div>
+                    <div class="demo-bot-note">待命中</div>
+                  </div>
+                  <span class="status-pill st-idle">空闲</span>
+                </li>
+              </ul>
+            </aside>
+
+            <!-- Right: Live Group Message Feed -->
+            <div class="demo-feed-wrap">
+              <div class="demo-pane-title">
+                <span id="demoChannelTitle">#版本发布协同群</span>
+                <span class="demo-feed-hint" id="demoFeedHint">准备就绪 · 点击「派一个任务」开始</span>
+              </div>
+
+              <div class="demo-feed" id="demoFeed" aria-live="polite">
+                <div class="demo-empty" id="demoEmpty">
+                  <div class="demo-empty-icon" aria-hidden="true">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                      <rect x="3" y="4" width="18" height="14" rx="3" stroke="currentColor" stroke-width="1.4"/>
+                      <path d="M7.5 9.5H16.5M7.5 13H12.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+                    </svg>
+                  </div>
+                  <p class="demo-empty-title">当前任务尚未派发</p>
+                  <p class="demo-empty-sub" id="demoEmptyPreview">
+                    预设指令：「@全员 准备 v2.4 上线：梳理竞品动态、跑通回归测试、确认预发指标并起草更新公告，外发前停下来让我审批。」
+                  </p>
+                  <button type="button" class="demo-inline-start" id="demoInlineStartBtn">立即派发这个任务 →</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. Bot Roster Section: 6 Equal Portrait Cards + Generic Capability Tiles -->
+    <section class="section" id="roster">
+      <div class="container">
+        <div class="section-head">
+          <h2 class="section-title">雇一组各有专长的 Bot，每个岗位职责清晰</h2>
+          <p class="section-subtitle">
+            不造全能黑盒。每个 Bot 拥有固定人设、受控权限与清晰状态，像真实同事一样各司其职。
+          </p>
+        </div>
+
+        <div class="roster-grid">
+          <!-- Bot 1 -->
+          <article class="bot-card">
+            <div class="bot-card-head">
+              <div class="bot-identity">
+                <div class="bot-avatar-lg av-research" aria-hidden="true">
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                    <circle cx="9" cy="9" r="5.2" stroke="currentColor" stroke-width="1.6"/>
+                    <path d="M13 13L16.5 16.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+                  </svg>
+                </div>
+                <div>
+                  <h3 class="bot-card-name">调研 Bot</h3>
+                  <span class="bot-card-role">情报与资料分析</span>
+                </div>
+              </div>
+              <span class="status-pill st-working"><i class="status-dot dot-working"></i>工作中</span>
+            </div>
+            <p class="bot-card-desc">
+              追踪竞品更新、行业文档与用户反馈，提炼带原始出处的可验证结论。
+            </p>
+            <div class="bot-proof-frame">
+              <div class="proof-meta">
+                <span>正在处理</span>
+                <span class="tabular">14:04</span>
+              </div>
+              <div class="proof-line">已汇总 6 份竞品更新日志，正将差异表交接给写作 Bot。</div>
+            </div>
+          </article>
+
+          <!-- Bot 2 -->
+          <article class="bot-card">
+            <div class="bot-card-head">
+              <div class="bot-identity">
+                <div class="bot-avatar-lg av-writer" aria-hidden="true">
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                    <path d="M4.5 15.5L7.8 14.8L15.4 7.2C15.9 6.7 15.9 5.9 15.4 5.4L14.6 4.6C14.1 4.1 13.3 4.1 12.8 4.6L5.2 12.2L4.5 15.5Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+                  </svg>
+                </div>
+                <div>
+                  <h3 class="bot-card-name">写作 Bot</h3>
+                  <span class="bot-card-role">文档与公告起草</span>
+                </div>
+              </div>
+              <span class="status-pill st-approval"><i class="status-dot dot-approval"></i>等你审批</span>
+            </div>
+            <p class="bot-card-desc">
+              把零散要点、代码变更与会议记录写成周报、发布公告和对外邮件草稿。
+            </p>
+            <div class="bot-proof-frame">
+              <div class="proof-meta">
+                <span>审批挂起</span>
+                <span class="tabular">14:05</span>
+              </div>
+              <div class="proof-line">《v2.4 更新说明》已成稿（410 字），等待你确认后外发。</div>
+            </div>
+          </article>
+
+          <!-- Bot 3 -->
+          <article class="bot-card">
+            <div class="bot-card-head">
+              <div class="bot-identity">
+                <div class="bot-avatar-lg av-code" aria-hidden="true">
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                    <path d="M6.8 5.8L3 10L6.8 14.2M13.2 5.8L17 10L13.2 14.2M11 4.5L9 15.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </div>
+                <div>
+                  <h3 class="bot-card-name">代码 Bot</h3>
+                  <span class="bot-card-role">巡检与补丁起草</span>
+                </div>
+              </div>
+              <span class="status-pill st-working"><i class="status-dot dot-working"></i>工作中</span>
+            </div>
+            <p class="bot-card-desc">
+              自动核对提交记录、执行回归测试并起草修复补丁，严格隔离合并权限。
+            </p>
+            <div class="bot-proof-frame">
+              <div class="proof-meta">
+                <span>回归队列</span>
+                <span class="tabular">46 / 48</span>
+              </div>
+              <div class="proof-line">分支 release/2.4 校验通过率 100%，预计 18 秒后收尾。</div>
+            </div>
+          </article>
+
+          <!-- Bot 4 -->
+          <article class="bot-card">
+            <div class="bot-card-head">
+              <div class="bot-identity">
+                <div class="bot-avatar-lg av-schedule" aria-hidden="true">
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                    <rect x="3.2" y="4.5" width="13.6" height="12" rx="2.4" stroke="currentColor" stroke-width="1.5"/>
+                    <path d="M3.2 8.5H16.8M7 2.8V5.5M13 2.8V5.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                  </svg>
+                </div>
+                <div>
+                  <h3 class="bot-card-name">日程 Bot</h3>
+                  <span class="bot-card-role">排期与会前准备</span>
+                </div>
+              </div>
+              <span class="status-pill st-idle"><i class="status-dot dot-idle"></i>空闲</span>
+            </div>
+            <p class="bot-card-desc">
+              排查多方日历冲突、锁定评审时段，并在会前 15 分钟备齐议程材料。
+            </p>
+            <div class="bot-proof-frame">
+              <div class="proof-meta">
+                <span>今日已排</span>
+                <span class="tabular">3 场会议</span>
+              </div>
+              <div class="proof-line">16:00 发布复盘时段已预留，暂无新的排期冲突。</div>
+            </div>
+          </article>
+
+          <!-- Bot 5 -->
+          <article class="bot-card">
+            <div class="bot-card-head">
+              <div class="bot-identity">
+                <div class="bot-avatar-lg av-monitor" aria-hidden="true">
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                    <path d="M2.5 10.5H5.8L8.1 5L11.5 15L13.9 9H17.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </div>
+                <div>
+                  <h3 class="bot-card-name">盯盘 Bot</h3>
+                  <span class="bot-card-role">指标与异常值守</span>
+                </div>
+              </div>
+              <span class="status-pill st-working"><i class="status-dot dot-working"></i>工作中</span>
+            </div>
+            <p class="bot-card-desc">
+              全天候守望接口延迟、错误率与核心业务数据，超过阈值立即拉群告警。
+            </p>
+            <div class="bot-proof-frame">
+              <div class="proof-meta">
+                <span>实时基线</span>
+                <span class="tabular">P95 84ms</span>
+              </div>
+              <div class="proof-line">预发环境连续 6 小时零报错，持续每 30 秒巡检一次。</div>
+            </div>
+          </article>
+
+          <!-- Bot 6 -->
+          <article class="bot-card">
+            <div class="bot-card-head">
+              <div class="bot-identity">
+                <div class="bot-avatar-lg av-archive" aria-hidden="true">
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                    <rect x="3" y="4" width="14" height="3.5" rx="1" stroke="currentColor" stroke-width="1.5"/>
+                    <path d="M4.5 7.5V14.8C4.5 15.6 5.1 16.2 5.9 16.2H14.1C14.9 16.2 15.5 15.6 15.5 14.8V7.5" stroke="currentColor" stroke-width="1.5"/>
+                    <path d="M8.2 11H11.8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                  </svg>
+                </div>
+                <div>
+                  <h3 class="bot-card-name">归档 Bot</h3>
+                  <span class="bot-card-role">知识沉淀与检索</span>
+                </div>
+              </div>
+              <span class="status-pill st-idle"><i class="status-dot dot-idle"></i>空闲</span>
+            </div>
+            <p class="bot-card-desc">
+              自动整理群内定论、审批快照与交付附件，形成随时可查的项目记忆库。
+            </p>
+            <div class="bot-proof-frame">
+              <div class="proof-meta">
+                <span>已归档</span>
+                <span class="tabular">142 份交付</span>
+              </div>
+              <div class="proof-line">已索引本周 9 次跨 Bot 交接记录，随时支持关键词回溯。</div>
+            </div>
+          </article>
+        </div>
+
+        <!-- Generic Capability Connector Row (No real third-party brand logos) -->
+        <div class="connector-strip" aria-label="可连接的本地与云端能力">
+          <div class="connector-label">按需挂载常用工具能力，权限逐项授权</div>
+          <div class="connector-tiles">
+            <div class="connector-tile">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="2" y="3.2" width="12" height="9.6" rx="1.8" stroke="currentColor" stroke-width="1.3"/><path d="M2.5 4.2L8 8.4L13.5 4.2" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
+              <span>邮件收发</span>
+            </div>
+            <div class="connector-tile">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="2.4" y="3.2" width="11.2" height="10" rx="1.8" stroke="currentColor" stroke-width="1.3"/><path d="M2.4 6.4H13.6M5.5 1.8V4M10.5 1.8V4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
+              <span>日历同步</span>
+            </div>
+            <div class="connector-tile">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M5.5 4.5L2.2 8L5.5 11.5M10.5 4.5L13.8 8L10.5 11.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <span>代码仓库</span>
+            </div>
+            <div class="connector-tile">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3.5 2.5H10L12.8 5.3V13.5H3.5V2.5Z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/><path d="M6 8H10.2M6 10.6H9" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
+              <span>文档知识库</span>
+            </div>
+            <div class="connector-tile">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2.2 8.4H5L6.8 4.2L9.2 11.8L11 7.4H13.8" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <span>监控指标</span>
+            </div>
+            <div class="connector-tile">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="4.2" cy="8" r="2" stroke="currentColor" stroke-width="1.3"/><circle cx="11.8" cy="4.2" r="2" stroke="currentColor" stroke-width="1.3"/><circle cx="11.8" cy="11.8" r="2" stroke="currentColor" stroke-width="1.3"/><path d="M6 7.1L10 5.1M6 8.9L10 10.9" stroke="currentColor" stroke-width="1.3"/></svg>
+              <span>Webhook</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. Security & Control: Three-Pillar Proof Bento -->
+    <section class="section" id="security">
+      <div class="container">
+        <div class="section-head">
+          <h2 class="section-title">放心交给它们干活，<br class="br-desktop">边界始终握在你手里</h2>
+          <p class="section-subtitle">
+            从权限切分、审批闸门到事后审计，每一个 Bot 的动作都受控、可见、可追责。
+          </p>
+        </div>
+
+        <div class="bento-grid">
+          <!-- Pillar 1: 权限分级 -->
+          <article class="bento-card">
+            <div class="bento-head">
+              <h3>权限分级，最小授权</h3>
+              <p>
+                按岗位切分只读、起草与执行三层权限。调研 Bot 碰不到代码库，代码 Bot 绝不能自行合并主干。
+              </p>
+            </div>
+            <div class="bento-proof">
+              <div class="proof-top-bar">
+                <span>岗位权限矩阵</span>
+                <span class="tabular v-muted">3 级隔离</span>
+              </div>
+              <div class="perm-list">
+                <div class="perm-row">
+                  <div>
+                    <div class="perm-name">调研 Bot</div>
+                    <div class="perm-scope">网页只读 · 写入群草稿</div>
+                  </div>
+                  <span class="perm-tag">L1 只读</span>
+                </div>
+                <div class="perm-row">
+                  <div>
+                    <div class="perm-name">写作 Bot</div>
+                    <div class="perm-scope">读取交付件 · 外发需审批</div>
+                  </div>
+                  <span class="perm-tag">L2 起草</span>
+                </div>
+                <div class="perm-row">
+                  <div>
+                    <div class="perm-name">代码 Bot</div>
+                    <div class="perm-scope">沙盒测试 · 禁止直推 main</div>
+                  </div>
+                  <span class="perm-tag">L2 沙盒</span>
+                </div>
+                <div class="perm-row">
+                  <div>
+                    <div class="perm-name">日程 Bot</div>
+                    <div class="perm-scope">读写待定日程 · 删改拦截</div>
+                  </div>
+                  <span class="perm-tag">L2 受限</span>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Pillar 2: 关键操作需审批 -->
+          <article class="bento-card">
+            <div class="bento-head">
+              <h3>关键操作，必须审批</h3>
+              <p>
+                对外发信、合并变更、修改日程或调用外部写入接口时强制拦截，明文展示影响范围，由你决定放行或退回。
+              </p>
+            </div>
+            <div class="bento-proof">
+              <div class="proof-top-bar">
+                <span>高风险动作拦截</span>
+                <span class="ws-chip chip-approval">等待确认</span>
+              </div>
+              <div class="gate-preview">
+                <div class="gate-badge-line">
+                  <span class="gate-label">目标</span>
+                  <span>发布 v2.4 更新邮件（328 人）</span>
+                </div>
+                <div class="gate-badge-line">
+                  <span class="gate-label">发起</span>
+                  <span>写作 Bot · 任务 #T-204</span>
+                </div>
+                <div class="gate-diff-block">
+                  <div class="diff-caption">变更预览</div>
+                  <p>标题：工位 v2.4 发布：并行交接提速 31%</p>
+                  <p>附件：release-notes-v2.4.md</p>
+                </div>
+                <div class="gate-btn-row">
+                  <span class="gate-btn-no">拒绝并批注</span>
+                  <span class="gate-btn-yes">批准执行</span>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Pillar 3: 全程留痕可回看 -->
+          <article class="bento-card">
+            <div class="bento-head">
+              <h3>全程留痕，随时可回看</h3>
+              <p>
+                每一次派活、工具调用、上下文交接与审批结果均按时间线留存，任何异常都能在一分钟内定位源头。
+              </p>
+            </div>
+            <div class="bento-proof">
+              <div class="proof-top-bar">
+                <span>审计回放日志</span>
+                <span class="tabular v-muted">#AUD-892</span>
+              </div>
+              <ol class="audit-timeline">
+                <li>
+                  <span class="audit-time tabular">14:02:08</span>
+                  <div class="audit-text"><strong>你</strong> 派发任务：v2.4 发布准备</div>
+                </li>
+                <li>
+                  <span class="audit-time tabular">14:03:12</span>
+                  <div class="audit-text"><strong>调研 Bot</strong> 读取 6 条更新 → 交接 <strong>写作 Bot</strong></div>
+                </li>
+                <li>
+                  <span class="audit-time tabular">14:04:05</span>
+                  <div class="audit-text"><strong>代码 Bot</strong> 完成 48 项回归（0 失败）</div>
+                </li>
+                <li>
+                  <span class="audit-time tabular">14:04:39</span>
+                  <div class="audit-text"><strong>系统闸门</strong> 拦截外部发布，等待审批</div>
+                </li>
+                <li class="is-approved">
+                  <span class="audit-time tabular">14:05:11</span>
+                  <div class="audit-text"><strong>你</strong> 批准执行 · 已写入归档快照</div>
+                </li>
+              </ol>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. Pricing / Early Access Plans: Three-Tier Comparison Grid -->
+    <section class="section" id="pricing">
+      <div class="container">
+        <div class="section-head">
+          <h2 class="section-title">内测开放中，按你的协作规模选择工位</h2>
+          <p class="section-subtitle">
+            当前采用分批邀请制，内测期间无需绑卡，早鸟定价将在正式版长期保留。
+          </p>
+        </div>
+
+        <div class="pricing-grid">
+          <!-- Plan 1 -->
+          <article class="plan-card">
+            <div class="plan-head">
+              <div class="plan-title-row">
+                <h3>个人体验版</h3>
+              </div>
+              <p class="plan-summary">适合独立开发者上手体验多 Bot 群聊协作与审批工作流。</p>
+            </div>
+            <div class="plan-price">
+              <span class="price-num tabular">¥0</span>
+              <span class="price-unit">/ 月 · 内测免费</span>
+            </div>
+            <ul class="plan-features">
+              <li class="feat-primary">最多启用 3 个基础岗位 Bot</li>
+              <li class="feat-primary">每日 20 次跨 Bot 协同与交接</li>
+              <li class="feat-primary">关键操作强制人工审批拦截</li>
+              <li class="feat-muted">7 天全程留痕与交付归档</li>
+              <li class="feat-muted">内测用户群与周度更新通道</li>
+            </ul>
+            <button type="button" class="plan-btn plan-btn-secondary" data-open-waitlist="个人体验版">
+              申请内测资格
+            </button>
+          </article>
+
+          <!-- Plan 2 (Highlighted with crisp brighter border, no scale distortion) -->
+          <article class="plan-card is-featured">
+            <div class="plan-head">
+              <div class="plan-title-row">
+                <h3>专业工位版</h3>
+                <span class="plan-badge">推荐</span>
+              </div>
+              <p class="plan-summary">适合高频交付的独立开发者与产品经理，全岗位 Bot 并行待命。</p>
+            </div>
+            <div class="plan-price">
+              <span class="price-num tabular">¥99</span>
+              <span class="price-unit">/ 月 · 内测早鸟价</span>
+            </div>
+            <ul class="plan-features">
+              <li class="feat-primary">完整启用全部 6 个专业岗位 Bot</li>
+              <li class="feat-primary">不限次数跨 Bot 自动交接与并行</li>
+              <li class="feat-primary">自定义权限矩阵与审批规则</li>
+              <li class="feat-muted">90 天完整审计回放与一键导出</li>
+              <li class="feat-muted">优先体验本地工具桥接与新岗位</li>
+            </ul>
+            <button type="button" class="plan-btn plan-btn-primary" data-open-waitlist="专业工位版">
+              申请专业版内测
+            </button>
+          </article>
+
+          <!-- Plan 3 -->
+          <article class="plan-card">
+            <div class="plan-head">
+              <div class="plan-title-row">
+                <h3>小团队版</h3>
+              </div>
+              <p class="plan-summary">适合小团队负责人共享多 Bot 协作群、审批链与项目记忆库。</p>
+            </div>
+            <div class="plan-price">
+              <span class="price-num tabular">¥299</span>
+              <span class="price-unit">/ 月 · 含 5 个成员席位</span>
+            </div>
+            <ul class="plan-features">
+              <li class="feat-primary">多项目共享 Bot 团队与归档库</li>
+              <li class="feat-primary">支持指定审批人与分级审批链</li>
+              <li class="feat-primary">成员级权限隔离与独立数据区</li>
+              <li class="feat-muted">365 天合规审计日志留存</li>
+              <li class="feat-muted">1 对 1 入驻配置与岗位模板定制</li>
+            </ul>
+            <button type="button" class="plan-btn plan-btn-secondary" data-open-waitlist="小团队版">
+              预约团队内测
+            </button>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. Minimal Closing Call-to-Action -->
+    <section class="closing-section">
+      <div class="container closing-inner">
+        <h2 class="closing-title">把重复交接留给 Bot，把判断留给自己</h2>
+        <p class="closing-subtitle">
+          第 4 批内测名额开放申请中。提交邮箱后将按排号顺序发放邀请码，预计 48 小时内通知。
+        </p>
+        <div class="hero-actions">
+          <button type="button" class="btn-pill btn-pill-primary" data-open-waitlist>
+            <span>申请内测</span>
+            <svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+              <path d="M3.5 8H12.5M12.5 8L8.75 4.25M12.5 8L8.75 11.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+          <div class="split-pill split-pill-dark" data-split-menu>
+            <button type="button" class="split-pill-main" data-jump-demo="release">
+              <span>看演示</span>
+            </button>
+            <button type="button" class="split-pill-toggle" aria-label="选择演示场景" aria-expanded="false">
+              <svg class="chevron-icon" width="13" height="13" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                <path d="M4.5 6.25L8 9.75L11.5 6.25" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+            <div class="split-dropdown" role="menu" hidden>
+              <button type="button" role="menuitem" data-jump-demo="release">
+                <span class="dropdown-title">版本发布协同</span>
+                <span class="dropdown-sub">调研 → 代码 → 写作 → 审批</span>
+              </button>
+              <button type="button" role="menuitem" data-jump-demo="incident">
+                <span class="dropdown-title">异常告警处置</span>
+                <span class="dropdown-sub">盯盘 → 代码 → 日程 → 审批</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- 8. Multi-Column Footer + Subtle Ambient Epilogue -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a href="#top" class="brand-lockup">
+            <svg class="brand-mark" width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <rect x="2.5" y="2.5" width="8" height="8" rx="2.2" fill="currentColor"/>
+              <rect x="13.5" y="2.5" width="8" height="8" rx="2.2" fill="currentColor" fill-opacity="0.45"/>
+              <rect x="2.5" y="13.5" width="8" height="8" rx="2.2" fill="currentColor" fill-opacity="0.45"/>
+              <rect x="13.5" y="13.5" width="8" height="8" rx="2.2" stroke="currentColor" stroke-width="1.8"/>
+            </svg>
+            <span class="brand-name">工位</span>
+          </a>
+          <p class="footer-tagline">
+            面向独立开发者、产品经理与小团队负责人的多 Bot 协作个人 Agent 工作台。
+          </p>
+        </div>
+
+        <div class="footer-cols">
+          <div class="footer-col">
+            <h4>产品</h4>
+            <a href="#workflow">四步工作方式</a>
+            <a href="#demo">交互演示沙盒</a>
+            <a href="#roster">岗位 Bot 阵容</a>
+            <a href="#pricing">内测与定价</a>
+          </div>
+          <div class="footer-col">
+            <h4>安全与控制</h4>
+            <a href="#security">最小权限分级</a>
+            <a href="#security">人工审批闸门</a>
+            <a href="#security">全程留痕审计</a>
+            <a href="#security">数据隔离说明</a>
+          </div>
+          <div class="footer-col">
+            <h4>内测支持</h4>
+            <a href="#pricing" data-open-waitlist>申请内测排号</a>
+            <a href="#demo">查看任务范例</a>
+            <a href="#roster">自定义岗位指南</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-baseline">
+        <div class="footer-copy">© 2026 工位 Gongwei. 保留所有权利。</div>
+        <div class="footer-meta tabular">
+          <span class="status-dot dot-working"></span>
+          <span>第 4 批内测开放申请中</span>
+        </div>
+      </div>
+
+      <!-- Quiet ambient interactive epilogue -->
+      <div class="footer-epilogue" aria-label="工位夜间值守状态">
+        <span class="epilogue-label">夜间值守工位</span>
+        <div class="epilogue-seats" id="epilogueSeats">
+          <button type="button" class="seat-chip" data-seat-msg="调研 Bot · 上次巡检竞品文档 4 分钟前">
+            <span class="status-dot dot-working"></span>调研
+          </button>
+          <button type="button" class="seat-chip" data-seat-msg="写作 Bot · 1 份发布公告等待你确认">
+            <span class="status-dot dot-approval"></span>写作
+          </button>
+          <button type="button" class="seat-chip" data-seat-msg="代码 Bot · 沙盒测试环境就绪">
+            <span class="status-dot dot-working"></span>代码
+          </button>
+          <button type="button" class="seat-chip" data-seat-msg="日程 Bot · 明日上午无冲突">
+            <span class="status-dot dot-idle"></span>日程
+          </button>
+          <button type="button" class="seat-chip" data-seat-msg="盯盘 Bot · 过去 24h 接口可用率 99.98%">
+            <span class="status-dot dot-working"></span>盯盘
+          </button>
+          <button type="button" class="seat-chip" data-seat-msg="归档 Bot · 已同步 142 份任务交付件">
+            <span class="status-dot dot-idle"></span>归档
+          </button>
+        </div>
+        <span class="epilogue-readout" id="epilogueReadout">悬停或点选任意工位查看值守心跳</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Minimal Waitlist Modal -->
+  <div class="modal-backdrop" id="waitlistModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" hidden>
+    <div class="modal-card">
+      <div class="modal-head">
+        <h3 id="modalTitle">申请「工位」内测资格</h3>
+        <button type="button" class="modal-close" id="modalCloseBtn" aria-label="关闭弹窗">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <path d="M4 4L12 12M12 4L4 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+        </button>
+      </div>
+
+      <form id="waitlistForm" class="modal-form">
+        <p class="modal-desc">留下常用邮箱和你的工作角色，我们会按排号顺序分批发送邀请码。</p>
+        <div class="form-field">
+          <label for="waitlistEmail">工作邮箱</label>
+          <input id="waitlistEmail" name="email" type="email" required placeholder="you@studio.dev" autocomplete="email">
+        </div>
+        <div class="form-field">
+          <label for="waitlistRole">你的角色</label>
+          <select id="waitlistRole" name="role">
+            <option value="独立开发者">独立开发者</option>
+            <option value="产品经理">产品经理</option>
+            <option value="小团队负责人">小团队负责人</option>
+            <option value="其他技术构建者">其他技术构建者</option>
+          </select>
+        </div>
+        <div class="form-field">
+          <label for="waitlistPlan">意向方案</label>
+          <select id="waitlistPlan" name="plan">
+            <option value="专业工位版">专业工位版（¥99/月 早鸟）</option>
+            <option value="个人体验版">个人体验版（内测免费）</option>
+            <option value="小团队版">小团队版（¥299/月）</option>
+          </select>
+        </div>
+        <button type="submit" class="plan-btn plan-btn-primary">提交内测申请</button>
+      </form>
+
+      <div id="waitlistSuccess" class="modal-success" hidden>
+        <div class="success-icon">✓</div>
+        <h4>已加入第 4 批内测排号</h4>
+        <p class="modal-desc">
+          你的排号为 <strong class="tabular" id="assignedQueueNum">#1429</strong>。我们会在 48 小时内将邀请码发送至 <span id="assignedEmail"></span>。
+        </p>
+        <button type="button" class="plan-btn plan-btn-secondary" id="modalDoneBtn">回到页面</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="./script.js"></script>
+</body>
+</html>

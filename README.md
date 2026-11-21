@@ -12,6 +12,10 @@ demo code ─► agy writes "most likely prompt" ─► agy rebuilds the app fro
                  refine prompt from the notes (2 rounds) ─► RECIPE.md
 ```
 
+## Round 2: live sites, recipe → transfer
+
+See [sites/README.md](sites/README.md): 3 live sites, design recipe with no px or copy, generation from the recipe only, Codex judge with original. In all 3 cases the recipe beat the no-recipe control decisively on design-language retention.
+
 ## Recipes (first pass, 2026-11-21)
 
 | Demo | What it is | Recipe |

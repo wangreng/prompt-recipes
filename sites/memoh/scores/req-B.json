@@ -1,0 +1,7 @@
+{
+ "score": 97,
+ "sections": 50,
+ "interactions": 30,
+ "quality": 17,
+ "gaps": "Waitlist submission only changes local page text and does not save or send applications. The form remains visible after submission because its flex display overrides the hidden attribute. The modal lacks keyboard focus trapping and focus restoration."
+}

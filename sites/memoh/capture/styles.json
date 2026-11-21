@@ -1,0 +1,394 @@
+{
+ "styles": {
+  "h1": {
+   "font": "\"Source Serif 4\", \"Noto Serif SC\", serif",
+   "size": "60px",
+   "weight": "500",
+   "lh": "64.8px",
+   "ls": "normal",
+   "color": "rgb(255, 255, 255)",
+   "bg": "rgba(0, 0, 0, 0)",
+   "radius": "0px",
+   "border": "0px solid rgb(39, 39, 42)",
+   "shadow": "none",
+   "transform": "none"
+  },
+  "h2": {
+   "font": "Inter, \"Noto Sans SC\", sans-serif",
+   "size": "42px",
+   "weight": "500",
+   "lh": "50.4px",
+   "ls": "-1.89px",
+   "color": "rgb(245, 245, 247)",
+   "bg": "rgba(0, 0, 0, 0)",
+   "radius": "0px",
+   "border": "0px solid rgb(39, 39, 42)",
+   "shadow": "none",
+   "transform": "none"
+  },
+  "h3": {
+   "font": "Inter, \"Noto Sans SC\", sans-serif",
+   "size": "16px",
+   "weight": "500",
+   "lh": "26px",
+   "ls": "normal",
+   "color": "rgb(237, 237, 237)",
+   "bg": "rgba(0, 0, 0, 0)",
+   "radius": "0px",
+   "border": "0px solid rgb(39, 39, 42)",
+   "shadow": "none",
+   "transform": "none"
+  },
+  "p": {
+   "font": "Inter, \"Noto Sans SC\", sans-serif",
+   "size": "18px",
+   "weight": "400",
+   "lh": "29.25px",
+   "ls": "normal",
+   "color": "oklab(0.999994 0.0000455678 0.0000200868 / 0.92)",
+   "bg": "rgba(0, 0, 0, 0)",
+   "radius": "0px",
+   "border": "0px solid rgb(39, 39, 42)",
+   "shadow": "none",
+   "transform": "none"
+  },
+  "a": {
+   "font": "Inter, \"Noto Sans SC\", sans-serif",
+   "size": "16px",
+   "weight": "400",
+   "lh": "24px",
+   "ls": "normal",
+   "color": "rgb(250, 250, 250)",
+   "bg": "rgba(0, 0, 0, 0)",
+   "radius": "0px",
+   "border": "0px solid rgb(39, 39, 42)",
+   "shadow": "none",
+   "transform": "none"
+  },
+  "button": {
+   "font": "Inter, \"Noto Sans SC\", sans-serif",
+   "size": "16px",
+   "weight": "400",
+   "lh": "24px",
+   "ls": "normal",
+   "color": "oklab(0.999994 0.0000455678 0.0000200868 / 0.85)",
+   "bg": "rgba(0, 0, 0, 0)",
+   "radius": "6px",
+   "border": "0px solid rgb(39, 39, 42)",
+   "shadow": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px",
+   "transform": "none"
+  },
+  "nav": {
+   "font": "Inter, \"Noto Sans SC\", sans-serif",
+   "size": "16px",
+   "weight": "400",
+   "lh": "24px",
+   "ls": "normal",
+   "color": "rgb(250, 250, 250)",
+   "bg": "rgba(0, 0, 0, 0)",
+   "radius": "0px",
+   "border": "0px solid rgb(39, 39, 42)",
+   "shadow": "none",
+   "transform": "none"
+  },
+  "header": {
+   "font": "Inter, \"Noto Sans SC\", sans-serif",
+   "size": "16px",
+   "weight": "400",
+   "lh": "24px",
+   "ls": "normal",
+   "color": "rgb(250, 250, 250)",
+   "bg": "rgba(0, 0, 0, 0)",
+   "radius": "0px",
+   "border": "0px solid rgb(39, 39, 42)",
+   "shadow": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px",
+   "transform": "none"
+  },
+  "footer": {
+   "font": "Geist, \"Noto Sans SC\", sans-serif",
+   "size": "16px",
+   "weight": "400",
+   "lh": "24px",
+   "ls": "normal",
+   "color": "rgb(250, 250, 250)",
+   "bg": "rgba(0, 0, 0, 0)",
+   "radius": "0px",
+   "border": "0px solid rgb(39, 39, 42)",
+   "shadow": "none",
+   "transform": "none"
+  },
+  "section": {
+   "font": "Inter, \"Noto Sans SC\", sans-serif",
+   "size": "16px",
+   "weight": "400",
+   "lh": "24px",
+   "ls": "normal",
+   "color": "rgb(250, 250, 250)",
+   "bg": "rgba(0, 0, 0, 0)",
+   "radius": "0px",
+   "border": "0px solid rgb(39, 39, 42)",
+   "shadow": "none",
+   "transform": "none"
+  },
+  "li": {
+   "font": "\"Inter Variable\", Inter, MiSans, \"PingFang SC\", \"Hiragino Sans GB\", \"Microsoft YaHei UI\", \"Noto Sans SC\", sans-serif",
+   "size": "12px",
+   "weight": "450",
+   "lh": "16px",
+   "ls": "-0.08px",
+   "color": "oklch(0.9 0 0)",
+   "bg": "rgba(0, 0, 0, 0)",
+   "radius": "0px",
+   "border": "0px solid oklch(1 0 0 / 0.08)",
+   "shadow": "none",
+   "transform": "none"
+  }
+ },
+ "colors": [
+  [
+   "rgb(39, 39, 42)",
+   652
+  ],
+  [
+   "rgb(237, 237, 237)",
+   189
+  ],
+  [
+   "rgb(161, 161, 170)",
+   171
+  ],
+  [
+   "rgb(250, 250, 250)",
+   115
+  ],
+  [
+   "oklch(1 0 0 / 0.08)",
+   110
+  ],
+  [
+   "rgb(245, 245, 247)",
+   87
+  ],
+  [
+   "rgb(150, 150, 150)",
+   77
+  ],
+  [
+   "rgb(53, 53, 53)",
+   62
+  ],
+  [
+   "oklch(0.9 0 0)",
+   62
+  ],
+  [
+   "oklch(0.7 0 0)",
+   46
+  ],
+  [
+   "rgb(255, 255, 255)",
+   29
+  ],
+  [
+   "rgb(25, 25, 25)",
+   28
+  ],
+  [
+   "oklab(0.999994 0.0000455678 0.0000200868 / 0.85)",
+   24
+  ],
+  [
+   "rgb(32, 32, 34)",
+   22
+  ],
+  [
+   "rgb(56, 56, 56)",
+   10
+  ],
+  [
+   "oklab(0.999994 0.0000455678 0.0000200868 / 0.1)",
+   6
+  ],
+  [
+   "rgb(24, 24, 27)",
+   4
+  ],
+  [
+   "rgb(255, 95, 87)",
+   4
+  ],
+  [
+   "rgb(254, 188, 46)",
+   4
+  ],
+  [
+   "rgb(40, 200, 64)",
+   4
+  ],
+  [
+   "rgb(34, 34, 34)",
+   4
+  ],
+  [
+   "rgba(32, 32, 34, 0.92)",
+   4
+  ],
+  [
+   "rgb(225, 225, 225)",
+   4
+  ],
+  [
+   "rgb(170, 170, 170)",
+   4
+  ],
+  [
+   "rgb(41, 41, 41)",
+   4
+  ]
+ ],
+ "fonts": [
+  [
+   "Inter, ui-sans-serif, system-ui, sans-serif",
+   393
+  ],
+  [
+   "Inter, \"Noto Sans SC\", sans-serif",
+   292
+  ],
+  [
+   "\"Inter Variable\", Inter, MiSans, \"PingFang SC\", \"Hiragino Sans GB\", \"Microsoft YaHei UI\", \"Noto Sans SC\", sans-serif",
+   112
+  ],
+  [
+   "Geist, \"Noto Sans SC\", sans-serif",
+   49
+  ],
+  [
+   "\"Source Serif 4\", \"Noto Serif SC\", serif",
+   2
+  ]
+ ],
+ "images": [
+  {
+   "src": "https://memoh.ai/logo.png",
+   "w": 1817,
+   "h": 1601,
+   "alt": "Memoh Logo"
+  },
+  {
+   "src": "https://memoh.ai/assets/sunset-CoZ1nswt.webp",
+   "w": 1672,
+   "h": 941,
+   "alt": ""
+  },
+  {
+   "src": "https://memoh.ai/demo/memoh.svg",
+   "w": 170,
+   "h": 150,
+   "alt": ""
+  },
+  {
+   "src": "https://memoh.ai/demo/memoh.svg",
+   "w": 170,
+   "h": 150,
+   "alt": ""
+  },
+  {
+   "src": "https://memoh.ai/brands/claude-code-color.svg",
+   "w": 16,
+   "h": 16,
+   "alt": ""
+  },
+  {
+   "src": "https://memoh.ai/brands/codex-blob.svg",
+   "w": 16,
+   "h": 16,
+   "alt": ""
+  },
+  {
+   "src": "https://memoh.ai/demo/node.svg",
+   "w": 16,
+   "h": 16,
+   "alt": ""
+  },
+  {
+   "src": "https://memoh.ai/demo/uv.svg",
+   "w": 16,
+   "h": 16,
+   "alt": ""
+  },
+  {
+   "src": "https://memoh.ai/demo/memoh.svg",
+   "w": 170,
+   "h": 150,
+   "alt": ""
+  },
+  {
+   "src": "https://memoh.ai/demo/memoh.svg",
+   "w": 170,
+   "h": 150,
+   "alt": ""
+  },
+  {
+   "src": "https://memoh.ai/brands/telegram.svg",
+   "w": 150,
+   "h": 150,
+   "alt": "Telegram"
+  },
+  {
+   "src": "https://memoh.ai/brands/discord.svg",
+   "w": 150,
+   "h": 150,
+   "alt": "Discord"
+  },
+  {
+   "src": "https://memoh.ai/brands/slack.svg",
+   "w": 150,
+   "h": 150,
+   "alt": "Slack"
+  },
+  {
+   "src": "https://memoh.ai/brands/wechat.svg",
+   "w": 150,
+   "h": 150,
+   "alt": "WeChat"
+  },
+  {
+   "src": "https://memoh.ai/brands/lark.svg",
+   "w": 189,
+   "h": 150,
+   "alt": "Lark"
+  },
+  {
+   "src": "https://memoh.ai/brands/qq.svg",
+   "w": 150,
+   "h": 150,
+   "alt": "QQ"
+  },
+  {
+   "src": "https://memoh.ai/brands/line.svg",
+   "w": 150,
+   "h": 150,
+   "alt": "LINE"
+  },
+  {
+   "src": "https://memoh.ai/logo.png",
+   "w": 1817,
+   "h": 1601,
+   "alt": "Memoh Logo"
+  },
+  {
+   "src": "https://memoh.ai/egg/poster.webp",
+   "w": 1920,
+   "h": 1080,
+   "alt": ""
+  }
+ ],
+ "bgImages": [],
+ "svgCount": 99,
+ "canvas": 0,
+ "video": 10,
+ "animatedEls": 895,
+ "height": 900,
+ "title": "Memoh — The multi-agent platform"
+}

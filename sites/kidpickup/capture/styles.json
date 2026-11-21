@@ -1,0 +1,506 @@
+{
+ "styles": {
+  "h1": {
+   "font": "\"Plus Jakarta Sans Display\", system-ui, sans-serif",
+   "size": "64px",
+   "weight": "700",
+   "lh": "71.68px",
+   "ls": "-1.28px",
+   "color": "rgb(42, 35, 64)",
+   "bg": "rgba(0, 0, 0, 0)",
+   "radius": "0px",
+   "border": "0px none rgb(42, 35, 64)",
+   "shadow": "none",
+   "transform": "none"
+  },
+  "h2": {
+   "font": "\"Plus Jakarta Sans Display\", system-ui, sans-serif",
+   "size": "54.4px",
+   "weight": "700",
+   "lh": "60.928px",
+   "ls": "-1.088px",
+   "color": "rgb(42, 35, 64)",
+   "bg": "rgba(0, 0, 0, 0)",
+   "radius": "0px",
+   "border": "0px none rgb(42, 35, 64)",
+   "shadow": "none",
+   "transform": "none"
+  },
+  "h3": {
+   "font": "\"Plus Jakarta Sans Display\", system-ui, sans-serif",
+   "size": "24.8px",
+   "weight": "700",
+   "lh": "27.776px",
+   "ls": "normal",
+   "color": "rgb(42, 35, 64)",
+   "bg": "rgba(0, 0, 0, 0)",
+   "radius": "0px",
+   "border": "0px none rgb(42, 35, 64)",
+   "shadow": "none",
+   "transform": "none"
+  },
+  "p": {
+   "font": "\"Plus Jakarta Sans\", system-ui, -apple-system, \"Segoe UI\", Roboto, sans-serif",
+   "size": "12.8px",
+   "weight": "400",
+   "lh": "17.92px",
+   "ls": "normal",
+   "color": "rgb(91, 84, 112)",
+   "bg": "rgba(0, 0, 0, 0)",
+   "radius": "0px",
+   "border": "0px none rgb(91, 84, 112)",
+   "shadow": "none",
+   "transform": "none"
+  },
+  "a": {
+   "font": "\"Plus Jakarta Sans\", system-ui, -apple-system, \"Segoe UI\", Roboto, sans-serif",
+   "size": "12.8px",
+   "weight": "400",
+   "lh": "17.92px",
+   "ls": "normal",
+   "color": "rgb(91, 84, 112)",
+   "bg": "rgba(0, 0, 0, 0)",
+   "radius": "0px",
+   "border": "0px none rgb(91, 84, 112)",
+   "shadow": "none",
+   "transform": "none"
+  },
+  "button": {
+   "font": "\"Plus Jakarta Sans Display\", system-ui, sans-serif",
+   "size": "12.8px",
+   "weight": "600",
+   "lh": "normal",
+   "ls": "normal",
+   "color": "rgb(42, 35, 64)",
+   "bg": "rgb(255, 255, 255)",
+   "radius": "999px",
+   "border": "1px solid rgba(0, 0, 0, 0.25)",
+   "shadow": "none",
+   "transform": "none"
+  },
+  "nav": {
+   "font": "\"Plus Jakarta Sans\", system-ui, -apple-system, \"Segoe UI\", Roboto, sans-serif",
+   "size": "17px",
+   "weight": "700",
+   "lh": "27.2px",
+   "ls": "normal",
+   "color": "rgb(42, 35, 64)",
+   "bg": "rgba(0, 0, 0, 0)",
+   "radius": "0px",
+   "border": "0px none rgb(42, 35, 64)",
+   "shadow": "none",
+   "transform": "none"
+  },
+  "header": {
+   "font": "\"Plus Jakarta Sans\", system-ui, -apple-system, \"Segoe UI\", Roboto, sans-serif",
+   "size": "17px",
+   "weight": "400",
+   "lh": "27.2px",
+   "ls": "normal",
+   "color": "rgb(42, 35, 64)",
+   "bg": "rgba(252, 251, 213, 0.94)",
+   "radius": "0px",
+   "border": "",
+   "shadow": "none",
+   "transform": "none"
+  },
+  "footer": {
+   "font": "\"Plus Jakarta Sans\", system-ui, -apple-system, \"Segoe UI\", Roboto, sans-serif",
+   "size": "17px",
+   "weight": "400",
+   "lh": "27.2px",
+   "ls": "normal",
+   "color": "rgb(42, 35, 64)",
+   "bg": "rgb(255, 255, 255)",
+   "radius": "0px",
+   "border": "",
+   "shadow": "none",
+   "transform": "none"
+  },
+  "section": {
+   "font": "\"Plus Jakarta Sans\", system-ui, -apple-system, \"Segoe UI\", Roboto, sans-serif",
+   "size": "17px",
+   "weight": "400",
+   "lh": "27.2px",
+   "ls": "normal",
+   "color": "rgb(42, 35, 64)",
+   "bg": "rgb(252, 251, 213)",
+   "radius": "0px",
+   "border": "0px none rgb(42, 35, 64)",
+   "shadow": "none",
+   "transform": "none"
+  },
+  "li": {
+   "font": "\"Plus Jakarta Sans Display\", system-ui, sans-serif",
+   "size": "14.72px",
+   "weight": "400",
+   "lh": "23.552px",
+   "ls": "normal",
+   "color": "rgb(42, 35, 64)",
+   "bg": "rgb(255, 255, 255)",
+   "radius": "999px",
+   "border": "1px solid rgba(42, 35, 64, 0.14)",
+   "shadow": "none",
+   "transform": "none"
+  }
+ },
+ "colors": [
+  [
+   "rgb(42, 35, 64)",
+   2272
+  ],
+  [
+   "rgb(91, 84, 112)",
+   327
+  ],
+  [
+   "rgba(42, 35, 64, 0.14)",
+   220
+  ],
+  [
+   "rgb(255, 255, 255)",
+   123
+  ],
+  [
+   "rgb(194, 64, 31)",
+   116
+  ],
+  [
+   "rgb(255, 214, 92)",
+   34
+  ],
+  [
+   "rgb(189, 239, 216)",
+   22
+  ],
+  [
+   "rgb(199, 228, 255)",
+   15
+  ],
+  [
+   "rgb(225, 214, 255)",
+   14
+  ],
+  [
+   "rgb(255, 225, 199)",
+   13
+  ],
+  [
+   "rgb(31, 122, 77)",
+   12
+  ],
+  [
+   "rgb(252, 251, 213)",
+   7
+  ],
+  [
+   "rgb(255, 107, 74)",
+   7
+  ],
+  [
+   "rgb(255, 214, 227)",
+   6
+  ],
+  [
+   "rgb(28, 26, 36)",
+   5
+  ],
+  [
+   "rgb(0, 0, 0)",
+   5
+  ],
+  [
+   "rgba(0, 0, 0, 0.15)",
+   4
+  ],
+  [
+   "rgba(0, 0, 0, 0.25)",
+   2
+  ],
+  [
+   "rgba(252, 251, 213, 0.94)",
+   1
+  ],
+  [
+   "rgb(227, 218, 196)",
+   1
+  ]
+ ],
+ "fonts": [
+  [
+   "\"Plus Jakarta Sans\", system-ui, -apple-system, \"Segoe UI\", Roboto, sans-serif",
+   1274
+  ],
+  [
+   "\"Plus Jakarta Sans Display\", system-ui, sans-serif",
+   201
+  ]
+ ],
+ "images": [
+  {
+   "src": "https://kidpickup.com/brand/kid-pickup-wordmark.svg",
+   "w": 300,
+   "h": 66,
+   "alt": "Kid Pickup"
+  },
+  {
+   "src": "https://kidpickup.com/art/cast/leo-side.webp",
+   "w": 900,
+   "h": 930,
+   "alt": ""
+  },
+  {
+   "src": "https://kidpickup.com/brand/kid-pickup-wordmark.svg",
+   "w": 300,
+   "h": 66,
+   "alt": "Kid Pickup"
+  },
+  {
+   "src": "https://kidpickup.com/art/cast/ava.webp",
+   "w": 502,
+   "h": 900,
+   "alt": ""
+  },
+  {
+   "src": "https://kidpickup.com/art/cast/ray.webp",
+   "w": 427,
+   "h": 900,
+   "alt": ""
+  },
+  {
+   "src": "https://kidpickup.com/art/cast/maya.webp",
+   "w": 260,
+   "h": 900,
+   "alt": ""
+  },
+  {
+   "src": "https://kidpickup.com/app-store-badge.svg",
+   "w": 120,
+   "h": 40,
+   "alt": "Download on the App Store"
+  },
+  {
+   "src": "https://kidpickup.com/google-play-badge.png",
+   "w": 564,
+   "h": 168,
+   "alt": "Get it on Google Play"
+  },
+  {
+   "src": "https://kidpickup.com/app-store-badge.svg",
+   "w": 120,
+   "h": 40,
+   "alt": "Download on the App Store"
+  },
+  {
+   "src": "https://kidpickup.com/google-play-badge.png",
+   "w": 564,
+   "h": 168,
+   "alt": "Get it on Google Play"
+  },
+  {
+   "src": "https://kidpickup.com/art/hero-village-800.webp",
+   "w": 560,
+   "h": 333,
+   "alt": "A family and the people who help them: parents, grandparents, a sitter and a neighbour, waving as the kids run over"
+  },
+  {
+   "src": "https://kidpickup.com/assets/calendar-claimed-GRCkSVop.webp",
+   "w": 480,
+   "h": 1043,
+   "alt": "Kid Pickup's month calendar with each of the day's pickups showing who has it"
+  },
+  {
+   "src": "https://kidpickup.com/assets/home-feed-DshEwBWh.webp",
+   "w": 480,
+   "h": 1043,
+   "alt": "Kid Pickup’s Home feed: today’s pickups at the top, a box to post or add an event, and a family post with a picture"
+  },
+  {
+   "src": "https://kidpickup.com/app-store-badge.svg",
+   "w": 120,
+   "h": 40,
+   "alt": "Download on the App Store"
+  },
+  {
+   "src": "https://kidpickup.com/google-play-badge.png",
+   "w": 564,
+   "h": 168,
+   "alt": "Get it on Google Play"
+  },
+  {
+   "src": "https://kidpickup.com/assets/events-open-l9BH2XIV.webp",
+   "w": 480,
+   "h": 1043,
+   "alt": "Kid Pickup’s Events list with an open drop-off and pickup marked Unclaimed, and the next one claimed"
+  },
+  {
+   "src": "https://kidpickup.com/art/how-post.webp",
+   "w": 603,
+   "h": 703,
+   "alt": "A mum looking at her phone as she posts a pickup"
+  },
+  {
+   "src": "https://kidpickup.com/assets/calendar-claimed-GRCkSVop.webp",
+   "w": 480,
+   "h": 1043,
+   "alt": "Kid Pickup’s month calendar with each of the day’s soccer pickups showing who has it"
+  },
+  {
+   "src": "https://kidpickup.com/art/how-claim.webp",
+   "w": 611,
+   "h": 689,
+   "alt": "Grandma giving a thumbs up at her phone"
+  },
+  {
+   "src": "https://kidpickup.com/assets/notifications-Cn2uW6Nz.webp",
+   "w": 480,
+   "h": 1043,
+   "alt": "Kid Pickup notifications on an iPhone lock screen: a pickup covered, a 30-minute reminder, a family message, and soccer drop-offs claimed"
+  },
+  {
+   "src": "https://kidpickup.com/art/how-covered.webp",
+   "w": 852,
+   "h": 698,
+   "alt": "Grandma and her granddaughter walking home hand in hand"
+  },
+  {
+   "src": "https://kidpickup.com/art/calendar-cant.webp",
+   "w": 1086,
+   "h": 716,
+   "alt": "Two parents far apart, each surprised at their phone, as their dotted paths miss each other"
+  },
+  {
+   "src": "https://kidpickup.com/art/who-families.webp",
+   "w": 985,
+   "h": 744,
+   "alt": "Two parents high-five as one holds up the car keys"
+  },
+  {
+   "src": "https://kidpickup.com/art/family-support-network.webp",
+   "w": 1600,
+   "h": 975,
+   "alt": "A family and the people who help them, waving to each other"
+  },
+  {
+   "src": "https://kidpickup.com/art/welcome.webp",
+   "w": 1006,
+   "h": 721,
+   "alt": "A girl with a backpack runs into her dad’s open arms at pickup"
+  },
+  {
+   "src": "https://kidpickup.com/art/stress-free-pickups.webp",
+   "w": 1600,
+   "h": 1061,
+   "alt": "A girl pulls a wagon of packed backpacks, a lunchbox and a soccer ball while her brother ticks off a checklist and Dad follows with his coffee"
+  },
+  {
+   "src": "https://kidpickup.com/art/who-coparents.webp",
+   "w": 997,
+   "h": 732,
+   "alt": "Two parents wave to each other as their son walks between them with his backpack"
+  },
+  {
+   "src": "https://kidpickup.com/art/who-grandparents.webp",
+   "w": 654,
+   "h": 798,
+   "alt": "A grandparent carries a laughing grandchild on their shoulders"
+  },
+  {
+   "src": "https://kidpickup.com/art/who-daycare.webp",
+   "w": 843,
+   "h": 755,
+   "alt": "A parent crouches to zip a toddler’s jacket"
+  },
+  {
+   "src": "https://kidpickup.com/art/who-school.webp",
+   "w": 1010,
+   "h": 505,
+   "alt": "Three kids with backpacks running with their arms in the air"
+  },
+  {
+   "src": "https://kidpickup.com/art/how-to-set-up-a-carpool-schedule.webp",
+   "w": 1600,
+   "h": 726,
+   "alt": "A mom waves from her blue car as four kids with backpacks line up to climb in for the carpool"
+  },
+  {
+   "src": "https://kidpickup.com/app-store-badge.svg",
+   "w": 120,
+   "h": 40,
+   "alt": "Download on the App Store"
+  },
+  {
+   "src": "https://kidpickup.com/google-play-badge.png",
+   "w": 564,
+   "h": 168,
+   "alt": "Get it on Google Play"
+  },
+  {
+   "src": "https://kidpickup.com/art/founder-family.webp",
+   "w": 1600,
+   "h": 819,
+   "alt": "Three kids run to their dad, who crouches with his arms open, as a woman behind him laughs with her hands on his shoulders"
+  },
+  {
+   "src": "https://kidpickup.com/art/welcome.webp",
+   "w": 1006,
+   "h": 721,
+   "alt": "A girl with a backpack runs into her mom’s open arms at pickup"
+  },
+  {
+   "src": "https://kidpickup.com/art/winter-break-2026-dates-by-school-district.webp",
+   "w": 1062,
+   "h": 759,
+   "alt": "A mom and a grandmother put round stickers on a big wall calendar on an easel while a boy sits wrapped in a paper chain and a small girl in a woolly hat reaches up to the one empty square, circled in coral"
+  },
+  {
+   "src": "https://kidpickup.com/art/car-rider-tags-for-school.webp",
+   "w": 1255,
+   "h": 665,
+   "alt": "A grandfather leans out of a small green car, pointing at the star card hanging in his windscreen with a second one tucked in his cap, as a boy with a backpack runs over and a school helper in a safety vest points him to the car"
+  },
+  {
+   "src": "https://kidpickup.com/art/home-alone-rules-for-kids.webp",
+   "w": 1211,
+   "h": 713,
+   "alt": "A boy stands beside a fridge with a ticked list on its door, one hand raised like an oath and a banana held to his ear like a phone, as his mom heads out with her keys and a thumbs-up and a neighbour waves"
+  },
+  {
+   "src": "https://kidpickup.com/art/2-2-3-vs-2-2-5-5-custody-schedule.webp",
+   "w": 1352,
+   "h": 671,
+   "alt": "A girl with a rabbit in her backpack and a boy with a duffel bag cross a row of yellow and blue stepping stones from one parent, who holds out a forgotten lunchbox, to the other, who crouches with open arms"
+  },
+  {
+   "src": "https://kidpickup.com/art/managing-multiple-kids-schedules.webp",
+   "w": 1338,
+   "h": 758,
+   "alt": "A mom stands holding a football, a towel, a wrapped present and a balloon with a violin bow in her hair while three children point in different directions and a grandfather strolls in, tipping his cap, with a football of his own"
+  },
+  {
+   "src": "https://kidpickup.com/app-store-badge.svg",
+   "w": 120,
+   "h": 40,
+   "alt": "Download on the App Store"
+  },
+  {
+   "src": "https://kidpickup.com/google-play-badge.png",
+   "w": 564,
+   "h": 168,
+   "alt": "Get it on Google Play"
+  },
+  {
+   "src": "https://kidpickup.com/think-x-design-logo.png",
+   "w": 400,
+   "h": 88,
+   "alt": "Think X Design Media"
+  }
+ ],
+ "bgImages": [],
+ "svgCount": 133,
+ "canvas": 0,
+ "video": 1,
+ "animatedEls": 86,
+ "height": 25265,
+ "title": "Kid Pickup: Kids’ Pickup and Drop-off App and Family Calendar"
+}
