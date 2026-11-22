@@ -1,0 +1,328 @@
+# Original landing-page atlas; coordinates in millimetres.
+schemaVersion: 1
+meta:
+  id: atlas-desktop
+  seed: field-atlas-2026
+  lang: en
+canvas:
+  w: 300
+  h: 470
+  ppm: 6
+  paper: hotpress
+  border: true
+  pad: 3
+  inner: 7
+style:
+  preset: vintage-atlas
+  palette:
+    ocean: '#dbe7df'
+    oceanShallow: '#c5d8d0'
+    land: '#e5e4bf'
+    ink: '#283b32'
+    waterline: '#91afa6'
+    seaLabel: '#537a70'
+    cream: '#f7f1df'
+geo:
+  fit:
+    target: Italy
+    frame:
+      - 156
+      - 31
+      - 277
+      - 154
+  focus:
+    - Italy
+  neighbors: false
+  waterlines: true
+  land:
+    - coords: mm
+      color: '#f0e9d3'
+      pts:
+        - - 19
+          - 203
+        - - 80.32
+          - 198
+        - - 139.28
+          - 200
+        - - 211.64
+          - 196
+        - - 279
+          - 201
+        - - 284
+          - 233.6
+        - - 281
+          - 266.5
+        - - 276
+          - 289
+        - - 182.16
+          - 292
+        - - 120.52000000000001
+          - 290
+        - - 21
+          - 291
+        - - 16
+          - 252.4
+    - coords: mm
+      color: '#f0e9d3'
+      pts:
+        - - 18
+          - 393
+        - - 79.8
+          - 388
+        - - 139.2
+          - 390
+        - - 212.1
+          - 386
+        - - 280
+          - 391
+        - - 285
+          - 413.2
+        - - 282
+          - 437
+        - - 277
+          - 453
+        - - 182.4
+          - 456
+        - - 120.3
+          - 454
+        - - 20
+          - 455
+        - - 15
+          - 426.8
+layers:
+  waves:
+    - x: 145
+      'y': 70
+      scale: 0.7
+      count: 2
+    - x: 277
+      'y': 55
+      scale: 0.7
+      count: 2
+    - x: 151
+      'y': 166
+      scale: 0.7
+      count: 2
+    - x: 271
+      'y': 182
+      scale: 0.7
+      count: 2
+    - x: 15
+      'y': 303
+      scale: 0.7
+      count: 2
+    - x: 280
+      'y': 315
+      scale: 0.7
+      count: 2
+    - x: 283
+      'y': 370
+      scale: 0.7
+      count: 2
+    - x: 130
+      'y': 375
+      scale: 0.7
+      count: 2
+  routes:
+    - coords: mm
+      pts:
+        - - 30
+          - 346
+        - - 85
+          - 343
+        - - 143
+          - 347
+        - - 201
+          - 343
+        - - 268
+          - 347
+      color: '#a64934'
+elements:
+  - id: cathedral-0
+    type: cathedral
+    x: 193
+    'y': 70
+    scale: 0.95
+  - id: vineyard-1
+    type: vineyard
+    x: 214
+    'y': 91
+    scale: 0.85
+  - id: romanArch-2
+    type: romanArch
+    x: 238
+    'y': 112
+    scale: 0.9
+  - id: oliveTree-3
+    type: oliveTree
+    x: 250
+    'y': 138
+    scale: 0.85
+  - id: cheeseWine-4
+    type: cheeseWine
+    x: 174
+    'y': 97
+    scale: 0.85
+  - id: sailboat-5
+    type: sailboat
+    x: 170
+    'y': 143
+    scale: 1
+  - id: fish-6
+    type: fish
+    x: 280
+    'y': 95
+    scale: 0.65
+  - id: pavilion-7
+    type: pavilion
+    x: 45
+    'y': 252
+    scale: 0.9
+  - id: hotAirBalloon-8
+    type: hotAirBalloon
+    x: 130
+    'y': 251
+    scale: 0.8
+  - id: teapot-9
+    type: teapot
+    x: 216
+    'y': 251
+    scale: 1
+  - id: lighthouse-10
+    type: lighthouse
+    x: 268
+    'y': 434
+    scale: 1.2
+labels:
+  - id: label-0
+    text: A world worth
+    x: 20
+    'y': 52
+    size: 11.5
+    color: '#283b32'
+    align: left
+    face: serif
+  - id: label-1
+    text: drawing.
+    x: 20
+    'y': 69
+    size: 15
+    color: '#a64934'
+    align: left
+    face: serif
+  - id: label-2
+    text: 01 / THE FIELD ATLAS
+    x: 20
+    'y': 33
+    size: 2.8
+    color: '#537a70'
+    align: left
+    face: sans
+  - id: label-3
+    text: ITALIA
+    x: 221
+    'y': 44
+    size: 4.5
+    color: '#626844'
+    align: left
+    face: serif
+    angle: 13
+  - id: label-4
+    text: Firenze
+    x: 198
+    'y': 77
+    size: 2.6
+    color: '#283b32'
+    align: left
+    face: serif
+  - id: label-5
+    text: Roma
+    x: 222
+    'y': 116
+    size: 2.6
+    color: '#283b32'
+    align: left
+    face: serif
+  - id: label-6
+    text: Sicilia
+    x: 211
+    'y': 151
+    size: 2.5
+    color: '#283b32'
+    align: left
+    face: serif
+  - id: label-7
+    text: MARE TIRRENO
+    x: 153
+    'y': 125
+    size: 2.7
+    color: '#537a70'
+    align: left
+    face: serif
+    angle: 0
+  - id: label-8
+    text: 02 / INSIDE THE KIT
+    x: 26
+    'y': 211
+    size: 2.7
+    color: '#a64934'
+    align: left
+    face: sans
+  - id: label-9
+    text: Real places. Remarkable details.
+    x: 26
+    'y': 224
+    size: 7
+    color: '#283b32'
+    align: left
+    face: serif
+  - id: label-10
+    text: 03 / THE AGENT’S ROUTE
+    x: 22
+    'y': 313
+    size: 2.7
+    color: '#a64934'
+    align: left
+    face: sans
+  - id: label-11
+    text: A little direction. A lot of possibility.
+    x: 22
+    'y': 326
+    size: 7
+    color: '#283b32'
+    align: left
+    face: serif
+  - id: label-12
+    text: 04 / YOUR FIRST EXPEDITION
+    x: 25
+    'y': 400
+    size: 2.7
+    color: '#a64934'
+    align: left
+    face: sans
+  - id: label-13
+    text: Start with a place.
+    x: 25
+    'y': 414
+    size: 7
+    color: '#283b32'
+    align: left
+    face: serif
+layout:
+  autoPlace: false
+  avoidOverlap: false
+  padding: 1
+compass:
+  x: 277
+  'y': 151
+  r: 7
+  rhumb: false
+cartouche:
+  x: 19
+  'y': 162
+  w: 111
+  h: 29
+  country: DRAWN BY THIS VERY KIT
+  titleSize: 3.4
+  subtitle: One seed. One spec. A world of stories.
+  legend: []

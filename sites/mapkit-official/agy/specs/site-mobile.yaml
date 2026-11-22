@@ -1,0 +1,272 @@
+schemaVersion: 1
+
+meta:
+  id: handdrawn-map-kit-site-mobile
+  title: HANDDRAWN-MAP-KIT · Mobile Atlas
+  lang: en
+  seed: hmk-site-mobile-v2
+
+canvas:
+  w: 130
+  h: 1550
+  ppm: 6
+  paper: hotpress
+  border: true
+  pad: 2.8
+  inner: 5.0
+
+style:
+  preset: vintage-atlas
+  palette:
+    ocean: '#cde0e6'
+    oceanShallow: '#bad3dc'
+    land: '#f3e8cc'
+    landWarm: '#efe0bc'
+    river: '#5d93b3'
+    crimson: '#b8372e'
+
+geo:
+  projection:
+    lon0: 136
+    lat0: 34
+    scale: 0.08
+    cx: 65
+    cy: 770
+    rotDeg: -4
+  waterlines:
+    r1: 1.1
+    r2: 2.3
+  land:
+    # Island I — Hero (y: 52..274, fits completely on 390x844 mobile first screen!)
+    - color: '#f3e8cc'
+      coords: mm
+      pts:
+        - [10, 62]
+        - [28, 53]
+        - [68, 52]
+        - [106, 54]
+        - [120, 66]
+        - [122, 162]
+        - [119, 260]
+        - [106, 272]
+        - [66, 274]
+        - [24, 272]
+        - [10, 258]
+        - [8, 160]
+
+    # Island II — Features (y: 292..674, 382mm tall for 6 stacked cards!)
+    - color: '#f3e8cc'
+      coords: mm
+      pts:
+        - [10, 302]
+        - [30, 292]
+        - [70, 291]
+        - [108, 293]
+        - [120, 306]
+        - [122, 480]
+        - [119, 660]
+        - [106, 673]
+        - [64, 674]
+        - [22, 672]
+        - [10, 658]
+        - [8, 476]
+
+    # Island III — Agent Authoring Loop (y: 694..1060, 366mm tall!)
+    - color: '#efe0bc'
+      coords: mm
+      pts:
+        - [10, 704]
+        - [30, 694]
+        - [70, 693]
+        - [108, 696]
+        - [120, 708]
+        - [122, 876]
+        - [119, 1046]
+        - [106, 1059]
+        - [64, 1060]
+        - [22, 1058]
+        - [10, 1044]
+        - [8, 872]
+
+    # Island IV — Four Visual Presets (y: 1080..1294, 214mm tall!)
+    - color: '#f3e8cc'
+      coords: mm
+      pts:
+        - [10, 1090]
+        - [30, 1080]
+        - [70, 1079]
+        - [108, 1082]
+        - [120, 1094]
+        - [122, 1188]
+        - [119, 1280]
+        - [106, 1293]
+        - [64, 1294]
+        - [22, 1292]
+        - [10, 1278]
+        - [8, 1184]
+
+    # Island V — Quick Start & Colophon (y: 1314..1538, 224mm tall!)
+    - color: '#efe0bc'
+      coords: mm
+      pts:
+        - [10, 1324]
+        - [30, 1314]
+        - [70, 1313]
+        - [108, 1316]
+        - [120, 1328]
+        - [122, 1428]
+        - [119, 1526]
+        - [106, 1537]
+        - [64, 1538]
+        - [22, 1536]
+        - [10, 1524]
+        - [8, 1422]
+
+layers:
+  graticule:
+    step: 5
+  routes:
+    - coords: mm
+      color: '#b8372e'
+      pts: [[65, 272], [61, 283], [66, 294]]
+    - coords: mm
+      color: '#b8372e'
+      pts: [[65, 672], [69, 683], [64, 695]]
+    - coords: mm
+      color: '#b8372e'
+      pts: [[65, 1058], [61, 1069], [66, 1081]]
+    - coords: mm
+      color: '#b8372e'
+      pts: [[65, 1292], [69, 1303], [64, 1315]]
+  waves:
+    - { x: 18, y: 282, scale: 0.75, count: 2 }
+    - { x: 96, y: 283, scale: 0.75, count: 2 }
+    - { x: 18, y: 684, scale: 0.75, count: 2 }
+    - { x: 94, y: 1069, scale: 0.75, count: 2 }
+    - { x: 18, y: 1304, scale: 0.75, count: 2 }
+
+elements:
+  # Hero Island southern shore icons
+  - id: m-hero-pagoda
+    type: pagoda
+    x: 24
+    y: 267
+    scale: 0.52
+    fixed: true
+  - id: m-hero-panda
+    type: panda
+    x: 48
+    y: 267
+    scale: 0.58
+    fixed: true
+  - id: m-hero-cathedral
+    type: cathedral
+    x: 82
+    y: 267
+    scale: 0.52
+    fixed: true
+  - id: m-hero-windmill
+    type: windmill
+    x: 104
+    y: 267
+    scale: 0.54
+    fixed: true
+
+  # Strait ornaments
+  - id: m-strait-whale
+    type: whale
+    x: 98
+    y: 685
+    scale: 0.58
+    fixed: true
+  - id: m-strait-boat
+    type: sailboat
+    x: 28
+    y: 1071
+    scale: 0.56
+    fixed: true
+  - id: m-strait-lighthouse
+    type: lighthouse
+    x: 102
+    y: 1305
+    scale: 0.56
+    fixed: true
+
+  # Custom inline dry-media SVGs on Agent Loop Island
+  - id: m-svg-scroll
+    type: svg
+    x: 20
+    y: 707
+    fixed: true
+    options:
+      width: 10
+      fillStyle: pencil
+    svg: '<svg viewBox="0 0 36 28"><rect x="4" y="3" width="28" height="22" rx="3" fill="#faf4e6" stroke="#26201c" stroke-width="1.6"/><path d="M9,9 L18,9 M9,14 L25,14 M12,19 L23,19" fill="none" stroke="#b8372e" stroke-width="1.7"/></svg>'
+  - id: m-svg-loupe
+    type: svg
+    x: 110
+    y: 707
+    fixed: true
+    options:
+      width: 10
+      fillStyle: pencil
+    svg: '<svg viewBox="0 0 34 28"><circle cx="13" cy="12" r="8" fill="#cde0e6" stroke="#26201c" stroke-width="1.7"/><path d="M9,12 L12,15 L18,9" fill="none" stroke="#5e834e" stroke-width="1.9"/><path d="M19,18 L28,25" fill="none" stroke="#8c5a3c" stroke-width="2.7"/></svg>'
+
+labels:
+  - id: m-lbl-features
+    text: SIX-LAYER CAPABILITIES
+    x: 65
+    y: 305
+    size: 3.4
+    color: '#26201c'
+    fixed: true
+  - id: m-lbl-agent
+    text: AGENT AUTHORING LOOP
+    x: 65
+    y: 708
+    size: 3.3
+    color: '#26201c'
+    fixed: true
+  - id: m-lbl-styles
+    text: FOUR VISUAL PRESETS
+    x: 65
+    y: 1093
+    size: 3.4
+    color: '#26201c'
+    fixed: true
+  - id: m-lbl-quickstart
+    text: QUICK START & API
+    x: 65
+    y: 1327
+    size: 3.4
+    color: '#26201c'
+    fixed: true
+
+compass:
+  x: 110
+  y: 26
+  r: 6.5
+  angle: 0
+  rhumb: true
+  fixed: true
+
+cartouche:
+  x: 7
+  y: 7
+  w: 84
+  h: 40
+  country: HANDDRAWN-MAP-KIT
+  subtitle: AI Cultural Map Engine
+  facts:
+    - "YAML / JSON · Node.js"
+    - "242 Countries · 65 Icons"
+  legend:
+    - { symbol: capital, label: Island }
+    - { symbol: route, label: Loop }
+  mmPerKm: 0.14
+  fixed: true
+
+layout:
+  autoPlace: false
+  avoidOverlap: false
+  padding: 0.8

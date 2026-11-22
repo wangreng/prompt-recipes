@@ -1,0 +1,17 @@
+{
+  "site/SKILL.md": "dbccdad812bebe8e3a1480ea98440bda42695ba4ff4e7dcb18d8ecb39e035992",
+  "site/index.html": "53961f85a992c0167a26697a17e57ae56cf5559074231911f0fa1a6074aa4b3b",
+  "site/style.css": "520ad0a78f01a3bce45e95ec548f50c300fb14be639f45557bf48ff5a87f0976",
+  "site/assets/KIT-LICENSE.txt": "d025da329cb095fde79a79e86a6401d1e43c17ef1f73b1e4867c7bf1544cfd30",
+  "site/assets/KevinSerif-Regular.ttf": "7e6c80d9bbed016bb24c6ffbd29d21bde4030086327112a3aebbb7160ceb66b3",
+  "site/assets/desktop.webp": "e468b15422880135dff95d36988739178a313789c7d21810736eb6954ccbf42e",
+  "site/assets/mobile.webp": "668a2d18dca6a33872e5f18212f07af87cc600634046c1c537249822e20b7576",
+  "site/specs/desktop.diagnostics.json": "d9a54fe35c3001db74ccb6e757cbc7220f158eab652089bf1e66fca1aae0cdfa",
+  "site/specs/desktop.yaml": "d63d18784575d75650bea9d1c09eec19d11865d9f05656504c4e70fcd922586e",
+  "site/specs/mobile.diagnostics.json": "f9bb6f33651fc7bb1eb9be082f24c262b04c0ef281dad6e21b6bcbb52c774348",
+  "site/specs/mobile.yaml": "c02743d690bb23d24b342d88536f0721857a67574d6cbe77963558e64efc0eb9",
+  "shots/desktop-first.png": "a484f66fbd29b6d29b7a07d7fcc20152ea32384f29aaf6ac995153f0c9f0ea60",
+  "shots/desktop-full.png": "ab432c1b91432420cd2385bf312dc2c619cfceab1fde63c9f6d9ceacf55dca9b",
+  "shots/mobile-first.png": "af1d392b899ba8f4a1ecde1e547f8110dfc334c2aac5ddcd18ca0eeeb3015227",
+  "shots/mobile-full.png": "b7ea25e81ed349e2deab4548a50e98f41063391011639954c61dc46d01164dc3"
+}

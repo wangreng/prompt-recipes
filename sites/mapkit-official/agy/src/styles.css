@@ -1,0 +1,851 @@
+/* Minimal cartographic positioning & readable archival typography over the kit-rendered atlas */
+
+@font-face {
+  font-family: 'Kevin Serif';
+  src: url('./fonts/KevinSerif-Regular.woff2') format('woff2');
+  font-weight: 400 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Kevin Sans';
+  src: url('./fonts/KevinSans-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Kevin Sans';
+  src: url('./fonts/KevinSans-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  --ink: #241d18;
+  --ink-muted: #52463c;
+  --crimson: #b8372e;
+  --parchment-tint: rgba(251, 246, 234, 0.86);
+  --parchment-strong: rgba(252, 248, 238, 0.94);
+  --code-bg: rgba(34, 28, 24, 0.95);
+  --code-ink: #f6efe0;
+  --rule: rgba(38, 32, 28, 0.24);
+  --rule-strong: rgba(38, 32, 28, 0.56);
+  --font-serif: 'Kevin Serif', Georgia, 'Times New Roman', serif;
+  --font-sans: 'Kevin Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-body: Georgia, 'Iowan Old Style', 'Palatino Linotype', serif;
+  --font-mono: ui-monospace, 'SFMono-Regular', Menlo, Consolas, monospace;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  background: #e7dfd0;
+  color: var(--ink);
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  line-height: 1.46;
+  background: #e7dfd0;
+}
+
+.atlas-shell {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+/* Aspect-ratio-locked coordinate stage matching specs/site-desktop.yaml (300 x 740 mm) */
+.atlas-stage {
+  position: relative;
+  width: min(100%, 1440px);
+  aspect-ratio: 300 / 740;
+  container-type: inline-size;
+  overflow: hidden;
+  box-shadow: 0 12px 42px rgba(38, 32, 28, 0.18);
+  background: #cde0e6;
+}
+
+.atlas-canvas,
+.atlas-canvas img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+  user-select: none;
+  pointer-events: none;
+}
+
+/* Top minimal navigation centered in open sea between balloon (x:127) and sailboat (x:243) */
+.atlas-nav {
+  position: absolute;
+  left: 45.2%;
+  top: 4.55%;
+  width: 32.8%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.55cqw;
+  padding: 0.34cqw 0.7cqw;
+  background: rgba(250, 244, 230, 0.84);
+  border: 1px solid var(--rule-strong);
+  border-radius: 3px;
+  font-family: var(--font-sans);
+  font-size: clamp(11px, 0.84cqw, 12.6px);
+  font-weight: 700;
+  letter-spacing: 0.03em;
+}
+
+.atlas-nav a {
+  color: var(--ink);
+  text-decoration: none;
+  padding: 2px 4px;
+  white-space: nowrap;
+}
+
+.atlas-nav a:hover,
+.atlas-nav a:focus-visible {
+  color: var(--crimson);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* Shared island zone positioning base */
+.island-zone {
+  position: absolute;
+}
+
+code {
+  font-family: var(--font-mono);
+  font-size: 0.87em;
+  background: rgba(38, 32, 28, 0.08);
+  padding: 0.08em 0.28em;
+  border-radius: 2px;
+  overflow-wrap: anywhere;
+}
+
+pre {
+  margin: 0;
+  font-family: var(--font-mono);
+  overflow-x: auto;
+  max-width: 100%;
+}
+
+pre code {
+  background: none;
+  padding: 0;
+  font-size: inherit;
+  overflow-wrap: normal;
+}
+
+/* Prevent grid track blowout from code blocks on any viewport */
+.plate-card,
+.loop-steps li,
+.code-plate,
+.specimen-frame,
+.preset-controls,
+.preset-btn {
+  min-width: 0;
+}
+
+/* ---------- ISLAND I: HERO (x: 21..177, y: 72..177 of 300x740) ---------- */
+.zone-hero {
+  left: 7.0%;
+  top: 9.85%;
+  width: 52.0%;
+}
+
+.eyebrow {
+  margin: 0 0 0.45cqw;
+  font-family: var(--font-sans);
+  font-size: clamp(10px, 0.78cqw, 12px);
+  font-weight: 700;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  color: var(--crimson);
+}
+
+.zone-hero h1 {
+  margin: 0 0 0.75cqw;
+  font-family: var(--font-serif);
+  font-size: clamp(22px, 2.32cqw, 35px);
+  line-height: 1.15;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.lead {
+  margin: 0 0 1.05cqw;
+  font-size: clamp(13px, 1.02cqw, 15.2px);
+  line-height: 1.5;
+  color: var(--ink);
+  max-width: 60ch;
+}
+
+.hero-demo {
+  background: var(--parchment-strong);
+  border: 1.5px solid var(--rule-strong);
+  border-radius: 3px;
+  padding: 0.85cqw 1.0cqw;
+  margin-bottom: 0.95cqw;
+  box-shadow: 3px 3px 0 rgba(38, 32, 28, 0.12);
+}
+
+.demo-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.55cqw;
+  margin-bottom: 0.55cqw;
+}
+
+.demo-tag {
+  display: inline-block;
+  padding: 0.14cqw 0.45cqw;
+  background: var(--crimson);
+  color: #faf4e6;
+  font-family: var(--font-sans);
+  font-size: clamp(9.5px, 0.68cqw, 10.5px);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  border-radius: 2px;
+}
+
+.demo-note {
+  font-family: var(--font-sans);
+  font-size: clamp(11.5px, 0.86cqw, 13px);
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.cmd-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.7cqw;
+  background: var(--code-bg);
+  color: var(--code-ink);
+  padding: 0.55cqw 0.8cqw;
+  border-radius: 2px;
+  font-size: clamp(13px, 1.08cqw, 16px);
+}
+
+.cmd-row pre {
+  flex: 1;
+}
+
+.copy-btn {
+  appearance: none;
+  border: 1px solid rgba(250, 244, 230, 0.36);
+  background: rgba(250, 244, 230, 0.12);
+  color: #faf4e6;
+  font-family: var(--font-sans);
+  font-size: clamp(10.5px, 0.78cqw, 12px);
+  font-weight: 700;
+  padding: 0.28cqw 0.72cqw;
+  border-radius: 2px;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.copy-btn:hover,
+.copy-btn:focus-visible {
+  background: var(--crimson);
+  border-color: var(--crimson);
+}
+
+.demo-sub {
+  margin: 0.5cqw 0 0;
+  font-size: clamp(11px, 0.82cqw, 12.2px);
+  color: var(--ink-muted);
+  line-height: 1.42;
+}
+
+.stat-strip {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 0.5cqw;
+}
+
+.stat-strip li {
+  background: var(--parchment-tint);
+  border: 1px solid var(--rule);
+  border-radius: 2px;
+  padding: 0.42cqw 0.45cqw;
+  text-align: center;
+}
+
+.stat-strip strong {
+  display: block;
+  font-family: var(--font-serif);
+  font-size: clamp(14px, 1.2cqw, 18px);
+  font-variant-numeric: tabular-nums;
+  line-height: 1.15;
+  color: var(--ink);
+}
+
+.stat-strip span {
+  display: block;
+  font-family: var(--font-sans);
+  font-size: clamp(9.5px, 0.72cqw, 11px);
+  color: var(--ink-muted);
+}
+
+/* ---------- ISLAND II: SIX-LAYER CAPABILITIES (y: 223..305 of 300x740) ---------- */
+.zone-features {
+  left: 8.0%;
+  top: 30.25%;
+  width: 84.0%;
+}
+
+.feature-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.0cqw;
+}
+
+.plate-card {
+  background: var(--parchment-tint);
+  border: 1px solid var(--rule-strong);
+  border-radius: 2px;
+  padding: 0.82cqw 1.0cqw;
+}
+
+.card-head {
+  display: flex;
+  align-items: baseline;
+  gap: 0.55cqw;
+  margin-bottom: 0.42cqw;
+  padding-bottom: 0.32cqw;
+  border-bottom: 1px dashed var(--rule);
+}
+
+.card-num {
+  font-family: var(--font-serif);
+  font-size: clamp(11px, 0.86cqw, 13px);
+  font-weight: 700;
+  color: var(--crimson);
+}
+
+.plate-card h2 {
+  margin: 0;
+  font-family: var(--font-serif);
+  font-size: clamp(14px, 1.12cqw, 16.5px);
+  line-height: 1.2;
+  color: var(--ink);
+}
+
+.plate-card p {
+  margin: 0;
+  font-size: clamp(12px, 0.89cqw, 13.3px);
+  line-height: 1.46;
+  color: var(--ink);
+}
+
+/* ---------- ISLAND III: AGENT AUTHORING LOOP (y: 356..464 of 300x740) ---------- */
+.zone-agent {
+  left: 8.0%;
+  top: 48.2%;
+  width: 84.0%;
+}
+
+.loop-steps {
+  list-style: none;
+  margin: 0 0 0.95cqw;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.85cqw;
+}
+
+.loop-steps li {
+  background: var(--parchment-strong);
+  border: 1px solid var(--rule-strong);
+  border-radius: 2px;
+  padding: 0.72cqw 0.85cqw;
+}
+
+.step-badge {
+  display: inline-block;
+  font-family: var(--font-sans);
+  font-size: clamp(9.5px, 0.68cqw, 10.5px);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--crimson);
+  margin-bottom: 0.25cqw;
+}
+
+.loop-steps h3 {
+  margin: 0 0 0.3cqw;
+  font-family: var(--font-serif);
+  font-size: clamp(13px, 1.02cqw, 15.5px);
+  line-height: 1.2;
+}
+
+.loop-steps p {
+  margin: 0;
+  font-size: clamp(11px, 0.82cqw, 12.4px);
+  line-height: 1.42;
+  color: var(--ink);
+}
+
+.agent-code-grid {
+  display: grid;
+  grid-template-columns: 1.06fr 0.94fr;
+  gap: 1.0cqw;
+}
+
+.code-plate {
+  background: var(--parchment-strong);
+  border: 1px solid var(--rule-strong);
+  border-radius: 2px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.code-plate-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5cqw;
+  padding: 0.42cqw 0.8cqw;
+  border-bottom: 1px solid var(--rule);
+  background: rgba(235, 224, 198, 0.75);
+  font-family: var(--font-sans);
+  font-size: clamp(11px, 0.82cqw, 12.5px);
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.code-meta {
+  font-size: 0.88em;
+  color: var(--crimson);
+  flex-shrink: 0;
+}
+
+.code-plate pre {
+  background: var(--code-bg);
+  color: var(--code-ink);
+  padding: 0.72cqw 0.85cqw;
+  font-size: clamp(10px, 0.76cqw, 11.5px);
+  line-height: 1.42;
+  flex: 1;
+}
+
+.skill-note {
+  margin: 0;
+  padding: 0.52cqw 0.8cqw;
+  border-top: 1px solid var(--rule);
+  font-size: clamp(10.5px, 0.80cqw, 12px);
+  line-height: 1.4;
+  color: var(--ink);
+  background: var(--parchment-strong);
+}
+
+/* ---------- ISLAND IV: FOUR VISUAL PRESETS (y: 516..615 of 300x740) ---------- */
+.zone-styles {
+  left: 8.0%;
+  top: 69.85%;
+  width: 84.0%;
+}
+
+.styles-layout {
+  display: grid;
+  grid-template-columns: 1.24fr 0.96fr;
+  gap: 1.15cqw;
+  align-items: stretch;
+}
+
+.specimen-frame {
+  margin: 0;
+  background: var(--parchment-strong);
+  border: 1.5px solid var(--rule-strong);
+  border-radius: 2px;
+  padding: 0.5cqw;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4cqw;
+}
+
+.specimen-viewport {
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  overflow: hidden;
+  border: 1px solid var(--rule);
+  background: #cde0e6;
+}
+
+.specimen-viewport img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.specimen-caption {
+  font-size: clamp(9.5px, 0.72cqw, 11px);
+  color: var(--ink);
+  overflow-x: auto;
+  white-space: nowrap;
+}
+
+.preset-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55cqw;
+}
+
+.preset-btn {
+  appearance: none;
+  display: flex;
+  align-items: center;
+  gap: 0.75cqw;
+  width: 100%;
+  text-align: left;
+  padding: 0.6cqw 0.82cqw;
+  background: var(--parchment-tint);
+  border: 1px solid var(--rule-strong);
+  border-radius: 2px;
+  cursor: pointer;
+  color: var(--ink);
+  transition: background-color 140ms ease, border-color 140ms ease;
+}
+
+.preset-btn:hover,
+.preset-btn:focus-visible {
+  background: var(--parchment-strong);
+  border-color: var(--crimson);
+}
+
+.preset-btn.is-active {
+  background: var(--parchment-strong);
+  border: 1.5px solid var(--crimson);
+  box-shadow: 2px 2px 0 rgba(184, 55, 46, 0.22);
+}
+
+.swatch {
+  width: clamp(20px, 1.75cqw, 26px);
+  height: clamp(20px, 1.75cqw, 26px);
+  border-radius: 2px;
+  border: 1px solid rgba(38, 32, 28, 0.5);
+  flex-shrink: 0;
+}
+
+.swatch-vintage { background: linear-gradient(135deg, #cde0e6 45%, #f3e8cc 45%, #f3e8cc 82%, #b8372e 82%); }
+.swatch-blueprint { background: linear-gradient(135deg, #15274a 50%, #254278 50%, #254278 82%, #7fd0ff 82%); }
+.swatch-nocturne { background: linear-gradient(135deg, #0e1528 50%, #202b4a 50%, #202b4a 82%, #f0c467 82%); }
+.swatch-inkwash { background: linear-gradient(135deg, #dce3d8 48%, #efe6cf 48%, #efe6cf 82%, #b5332a 82%); }
+
+.preset-copy {
+  min-width: 0;
+}
+
+.preset-copy strong {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: clamp(12px, 0.94cqw, 14px);
+  color: var(--ink);
+}
+
+.preset-copy small {
+  display: block;
+  font-family: var(--font-sans);
+  font-size: clamp(10.5px, 0.78cqw, 12px);
+  color: var(--ink-muted);
+}
+
+.preset-hint {
+  margin: auto 0 0;
+  padding: 0.52cqw 0.7cqw;
+  background: var(--parchment-tint);
+  border-left: 2.5px solid var(--crimson);
+  font-size: clamp(11px, 0.80cqw, 12.2px);
+  line-height: 1.42;
+  color: var(--ink);
+}
+
+/* ---------- ISLAND V: QUICK START & COLOPHON (y: 657..722 of 300x740) ---------- */
+.zone-quickstart {
+  left: 8.0%;
+  top: 88.85%;
+  width: 84.0%;
+}
+
+.qs-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.0cqw;
+  margin-bottom: 0.75cqw;
+}
+
+.colophon {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 0.45cqw;
+  padding: 0.45cqw 0.7cqw;
+  border-top: 1px dashed var(--rule-strong);
+  font-family: var(--font-sans);
+  font-size: clamp(10px, 0.74cqw, 11.5px);
+  color: var(--ink-muted);
+  text-align: center;
+}
+
+/* ==========================================================================
+   MOBILE PORTRAIT ATLAS (<= 768px — matches specs/site-mobile.yaml 130 x 1550 mm)
+   ========================================================================== */
+@media (max-width: 768px) {
+  .atlas-stage {
+    width: 100%;
+    max-width: 540px;
+    aspect-ratio: 130 / 1550;
+    box-shadow: none;
+  }
+
+  .atlas-nav {
+    display: none;
+  }
+
+  /* Island I: Hero (y: 58..248 of 1550 mm -> top: 3.74%) */
+  .zone-hero {
+    left: 10.5%;
+    top: 3.74%;
+    width: 79.0%;
+  }
+
+  .eyebrow {
+    font-size: 2.5cqw;
+    margin-bottom: 1.3cqw;
+  }
+
+  .zone-hero h1 {
+    font-size: 6.0cqw;
+    margin-bottom: 2.0cqw;
+  }
+
+  .lead {
+    font-size: 3.3cqw;
+    line-height: 1.45;
+    margin-bottom: 2.8cqw;
+  }
+
+  .hero-demo {
+    padding: 2.6cqw 2.9cqw;
+    margin-bottom: 2.8cqw;
+  }
+
+  .demo-tag {
+    font-size: 2.35cqw;
+    padding: 0.55cqw 1.5cqw;
+  }
+
+  .demo-note {
+    font-size: 3.05cqw;
+  }
+
+  .cmd-row {
+    padding: 2.1cqw 2.5cqw;
+    font-size: 3.75cqw;
+  }
+
+  .copy-btn {
+    font-size: 2.85cqw;
+    padding: 1.0cqw 2.3cqw;
+  }
+
+  .demo-sub {
+    font-size: 2.85cqw;
+    margin-top: 1.6cqw;
+  }
+
+  .stat-strip {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 1.1cqw;
+  }
+
+  .stat-strip li {
+    padding: 1.3cqw 0.5cqw;
+  }
+
+  .stat-strip strong {
+    font-size: 3.6cqw;
+  }
+
+  .stat-strip span {
+    font-size: 2.2cqw;
+  }
+
+  /* Island II: Features (heading at y:305, content y:314..662 of 1550 -> top: 20.26%) */
+  .zone-features {
+    left: 10.5%;
+    top: 20.26%;
+    width: 79.0%;
+  }
+
+  .feature-grid {
+    grid-template-columns: 1fr;
+    gap: 2.3cqw;
+  }
+
+  .plate-card {
+    padding: 2.5cqw 2.9cqw;
+  }
+
+  .card-head {
+    gap: 1.7cqw;
+    margin-bottom: 1.2cqw;
+    padding-bottom: 0.9cqw;
+  }
+
+  .card-num {
+    font-size: 3.1cqw;
+  }
+
+  .plate-card h2 {
+    font-size: 3.9cqw;
+  }
+
+  .plate-card p {
+    font-size: 3.1cqw;
+    line-height: 1.43;
+  }
+
+  /* Island III: Agent Loop (heading at y:708, content y:717..1048 of 1550 -> top: 46.26%) */
+  .zone-agent {
+    left: 10.5%;
+    top: 46.26%;
+    width: 79.0%;
+  }
+
+  .loop-steps {
+    grid-template-columns: 1fr 1fr;
+    gap: 1.9cqw;
+    margin-bottom: 2.4cqw;
+  }
+
+  .loop-steps li {
+    padding: 2.0cqw 2.2cqw;
+  }
+
+  .step-badge {
+    font-size: 2.25cqw;
+  }
+
+  .loop-steps h3 {
+    font-size: 3.4cqw;
+    margin-bottom: 0.8cqw;
+  }
+
+  .loop-steps p {
+    font-size: 2.75cqw;
+    line-height: 1.36;
+  }
+
+  .agent-code-grid {
+    grid-template-columns: 1fr;
+    gap: 2.3cqw;
+  }
+
+  .code-plate-head {
+    padding: 1.4cqw 2.2cqw;
+    font-size: 2.85cqw;
+  }
+
+  .code-plate pre {
+    padding: 2.0cqw 2.2cqw;
+    font-size: 2.45cqw;
+    line-height: 1.38;
+  }
+
+  .skill-note {
+    padding: 1.7cqw 2.2cqw;
+    font-size: 2.75cqw;
+  }
+
+  /* Island IV: Four Styles (heading at y:1093, content y:1103..1284 of 1550 -> top: 71.16%) */
+  .zone-styles {
+    left: 10.5%;
+    top: 71.16%;
+    width: 79.0%;
+  }
+
+  .styles-layout {
+    grid-template-columns: 1fr;
+    gap: 2.2cqw;
+  }
+
+  .specimen-frame {
+    padding: 1.6cqw;
+    gap: 1.3cqw;
+  }
+
+  .specimen-caption {
+    font-size: 2.4cqw;
+  }
+
+  .preset-controls {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.7cqw;
+  }
+
+  .preset-btn {
+    padding: 1.9cqw 2.0cqw;
+    gap: 1.8cqw;
+  }
+
+  .swatch {
+    width: 5.2cqw;
+    height: 5.2cqw;
+  }
+
+  .preset-copy strong {
+    font-size: 3.0cqw;
+  }
+
+  .preset-copy small {
+    font-size: 2.25cqw;
+    line-height: 1.25;
+  }
+
+  .preset-hint {
+    grid-column: 1 / -1;
+    padding: 1.7cqw 2.2cqw;
+    font-size: 2.75cqw;
+  }
+
+  /* Island V: Quick Start & Colophon (heading at y:1327, content y:1336..1528 of 1550 -> top: 86.2%) */
+  .zone-quickstart {
+    left: 10.5%;
+    top: 86.2%;
+    width: 79.0%;
+  }
+
+  .qs-grid {
+    grid-template-columns: 1fr;
+    gap: 2.2cqw;
+    margin-bottom: 2.0cqw;
+  }
+
+  .colophon {
+    font-size: 2.5cqw;
+    padding-top: 1.6cqw;
+    gap: 1.1cqw;
+  }
+}

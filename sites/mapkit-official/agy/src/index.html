@@ -1,0 +1,403 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>handdrawn-map-kit — AI-Driven Hand-Drawn Illustrated Cultural Map Engine</title>
+  <meta name="description" content="Declarative YAML/JSON hand-drawn illustrated cultural map engine for Node.js & AI agents. Natural Earth geography, 65 icons, inline SVG dry-media rendering, CJK typography, auto-layout diagnostics, and 4 style presets." />
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <div class="atlas-shell">
+    <main class="atlas-stage" aria-label="handdrawn-map-kit illustrated atlas website">
+      <!-- The entire website sits ON a map rendered by handdrawn-map-kit itself -->
+      <picture class="atlas-canvas">
+        <source media="(max-width: 768px)" srcset="./images/atlas-mobile.webp" />
+        <img
+          src="./images/atlas-desktop.webp"
+          alt="Hand-drawn illustrated archipelago map rendered by handdrawn-map-kit showing five islands connected by dashed maritime routes"
+          width="2100"
+          height="5180"
+          decoding="async"
+        />
+      </picture>
+
+      <!-- Minimal top navigation floating in the calm open sea -->
+      <nav class="atlas-nav" aria-label="Map islands">
+        <a href="#features">Capabilities</a>
+        <span aria-hidden="true">·</span>
+        <a href="#agent-loop">Agent Loop</a>
+        <span aria-hidden="true">·</span>
+        <a href="#styles">4 Styles</a>
+        <span aria-hidden="true">·</span>
+        <a href="#quickstart">Quick Start</a>
+      </nav>
+
+      <!-- ISLAND I: HERO / ISLE OF ORIGIN -->
+      <section id="hero" class="island-zone zone-hero" aria-labelledby="hero-heading">
+        <p class="eyebrow">Declarative YAML / JSON → Dry-Media Raster Maps</p>
+        <h1 id="hero-heading">Hand-drawn cultural maps, authored by AI agents.</h1>
+        <p class="lead">
+          <strong>handdrawn-map-kit</strong> is a Node.js engine inspired by Aleksandra &amp; Daniel Mizielinski’s
+          <em>Maps</em> (<em>《地图（人文版）》</em>). It renders paper tooth, technical pen, colored pencil, sumi brush,
+          and watercolor wash from declarative specs — with just two runtime dependencies
+          (<code>@napi-rs/canvas</code>, <code>js-yaml</code>).
+        </p>
+
+        <!-- HERO DEMO: ONE COMMAND THAT REPRODUCES THIS VERY SITE -->
+        <div class="hero-demo" role="region" aria-label="One-command build demo">
+          <div class="demo-header">
+            <span class="demo-tag">LIVE SELF-BUILD</span>
+            <span class="demo-note">This page is rendered by the kit itself. Rebuild it end to end:</span>
+          </div>
+          <div class="cmd-row">
+            <pre><code id="hero-cmd">./build.sh</code></pre>
+            <button type="button" class="copy-btn" data-copy="./build.sh" aria-label="Copy build command">Copy</button>
+          </div>
+          <p class="demo-sub">
+            Runs <code>npx handdrawn-map render</code> on <code>specs/site-desktop.yaml</code>,
+            <code>specs/site-mobile.yaml</code>, and all 4 <code>--style</code> plates of
+            <code>examples/specs/italy.yaml</code>, then writes <code>site/</code>.
+          </p>
+        </div>
+
+        <ul class="stat-strip" aria-label="Verified toolkit figures">
+          <li><strong>242</strong><span>Countries</span></li>
+          <li><strong>4,589</strong><span>Admin-1</span></li>
+          <li><strong>65</strong><span>Icons</span></li>
+          <li><strong>34</strong><span>Flags</span></li>
+          <li><strong>4</strong><span>Presets</span></li>
+        </ul>
+      </section>
+
+      <!-- ISLAND II: SIX-LAYER CAPABILITIES -->
+      <section id="features" class="island-zone zone-features" aria-label="Six-layer capabilities">
+        <div class="feature-grid">
+          <article class="plate-card">
+            <header class="card-head">
+              <span class="card-num">I</span>
+              <h2>Natural Earth Geography</h2>
+            </header>
+            <p>
+              Bundled <code>data/</code> packs <strong>242 countries</strong> (1:50m),
+              <strong>4,589 admin-1 states &amp; provinces</strong> across 251 countries (<code>zh</code> &amp; ISO-3166-2),
+              <strong>1,251 populated places</strong> (<code>zh</code>/<code>ja</code>/<code>ko</code> &amp; capitals),
+              <strong>461 rivers</strong>, <strong>412 lakes</strong>, and <strong>81 peaks / 259 landform regions</strong>.
+              Reference real features by name instead of hallucinating coordinates.
+            </p>
+          </article>
+
+          <article class="plate-card">
+            <header class="card-head">
+              <span class="card-num">II</span>
+              <h2>65 Built-in Icons &amp; Characters</h2>
+            </header>
+            <p>
+              43 classic East Asian &amp; cartographic illustrations plus 22 China, Europe, and world landmarks
+              (<code>panda</code>, <code>greatWall</code>, <code>cathedral</code>, <code>windmill</code>,
+              <code>romanArch</code>, <code>vineyard</code>, <code>hotAirBalloon</code>, <code>yurt</code>…),
+              <strong>34 waving flags</strong>, and 10 parameterized <code>person</code> poses — each reporting exact mm
+              <code>ELEMENT_BOUNDS</code>.
+            </p>
+          </article>
+
+          <article class="plate-card">
+            <header class="card-head">
+              <span class="card-num">III</span>
+              <h2>Inline SVG Dry-Media Renderer</h2>
+            </header>
+            <p>
+              Zero-dependency <code>src/svgDraw.js</code> parses <code>&lt;path d&gt;</code>, basic shapes,
+              <code>transform</code>, and style inheritance, rasterizing custom landmarks through the pencil,
+              watercolor wash, and hatching engine. Persist reusables locally via <code>--save-assets</code> or
+              <code>handdrawn-map assets save</code>.
+            </p>
+          </article>
+
+          <article class="plate-card">
+            <header class="card-head">
+              <span class="card-num">IV</span>
+              <h2>CJK &amp; Bilingual Typography</h2>
+            </header>
+            <p>
+              Ships Hershey-derived <code>Kevin Serif</code> / <code>Kevin Sans</code> alongside bundled
+              <code>ZCOOL XiaoWei</code> (SIL OFL 1.1), OS CJK discovery, and <code>registerFont()</code>.
+              Supports mixed Latin/Han/Kana/Hangul metrics, stacked/inline <code>writeBilingual</code>,
+              curved <code>writeAlongPath</code> sea labels, and CJK-safe cartouches.
+            </p>
+          </article>
+
+          <article class="plate-card">
+            <header class="card-head">
+              <span class="card-num">V</span>
+              <h2>Auto-Layout &amp; Diagnostics JSON</h2>
+            </header>
+            <p>
+              Spatial <code>OccupancyGrid</code> auto-places <code>placement: auto</code> cartouches &amp; compasses
+              in open sea (with landlocked fallback), resolves overlaps by priority (<code>--auto-layout</code>),
+              routes curved callouts, and emits mm bounding-box diagnostics via <code>--diagnostics</code>.
+            </p>
+          </article>
+
+          <article class="plate-card">
+            <header class="card-head">
+              <span class="card-num">VI</span>
+              <h2>Four One-Flag Visual Presets</h2>
+            </header>
+            <p>
+              Switch paper stock, stroke tool (<code>fineliner</code>, <code>gel</code>, <code>brush</code>),
+              fill pipeline (<code>pencil</code>, <code>wash</code>, <code>washBloom</code>), coastal waterlines,
+              compass, cartouche, and neatline border in one flag: <code>vintage-atlas</code>,
+              <code>blueprint</code>, <code>nocturne</code>, or <code>ink-wash</code>.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <!-- ISLAND III: AGENT AUTHORING LOOP -->
+      <section id="agent-loop" class="island-zone zone-agent" aria-label="Agent authoring loop">
+        <ol class="loop-steps">
+          <li>
+            <span class="step-badge">01 · INSPECT</span>
+            <h3>Query real data</h3>
+            <p>
+              Run <code>inspect countries</code>, <code>admin1</code>, <code>places</code>, <code>rivers</code>,
+              <code>elements</code>, <code>styles --json</code>, plus zero-raster <code>inspect spec map.yaml --json</code>.
+            </p>
+          </li>
+          <li>
+            <span class="step-badge">02 · AUTHOR SPEC</span>
+            <h3>Write YAML / JSON</h3>
+            <p>
+              Draft a <code>schemaVersion: 1</code> spec using <code>geo.fit</code>, auto Natural Earth layers,
+              built-in icons, inline <code>type: svg</code> landmarks, and <code>placement: auto</code> chrome.
+            </p>
+          </li>
+          <li>
+            <span class="step-badge">03 · RENDER + DIAG</span>
+            <h3>Inspect layout JSON</h3>
+            <p>
+              Render fast 5 ppm previews with <code>--fast --auto-layout --diagnostics -</code>
+              (pure JSON to stdout, summary to stderr) and read <code>overlapCount</code> &amp; <code>emptyRegions</code>.
+            </p>
+          </li>
+          <li>
+            <span class="step-badge">04 · FIX + HD</span>
+            <h3>Converge &amp; export</h3>
+            <p>
+              Adjust colliding <code>fixed: true</code> items or priorities until overlaps and OOB hit
+              <code>0</code>, then render the final plate at 10 ppm with <code>--hd</code> (up to 18.5 MP cap).
+            </p>
+          </li>
+        </ol>
+
+        <div class="agent-code-grid">
+          <div class="code-plate">
+            <div class="code-plate-head">
+              <span>Declarative Spec (<code>schemaVersion: 1</code>)</span>
+              <span class="code-meta">YAML / JSON</span>
+            </div>
+            <pre><code>schemaVersion: 1
+meta: { id: sichuan-cultural, lang: zh, seed: sichuan-1 }
+canvas: { w: 300, h: 200, ppm: 10, border: true }
+style:  { preset: vintage-atlas }
+geo:
+  fit:    { target: { country: China, admin1: Sichuan }, margin: 12 }
+  admin1: { country: China, highlight: [Sichuan] }
+layers:
+  graticule: true
+  rivers:    { auto: true, maxRank: 6 }
+  mountains: { auto: true, scale: 0.85 }
+elements:
+  - { id: el-panda, type: panda, lon: 103.42, lat: 31.15 }
+  - { id: el-mask,  type: svg,   lon: 104.22, lat: 31.00, svg: "&lt;svg...&gt;" }
+compass:   { placement: auto, r: 7.5 }
+cartouche: { placement: auto, w: 78, h: 42, country: 四川省, flag: CHN }
+layout:    { autoPlace: true, avoidOverlap: true, padding: 1.5 }</code></pre>
+          </div>
+
+          <div class="code-plate">
+            <div class="code-plate-head">
+              <span>Structured <code>--diagnostics -</code> JSON &amp; <code>SKILL.md</code></span>
+              <span class="code-meta">mm BBoxes</span>
+            </div>
+            <pre><code>{
+  "schemaVersion": 1,
+  "canvas": { "w": 300, "h": 200, "ppm": 5, "safeFrame": [8, 8, 292, 192] },
+  "summary": {
+    "totalItems": 16,
+    "overlapCount": 0,
+    "outOfBoundsCount": 0,
+    "landCoveragePct": 56,
+    "seaCoveragePct": 44
+  },
+  "overlaps": [],
+  "outOfBounds": [],
+  "emptyRegions": [
+    { "terrain": "sea", "x": 186, "y": 162,
+      "w": 34, "h": 30, "corner": "bottom-right" }
+  ]
+}</code></pre>
+            <p class="skill-note">
+              <strong>Agent Skill bundled:</strong> Point your agent at <code>SKILL.md</code> for the full schema,
+              CLI flags, and private local SVG library (<code>handdrawn-map assets save</code> →
+              <code>~/.handdrawn-map/elements/</code>).
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ISLAND IV: FOUR VISUAL PRESETS -->
+      <section id="styles" class="island-zone zone-styles" aria-label="Four visual presets">
+        <div class="styles-layout">
+          <figure class="specimen-frame">
+            <div class="specimen-viewport">
+              <img
+                id="preset-img"
+                src="./images/preset-vintage-atlas.webp"
+                alt="Italy cultural map rendered in vintage-atlas preset by handdrawn-map-kit"
+                width="1500"
+                height="1000"
+              />
+            </div>
+            <figcaption class="specimen-caption">
+              <code id="preset-cmd">npx handdrawn-map render examples/specs/italy.yaml --style vintage-atlas --fast --auto-layout</code>
+            </figcaption>
+          </figure>
+
+          <div class="preset-controls" role="tablist" aria-label="Style presets">
+            <button
+              type="button"
+              class="preset-btn is-active"
+              role="tab"
+              aria-selected="true"
+              data-preset="vintage-atlas"
+              data-img="./images/preset-vintage-atlas.webp"
+              data-alt="Italy cultural map rendered in vintage-atlas preset"
+            >
+              <span class="swatch swatch-vintage" aria-hidden="true"></span>
+              <span class="preset-copy">
+                <strong>vintage-atlas</strong>
+                <small>hotpress · fineliner · pencil · zebra border</small>
+              </span>
+            </button>
+
+            <button
+              type="button"
+              class="preset-btn"
+              role="tab"
+              aria-selected="false"
+              data-preset="blueprint"
+              data-img="./images/preset-blueprint.webp"
+              data-alt="Italy cultural map rendered in blueprint preset"
+            >
+              <span class="swatch swatch-blueprint" aria-hidden="true"></span>
+              <span class="preset-copy">
+                <strong>blueprint</strong>
+                <small>navy · gel · cross-hatch · crosshair grid</small>
+              </span>
+            </button>
+
+            <button
+              type="button"
+              class="preset-btn"
+              role="tab"
+              aria-selected="false"
+              data-preset="nocturne"
+              data-img="./images/preset-nocturne.webp"
+              data-alt="Italy cultural map rendered in nocturne preset"
+            >
+              <span class="swatch swatch-nocturne" aria-hidden="true"></span>
+              <span class="preset-copy">
+                <strong>nocturne</strong>
+                <small>black · gold gel · starfield · celestial frame</small>
+              </span>
+            </button>
+
+            <button
+              type="button"
+              class="preset-btn"
+              role="tab"
+              aria-selected="false"
+              data-preset="ink-wash"
+              data-img="./images/preset-ink-wash.webp"
+              data-alt="Italy cultural map rendered in ink-wash preset"
+            >
+              <span class="swatch swatch-inkwash" aria-hidden="true"></span>
+              <span class="preset-copy">
+                <strong>ink-wash</strong>
+                <small>cream xuan · sumi brush · washBloom · scroll &amp; seal</small>
+              </span>
+            </button>
+
+            <p class="preset-hint">
+              Same <code>examples/specs/italy.yaml</code> spec — switched via one <code>--style</code> flag.
+              All four plates are rendered live when you run <code>./build.sh</code>.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ISLAND V: QUICK START & API + COLOPHON -->
+      <section id="quickstart" class="island-zone zone-quickstart" aria-label="Quick start and API">
+        <div class="qs-grid">
+          <div class="code-plate">
+            <div class="code-plate-head">
+              <span>CLI Quick Start</span>
+              <span class="code-meta">Node &gt;= 20</span>
+            </div>
+            <pre><code># Install from GitHub
+npm install github:wangreng/handdrawn-map-kit
+
+# Inspect real Natural Earth data &amp; built-in assets
+npx handdrawn-map inspect admin1 China --json
+npx handdrawn-map inspect elements --json
+
+# Render declarative spec with auto-layout &amp; diagnostics
+npx handdrawn-map render examples/specs/sichuan.yaml \
+  -o out/sichuan.png --fast --auto-layout --diagnostics out/sichuan.diag.json
+
+# Switch style or export final 3000×2000 px HD plate
+npx handdrawn-map render examples/specs/italy.yaml --style ink-wash --hd</code></pre>
+          </div>
+
+          <div class="code-plate">
+            <div class="code-plate-head">
+              <span>Programmatic JS API</span>
+              <span class="code-meta">CommonJS</span>
+            </div>
+            <pre><code>const { createMap } = require('handdrawn-map-kit');
+
+const map = createMap({ w: 300, h: 200, seed: 'italy-01' });
+const proj = map.fitProjection('Italy');
+map.graticule(proj);
+map.countries(proj, { focus: 'Italy' });
+map.admin1(proj, { country: 'Italy', bordersOnly: true });
+map.geoRivers(proj, { maxRank: 6 });
+map.geoLakes(proj);
+
+const [x, y] = proj(12.496, 41.902);
+map.city(x, y, 'Roma', { capital: true });
+map.cartouche(13.5, 13, 88, 44, { country: 'ITALIA', flag: 'ITA', capital: 'Roma' });
+await map.save('out/italy.png');</code></pre>
+          </div>
+        </div>
+
+        <footer class="colophon">
+          <span><strong>handdrawn-map-kit</strong> · MIT License</span>
+          <span aria-hidden="true">·</span>
+          <span>Natural Earth (Public Domain)</span>
+          <span aria-hidden="true">·</span>
+          <span>Dry-media engine &amp; Kevin fonts via <code>statechart-art</code> (MIT)</span>
+          <span aria-hidden="true">·</span>
+          <span><code>ZCOOL XiaoWei</code> (SIL OFL 1.1)</span>
+          <span aria-hidden="true">·</span>
+          <span>Regenerate this atlas: <code>./build.sh</code></span>
+        </footer>
+      </section>
+    </main>
+  </div>
+
+  <script src="./app.js"></script>
+</body>
+</html>

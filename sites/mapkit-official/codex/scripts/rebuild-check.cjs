@@ -1,0 +1,5 @@
+const fs=require('node:fs'),crypto=require('node:crypto'),path=require('node:path');
+function digest(file){return crypto.createHash('sha256').update(fs.readFileSync(file)).digest('hex')}
+function snapshot(){const s={};for(const f of fs.readdirSync('site',{recursive:true})){if(fs.statSync(path.join('site',f)).isFile())s['site/'+f]=digest('site/'+f)}for(const v of ['desktop','mobile'])for(const type of ['first','full']){const f=`shots/${v}-${type}.png`;s[f]=digest(f)}return s}
+if(process.argv[2]==='record'){fs.writeFileSync('shots/rebuild-before.json',JSON.stringify(snapshot(),null,2));console.log('Recorded generated site and screenshot hashes.');}
+else{const before=JSON.parse(fs.readFileSync('shots/rebuild-before.json'));const after=snapshot();const changed=Object.keys(before).filter(f=>before[f]!==after[f]);console.log(JSON.stringify({comparedFiles:Object.keys(before).length,changed,identical:changed.length===0},null,2));if(changed.length)process.exitCode=1;fs.writeFileSync('shots/rebuild-after.json',JSON.stringify(after,null,2))}

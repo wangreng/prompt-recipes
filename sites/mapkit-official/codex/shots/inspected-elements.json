@@ -1,0 +1,1314 @@
+{
+  "elements": [
+    {
+      "name": "tree",
+      "bounds": [
+        -5.2,
+        -12,
+        10.2,
+        12.2
+      ],
+      "meta": {
+        "category": "nature",
+        "region": "world",
+        "anchor": "bottom-center",
+        "rotatable": false,
+        "tags": [
+          "forest",
+          "foliage"
+        ]
+      }
+    },
+    {
+      "name": "sakura",
+      "bounds": [
+        -6.4,
+        -12,
+        13,
+        12.2
+      ],
+      "meta": {
+        "category": "nature",
+        "region": "japan",
+        "anchor": "bottom-center",
+        "rotatable": false,
+        "tags": [
+          "cherry-blossom",
+          "spring",
+          "tree"
+        ]
+      }
+    },
+    {
+      "name": "pine",
+      "bounds": [
+        -4.6,
+        -12.4,
+        9.2,
+        12.6
+      ],
+      "meta": {
+        "category": "nature",
+        "region": "world",
+        "anchor": "bottom-center",
+        "rotatable": false,
+        "tags": [
+          "evergreen",
+          "conifer",
+          "tree"
+        ]
+      }
+    },
+    {
+      "name": "bamboo",
+      "bounds": [
+        -7.6,
+        -17.3,
+        15.2,
+        17.5
+      ],
+      "meta": {
+        "category": "nature",
+        "region": "china",
+        "anchor": "bottom-center",
+        "rotatable": false,
+        "tags": [
+          "grove",
+          "east-asia",
+          "plant"
+        ]
+      }
+    },
+    {
+      "name": "mountain",
+      "bounds": [
+        -16.4,
+        -13.6,
+        32.8,
+        14.8
+      ],
+      "meta": {
+        "category": "nature",
+        "region": "world",
+        "anchor": "bottom-center",
+        "rotatable": false,
+        "tags": [
+          "peak",
+          "snow",
+          "fuji"
+        ]
+      }
+    },
+    {
+      "name": "onsen",
+      "bounds": [
+        -10.8,
+        -14.4,
+        21.6,
+        15.3
+      ],
+      "meta": {
+        "category": "nature",
+        "region": "japan",
+        "anchor": "bottom-center",
+        "rotatable": false,
+        "tags": [
+          "hot-spring",
+          "spa",
+          "steam"
+        ]
+      }
+    },
+    {
+      "name": "torii",
+      "bounds": [
+        -9.8,
+        -14.6,
+        19.6,
+        14.8
+      ],
+      "meta": {
+        "category": "architecture",
+        "region": "japan",
+        "anchor": "bottom-center",
+        "rotatable": false,
+        "tags": [
+          "shrine",
+          "gate",
+          "shinto"
+        ]
+      }
+    },
+    {
+      "name": "pagoda",
+      "bounds": [
+        -8.8,
+        -22.7,
+        17.6,
+        22.9
+      ],
+      "meta": {
+        "category": "architecture",
+        "region": "japan",
+        "anchor": "bottom-center",
+        "rotatable": false,
+        "tags": [
+          "temple",
+          "tower",
+          "east-asia"
+        ]
+      }
+    },
+    {
+      "name": "castle",
+      "bounds": [
+        -12.2,
+        -22.7,
+        24.4,
+        22.9
+      ],
+      "meta": {
+        "category": "architecture",
+        "region": "japan",
+        "anchor": "bottom-center",
+        "rotatable": false,
+        "tags": [
+          "fortress",
+          "keep",
+          "landmark"
+        ]
+      }
+    },
+    {
+      "name": "tokyoTower",
+      "bounds": [
+        -6,
+        -28.7,
+        12,
+        28.9
+      ],
+      "meta": {
+        "category": "architecture",
+        "region": "japan",
+        "anchor": "bottom-center",
+        "rotatable": false,
+        "tags": [
+          "tower",
+          "landmark",
+          "tokyo"
+        ]
+      }
+    },
+    {
+      "name": "house",
+      "bounds": [
+        -7.8,
+        -11.6,
+        15.6,
+        11.8
+      ],
+      "meta": {
+        "category": "architecture",
+        "region": "world",
+        "anchor": "bottom-center",
+        "rotatable": false,
+        "tags": [
+          "village",
+          "home",
+          "building"
+        ]
+      }
+    },
+    {
+      "name": "lighthouse",
+      "bounds": [
+        -8,
+        -20.2,
+        16,
+        20.4
+      ],
+      "meta": {
+        "category": "architecture",
+        "region": "world",
+        "anchor": "bottom-center",
+        "rotatable": false,
+        "tags": [
+          "coast",
+          "beacon",
+          "marine"
+        ]
+      }
+    },
+    {
+      "name": "shinkansen",
+      "bounds": [
+        -16.2,
+        -5.8,
+        33.4,
+        6.6
+      ],
+      "meta": {
+        "category": "transport",
+        "region": "japan",
+        "anchor": "bottom-center",
+        "rotatable": true,
+        "tags": [
+          "bullet-train",
+          "rail"
+        ]
+      }
+    },
+    {
+      "name": "sailboat",
+      "bounds": [
+        -9.7,
+        -15.7,
+        19.4,
+        16.3
+      ],
+      "meta": {
+        "category": "transport",
+        "region": "world",
+        "anchor": "bottom-center",
+        "rotatable": false,
+        "tags": [
+          "boat",
+          "sea",
+          "sailing"
+        ]
+      }
+    },
+    {
+      "name": "whale",
+      "bounds": [
+        -10.5,
+        -11.6,
+        25.1,
+        14.4
+      ],
+      "meta": {
+        "category": "marine",
+        "region": "world",
+        "anchor": "center",
+        "rotatable": false,
+        "tags": [
+          "ocean",
+          "animal",
+          "sea"
+        ]
+      }
+    },
+    {
+      "name": "shibaInu",
+      "bounds": [
+        -7,
+        -12.6,
+        15,
+        12.8
+      ],
+      "meta": {
+        "category": "animal",
+        "region": "japan",
+        "anchor": "bottom-center",
+        "rotatable": false,
+        "tags": [
+          "dog",
+          "pet"
+        ]
+      }
+    },
+    {
+      "name": "deer",
+      "bounds": [
+        -7.9,
+        -17.4,
+        13.1,
+        17.6
+      ],
+      "meta": {
+        "category": "animal",
+        "region": "japan",
+        "anchor": "bottom-center",
+        "rotatable": false,
+        "tags": [
+          "wildlife",
+          "nara"
+        ]
+      }
+    },
+    {
+      "name": "crane",
+      "bounds": [
+        -7.8,
+        -17,
+        14.4,
+        17.2
+      ],
+      "meta": {
+        "category": "animal",
+        "region": "japan",
+        "anchor": "bottom-center",
+        "rotatable": false,
+        "tags": [
+          "bird",
+          "wildlife"
+        ]
+      }
+    },
+    {
+      "name": "koi",
+      "bounds": [
+        -6.9,
+        -2.9,
+        16.4,
+        5.8
+      ],
+      "meta": {
+        "category": "marine",
+        "region": "japan",
+        "anchor": "center",
+        "rotatable": true,
+        "tags": [
+          "fish",
+          "pond",
+          "carp"
+        ]
+      }
+    },
+    {
+      "name": "foodBowl",
+      "bounds": [
+        -9,
+        -12.2,
+        18.8,
+        12.4
+      ],
+      "meta": {
+        "category": "food",
+        "region": "japan",
+        "anchor": "bottom-center",
+        "rotatable": false,
+        "tags": [
+          "ramen",
+          "noodles",
+          "cuisine"
+        ]
+      }
+    },
+    {
+      "name": "sushi",
+      "bounds": [
+        -6.4,
+        -7.6,
+        12.8,
+        8
+      ],
+      "meta": {
+        "category": "food",
+        "region": "japan",
+        "anchor": "bottom-center",
+        "rotatable": false,
+        "tags": [
+          "nigiri",
+          "seafood",
+          "cuisine"
+        ]
+      }
+    },
+    {
+      "name": "onigiri",
+      "bounds": [
+        -5.8,
+        -9.6,
+        11.6,
+        10.2
+      ],
+      "meta": {
+        "category": "food",
+        "region": "japan",
+        "anchor": "bottom-center",
+        "rotatable": false,
+        "tags": [
+          "rice-ball",
+          "snack",
+          "cuisine"
+        ]
+      }
+    },
+    {
+      "name": "dango",
+      "bounds": [
+        -5.8,
+        -12.5,
+        7.8,
+        14.6
+      ],
+      "meta": {
+        "category": "food",
+        "region": "japan",
+        "anchor": "bottom-center",
+        "rotatable": false,
+        "tags": [
+          "sweet",
+          "dessert",
+          "skewer"
+        ]
+      }
+    },
+    {
+      "name": "matcha",
+      "bounds": [
+        -6.4,
+        -13.2,
+        12.8,
+        13.4
+      ],
+      "meta": {
+        "category": "food",
+        "region": "japan",
+        "anchor": "bottom-center",
+        "rotatable": false,
+        "tags": [
+          "tea",
+          "drink",
+          "bowl"
+        ]
+      }
+    },
+    {
+      "name": "daruma",
+      "bounds": [
+        -5.4,
+        -11.3,
+        10.8,
+        11.6
+      ],
+      "meta": {
+        "category": "culture",
+        "region": "japan",
+        "anchor": "bottom-center",
+        "rotatable": false,
+        "tags": [
+          "doll",
+          "craft",
+          "luck"
+        ]
+      }
+    },
+    {
+      "name": "koinobori",
+      "bounds": [
+        -1.1,
+        -22.7,
+        14.5,
+        22.9
+      ],
+      "meta": {
+        "category": "culture",
+        "region": "japan",
+        "anchor": "bottom-center",
+        "rotatable": false,
+        "tags": [
+          "streamer",
+          "festival",
+          "carp"
+        ]
+      }
+    },
+    {
+      "name": "origamiCrane",
+      "bounds": [
+        -6.8,
+        -6,
+        13.5,
+        6.7
+      ],
+      "meta": {
+        "category": "culture",
+        "region": "japan",
+        "anchor": "center",
+        "rotatable": false,
+        "tags": [
+          "paper",
+          "craft"
+        ]
+      }
+    },
+    {
+      "name": "sumoRing",
+      "bounds": [
+        -13.7,
+        -15.1,
+        27.4,
+        17
+      ],
+      "meta": {
+        "category": "culture",
+        "region": "japan",
+        "anchor": "bottom-center",
+        "rotatable": false,
+        "tags": [
+          "wrestling",
+          "sport",
+          "dohyo"
+        ]
+      }
+    },
+    {
+      "name": "palaceGate",
+      "bounds": [
+        -14.4,
+        -18.5,
+        28.8,
+        18.7
+      ],
+      "meta": {
+        "category": "architecture",
+        "region": "korea",
+        "anchor": "bottom-center",
+        "rotatable": false,
+        "tags": [
+          "palace",
+          "gate",
+          "seoul"
+        ]
+      }
+    },
+    {
+      "name": "hillTower",
+      "bounds": [
+        -10.4,
+        -30.2,
+        20.8,
+        30.8
+      ],
+      "meta": {
+        "category": "architecture",
+        "region": "korea",
+        "anchor": "bottom-center",
+        "rotatable": false,
+        "tags": [
+          "tower",
+          "landmark",
+          "seoul"
+        ]
+      }
+    },
+    {
+      "name": "hanok",
+      "bounds": [
+        -10.6,
+        -11.3,
+        21.2,
+        11.5
+      ],
+      "meta": {
+        "category": "architecture",
+        "region": "korea",
+        "anchor": "bottom-center",
+        "rotatable": false,
+        "tags": [
+          "house",
+          "traditional",
+          "roof"
+        ]
+      }
+    },
+    {
+      "name": "onggi",
+      "bounds": [
+        -9.7,
+        -10.3,
+        19.9,
+        10.7
+      ],
+      "meta": {
+        "category": "culture",
+        "region": "korea",
+        "anchor": "bottom-center",
+        "rotatable": false,
+        "tags": [
+          "pottery",
+          "jar",
+          "kimchi"
+        ]
+      }
+    },
+    {
+      "name": "bibimbap",
+      "bounds": [
+        -9,
+        -10.2,
+        18,
+        10.4
+      ],
+      "meta": {
+        "category": "food",
+        "region": "korea",
+        "anchor": "bottom-center",
+        "rotatable": false,
+        "tags": [
+          "rice",
+          "bowl",
+          "cuisine"
+        ]
+      }
+    },
+    {
+      "name": "gimbap",
+      "bounds": [
+        -8.7,
+        -6.3,
+        17.4,
+        6.6
+      ],
+      "meta": {
+        "category": "food",
+        "region": "korea",
+        "anchor": "bottom-center",
+        "rotatable": false,
+        "tags": [
+          "roll",
+          "seaweed",
+          "cuisine"
+        ]
+      }
+    },
+    {
+      "name": "dolHareubang",
+      "bounds": [
+        -4.9,
+        -18.2,
+        9.8,
+        18.5
+      ],
+      "meta": {
+        "category": "culture",
+        "region": "korea",
+        "anchor": "bottom-center",
+        "rotatable": false,
+        "tags": [
+          "statue",
+          "jeju",
+          "stone"
+        ]
+      }
+    },
+    {
+      "name": "mugunghwa",
+      "bounds": [
+        -7.2,
+        -5.6,
+        14.4,
+        11.5
+      ],
+      "meta": {
+        "category": "nature",
+        "region": "korea",
+        "anchor": "center",
+        "rotatable": false,
+        "tags": [
+          "flower",
+          "hibiscus",
+          "national"
+        ]
+      }
+    },
+    {
+      "name": "turtleShip",
+      "bounds": [
+        -15.7,
+        -19.7,
+        28.4,
+        20.8
+      ],
+      "meta": {
+        "category": "transport",
+        "region": "korea",
+        "anchor": "bottom-center",
+        "rotatable": false,
+        "tags": [
+          "warship",
+          "history",
+          "sea"
+        ]
+      }
+    },
+    {
+      "name": "stoneObservatory",
+      "bounds": [
+        -6,
+        -15,
+        12,
+        15.2
+      ],
+      "meta": {
+        "category": "architecture",
+        "region": "korea",
+        "anchor": "bottom-center",
+        "rotatable": false,
+        "tags": [
+          "cheomseongdae",
+          "gyeongju",
+          "astronomy"
+        ]
+      }
+    },
+    {
+      "name": "tiger",
+      "bounds": [
+        -8,
+        -11.8,
+        17.8,
+        12
+      ],
+      "meta": {
+        "category": "animal",
+        "region": "korea",
+        "anchor": "bottom-center",
+        "rotatable": false,
+        "tags": [
+          "wildlife",
+          "big-cat"
+        ]
+      }
+    },
+    {
+      "name": "crab",
+      "bounds": [
+        -8.8,
+        -8.2,
+        17.6,
+        12.3
+      ],
+      "meta": {
+        "category": "marine",
+        "region": "world",
+        "anchor": "center",
+        "rotatable": false,
+        "tags": [
+          "seafood",
+          "coast",
+          "animal"
+        ]
+      }
+    },
+    {
+      "name": "tangerine",
+      "bounds": [
+        -6,
+        -6.9,
+        12,
+        7.1
+      ],
+      "meta": {
+        "category": "food",
+        "region": "korea",
+        "anchor": "bottom-center",
+        "rotatable": false,
+        "tags": [
+          "citrus",
+          "fruit",
+          "jeju"
+        ]
+      }
+    },
+    {
+      "name": "hahoeMask",
+      "bounds": [
+        -4.7,
+        -6.7,
+        9.4,
+        13
+      ],
+      "meta": {
+        "category": "culture",
+        "region": "korea",
+        "anchor": "center",
+        "rotatable": false,
+        "tags": [
+          "mask",
+          "festival",
+          "andong"
+        ]
+      }
+    },
+    {
+      "name": "hanbok",
+      "bounds": [
+        -10.2,
+        -42.2,
+        20.4,
+        42.7
+      ],
+      "meta": {
+        "category": "culture",
+        "region": "korea",
+        "anchor": "bottom-center",
+        "rotatable": false,
+        "tags": [
+          "costume",
+          "person",
+          "traditional"
+        ]
+      }
+    },
+    {
+      "name": "pavilion",
+      "bounds": [
+        -9.5,
+        -16.5,
+        19,
+        16.7
+      ],
+      "meta": {
+        "category": "architecture",
+        "region": "china",
+        "anchor": "bottom-center",
+        "rotatable": false,
+        "tags": [
+          "ting",
+          "garden",
+          "eaves",
+          "east-asia"
+        ]
+      }
+    },
+    {
+      "name": "greatWall",
+      "bounds": [
+        -13,
+        -14.5,
+        26,
+        14.9
+      ],
+      "meta": {
+        "category": "architecture",
+        "region": "china",
+        "anchor": "bottom-center",
+        "rotatable": false,
+        "tags": [
+          "fortress",
+          "watchtower",
+          "landmark"
+        ]
+      }
+    },
+    {
+      "name": "archBridge",
+      "bounds": [
+        -12.5,
+        -8.5,
+        25,
+        9.3
+      ],
+      "meta": {
+        "category": "architecture",
+        "region": "china",
+        "anchor": "bottom-center",
+        "rotatable": false,
+        "tags": [
+          "bridge",
+          "canal",
+          "water-town"
+        ]
+      }
+    },
+    {
+      "name": "lantern",
+      "bounds": [
+        -5.2,
+        -15.6,
+        10.4,
+        15.8
+      ],
+      "meta": {
+        "category": "culture",
+        "region": "china",
+        "anchor": "bottom-center",
+        "rotatable": false,
+        "tags": [
+          "festival",
+          "red",
+          "lamp"
+        ]
+      }
+    },
+    {
+      "name": "panda",
+      "bounds": [
+        -6.8,
+        -12.8,
+        14.2,
+        13.1
+      ],
+      "meta": {
+        "category": "animal",
+        "region": "china",
+        "anchor": "bottom-center",
+        "rotatable": false,
+        "tags": [
+          "sichuan",
+          "bamboo",
+          "wildlife"
+        ]
+      }
+    },
+    {
+      "name": "dumplings",
+      "bounds": [
+        -8.6,
+        -11.5,
+        17.2,
+        11.7
+      ],
+      "meta": {
+        "category": "food",
+        "region": "china",
+        "anchor": "bottom-center",
+        "rotatable": false,
+        "tags": [
+          "dim-sum",
+          "steamer",
+          "bao",
+          "cuisine"
+        ]
+      }
+    },
+    {
+      "name": "teapot",
+      "bounds": [
+        -8.5,
+        -11.5,
+        17.7,
+        11.7
+      ],
+      "meta": {
+        "category": "food",
+        "region": "china",
+        "anchor": "bottom-center",
+        "rotatable": false,
+        "tags": [
+          "tea",
+          "ceramics",
+          "drink"
+        ]
+      }
+    },
+    {
+      "name": "cathedral",
+      "bounds": [
+        -10.5,
+        -23.5,
+        21,
+        23.7
+      ],
+      "meta": {
+        "category": "architecture",
+        "region": "europe",
+        "anchor": "bottom-center",
+        "rotatable": false,
+        "tags": [
+          "gothic",
+          "church",
+          "spires"
+        ]
+      }
+    },
+    {
+      "name": "europeanCastle",
+      "bounds": [
+        -12.5,
+        -20.5,
+        25,
+        20.7
+      ],
+      "meta": {
+        "category": "architecture",
+        "region": "europe",
+        "anchor": "bottom-center",
+        "rotatable": false,
+        "tags": [
+          "chateau",
+          "fortress",
+          "medieval"
+        ]
+      }
+    },
+    {
+      "name": "windmill",
+      "bounds": [
+        -9.5,
+        -20.5,
+        19,
+        20.7
+      ],
+      "meta": {
+        "category": "architecture",
+        "region": "europe",
+        "anchor": "bottom-center",
+        "rotatable": false,
+        "tags": [
+          "mill",
+          "netherlands",
+          "countryside"
+        ]
+      }
+    },
+    {
+      "name": "romanArch",
+      "bounds": [
+        -10.5,
+        -14.8,
+        21,
+        15
+      ],
+      "meta": {
+        "category": "architecture",
+        "region": "europe",
+        "anchor": "bottom-center",
+        "rotatable": false,
+        "tags": [
+          "classical",
+          "triumphal",
+          "italy",
+          "france"
+        ]
+      }
+    },
+    {
+      "name": "vineyard",
+      "bounds": [
+        -10,
+        -11.8,
+        20,
+        12
+      ],
+      "meta": {
+        "category": "nature",
+        "region": "europe",
+        "anchor": "bottom-center",
+        "rotatable": false,
+        "tags": [
+          "grapes",
+          "wine",
+          "agriculture"
+        ]
+      }
+    },
+    {
+      "name": "oliveTree",
+      "bounds": [
+        -7.5,
+        -13.5,
+        15,
+        13.7
+      ],
+      "meta": {
+        "category": "nature",
+        "region": "europe",
+        "anchor": "bottom-center",
+        "rotatable": false,
+        "tags": [
+          "mediterranean",
+          "tree",
+          "grove"
+        ]
+      }
+    },
+    {
+      "name": "cheeseWine",
+      "bounds": [
+        -8.5,
+        -13.5,
+        17,
+        13.7
+      ],
+      "meta": {
+        "category": "food",
+        "region": "europe",
+        "anchor": "bottom-center",
+        "rotatable": false,
+        "tags": [
+          "wine",
+          "cheese",
+          "gastronomy"
+        ]
+      }
+    },
+    {
+      "name": "palmTree",
+      "bounds": [
+        -8.5,
+        -16.5,
+        18,
+        16.7
+      ],
+      "meta": {
+        "category": "nature",
+        "region": "world",
+        "anchor": "bottom-center",
+        "rotatable": false,
+        "tags": [
+          "tropical",
+          "coast",
+          "island"
+        ]
+      }
+    },
+    {
+      "name": "volcano",
+      "bounds": [
+        -14.5,
+        -19,
+        29,
+        19.8
+      ],
+      "meta": {
+        "category": "nature",
+        "region": "world",
+        "anchor": "bottom-center",
+        "rotatable": false,
+        "tags": [
+          "mountain",
+          "lava",
+          "geology"
+        ]
+      }
+    },
+    {
+      "name": "waterfall",
+      "bounds": [
+        -10.5,
+        -14.5,
+        21,
+        15.3
+      ],
+      "meta": {
+        "category": "nature",
+        "region": "world",
+        "anchor": "bottom-center",
+        "rotatable": false,
+        "tags": [
+          "cascade",
+          "river",
+          "cliff"
+        ]
+      }
+    },
+    {
+      "name": "train",
+      "bounds": [
+        -13,
+        -11.5,
+        26.5,
+        12.3
+      ],
+      "meta": {
+        "category": "transport",
+        "region": "world",
+        "anchor": "bottom-center",
+        "rotatable": true,
+        "tags": [
+          "locomotive",
+          "steam",
+          "rail"
+        ]
+      }
+    },
+    {
+      "name": "ship",
+      "bounds": [
+        -12.5,
+        -18.5,
+        25,
+        19.3
+      ],
+      "meta": {
+        "category": "transport",
+        "region": "world",
+        "anchor": "bottom-center",
+        "rotatable": false,
+        "tags": [
+          "galleon",
+          "sailing",
+          "sea"
+        ]
+      }
+    },
+    {
+      "name": "hotAirBalloon",
+      "bounds": [
+        -7.2,
+        -20.5,
+        14.4,
+        20.7
+      ],
+      "meta": {
+        "category": "transport",
+        "region": "world",
+        "anchor": "bottom-center",
+        "rotatable": false,
+        "tags": [
+          "balloon",
+          "sky",
+          "travel"
+        ]
+      }
+    },
+    {
+      "name": "fish",
+      "bounds": [
+        -7.5,
+        -4.2,
+        16,
+        8.4
+      ],
+      "meta": {
+        "category": "marine",
+        "region": "world",
+        "anchor": "center",
+        "rotatable": true,
+        "tags": [
+          "sea",
+          "ocean",
+          "fishing"
+        ]
+      }
+    },
+    {
+      "name": "yurt",
+      "bounds": [
+        -9.5,
+        -12.5,
+        19,
+        12.7
+      ],
+      "meta": {
+        "category": "architecture",
+        "region": "world",
+        "anchor": "bottom-center",
+        "rotatable": false,
+        "tags": [
+          "ger",
+          "nomad",
+          "steppe",
+          "tent"
+        ]
+      }
+    }
+  ],
+  "svgAssets": [],
+  "poses": [
+    "stand",
+    "wave",
+    "cheer",
+    "hold",
+    "reach",
+    "shake",
+    "roll",
+    "raise",
+    "stir",
+    "dig"
+  ]
+}

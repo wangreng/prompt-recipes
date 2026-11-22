@@ -1,0 +1,16 @@
+[
+  {
+    "name": "desktop",
+    "width": 1440,
+    "height": 900,
+    "pageHeight": 2256,
+    "errors": []
+  },
+  {
+    "name": "mobile",
+    "width": 390,
+    "height": 844,
+    "pageHeight": 3510,
+    "errors": []
+  }
+]

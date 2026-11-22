@@ -1,0 +1,550 @@
+schemaVersion: 1
+
+meta:
+  id: handdrawn-map-kit-site-desktop
+  title: HANDDRAWN-MAP-KIT · Official Atlas
+  lang: en
+  seed: hmk-site-desktop-v2
+
+canvas:
+  w: 300
+  h: 740
+  ppm: 7
+  paper: hotpress
+  border: true
+  pad: 4.8
+  inner: 8.0
+
+style:
+  preset: vintage-atlas
+  palette:
+    ocean: '#cde0e6'
+    oceanShallow: '#bad3dc'
+    land: '#f3e8cc'
+    landWarm: '#efe0bc'
+    river: '#5d93b3'
+    crimson: '#b8372e'
+
+geo:
+  # Gentle oblique projection strictly for authentic curved graticules & border degree ticks
+  projection:
+    lon0: 136
+    lat0: 34
+    scale: 0.085
+    cx: 150
+    cy: 370
+    rotDeg: -6
+  waterlines:
+    r1: 1.4
+    r2: 2.9
+  land:
+    # Island I — Isle of Origin (Hero, y: 64..184 — fits completely on 1440x900 first screen)
+    - color: '#f3e8cc'
+      coords: mm
+      pts:
+        - [20, 74]
+        - [48, 66]
+        - [106, 65]
+        - [168, 67]
+        - [226, 65]
+        - [272, 68]
+        - [285, 84]
+        - [286, 128]
+        - [283, 170]
+        - [268, 183]
+        - [214, 184]
+        - [154, 181]
+        - [92, 184]
+        - [34, 182]
+        - [16, 168]
+        - [14, 120]
+
+    # Island II — Six-Layer Continent (Key Capabilities, y: 202..316)
+    - color: '#f3e8cc'
+      coords: mm
+      pts:
+        - [20, 212]
+        - [52, 203]
+        - [118, 202]
+        - [182, 204]
+        - [248, 202]
+        - [278, 208]
+        - [286, 224]
+        - [285, 268]
+        - [283, 304]
+        - [270, 315]
+        - [216, 316]
+        - [152, 313]
+        - [86, 316]
+        - [30, 314]
+        - [15, 300]
+        - [14, 256]
+
+    # Island III — Agent Authoring Loop Atoll (y: 334..476)
+    - color: '#efe0bc'
+      coords: mm
+      pts:
+        - [20, 344]
+        - [56, 335]
+        - [122, 334]
+        - [186, 336]
+        - [250, 334]
+        - [278, 340]
+        - [286, 360]
+        - [285, 418]
+        - [282, 464]
+        - [268, 475]
+        - [208, 476]
+        - [148, 473]
+        - [84, 476]
+        - [32, 474]
+        - [15, 458]
+        - [14, 398]
+
+    # Island IV — Four Style Presets Pavilion (y: 494..622 — spacious 128mm tall!)
+    - color: '#f3e8cc'
+      coords: mm
+      pts:
+        - [20, 504]
+        - [58, 495]
+        - [126, 494]
+        - [190, 496]
+        - [254, 494]
+        - [279, 501]
+        - [286, 524]
+        - [285, 578]
+        - [281, 610]
+        - [266, 621]
+        - [204, 622]
+        - [146, 619]
+        - [82, 622]
+        - [30, 620]
+        - [15, 604]
+        - [14, 552]
+
+    # Tiny Lighthouse Islet in Strait IV
+    - color: '#efe0bc'
+      coords: mm
+      pts:
+        - [38, 628]
+        - [46, 625]
+        - [54, 628]
+        - [52, 634]
+        - [40, 634]
+
+    # Island V — Port Quick Start & Colophon (y: 638..726)
+    - color: '#efe0bc'
+      coords: mm
+      pts:
+        - [20, 646]
+        - [62, 639]
+        - [136, 638]
+        - [210, 640]
+        - [272, 639]
+        - [285, 650]
+        - [286, 692]
+        - [282, 718]
+        - [266, 725]
+        - [196, 726]
+        - [128, 724]
+        - [54, 726]
+        - [22, 722]
+        - [14, 704]
+        - [14, 668]
+
+layers:
+  graticule:
+    step: 5
+  mountains:
+    # Northern ridge of Hero Island's eastern scenic headland
+    - id: mtn-hero-east
+      peaks:
+        - [196, 85, 9, 8, true]
+        - [212, 83, 10, 10, true]
+        - [228, 86, 9, 8, false]
+        - [245, 84, 10, 9, true]
+        - [262, 86, 8, 7, false]
+  rivers:
+    # Small scenic river winding from eastern Hero mountains to eastern bay
+    - coords: mm
+      nib: 0.36
+      pts: [[212, 86], [220, 93], [234, 96], [250, 95], [270, 99], [284, 104]]
+  routes:
+    # Dashed maritime routes linking the five islands in reading order
+    - coords: mm
+      color: '#b8372e'
+      pts: [[148, 182], [144, 193], [150, 204]]
+    - coords: mm
+      color: '#b8372e'
+      pts: [[150, 314], [156, 325], [148, 336]]
+    - coords: mm
+      color: '#b8372e'
+      pts: [[148, 474], [142, 485], [150, 496]]
+    - coords: mm
+      color: '#b8372e'
+      pts: [[150, 620], [155, 630], [148, 640]]
+  waves:
+    - { x: 132, y: 51, scale: 0.85, count: 2 }
+    - { x: 218, y: 53, scale: 0.85, count: 2 }
+    - { x: 182, y: 191, scale: 0.95, count: 2 }
+    - { x: 112, y: 324, scale: 0.9, count: 2 }
+    - { x: 262, y: 325, scale: 0.85, count: 2 }
+    - { x: 168, y: 484, scale: 0.9, count: 2 }
+    - { x: 34, y: 486, scale: 0.85, count: 2 }
+    - { x: 96, y: 630, scale: 0.9, count: 2 }
+
+elements:
+  # Header Sea ornaments (cleanly outside the centered .atlas-nav strip x:136..234)
+  - id: el-hero-balloon
+    type: hotAirBalloon
+    x: 127
+    y: 47
+    scale: 0.56
+    fixed: true
+  - id: el-hero-boat
+    type: sailboat
+    x: 243
+    y: 48
+    scale: 0.62
+    fixed: true
+
+  # Hero Island Eastern Scenic Skyline
+  - id: el-hero-pagoda
+    type: pagoda
+    x: 195
+    y: 111
+    scale: 0.62
+    fixed: true
+  - id: el-hero-torii
+    type: torii
+    x: 214
+    y: 111
+    scale: 0.65
+    fixed: true
+  - id: el-hero-panda
+    type: panda
+    x: 233
+    y: 111
+    scale: 0.68
+    fixed: true
+  - id: el-hero-cathedral
+    type: cathedral
+    x: 253
+    y: 111
+    scale: 0.62
+    fixed: true
+  - id: el-hero-windmill
+    type: windmill
+    x: 271
+    y: 111
+    scale: 0.62
+    fixed: true
+  - id: el-hero-explorer
+    type: person
+    x: 183
+    y: 174
+    scale: 0.36
+    options:
+      pose: wave
+    fixed: true
+
+  # Strait I offshore wildlife
+  - id: el-strait1-whale
+    type: whale
+    x: 34
+    y: 195
+    scale: 0.72
+    fixed: true
+  - id: el-strait1-boat
+    type: sailboat
+    x: 248
+    y: 196
+    scale: 0.66
+    fixed: true
+
+  # Island II Coastal Vignettes (hugging top & bottom shores cleanly outside y:222..302 plateau)
+  - id: el-f-greatwall
+    type: greatWall
+    x: 36
+    y: 220
+    scale: 0.60
+    fixed: true
+  - id: el-f-bamboo
+    type: bamboo
+    x: 58
+    y: 220
+    scale: 0.60
+    fixed: true
+  - id: el-f-romanarch
+    type: romanArch
+    x: 244
+    y: 220
+    scale: 0.58
+    fixed: true
+  - id: el-f-vineyard
+    type: vineyard
+    x: 266
+    y: 220
+    scale: 0.60
+    fixed: true
+  - id: el-f-lantern
+    type: lantern
+    x: 36
+    y: 313
+    scale: 0.58
+    fixed: true
+  - id: el-f-teapot
+    type: teapot
+    x: 58
+    y: 313
+    scale: 0.58
+    fixed: true
+  - id: el-f-dumplings
+    type: dumplings
+    x: 242
+    y: 313
+    scale: 0.58
+    fixed: true
+  - id: el-f-cheesewine
+    type: cheeseWine
+    x: 264
+    y: 313
+    scale: 0.58
+    fixed: true
+
+  # Strait II
+  - id: el-strait2-ship
+    type: ship
+    x: 78
+    y: 327
+    scale: 0.64
+    fixed: true
+
+  # Island III — Custom Inline Dry-Media SVGs (showcasing svgDraw.js directly!)
+  - id: el-svg-yaml-scroll
+    type: svg
+    x: 38
+    y: 346
+    fixed: true
+    options:
+      width: 15
+      fillStyle: pencil
+    svg: '<svg viewBox="0 0 36 28"><rect x="4" y="3" width="28" height="22" rx="3" fill="#faf4e6" stroke="#26201c" stroke-width="1.5"/><path d="M9,9 L18,9 M9,14 L25,14 M12,19 L23,19" fill="none" stroke="#b8372e" stroke-width="1.6"/><circle cx="26" cy="9" r="2.2" fill="#e0ad48" stroke="#26201c" stroke-width="1.1"/></svg>'
+  - id: el-svg-diag-loupe
+    type: svg
+    x: 262
+    y: 346
+    fixed: true
+    options:
+      width: 15
+      fillStyle: pencil
+    svg: '<svg viewBox="0 0 34 28"><circle cx="13" cy="12" r="8" fill="#cde0e6" stroke="#26201c" stroke-width="1.6"/><path d="M9,12 L12,15 L18,9" fill="none" stroke="#5e834e" stroke-width="1.8"/><path d="M19,18 L28,25" fill="none" stroke="#8c5a3c" stroke-width="2.6"/></svg>'
+  - id: el-loop-shinkansen
+    type: shinkansen
+    x: 254
+    y: 472
+    scale: 0.64
+    fixed: true
+  - id: el-loop-pine
+    type: pine
+    x: 34
+    y: 472
+    scale: 0.58
+    fixed: true
+
+  # Strait III
+  - id: el-strait3-turtleship
+    type: turtleShip
+    x: 224
+    y: 487
+    scale: 0.62
+    fixed: true
+
+  # Island IV Coastal Vignettes (top shore y:508, well above y:514..615 content!)
+  - id: el-style-pavilion
+    type: pavilion
+    x: 36
+    y: 509
+    scale: 0.56
+    fixed: true
+  - id: el-style-sakura
+    type: sakura
+    x: 56
+    y: 509
+    scale: 0.60
+    fixed: true
+  - id: el-style-castle
+    type: europeanCastle
+    x: 248
+    y: 509
+    scale: 0.54
+    fixed: true
+  - id: el-style-palm
+    type: palmTree
+    x: 268
+    y: 509
+    scale: 0.60
+    fixed: true
+
+  # Strait IV Lighthouse Islet
+  - id: el-strait4-lighthouse
+    type: lighthouse
+    x: 46
+    y: 632
+    scale: 0.62
+    fixed: true
+
+  # Island V Harbour Vignettes
+  - id: el-qs-train
+    type: train
+    x: 38
+    y: 651
+    scale: 0.60
+    fixed: true
+  - id: el-qs-bridge
+    type: archBridge
+    x: 262
+    y: 651
+    scale: 0.58
+    fixed: true
+
+labels:
+  # Header Sea Title
+  - id: lbl-atlas-sea-title
+    kind: sea
+    text: ATLAS OF HANDDRAWN-MAP-KIT
+    x: 185
+    y: 21
+    size: 3.4
+    fixed: true
+  - id: lbl-atlas-sea-sub
+    kind: sea
+    text: 手绘文化地图引擎
+    x: 185
+    y: 27.5
+    size: 2.5
+    fixed: true
+
+  # Strait Sea Labels
+  - id: lbl-strait-1
+    kind: sea
+    text: SEA OF NATURAL EARTH
+    x: 96
+    y: 194
+    size: 2.9
+    fixed: true
+  - id: lbl-strait-2
+    kind: sea
+    text: STRAIT OF DIAGNOSTICS
+    x: 204
+    y: 326
+    size: 2.8
+    fixed: true
+  - id: lbl-strait-3
+    kind: sea
+    text: BAY OF FOUR PRESETS
+    x: 96
+    y: 486
+    size: 2.8
+    fixed: true
+  - id: lbl-strait-4
+    kind: sea
+    text: PORT QUICK START
+    x: 212
+    y: 631
+    size: 2.7
+    fixed: true
+
+  # Kit-rendered Island Section Headers
+  - id: lbl-sec-features
+    text: SIX-LAYER CAPABILITIES
+    subtext: 核心能力
+    bilingualLayout: inline
+    x: 150
+    y: 215
+    size: 4.5
+    color: '#26201c'
+    subColor: '#b8372e'
+    fixed: true
+
+  - id: lbl-sec-agent
+    text: AGENT AUTHORING LOOP
+    subtext: 智能体迭代闭环
+    bilingualLayout: inline
+    x: 150
+    y: 347
+    size: 4.5
+    color: '#26201c'
+    subColor: '#b8372e'
+    fixed: true
+
+  - id: lbl-sec-styles
+    text: FOUR VISUAL PRESETS
+    subtext: 四种视觉风格
+    bilingualLayout: inline
+    x: 150
+    y: 507
+    size: 4.5
+    color: '#26201c'
+    subColor: '#b8372e'
+    fixed: true
+
+  - id: lbl-sec-quickstart
+    text: QUICK START & API
+    subtext: 快速开始
+    bilingualLayout: inline
+    x: 150
+    y: 650
+    size: 4.4
+    color: '#26201c'
+    subColor: '#b8372e'
+    fixed: true
+
+insets:
+  # Real Natural Earth map inset rendered live on the Hero Island!
+  - id: inset-japan
+    x: 190
+    y: 117
+    w: 86
+    h: 57
+    title: NATURAL EARTH · JAPAN
+    fixed: true
+    geo:
+      fit:
+        target: Japan
+        margin: 2
+        rotDeg: 20
+      focus: [Japan]
+      neighbors: false
+
+compass:
+  x: 268
+  y: 34
+  r: 9.0
+  angle: 0
+  rhumb: true
+  fixed: true
+
+cartouche:
+  x: 12
+  y: 11
+  w: 108
+  h: 46
+  country: HANDDRAWN-MAP-KIT
+  subtitle: AI Cultural Map Engine · Node.js
+  facts:
+    - "Spec: YAML / JSON (v1)"
+    - "Geo: 242 Countries · 4,589 Admin-1"
+    - "Art: 65 Icons · SVG · 4 Presets"
+    - "Deps: @napi-rs/canvas · js-yaml"
+  legend:
+    - { symbol: capital, label: Core Island }
+    - { symbol: city, label: Capability }
+    - { symbol: route, label: Agent Loop }
+  mmPerKm: 0.14
+  fixed: true
+
+layout:
+  autoPlace: false
+  avoidOverlap: false
+  padding: 1.0

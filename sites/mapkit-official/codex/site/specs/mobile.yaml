@@ -1,0 +1,305 @@
+# Original landing-page atlas; coordinates in millimetres.
+schemaVersion: 1
+meta:
+  id: atlas-mobile
+  seed: field-atlas-2026
+  lang: en
+canvas:
+  w: 100
+  h: 900
+  ppm: 10
+  paper: hotpress
+  border: true
+  pad: 2
+  inner: 4
+style:
+  preset: vintage-atlas
+  palette:
+    ocean: '#dbe7df'
+    oceanShallow: '#c5d8d0'
+    land: '#e5e4bf'
+    ink: '#283b32'
+    waterline: '#91afa6'
+    seaLabel: '#537a70'
+    cream: '#f7f1df'
+geo:
+  fit:
+    target: Italy
+    frame:
+      - 15
+      - 131
+      - 88
+      - 234
+  focus:
+    - Italy
+  neighbors: false
+  waterlines: true
+  land:
+    - coords: mm
+      color: '#f0e9d3'
+      pts:
+        - - 8
+          - 289
+        - - 26.599999999999998
+          - 284
+        - - 46.4
+          - 286
+        - - 70.7
+          - 282
+        - - 90
+          - 287
+        - - 95
+          - 357.2
+        - - 92
+          - 423
+        - - 87
+          - 469
+        - - 60.8
+          - 472
+        - - 40.1
+          - 470
+        - - 10
+          - 471
+        - - 5
+          - 394.8
+    - coords: mm
+      color: '#f0e9d3'
+      pts:
+        - - 8
+          - 717
+        - - 26.599999999999998
+          - 712
+        - - 46.4
+          - 714
+        - - 70.7
+          - 710
+        - - 90
+          - 715
+        - - 95
+          - 772.1239999999999
+        - - 92
+          - 826.4825
+        - - 87
+          - 864.38
+        - - 60.8
+          - 867.1700000000001
+        - - 40.1
+          - 865.31
+        - - 10
+          - 866.24
+        - - 5
+          - 803.186
+layers:
+  waves:
+    - x: 87
+      'y': 121
+      scale: 0.6
+      count: 2
+    - x: 10
+      'y': 235
+      scale: 0.6
+      count: 2
+    - x: 82
+      'y': 276
+      scale: 0.6
+      count: 2
+    - x: 85
+      'y': 483
+      scale: 0.6
+      count: 2
+    - x: 83
+      'y': 699
+      scale: 0.6
+      count: 2
+  routes:
+    - coords: mm
+      pts:
+        - - 12
+          - 543
+        - - 14
+          - 571
+        - - 12
+          - 604
+        - - 14
+          - 636
+        - - 12
+          - 668
+      color: '#a64934'
+elements:
+  - id: cathedral-0
+    type: cathedral
+    x: 37
+    'y': 163
+    scale: 0.7
+  - id: vineyard-1
+    type: vineyard
+    x: 56
+    'y': 183
+    scale: 0.6
+  - id: romanArch-2
+    type: romanArch
+    x: 68
+    'y': 201
+    scale: 0.6
+  - id: oliveTree-3
+    type: oliveTree
+    x: 77
+    'y': 220
+    scale: 0.6
+  - id: sailboat-4
+    type: sailboat
+    x: 20
+    'y': 215
+    scale: 0.7
+  - id: pavilion-5
+    type: pavilion
+    x: 18
+    'y': 342
+    scale: 0.75
+  - id: hotAirBalloon-6
+    type: hotAirBalloon
+    x: 18
+    'y': 389
+    scale: 0.7
+  - id: teapot-7
+    type: teapot
+    x: 18
+    'y': 436
+    scale: 0.8
+  - id: lighthouse-8
+    type: lighthouse
+    x: 82
+    'y': 851
+    scale: 0.75
+labels:
+  - id: label-0
+    text: 01 / THE FIELD ATLAS
+    x: 9
+    'y': 28
+    size: 2.8
+    color: '#537a70'
+    align: left
+    face: sans
+  - id: label-1
+    text: A world worth
+    x: 9
+    'y': 43
+    size: 8
+    color: '#283b32'
+    align: left
+    face: serif
+  - id: label-2
+    text: drawing.
+    x: 9
+    'y': 56
+    size: 10
+    color: '#a64934'
+    align: left
+    face: serif
+  - id: label-3
+    text: ITALIA
+    x: 62
+    'y': 145
+    size: 3.4
+    color: '#626844'
+    align: left
+    face: serif
+  - id: label-4
+    text: Roma
+    x: 54
+    'y': 209
+    size: 2.3
+    color: '#283b32'
+    align: left
+    face: serif
+  - id: label-5
+    text: MARE TIRRENO
+    x: 11
+    'y': 193
+    size: 2
+    color: '#537a70'
+    align: left
+    face: serif
+    angle: 0
+  - id: label-6
+    text: 02 / INSIDE THE KIT
+    x: 10
+    'y': 295
+    size: 2.6
+    color: '#a64934'
+    align: left
+    face: sans
+  - id: label-7
+    text: Real places.
+    x: 10
+    'y': 310
+    size: 6
+    color: '#283b32'
+    align: left
+    face: serif
+  - id: label-8
+    text: Remarkable details.
+    x: 10
+    'y': 320
+    size: 6
+    color: '#283b32'
+    align: left
+    face: serif
+  - id: label-9
+    text: 03 / THE AGENT’S ROUTE
+    x: 10
+    'y': 496
+    size: 2.6
+    color: '#a64934'
+    align: left
+    face: sans
+  - id: label-10
+    text: A little direction.
+    x: 10
+    'y': 511
+    size: 6
+    color: '#283b32'
+    align: left
+    face: serif
+  - id: label-11
+    text: A lot of possibility.
+    x: 10
+    'y': 521
+    size: 6
+    color: '#283b32'
+    align: left
+    face: serif
+  - id: label-12
+    text: 04 / YOUR FIRST EXPEDITION
+    x: 10
+    'y': 725
+    size: 2.5
+    color: '#a64934'
+    align: left
+    face: sans
+  - id: label-13
+    text: Start with a place.
+    x: 10
+    'y': 740
+    size: 6
+    color: '#283b32'
+    align: left
+    face: serif
+layout:
+  autoPlace: false
+  avoidOverlap: false
+  padding: 1
+compass:
+  x: 86
+  'y': 245
+  r: 5
+  rhumb: false
+cartouche:
+  x: 8
+  'y': 242
+  w: 66
+  h: 30
+  country: DRAWN BY THIS VERY KIT
+  titleSize: 2.6
+  subtitle: One seed. One spec. A world of stories.
+  legend: []
