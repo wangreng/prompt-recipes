@@ -48,10 +48,37 @@ for preset in vintage-atlas blueprint nocturne ink-wash; do
   )
 done
 
-echo "==> Converting renders to crisp WebP for static site/"
-for base in atlas-desktop atlas-mobile preset-vintage-atlas preset-blueprint preset-nocturne preset-ink-wash; do
-  convert "${TMP_DIR}/${base}.png" -quality 90 "${SITE_DIR}/images/${base}.webp"
-done
+echo "==> Encoding renders to WebP via kit's @napi-rs/canvas (Node + kit only)"
+node - "${KIT_DIR}" "${TMP_DIR}" "${SITE_DIR}/images" <<'EOF'
+const fs = require('node:fs');
+const path = require('node:path');
+
+const [kitDir, tmpDir, outDir] = process.argv.slice(2);
+const { createCanvas, loadImage } = require(path.join(kitDir, 'node_modules', '@napi-rs', 'canvas'));
+
+const bases = [
+  'atlas-desktop',
+  'atlas-mobile',
+  'preset-vintage-atlas',
+  'preset-blueprint',
+  'preset-nocturne',
+  'preset-ink-wash',
+];
+
+(async () => {
+  for (const base of bases) {
+    const img = await loadImage(path.join(tmpDir, `${base}.png`));
+    const canvas = createCanvas(img.width, img.height);
+    const ctx = canvas.getContext('2d');
+    ctx.drawImage(img, 0, 0);
+    const buf = await canvas.encode('webp', 90);
+    fs.writeFileSync(path.join(outDir, `${base}.webp`), buf);
+  }
+})().catch((err) => {
+  console.error(err);
+  process.exit(1);
+});
+EOF
 
 echo "==> Writing static site files (index.html, styles.css, app.js)"
 cp "${SRC_DIR}/index.html" "${SITE_DIR}/index.html"

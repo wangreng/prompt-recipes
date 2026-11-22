@@ -18,15 +18,14 @@ Roughly **~80–85% of the visible page area** (100% of the visual backdrop, fra
   - Bundled `Kevin Serif` / `Kevin Sans` `.woff2` fonts copied read-only from `./kit/engine/fonts/` into `site/fonts/`.
 
 ## Hero Demo & Rebuild Verification
-- **Command shown in hero:** `./build.sh`
+- **Command shown in hero:** `./build.sh` (requires only Node.js + `./kit`; WebP encoding runs directly through `./kit`'s bundled `@napi-rs/canvas`, with no ImageMagick or external image binaries required).
 - **Verification run:**
   1. Performed a clean build (`rm -rf site && ./build.sh`) and recorded SHA-256 checksums of all 6 generated `.webp` renders and static files in `site/`.
-  2. Deleted all generated renders (`rm -f site/images/*.webp`) and re-ran `./build.sh`.
-  3. Diffed SHA-256 checksums across both builds: **byte-for-byte identical** across all 6 WebP images (`1.4 MB` total, well under the `8 MB` budget) and HTML/CSS/JS files.
+  2. Deleted `site/` completely (`rm -rf site`) and re-ran `./build.sh`.
+  3. Diffed SHA-256 checksums across both builds: **byte-for-byte identical** across all 6 WebP images (`2.7 MB` total via `@napi-rs/canvas`, well under the `8 MB` budget) and HTML/CSS/JS files.
   4. Re-captured desktop (`1440×900` first + full) and mobile (`390×844` first + full) screenshots into `shots/` via Playwright + Chromium (`overflowX: false` on every zone, `overlaps=0, oob=0` on every spec, interactive preset switch to `blueprint` verified).
   5. Verified `./kit` remained untouched (read-only).
 
 ## Known Issues & Trade-offs
 - **Intermediate viewport widths (`769px–980px`):** Because text sits inside fixed aspect-ratio coordinates of the desktop map (`300:740`), very narrow desktop windows just above the `768px` mobile breakpoint scale type down to its `clamp()` floor (`10–13px`), tightening vertical margins slightly compared to the `1440px` target width.
 - **Horizontal scroll inside narrow mobile code blocks:** On `390px` mobile, long single-line CLI commands and YAML/JSON lines scroll horizontally inside their `<pre>` container (`overflow-x: auto`) rather than hard-wrapping mid-token, keeping code copyable without breaking island bounds.
-- **WebP conversion tool:** `./build.sh` uses ImageMagick `convert` (`-quality 90`) to keep total `site/images/` at `1.4 MB` (vs. ~15 MB uncompressed PNGs); environments without `convert` installed would need a quick fallback to raw PNGs or `cwebp`.
