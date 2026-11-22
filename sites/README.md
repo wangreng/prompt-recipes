@@ -55,3 +55,23 @@ Head-to-head (both orders, winner never flipped):
 
 Grid: `sites/trazo/r2b/grid-2b.png` (Original · R2 B / 2b B-raw · 2b B-gen).
 
+
+## Round 2c: trazo, image step via agy generate_image (2026-11-22)
+
+This round tests the same image step with a different image maker, so the stickers no longer come from the judge's model. The 8 map-kit stickers were made with agy's built-in image generation (`npx imagine-agy generate … --model gemini-4-neon-high`; the wrapper's default `gemini-3.1-pro-low` isn't valid on this account and fails silently). Each prompt pointed at the 4 trazo refs. Output is a JPEG on white. `tools/r2/matte.py` turns it into transparent PNG by flood-filling the near-white border, eroding 1px and feathering the edge; checked on a dark background with no halos. Page B was then rebuilt from the same recipe + agy stickers + brief. Codex judged as before. Script: `tools/r2/run-2c.sh`.
+
+Sticker sheet: `sites/trazo/r2c/stickers-2c-vs-2b.png`. Grid: `sites/trazo/r2c/grid-2c.png` (Original · R2 B / 2b Codex stickers · 2c agy stickers).
+
+**Head-to-head (both orders):**
+- **2c agy vs R2 recipe-only:** agy wins clearly, 85–73 and 86–74. Same lift as the Codex stickers got (84–73, 89–78).
+- **2c agy vs 2b Codex:** Codex wins both orders, 86–80 (slight) and 85–75 (clear).
+
+**Requirements:** I added two checks to the brief: (a) every spec must be shown with its own render, and (b) no claimed number may be contradicted by the page. Results:
+- **2c agy: 96.** The pairing is correct, and the catalog really has 65 entries. The only flagged claim is a nit: zoom says 150% and applies 155%.
+- **2b Codex, re-checked: 86.** It shows the Japan spec with the Korea map, and its "65" catalog has only 16 entries.
+
+**Read:**
+- **The lift comes from the image step itself.** It doesn't depend on which model draws the stickers.
+- **The Codex stickers are closer to the original's style, and the score favours them.** The Codex judge prefers its own model's stickers, but this time it isn't only self-preference: by eye the agy set is glossier and more detailed, with less crayon grain and fewer chunky cute faces.
+- **Check the result after generating.** Once the images exist, compare each one against the refs for the original's texture before using it.
+

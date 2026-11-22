@@ -1,0 +1,9 @@
+{
+ "score": 96,
+ "sections": 50,
+ "interactions": 29,
+ "quality": 17,
+ "pairing_ok": true,
+ "claims_ok": false,
+ "gaps": "Zoom claims 150 percent but applies 155 percent. Copy buttons report success even when copying fails. Dialogs lack keyboard focus trapping and focus restoration. Catalog correctly contains 65 entries."
+}
