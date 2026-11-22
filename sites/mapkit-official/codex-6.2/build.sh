@@ -24,9 +24,11 @@ async function build() {
       fs.unlinkSync(temporary);
       console.log(name, plate.diagnostics.summary);
     }
-    for (const file of ['index.html', 'style.css']) {
-      fs.copyFileSync(path.join('src', file), path.join(staging, file));
-    }
+    const prompt = fs.readFileSync('AGENT-PROMPT.md', 'utf8');
+    const escapedPrompt = prompt.replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;');
+    const template = fs.readFileSync('src/index.html', 'utf8');
+    fs.writeFileSync(path.join(staging, 'index.html'), template.replace('{{AGENT_PROMPT}}', () => escapedPrompt));
+    fs.copyFileSync('src/style.css', path.join(staging, 'style.css'));
     // Local-file viewers can block sibling font requests. Embed the same
     // WOFF2 bytes in the stylesheet so the atlas also opens offline.
     const fontRules = fs.readFileSync('src/fonts.css', 'utf8');

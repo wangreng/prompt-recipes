@@ -59,3 +59,25 @@ button {font-family:inherit}
   .intro .terminal{gap:8px}
   #copy{flex:none}
 }
+.intro h1{font-size:clamp(54px,4.8vw,83px)}
+.hero{height:auto;min-height:max(545px,39vw);padding-block:24px}
+.agent-tools{margin-top:16px;display:flex;align-items:center;flex-wrap:wrap;gap:8px 15px}
+button{cursor:pointer}
+[data-copy="#agent-text"]{background:#884831;color:#fff9ea;padding:10px 15px;border:1px solid #74422e;font:bold 16px/1.15 'Atlas Serif'}
+[data-copy="#agent-text"]:hover{background:#703c2b}
+#preview-agent,#close-prompt{background:none;color:inherit;border:0;text-decoration:underline;text-underline-offset:3px;padding:4px 0;font:14px 'Atlas Sans'}
+.agent-tools p{width:100%;font:11px/1.4 'Atlas Mono';color:#5d6254}
+.commandlabel{margin-top:15px}
+#agent-dialog{width:min(590px,92%);max-height:86vh;padding:24px;background:#f7f2e5;color:#28342d;border:1px solid #877961}
+#agent-dialog::backdrop{background:#192b26a8}
+.dialog-bar{display:flex;align-items:center;justify-content:space-between;gap:16px}
+.dialog-bar h2{font:normal 32px 'Atlas Serif';margin:0}
+#agent-text{white-space:pre-wrap;overflow-wrap:anywhere;background:transparent;color:inherit;padding:16px 0;border-block:1px solid #c5bda8;margin:16px 0;font:14px/1.5 'Atlas Mono'}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}
+@media(max-width:700px){
+  .hero{height:auto;min-height:0;padding:calc(var(--map-height) - 82px) 0 5px}
+  .intro h1{font-size:clamp(39px,12vw,57px)}
+  .agent-tools{gap:6px 11px;margin-top:12px}
+  .agent-tools p{font:10px/1.3 'Atlas Mono'}
+  .sheet{--map-height:clamp(300px,86vw,410px)}
+}

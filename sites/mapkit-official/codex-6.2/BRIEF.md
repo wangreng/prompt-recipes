@@ -27,3 +27,8 @@ The hero demo is ONE command that generates this very site. Provide a real scrip
 - The one-command build must work on a clean machine with only Node.js and the kit installed (no ImageMagick or other tools).
 
 - Mobile 390: the FIRST SCREEN must already read as a map: kit cartouche, compass and border visible, and the section content sitting on a kit-drawn parchment island with small kit objects around it. Not a plain text hero with the map pushed below the fold.
+
+## Iteration 3 (owner)
+1. Positioning: the selling point is handdrawn-map-kit itself (an agent-driven hand-drawn map engine), not a Japan field guide. The Japan map stays only as a demo plate. Headline, copy and labels sell the kit.
+2. Add a prominent Copy for your agent block, high on the page (hero or right below) on desktop and 390, with a one-click copy button. Content: a short paste-ready prompt for Claude Code / Codex / Cursor that clones https://github.com/wangreng/handdrawn-map-kit, runs npm ci, installs SKILL.md as a skill (Claude Code: ~/.claude/skills/handdrawn-map-kit/SKILL.md; Codex: ~/.agents/skills/handdrawn-map-kit/SKILL.md; Cursor: read SKILL.md as project rules or verify the right place) and then renders a first map with --diagnostics. Verify every path and command against the kit SKILL.md/README and the agents docs; keep it short and accurate. Optional second variant: start directly with draw me a map of X.
+Keep everything else (continuous map, hero strength, mobile map-first, bundled fonts, Node-only build).

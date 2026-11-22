@@ -1,8 +1,9 @@
-# Handdrawn Map Kit — Japan field guide
+# handdrawn-map-kit — illustrated map engine
 
-The page is a single long atlas sheet. Japan’s Natural Earth coastline and cultural illustrations sit beside the title and the command that regenerates the site.  
-Three paper notes carry the feature overview, agent workflow, and quick start. A shrine gate, survey vessel, and coastal light mark their positions.  
-The pocket edition opens with a framed map of Japan, a flag cartouche, and a compass rose. The title and build command sit on an illustrated parchment island below the archipelago, all within the first 390 × 844 viewport.
+The engine introduces itself on a continuous atlas sheet, with Japan as its demonstration plate.  
+The hero offers a prompt to draw a first map of Italy and a separate command to regenerate this site.  
+Three paper notes explain the engine’s features, the agent authoring loop, and CLI usage.  
+The pocket edition places both actions on a parchment island beneath the map, flag cartouche, and compass.
 
 ## Artwork and implementation
 
@@ -36,3 +37,15 @@ The mobile hero uses normal-flow grid rows for the introduction and plate link. 
 Reviewed first-screen and full-page Chrome screenshots at 1440 × 900 and 390 × 844 across multiple passes, including the final rebuild. The final browser used an isolated Fontconfig configuration exposing only an unrelated kit font, with all host font directories excluded. Chrome reported all six WOFF2 faces loaded and only the bundled Liberation webfonts used for rendered page text. An earlier run with a completely empty font database produced unreliable Chrome text rendering, so the final check measures actual glyph usage with a working browser font backend.
 
 Deleted both rendered maps, the output WOFF2 files, and the generated font stylesheet. Rebuilt with `./build.sh` and only Node.js on PATH. SHA-256 hashes matched for all 14 site files and all four recaptured screenshots.
+
+## Iteration 3 — agent onboarding
+
+“Copy for your agent” copies the complete contents of `AGENT-PROMPT.md`, including the final newline. “View prompt” opens a keyboard-accessible dialog containing the same text. The build uses that file as the single source for both actions.
+
+The prompt uses the repo’s root `SKILL.md` and the name from its YAML frontmatter. Claude Code and Codex use their documented personal skill directories. Cursor uses its project skill directory in the active workspace. See [Claude Code skill locations](https://code.claude.com/docs/en/skills), [Codex local skill locations](https://developers.openai.com/codex/skills), and [Cursor skill directories](https://cursor.com/docs/skills).
+
+Checked the Italy YAML path and render flags against the bundled README and SKILL.md. Verified the package’s CLI entry point in package.json. A fresh clone of the prompt’s URL at commit `4581c0e3565ae233bb81d720bb4a0c467425a664` completed `npm ci` and the exact first-map command. It produced out/italy.png and out/italy.diag.json with 16 layout items, zero overlaps, and zero out-of-bounds items. Skill locations were verified from the agent docs without changing personal agent settings.
+
+Reviewed three screenshot passes in headless Chrome, each with first-screen and full-page captures at 1440 × 900 and 390 × 844. The hero copy button was visible at both widths. At each size, clipboard readback from the hero and dialog matched AGENT-PROMPT.md byte for byte, and the build button copied exactly `./build.sh`.
+
+Deleted both generated WebPs and ran `./build.sh` with only Node.js on PATH. All 14 site files and the four recaptured screenshots matched their pre-deletion SHA-256 hashes.
