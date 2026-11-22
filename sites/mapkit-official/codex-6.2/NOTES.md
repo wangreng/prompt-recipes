@@ -13,7 +13,7 @@ The pocket edition opens with a framed map of Japan, a flag cartouche, and a com
 
 ## Display tradeoff
 
-The two map compositions are optimized for the requested desktop and pocket sizes. The pocket layout draws the upper part of the WebP at a fixed height to keep the title on its island as text reflows. The rest of that same image stretches continuously to the footer. Small place names are easier to inspect in the full plate. “Open full plate” shows the current edition at its original aspect ratio.
+The two map compositions are optimized for the requested desktop and pocket sizes. The pocket layout sizes the geographic portion of the plate to the viewport width. The parchment portion of the same image stretches with the live text, followed by the remaining map down to the footer. Small place names are easier to inspect in the full plate. “Open full plate” shows the current edition at its original aspect ratio.
 
 ## Round 2 verification
 
@@ -26,3 +26,13 @@ Ran the build with a PATH containing only Node.js. Deleted both generated WebPs,
 Captured the first viewport and full page four times at 390 × 844 and 1440 × 900 in headless Chrome. Visual review led to a taller Japan cartouche with room for the scale bar, more clearance for the sailboat, and better alignment between the title, shoreline, and figure caption. The final mobile first screen shows the map, cartouche, compass, border, parchment island, and build command together. Both final specs report zero overlaps and zero out-of-bounds objects.
 
 The final desktop first-screen and full-page PNGs match their pre-revision SHA-256 hashes. After deleting both generated WebPs and running `./build.sh` with only Node.js on PATH, all six site files and all four recaptured screenshots matched the pre-deletion hashes.
+
+## Clean-machine typography and reflow
+
+Six bundled Liberation WOFF2 faces supply the serif titles, sans-serif prose, and monospaced commands and labels. Their OFL license ships in `site/FONT-LICENSE.txt`. The build copies the vendored files from `src/fonts/` and embeds their bytes in `site/fonts.css` for direct local-file viewing. The mark, copy, confirmation, and external-link icons are SVG. Font conversion is already complete and adds no build dependency.
+
+The mobile hero uses normal-flow grid rows for the introduction and plate link. The island and its vertical clearances grow with the content while the map above retains its size. At 390 × 844 the title occupies two lines, with 30 px between the command and link. Increasing all hero text to 150% produced three title lines, a taller island, 57 px of clearance, and no horizontal overflow.
+
+Reviewed first-screen and full-page Chrome screenshots at 1440 × 900 and 390 × 844 across multiple passes, including the final rebuild. The final browser used an isolated Fontconfig configuration exposing only an unrelated kit font, with all host font directories excluded. Chrome reported all six WOFF2 faces loaded and only the bundled Liberation webfonts used for rendered page text. An earlier run with a completely empty font database produced unreliable Chrome text rendering, so the final check measures actual glyph usage with a working browser font backend.
+
+Deleted both rendered maps, the output WOFF2 files, and the generated font stylesheet. Rebuilt with `./build.sh` and only Node.js on PATH. SHA-256 hashes matched for all 14 site files and all four recaptured screenshots.

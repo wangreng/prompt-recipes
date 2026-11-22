@@ -27,6 +27,18 @@ async function build() {
     for (const file of ['index.html', 'style.css']) {
       fs.copyFileSync(path.join('src', file), path.join(staging, file));
     }
+    // Local-file viewers can block sibling font requests. Embed the same
+    // WOFF2 bytes in the stylesheet so the atlas also opens offline.
+    const fontRules = fs.readFileSync('src/fonts.css', 'utf8');
+    const offlineRules = fontRules.replace(/url\('([^']+\.woff2)'\)/g, (_, file) => {
+      const bytes = fs.readFileSync(path.join('src/fonts', file));
+      return `url('data:font/woff2;base64,${bytes.toString('base64')}')`;
+    });
+    fs.writeFileSync(path.join(staging, 'fonts.css'), offlineRules);
+    for (const file of fs.readdirSync('src/fonts')) {
+      const destination = file === 'LICENSE.txt' ? 'FONT-LICENSE.txt' : file;
+      fs.copyFileSync(path.join('src/fonts', file), path.join(staging, destination));
+    }
     fs.copyFileSync('kit/SKILL.md', path.join(staging, 'SKILL.md'));
     fs.copyFileSync('specs/japan.yaml', path.join(staging, 'japan.yaml'));
     fs.mkdirSync('site', { recursive: true });
