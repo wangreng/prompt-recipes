@@ -1,0 +1,52 @@
+schemaVersion: 1
+meta:
+  id: japan
+  title: Japanese Archipelago
+  seed: field-atlas-japan
+canvas:
+  w: 320
+  h: 432
+  ppm: 5
+  border: false
+style:
+  preset: vintage-atlas
+  palette: {ocean: '#bcd3cf', land: '#e7d7a6', neighborLand: '#d5ccae', oceanShallow: '#a6c5bc'}
+geo:
+  projection: {lon0: 137.7, lat0: 38, cx: 218, cy: 84, scale: 0.105, rotDeg: 22}
+  focus: [Japan]
+  neighbors: [South Korea, North Korea, China, Russia]
+  waterlines: true
+layers:
+  graticule: true
+  rivers: {auto: true, maxRank: 6}
+  waves: [{x: 178, 'y': 44, count: 2, scale: 1}, {x: 290, 'y': 115, count: 2, scale: 1}, {x: 222, 'y': 179, count: 2, scale: 1}, {x: 283, 'y': 217, count: 2, scale: 1}, {x: 246, 'y': 236, count: 2, scale: 1}, {x: 40, 'y': 276, count: 2, scale: 1}, {x: 81, 'y': 298, count: 2, scale: 1}, {x: 108, 'y': 316, count: 2, scale: 1}, {x: 227, 'y': 373, count: 2, scale: 1}, {x: 266, 'y': 389, count: 2, scale: 1}, {x: 292, 'y': 411, count: 2, scale: 1}]
+elements:
+  - {type: mountain, lon: 138.73, lat: 35.36, scale: 0.98}
+  - {type: torii, lon: 132.3, lat: 34.25, scale: 0.95}
+  - {type: pagoda, lon: 135.8, lat: 35, scale: 1.18}
+  - {type: sakura, lon: 140.5, lat: 38.3, scale: 1.15}
+  - {type: deer, lon: 143, lat: 43, scale: 1.05}
+  - {type: pine, lon: 141, lat: 40.9, scale: 0.9}
+  - {type: whale, x: 266, 'y': 112, scale: 1.3}
+  - {type: sailboat, x: 175, 'y': 69, scale: 1.2}
+  - {type: torii, x: 254, 'y': 197, scale: 1.22}
+  - {type: sakura, x: 278, 'y': 201, scale: 1.05}
+  - {type: crane, x: 242, 'y': 220, scale: 0.85}
+  - {type: ship, x: 63, 'y': 283, scale: 1.65}
+  - {type: fish, x: 90, 'y': 306, scale: 1.05}
+  - {type: lighthouse, x: 253, 'y': 370, scale: 1.45}
+  - {type: sailboat, x: 282, 'y': 396, scale: 0.92}
+labels:
+  - {text: Hokkaido, lon: 144, lat: 43, size: 2.7}
+  - {text: Honshu, lon: 139.4, lat: 37.7, size: 2.9}
+  - {text: Kyushu, lon: 130.8, lat: 31.2, size: 2.8}
+  - {text: Shikoku, lon: 134, lat: 32.9, size: 2.5}
+  - {text: Sea of Japan, kind: sea, x: 207, 'y': 63, size: 3.6}
+  - {text: Pacific Ocean, kind: sea, x: 241, 'y': 129, size: 3.6}
+  - {text: Shrine gate, x: 254, 'y': 204, size: 2.9, kind: sea}
+  - {text: Survey vessel, x: 63, 'y': 292, size: 3.2, kind: sea}
+  - {text: Coastal light, x: 254, 'y': 380, size: 3.1, kind: sea}
+compass:
+  x: 302
+  'y': 34
+  r: 7

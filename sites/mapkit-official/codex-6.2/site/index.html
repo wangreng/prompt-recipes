@@ -1,0 +1,24 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Handdrawn Map Kit — An illustrated field atlas</title><link rel="stylesheet" href="style.css"></head><body id="top"><div class="sheet">
+<header><a class="brand" href="#top"><b class="mark" aria-hidden="true">✥</b> handdrawn-map-kit</a><nav><a href="#atlas">Atlas</a><a href="#workflow">Agent workflow</a><a href="#start">Quick start</a></nav><a class="git" href="https://github.com/wangreng/handdrawn-map-kit">GitHub ↗</a></header>
+<main><section class="hero" aria-label="Introduction and illustrated map of Japan">
+<div class="plate"><span>PLATE I</span> &nbsp; / &nbsp; JAPAN</div>
+<article class="intro"><div class="eyebrow"><i></i> CARTOGRAPHIC FIELD GUIDE</div><h1>Hand-drawn<br><em>map kit.</em></h1>
+<p>An agent-driven Node.js engine for illustrated cultural maps. Turn a YAML or JSON spec into an atlas of places, people, and stories.</p>
+<div class="commandlabel">BUILD THIS ENTIRE PAGE</div><div class="terminal"><code><span aria-hidden="true">$ </span><b>./build.sh</b></code><button id="copy" aria-label="Copy build command" title="Copy command">⧉</button></div></article>
+<a class="enlarge" href="japan.webp" target="_blank">↗ &nbsp; Open full plate</a></section>
+<div class="caption"><span><b>FIG. 01</b> &nbsp; The Japanese archipelago</span><span>VINTAGE ATLAS &nbsp; / &nbsp; NATURAL EARTH</span></div>
+<section class="stop" id="atlas"><div class="paper"><div class="folio">I</div><div class="eyebrow"><i></i> FIELD NOTES &nbsp; / &nbsp; 01</div><h2>Inside the map kit</h2><div class="features">
+<article><small>01 / GEOGRAPHY</small><h3>Real ground</h3><p>Build on Natural Earth coastlines, provinces, rivers, lakes, cities, and peaks. Reference places by name.</p></article>
+<article><small>02 / ILLUSTRATION</small><h3>A cultural vocabulary</h3><p>Place 65 built-in illustrations or draw a local landmark with inline SVG. Add bilingual labels and curved lettering.</p></article>
+<article><small>03 / MATERIAL</small><h3>Four ways to draw</h3><p>Render the same sheet as a vintage atlas, a cyanotype blueprint, a nocturne, or an ink-wash scroll.</p></article></div></div></section>
+<section class="stop" id="workflow"><div class="paper"><div class="folio">II</div><div><div class="eyebrow"><i></i> AUTHORING GUIDE &nbsp; / &nbsp; 02</div><h2>The agent workflow</h2><p>The bundled <a href="SKILL.md">SKILL.md</a> describes the schema and the render-and-refine loop.</p></div><ol><li><strong>Inspect the kit</strong><p>Query places, elements, and styles with the CLI.</p></li><li><strong>Draft the spec</strong><p>Describe geography, layers, labels, and illustrations in YAML or JSON.</p></li><li><strong>Render a proof</strong><p>Use <code>--fast --auto-layout --diagnostics -</code> for a preview and structured JSON.</p></li><li><strong>Refine the plate</strong><p>Check overlaps and out-of-bounds items, adjust the spec, and repeat. Finish with <code>--hd</code>.</p></li></ol></div></section>
+<section class="stop" id="start"><div class="paper"><div class="folio">III</div><div><div class="eyebrow"><i></i> AT THE TERMINAL &nbsp; / &nbsp; 03</div><h2>Quick start</h2><p>From this project folder, inspect the illustration library and render the <a href="japan.yaml">Japan spec</a>.</p></div><pre><code>cd kit
+npx handdrawn-map inspect elements
+npx handdrawn-map render ../specs/japan.yaml &#92;
+  --fast -o ../japan.png</code></pre></div></section>
+</main><footer><a class="brand" href="#top">✥ &nbsp; handdrawn-map-kit</a><span>MIT LICENSE &nbsp; / &nbsp; NATURAL EARTH DATA</span></footer></div>
+<script>const pocket = matchMedia('(max-width:700px)');
+function updatePlate() { document.querySelector('.enlarge').href = pocket.matches ? 'japan-pocket.webp' : 'japan.webp'; }
+updatePlate();
+pocket.addEventListener('change', updatePlate);
+document.querySelector('#copy').onclick=async function(){try{await navigator.clipboard.writeText('./build.sh');this.textContent='✓';this.setAttribute('aria-label','Command copied');setTimeout(()=>{this.textContent='⧉';this.setAttribute('aria-label','Copy build command')},1600)}catch{const r=document.createRange();r.selectNodeContents(document.querySelector('.terminal b'));getSelection().removeAllRanges();getSelection().addRange(r)}};</script></body></html>
